@@ -1,30 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class species(models.Model):
-    """
-    Species act as their biological definition.
-    A specimen may be long to them.
-    Disease notes may be recorded, etc.
-    """
-    name = models.CharField(max_length=100, unique=True)
-    notes = models.TextField(null=True, blank=True)
-    
-    def __unicode__(self):
-        return str(self.name)
+class collar(models.Model):
 
-class specimen(models.Model):
-    """
-    Specimen are animals that are being tracked in some fashion.
-    Possibilities include a collar GPS unit, weather info, or custom sensors
-    """
-
-    collar_ID = models.CharField(max_length=50, null=True, blank=True, unique=True)
-    common_name = models.CharField(max_length=50, null=True, blank=True)
-    species = models.ForeignKey(species, null=True, blank=True)
+    collar_ID = models.IntegerField(primary_key=True)
 
     def __unicode__(self):
-        return str(self.common_name)
+        return str(self.collar_ID)
 
 class collar_data(models.Model):
     """
@@ -32,6 +14,7 @@ class collar_data(models.Model):
     it has a ton of fields that map it to a given specimen
     Field names were given by their similarity to the output format
     """
+    collar_ID = models.ForeignKey(collar)
 
     GMT_DATETIME = models.DateTimeField()
     LMT_DATETIME = models.DateTimeField()
@@ -77,3 +60,27 @@ class collar_data(models.Model):
 
     def __unicode__(self):
         return str(self.id)
+
+class species(models.Model):
+    """
+    Species act as their biological definition.
+    A specimen may be long to them.
+    Disease notes may be recorded, etc.
+    """
+    name = models.CharField(max_length=100, unique=True)
+    notes = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.name)
+
+class specimen(models.Model):
+    """
+    Specimen are animals that are being tracked in some fashion.
+    Possibilities include a collar GPS unit, weather info, or custom sensors
+    """
+    collar_ID = models.ForeignKey(collar, null=True, blank=True)
+    common_name = models.CharField(max_length=50, null=True, blank=True)
+    species = models.ForeignKey(species, null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.common_name)

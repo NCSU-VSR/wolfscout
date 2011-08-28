@@ -56,3 +56,8 @@ sitemap*
 
 #Fabric Conf Files
 .fabricrc
+
+
+#Settings Files To Ignore (Your Local Ones)
+settings/chrisDev.py
+settings/production.py
