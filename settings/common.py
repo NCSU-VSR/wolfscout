@@ -40,12 +40,12 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '../'
+MEDIA_ROOT = os.path.join(PROJECT_DIR,  'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -101,7 +101,12 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, 'templates/'),
+
+    '/opt/webapps/django/lib/python2.6/dist-packages/django/contrib/admin/templates/',
 )
+
+LOGIN_REDIRECT_URL = "/"
 
 # set path to include apps subdir
 import sys
@@ -116,10 +121,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'apps.crawler',
-    'apps.study',
-    'apps.wildlife',
-    'south'
+    #Locally Installed Apps
+    'crawler',
+    'study',
+    'wildlife',
+    #Core Applications From Non-Django Sources
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
