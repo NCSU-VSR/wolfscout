@@ -1,5 +1,11 @@
 # Django settings for wolfscout project.
 
+
+import os
+
+PROJECT_DIR = os.path.split(os.path.realpath(os.path.dirname(__file__)))[0]
+SITE_DIR = os.path.split(PROJECT_DIR)[0]
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -97,6 +103,10 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+# set path to include apps subdir
+import sys
+sys.path.insert(0,os.path.join(PROJECT_DIR, 'apps'))
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -104,10 +114,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'apps.crawler',
+    'apps.study',
+    'apps.wildlife',
+    'south'
 )
 
 # A sample logging configuration. The only tangible logging
