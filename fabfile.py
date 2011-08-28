@@ -8,7 +8,7 @@ Fabric is a utility that automates many things, here are some functions for prep
 the code for release onto a production server
 """
 
-env.hosts = ['development.pdfsupply.com']
+env.hosts = ['wolfscout.ncsu.edu']
 
 def testData():
     print str(env.localBranch)
