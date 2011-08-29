@@ -33,7 +33,6 @@ def pushLocal():
     After that it will execute all tests in the django project.
     If the tests complete it will 
     """
-    local('git push origin %s' % env.localBranch)
     test()
     local('git push origin %s' % env.localBranch)
 
