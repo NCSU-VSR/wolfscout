@@ -7,28 +7,28 @@ and the django admin interface. Update this to update your view of your models.
 from django.contrib import admin
 
 ##### Local Imports #####
-from wildlife.models import collar, collar_data, species, specimen
+from wildlife.models import Collar, CollarData, Species, Specimen
 
 ##### Admin Classes ######
-class collar_admin(admin.ModelAdmin):
+class CollarAdmin(admin.ModelAdmin):
     list_display = ('collar_ID',)
     search_fields = ('collar_ID',)
 
-class collar_data_admin(admin.ModelAdmin):
+class CollarDataAdmin(admin.ModelAdmin):
     list_display = ('collar_ID','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
     search_fields = ('collar_ID','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
 
-class species_admin(admin.ModelAdmin):
+class SpeciesAdmin(admin.ModelAdmin):
     list_display = ('name','notes',)
     search_fields = ('name',)
 
-class specimen_admin(admin.ModelAdmin):
+class SpecimenAdmin(admin.ModelAdmin):
     list_display = ('collar_ID','common_name','species',)
     search_fields = ('collar_ID','common_name','species',)
 
 
 ##### Admin Registers ######
-admin.site.register(collar, collar_admin)
-admin.site.register(collar_data, collar_data_admin)
-admin.site.register(species, species_admin)
-admin.site.register(specimen, specimen_admin)
+admin.site.register(Collar, CollarAdmin)
+admin.site.register(CollarData, CollarDataAdmin)
+admin.site.register(Species, SpeciesAdmin)
+admin.site.register(Specimen, SpecimenAdmin)

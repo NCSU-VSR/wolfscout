@@ -1,20 +1,20 @@
 from django.db import models
 
 # Create your models here.
-class collar(models.Model):
+class Collar(models.Model):
 
     collar_ID = models.IntegerField(primary_key=True)
 
     def __unicode__(self):
         return str(self.collar_ID)
 
-class collar_data(models.Model):
+class CollarData(models.Model):
     """
     Collar Data should relate to a single specimen at a given time
     it has a ton of fields that map it to a given specimen
     Field names were given by their similarity to the output format
     """
-    collar_ID = models.ForeignKey(collar)
+    collar_ID = models.ForeignKey(Collar)
 
     GMT_DATETIME = models.DateTimeField()
     LMT_DATETIME = models.DateTimeField()
@@ -61,7 +61,7 @@ class collar_data(models.Model):
     def __unicode__(self):
         return str(self.id)
 
-class species(models.Model):
+class Species(models.Model):
     """
     Species act as their biological definition.
     A specimen may be long to them.
@@ -73,14 +73,14 @@ class species(models.Model):
     def __unicode__(self):
         return str(self.name)
 
-class specimen(models.Model):
+class Specimen(models.Model):
     """
     Specimen are animals that are being tracked in some fashion.
     Possibilities include a collar GPS unit, weather info, or custom sensors
     """
-    collar_ID = models.ForeignKey(collar, null=True, blank=True)
+    collar_ID = models.ForeignKey(Collar, null=True, blank=True)
     common_name = models.CharField(max_length=50, null=True, blank=True)
-    species = models.ForeignKey(species, null=True, blank=True)
+    species = models.ForeignKey(Species, null=True, blank=True)
 
     def __unicode__(self):
         return str(self.common_name)
