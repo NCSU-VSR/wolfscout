@@ -15,6 +15,8 @@ To install git visit: (http://code.google.com/p/git-osx-installer/) and download
 
 Creating Your Virtual Environment:
 ----------------------------------
+In this section replace ubuntu with your username such as chris or cpturtle (only this section)
+
     cd ~/
     sudo mkdir /opt/
     sudo mkdir /opt/webapps
