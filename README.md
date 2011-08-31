@@ -1,6 +1,18 @@
 Getting Started With Wolfscout
 ==============================
 
+### Installing Required Packages (Ubuntu Linux)
+
+These packages need to be installed for the rest of the turoial to work.
+
+    sudo apt-get install python-virtualenv python-dev libjpeg-dev git-core libpq-dev
+
+### Installing Required Packages (Mac OSX)
+
+You will need to have Python 2.7 and Git Installed. To install Python 2.7 Install OSX 10.7(Lion) and Install Xcode.
+To install git visit: (http://code.google.com/p/git-osx-installer/) and download the version for your computer, then install it.
+
+
 Creating Your Virtual Environment:
 ----------------------------------
     cd ~/
