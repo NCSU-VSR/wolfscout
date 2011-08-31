@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 class Collar(models.Model):
 
-    collar_ID = models.IntegerField(primary_key=True)
+    collarID = models.IntegerField(primary_key=True)
 
     def __unicode__(self):
-        return str(self.collar_ID)
+        return str(self.collarID)
 
 class CollarData(models.Model):
     """
@@ -14,7 +14,7 @@ class CollarData(models.Model):
     it has a ton of fields that map it to a given specimen
     Field names were given by their similarity to the output format
     """
-    collar_ID = models.ForeignKey(Collar)
+    collar = models.ForeignKey(Collar)
 
     GMT_DATETIME = models.DateTimeField()
     LMT_DATETIME = models.DateTimeField()
@@ -78,7 +78,7 @@ class Specimen(models.Model):
     Specimen are animals that are being tracked in some fashion.
     Possibilities include a collar GPS unit, weather info, or custom sensors
     """
-    collar_ID = models.ForeignKey(Collar, null=True, blank=True)
+    collar = models.ForeignKey(Collar, null=True, blank=True)
     common_name = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)
 
