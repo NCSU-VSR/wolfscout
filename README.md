@@ -16,29 +16,42 @@ Creating Your Virtual Environment:
 
     cd /opt/webapps/ncsu/
     git clone git@github.com:NCSU-VSR/wolfscout.git
-    
 
 ### Install All Required Packages:
 
-    cd /opt/webapps/ncsu/
-    source bin/activate
-    pip install Django South psycopg2==2.4.1 gunicorn PIL Fabric
-
-
-### Write Your Local Settings File For Django:
-
-Examine the code found in wolfscout/settings/sample.py . Then create your own file in the same directory that identifies your local environment like "sandysMac.py". After completing the values in the file to match your local environment (db engine, password, usernames, etc). Save the file again. 
-
-Now go back to the root directory and look for ".gitignore", open this file in your favorite editor and look for the section "#Settings Files To Ignore (Your Local Ones)" append your newly created file to that list and save the file.
+    cd /opt/webapps/ncsu/wolfscout
+    source ../bin/activate
+    pip install -r requirements.txt
 
 ### Configuring Environment Variables:
 
 With your favorite editor open the file "/opt/webapps/ncsu/bin/activate" and append the following lines to the file.
 
     export PYTHONPATH=.:/opt/webapps/ncsu
-    export DJANGO_SETTINGS_MODULE=wolfscout.settings.MYSETTINGSFILE
+    export DJANGO_SETTINGS_MODULE=wolfscout.settings.sample
     
 With the name of your new settings file(no .py and keep whatever case you named it).
+
+### Configuring Your Branch (Version Control)
+
+Use only your firstname or combo first and last together(no spaces)
+
+    cd /opt/webapps/ncsu/wolfscout/
+    source ../bin/activate
+    git branch yourname
+    git checkout yourname
+    git pull origin development
+    git commit -m "I am updating my branch with development"
+    git push origin yourname
+
+### Configuring Fabric
+
+Using your favorite text editor called .fabricrc in your home directory (~/.fabricrc). Complete it like so:
+
+    user = ubuntu
+    localBranch = yournamme
+
+The user argument is for the remote server(everyone shares this) and the localBrach tells fabric which branch it is currently working with.
 
 Development Utilities:
 ---------------------
