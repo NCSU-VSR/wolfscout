@@ -16,6 +16,12 @@ def test():
     """
     local('django-admin.py test')
 
+def runEnv():
+    """
+    Runs the damn environment
+    """
+    local('django-admin.py runserver')
+
 def commit():
     """
     Starts by running tests on the project.
