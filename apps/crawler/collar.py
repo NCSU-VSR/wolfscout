@@ -1,6 +1,7 @@
 #Global Imports
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
+from sys import *
 #Local Imports
 from wolfscout.apps.wildlife.models import *
 
@@ -130,9 +131,12 @@ class CollarParser(object):
         Ending the process when the last line has been read and
         processed.
         """
-        with open(self.filename, 'r') as file:
-            for self.line in file:
-                self.lineParser()
+        try:
+            with open(self.filename, 'r') as file:
+                for self.line in file:
+                    self.lineParser()
+        except IOError, err:
+            return err
         return 0
         
     def extractCollarIDFromFilename(self, filename):
@@ -148,12 +152,14 @@ class CollarParser(object):
         """
         self.collarID = filename.split('/')[-1].split('.')[0][3:]
 
+    def processCSVIntoDatabase(self):
+        self.extractCollarIDFromFilename(self.filename)
+        self.createCollar(self.collarID)
+        self.line = None
+        self.fileReader()
+
     def __init__(self, filename):
         """
         Takes in a filename, calls reader.
         """
         self.filename = filename
-        self.extractCollarIDFromFilename(filename)
-        self.createCollar(self.collarID)
-        self.line = None
-        self.fileReader()

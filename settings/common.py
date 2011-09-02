@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'wildlife',
     #Core Applications From Non-Django Sources
     'south',
+    #Nose must be below south or it all fails
+    'django_nose',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -151,3 +153,6 @@ LOGGING = {
         },
     }
 }
+
+#Testing Configuration For Nose
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
