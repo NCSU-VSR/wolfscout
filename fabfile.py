@@ -16,6 +16,12 @@ def test():
     """
     local('django-admin.py test')
 
+def runServer():
+    """
+    Runs the server
+    """
+    local('django-admin.py runserver')
+
 def commit():
     """
     Starts by running tests on the project.
