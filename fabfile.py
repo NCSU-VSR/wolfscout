@@ -16,9 +16,9 @@ def test():
     """
     local('django-admin.py test')
 
-def runEnv():
+def runServer():
     """
-    Runs the damn environment
+    Runs the server
     """
     local('django-admin.py runserver')
 
