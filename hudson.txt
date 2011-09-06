@@ -1,21 +1,4 @@
 #!/bin/bash -ex
-if [ -d "ncsu" ]; then
-    echo "**> virtualenv exists"
-    echo "**> virtualenv ncsu is being deleted"
-    rm -rf ncsu
-else
-    echo "**> creating virtualenv"
-fi
-virtualenv --no-site-packages ncsu
-source ./ncsu/bin/activate
-export PYTHONPATH=.:$WORKSPACE
-export DJANGO_SETTINGS_MODULE=settings.testSettings
-pip install -E ./ncsu -r requirements.txt
-django-admin.py test
-
-
-
-#!/bin/bash -ex
 cd ../..
 virtualenv --no-site-packages ncsu
 cd ncsu
@@ -24,5 +7,4 @@ cd wolfscout
 export PYTHONPATH=.:/opt/webapps/hudson/ncsu
 export DJANGO_SETTINGS_MODULE=wolfscout.settings.testSettings
 pip install -q -r requirements.txt
-django-admin.py test --with-coverage --cover-package=apps.crawler --with-xunit --with-xcoverage
-
+django-admin.py test --with-xcoverage --cover-package=apps.crawler --with-xunit
