@@ -22,10 +22,6 @@ urlpatterns = patterns('',
 
     # ROOT DIR #
     url(r'^$', index),
-
-    #Static Settings Update
-    #(r'^static/(?P<path>.*)$', 'django.views.static.serve'
-    #    , {'document_root': settings.STATIC_ROOT}),
 )
 
 urlpatterns += staticfiles_urlpatterns()

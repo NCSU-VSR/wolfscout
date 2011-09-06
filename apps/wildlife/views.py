@@ -15,8 +15,7 @@ def index(request):
     Parameters:
         request - the request object
     """
-    dictionaryToPassToTemplate = {}
-    dictionaryToPassToTemplate['STATIC_URL'] = settings.STATIC_URL
-    print settings.STATIC_URL
-    dictionaryToPassToTemplate['request'] = request
-    return render_to_response('index.html', dictionaryToPassToTemplate)
+    siteDictionary = {}
+    siteDictionary['request'] = request
+    siteDictionary['STATIC_URL'] = settings.STATIC_URL
+    return render_to_response('index.html', siteDictionary)
