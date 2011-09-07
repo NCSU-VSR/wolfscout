@@ -45,6 +45,7 @@ media/imgs/*
 media/images/*
 media/pdfs/*
 compass/.sass-cache/*
+projectFilesBackup/*
 
 #Sitemap Files
 sitemap.xml
