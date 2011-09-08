@@ -35,7 +35,6 @@ Thumbs.db
 
 # Directories Blocked #
 #######################
-static/pdf_files/
 tmp/*
 
 #Project Files For Editors
