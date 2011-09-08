@@ -7,7 +7,6 @@ from django.conf import settings
 import datetime
 ### Views ####
 
-
 def index(request):
     """
     index

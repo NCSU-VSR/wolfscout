@@ -35,7 +35,6 @@ Thumbs.db
 
 # Directories Blocked #
 #######################
-static/pdf_files/
 tmp/*
 
 #Project Files For Editors
@@ -45,6 +44,7 @@ media/imgs/*
 media/images/*
 media/pdfs/*
 compass/.sass-cache/*
+projectFilesBackup/*
 
 #Sitemap Files
 sitemap.xml
@@ -61,3 +61,9 @@ sitemap*
 #Settings Files To Ignore (Your Local Ones)
 settings/chrisDev.py
 settings/production.py
+
+
+#Coverage Reports
+.coverage
+coverage.xml
+nosetests.xml
