@@ -12,7 +12,7 @@ class CollarFileTransmitter(object):
     Very little error checking at the moment.
     """
     def __init__(self, filename):
-        self.HOST = 'localhost'
+        self.HOST = '152.14.104.35'
         self.CPORT = 9091
         self.MPORT = 9090
         self.filename = filename
@@ -25,8 +25,8 @@ class CollarFileTransmitter(object):
         self.ms.connect((self.HOST, self.MPORT))
 
         self.f = open(self.filename, "rb")
-        self.data = f.read()
+        self.data = self.f.read()
         self.f.close()
 
-        self.ms.send(data)
+        self.ms.send(self.data)
         self.ms.close()

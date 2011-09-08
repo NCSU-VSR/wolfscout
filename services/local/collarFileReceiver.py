@@ -30,6 +30,7 @@ class StreamHandler ( Thread ):
 
     def bindcsock( this ):
         this.csock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        this.csock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         this.csock.bind(('', 9091))
         this.csock.listen(1)
         print '[Control] Listening on port 9091'
