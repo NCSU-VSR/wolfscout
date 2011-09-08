@@ -1,0 +1,288 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/link-buttons.sass */
+a.button {
+  display: inline-block;
+  padding: 0 0 0 8px;
+  font: 11px Arial;
+  color: white;
+  text-align: right;
+  line-height: 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: auto;
+  height: 23px;
+}
+/* line 18, ../../compass/sass/link-buttons.sass */
+a.button:link, a.button:active, a.button:visited {
+  display: inline-block;
+  padding: 0 0 0 8px;
+  font: 11px Arial;
+  color: white;
+  text-align: right;
+  line-height: 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: auto;
+  height: 23px;
+}
+/* line 29, ../../compass/sass/link-buttons.sass */
+a.button.medium {
+  margin: 0 0 -5px;
+  *margin: 0 0 -3px;
+  padding: 0 0 0 10px;
+  font: 12px Arial;
+  line-height: 2.25em;
+  height: 28px;
+}
+/* line 36, ../../compass/sass/link-buttons.sass */
+a.button.medium:link, a.button.medium:active, a.button.medium:visited {
+  margin: 0 0 -5px;
+  *margin: 0 0 -3px;
+  padding: 0 0 0 10px;
+  font: 12px Arial;
+  line-height: 2.25em;
+  height: 28px;
+}
+/* line 43, ../../compass/sass/link-buttons.sass */
+a.button.big {
+  margin: 0 0 -5px;
+  *margin: 0 0 -4px;
+  padding: 0 0 0 12px;
+  font: 13px Arial;
+  line-height: 2.35em;
+  height: 31px;
+}
+/* line 50, ../../compass/sass/link-buttons.sass */
+a.button.big:link, a.button.big:active, a.button.big:visited {
+  margin: 0 0 -5px;
+  *margin: 0 0 -4px;
+  padding: 0 0 0 12px;
+  font: 13px Arial;
+  line-height: 2.35em;
+  height: 31px;
+}
+/* line 57, ../../compass/sass/link-buttons.sass */
+a.button span, a.button:link span, a.button:active span, a.button:visited span {
+  float: left;
+  cursor: pointer;
+  padding: 0 8px 0 0;
+  overflow: hidden;
+  height: 23px;
+}
+/* line 64, ../../compass/sass/link-buttons.sass */
+a.button.medium span, a.button.medium:link span, a.button.medium:active span, a.button.medium:visited span {
+  padding: 0 10px 0 0;
+  height: 28px;
+}
+/* line 68, ../../compass/sass/link-buttons.sass */
+a.button.big span, a.button.big:link span, a.button.big:active span, a.button.big:visited span {
+  padding: 0 12px 0 0;
+  height: 31px;
+}
+/* line 71, ../../compass/sass/link-buttons.sass */
+a.button.green {
+  background: url(../gfx/link-button.gif) no-repeat left top transparent;
+}
+/* line 73, ../../compass/sass/link-buttons.sass */
+a.button.green:link, a.button.green:active, a.button.green:visited {
+  background: url(../gfx/link-button.gif) no-repeat left top transparent;
+}
+/* line 75, ../../compass/sass/link-buttons.sass */
+a.button.green span, a.button.green:link span, a.button.green:active span, a.button.green:visited span {
+  background: url(../gfx/link-button.gif) no-repeat right top transparent;
+}
+/* line 77, ../../compass/sass/link-buttons.sass */
+a.button.blue {
+  background: url(../gfx/link-button.gif) no-repeat left -23px transparent;
+}
+/* line 79, ../../compass/sass/link-buttons.sass */
+a.button.blue:link, a.button.blue:active, a.button.blue:visited {
+  background: url(../gfx/link-button.gif) no-repeat left -23px transparent;
+}
+/* line 81, ../../compass/sass/link-buttons.sass */
+a.button.blue span, a.button.blue:link span, a.button.blue:active span, a.button.blue:visited span {
+  background: url(../gfx/link-button.gif) no-repeat right -23px transparent;
+}
+/* line 83, ../../compass/sass/link-buttons.sass */
+a.button.orange {
+  background: url(../gfx/link-button.gif) no-repeat left -46px transparent;
+}
+/* line 85, ../../compass/sass/link-buttons.sass */
+a.button.orange:link, a.button.orange:active, a.button.orange:visited {
+  background: url(../gfx/link-button.gif) no-repeat left -46px transparent;
+}
+/* line 87, ../../compass/sass/link-buttons.sass */
+a.button.orange span, a.button.orange:link span, a.button.orange:active span, a.button.orange:visited span {
+  background: url(../gfx/link-button.gif) no-repeat right -46px transparent;
+}
+/* line 89, ../../compass/sass/link-buttons.sass */
+a.button.red {
+  background: url(../gfx/link-button.gif) no-repeat left -69px transparent;
+}
+/* line 91, ../../compass/sass/link-buttons.sass */
+a.button.red:link, a.button.red:active, a.button.red:visited {
+  background: url(../gfx/link-button.gif) no-repeat left -69px transparent;
+}
+/* line 93, ../../compass/sass/link-buttons.sass */
+a.button.red span, a.button.red:link span, a.button.red:active span, a.button.red:visited span {
+  background: url(../gfx/link-button.gif) no-repeat right -69px transparent;
+}
+/* line 95, ../../compass/sass/link-buttons.sass */
+a.button.grey {
+  background: url(../gfx/link-button.gif) no-repeat left -92px transparent;
+}
+/* line 97, ../../compass/sass/link-buttons.sass */
+a.button.grey:link, a.button.grey:active, a.button.grey:visited {
+  background: url(../gfx/link-button.gif) no-repeat left -92px transparent;
+}
+/* line 99, ../../compass/sass/link-buttons.sass */
+a.button.grey span, a.button.grey:link span, a.button.grey:active span, a.button.grey:visited span {
+  background: url(../gfx/link-button.gif) no-repeat right -92px transparent;
+}
+/* line 101, ../../compass/sass/link-buttons.sass */
+a.button.green.medium {
+  background: url(../gfx/link-button-medium.gif) no-repeat left top transparent;
+}
+/* line 103, ../../compass/sass/link-buttons.sass */
+a.button.green.medium:link, a.button.green.medium:active, a.button.green.medium:visited {
+  background: url(../gfx/link-button-medium.gif) no-repeat left top transparent;
+}
+/* line 105, ../../compass/sass/link-buttons.sass */
+a.button.green.medium span, a.button.green.medium:link span, a.button.green.medium:active span, a.button.green.medium:visited span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right top transparent;
+}
+/* line 107, ../../compass/sass/link-buttons.sass */
+a.button.blue.medium {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -28px transparent;
+}
+/* line 109, ../../compass/sass/link-buttons.sass */
+a.button.blue.medium:link, a.button.blue.medium:active, a.button.blue.medium:visited {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -28px transparent;
+}
+/* line 111, ../../compass/sass/link-buttons.sass */
+a.button.blue.medium span, a.button.blue.medium:link span, a.button.blue.medium:active span, a.button.blue.medium:visited span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -28px transparent;
+}
+/* line 113, ../../compass/sass/link-buttons.sass */
+a.button.orange.medium {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -56px transparent;
+}
+/* line 115, ../../compass/sass/link-buttons.sass */
+a.button.orange.medium:link, a.button.orange.medium:active, a.button.orange.medium:visited {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -56px transparent;
+}
+/* line 117, ../../compass/sass/link-buttons.sass */
+a.button.orange.medium span, a.button.orange.medium:link span, a.button.orange.medium:active span, a.button.orange.medium:visited span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -56px transparent;
+}
+/* line 119, ../../compass/sass/link-buttons.sass */
+a.button.red.medium {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -84px transparent;
+}
+/* line 121, ../../compass/sass/link-buttons.sass */
+a.button.red.medium:link, a.button.red.medium:active, a.button.red.medium:visited {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -84px transparent;
+}
+/* line 123, ../../compass/sass/link-buttons.sass */
+a.button.red.medium span, a.button.red.medium:link span, a.button.red.medium:active span, a.button.red.medium:visited span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -84px transparent;
+}
+/* line 125, ../../compass/sass/link-buttons.sass */
+a.button.grey.medium {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -112px transparent;
+}
+/* line 127, ../../compass/sass/link-buttons.sass */
+a.button.grey.medium:link, a.button.grey.medium:active, a.button.grey.medium:visited {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -112px transparent;
+}
+/* line 129, ../../compass/sass/link-buttons.sass */
+a.button.grey.medium span, a.button.grey.medium:link span, a.button.grey.medium:active span, a.button.grey.medium:visited span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -112px transparent;
+}
+/* line 131, ../../compass/sass/link-buttons.sass */
+a.button.green.big {
+  background: url(../gfx/link-button-big.gif) no-repeat left top transparent;
+}
+/* line 133, ../../compass/sass/link-buttons.sass */
+a.button.green.big:link, a.button.green.big:active, a.button.green.big:visited {
+  background: url(../gfx/link-button-big.gif) no-repeat left top transparent;
+}
+/* line 135, ../../compass/sass/link-buttons.sass */
+a.button.green.big span, a.button.green.big:link span, a.button.green.big:active span, a.button.green.big:visited span {
+  background: url(../gfx/link-button-big.gif) no-repeat right top transparent;
+}
+/* line 137, ../../compass/sass/link-buttons.sass */
+a.button.blue.big {
+  background: url(../gfx/link-button-big.gif) no-repeat left -31px transparent;
+}
+/* line 139, ../../compass/sass/link-buttons.sass */
+a.button.blue.big:link, a.button.blue.big:active, a.button.blue.big:visited {
+  background: url(../gfx/link-button-big.gif) no-repeat left -31px transparent;
+}
+/* line 141, ../../compass/sass/link-buttons.sass */
+a.button.blue.big span, a.button.blue.big:link span, a.button.blue.big:active span, a.button.blue.big:visited span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -31px transparent;
+}
+/* line 143, ../../compass/sass/link-buttons.sass */
+a.button.orange.big {
+  background: url(../gfx/link-button-big.gif) no-repeat left -62px transparent;
+}
+/* line 145, ../../compass/sass/link-buttons.sass */
+a.button.orange.big:link, a.button.orange.big:active, a.button.orange.big:visited {
+  background: url(../gfx/link-button-big.gif) no-repeat left -62px transparent;
+}
+/* line 147, ../../compass/sass/link-buttons.sass */
+a.button.orange.big span, a.button.orange.big:link span, a.button.orange.big:active span, a.button.orange.big:visited span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -62px transparent;
+}
+/* line 149, ../../compass/sass/link-buttons.sass */
+a.button.red.big {
+  background: url(../gfx/link-button-big.gif) no-repeat left -93px transparent;
+}
+/* line 151, ../../compass/sass/link-buttons.sass */
+a.button.red.big:link, a.button.red.big:active, a.button.red.big:visited {
+  background: url(../gfx/link-button-big.gif) no-repeat left -93px transparent;
+}
+/* line 153, ../../compass/sass/link-buttons.sass */
+a.button.red.big span, a.button.red.big:link span, a.button.red.big:active span, a.button.red.big:visited span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -93px transparent;
+}
+/* line 155, ../../compass/sass/link-buttons.sass */
+a.button.grey.big {
+  background: url(../gfx/link-button-big.gif) no-repeat left -124px transparent;
+}
+/* line 157, ../../compass/sass/link-buttons.sass */
+a.button.grey.big:link, a.button.grey.big:active, a.button.grey.big:visited {
+  background: url(../gfx/link-button-big.gif) no-repeat left -124px transparent;
+}
+/* line 159, ../../compass/sass/link-buttons.sass */
+a.button.grey.big span, a.button.grey.big:link span, a.button.grey.big:active span, a.button.grey.big:visited span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -124px transparent;
+}
+
+/* Opera */
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {
+  /* line 165, ../../compass/sass/link-buttons.sass */
+  head ~ body a.button.medium {
+    margin: 0;
+  }
+
+  /* line 169, ../../compass/sass/link-buttons.sass */
+  a.button.medium:link, a.button.medium:active, a.button.medium:visited {
+    margin: 0;
+  }
+  /* line 171, ../../compass/sass/link-buttons.sass */
+  a.button.big {
+    margin: 0;
+  }
+  /* line 173, ../../compass/sass/link-buttons.sass */
+  a.button.big:link, a.button.big:active, a.button.big:visited {
+    margin: 0;
+  }
+}
+/* SMALL SIZE LINK BUTTONS */
+/* MEDIUM SIZE LINK BUTTONS */
+/* BIG SIZE LINK BUTTONS */

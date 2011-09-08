@@ -1,0 +1,180 @@
+/*
+ *Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0
+
+a.button
+  display: inline-block
+  padding: 0 0 0 8px
+  font: 11px Arial
+  color: #FFFFFF
+  text-align: right
+  line-height: 2.0em
+  text-transform: uppercase
+  text-decoration: none
+  width: auto
+  height: 23px
+  &:link, &:active, &:visited
+    display: inline-block
+    padding: 0 0 0 8px
+    font: 11px Arial
+    color: #FFFFFF
+    text-align: right
+    line-height: 2.0em
+    text-transform: uppercase
+    text-decoration: none
+    width: auto
+    height: 23px
+  &.medium
+    margin: 0 0 -5px
+    *margin: 0 0 -3px
+    padding: 0 0 0 10px
+    font: 12px Arial
+    line-height: 2.25em
+    height: 28px
+    &:link, &:active, &:visited
+      margin: 0 0 -5px
+      *margin: 0 0 -3px
+      padding: 0 0 0 10px
+      font: 12px Arial
+      line-height: 2.25em
+      height: 28px
+  &.big
+    margin: 0 0 -5px
+    *margin: 0 0 -4px
+    padding: 0 0 0 12px
+    font: 13px Arial
+    line-height: 2.35em
+    height: 31px
+    &:link, &:active, &:visited
+      margin: 0 0 -5px
+      *margin: 0 0 -4px
+      padding: 0 0 0 12px
+      font: 13px Arial
+      line-height: 2.35em
+      height: 31px
+  span, &:link span, &:active span, &:visited span
+    float: left
+    cursor: pointer
+    padding: 0 8px 0 0
+    overflow: hidden
+    height: 23px
+  &.medium
+    span, &:link span, &:active span, &:visited span
+      padding: 0 10px 0 0
+      height: 28px
+  &.big
+    span, &:link span, &:active span, &:visited span
+      padding: 0 12px 0 0
+      height: 31px
+  &.green
+    background: url(../gfx/link-button.gif) no-repeat left top transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button.gif) no-repeat left top transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button.gif) no-repeat right top transparent
+  &.blue
+    background: url(../gfx/link-button.gif) no-repeat left -23px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button.gif) no-repeat left -23px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button.gif) no-repeat right -23px transparent
+  &.orange
+    background: url(../gfx/link-button.gif) no-repeat left -46px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button.gif) no-repeat left -46px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button.gif) no-repeat right -46px transparent
+  &.red
+    background: url(../gfx/link-button.gif) no-repeat left -69px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button.gif) no-repeat left -69px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button.gif) no-repeat right -69px transparent
+  &.grey
+    background: url(../gfx/link-button.gif) no-repeat left -92px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button.gif) no-repeat left -92px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button.gif) no-repeat right -92px transparent
+  &.green.medium
+    background: url(../gfx/link-button-medium.gif) no-repeat left top transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-medium.gif) no-repeat left top transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-medium.gif) no-repeat right top transparent
+  &.blue.medium
+    background: url(../gfx/link-button-medium.gif) no-repeat left -28px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-medium.gif) no-repeat left -28px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-medium.gif) no-repeat right -28px transparent
+  &.orange.medium
+    background: url(../gfx/link-button-medium.gif) no-repeat left -56px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-medium.gif) no-repeat left -56px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-medium.gif) no-repeat right -56px transparent
+  &.red.medium
+    background: url(../gfx/link-button-medium.gif) no-repeat left -84px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-medium.gif) no-repeat left -84px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-medium.gif) no-repeat right -84px transparent
+  &.grey.medium
+    background: url(../gfx/link-button-medium.gif) no-repeat left -112px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-medium.gif) no-repeat left -112px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-medium.gif) no-repeat right -112px transparent
+  &.green.big
+    background: url(../gfx/link-button-big.gif) no-repeat left top transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-big.gif) no-repeat left top transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-big.gif) no-repeat right top transparent
+  &.blue.big
+    background: url(../gfx/link-button-big.gif) no-repeat left -31px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-big.gif) no-repeat left -31px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-big.gif) no-repeat right -31px transparent
+  &.orange.big
+    background: url(../gfx/link-button-big.gif) no-repeat left -62px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-big.gif) no-repeat left -62px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-big.gif) no-repeat right -62px transparent
+  &.red.big
+    background: url(../gfx/link-button-big.gif) no-repeat left -93px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-big.gif) no-repeat left -93px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-big.gif) no-repeat right -93px transparent
+  &.grey.big
+    background: url(../gfx/link-button-big.gif) no-repeat left -124px transparent
+    &:link, &:active, &:visited
+      background: url(../gfx/link-button-big.gif) no-repeat left -124px transparent
+    span, &:link span, &:active span, &:visited span
+      background: url(../gfx/link-button-big.gif) no-repeat right -124px transparent
+
+/* Opera
+
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0)
+  head ~ body a.button.medium
+    margin: 0
+  a.button
+    &.medium
+      &:link, &:active, &:visited
+        margin: 0
+    &.big
+      margin: 0
+      &:link, &:active, &:visited
+        margin: 0
+
+/* SMALL SIZE LINK BUTTONS
+
+/* MEDIUM SIZE LINK BUTTONS
+
+/* BIG SIZE LINK BUTTONS
