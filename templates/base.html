@@ -3,40 +3,47 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7" >
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bluetheme/css/defaults.css">
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bluetheme/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bluetheme/css/menu.css">
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bluetheme/css/slider.css">
 
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/redmond/jquery-ui-1.8.15.custom.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/login.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style_text.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form-buttons.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/link-buttons.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/messages.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/forms.css">
 
-    <!--[if lte IE 7]>
-    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bluetheme/css/layout-ie.css"/>
-    <![endif]-->
+	<script type="text/javascript" src="{{ STATIC_URL }}js/superfish.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/supersubs.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/hoverIntent.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flot.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.graphtable-0.2.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.js"></script> 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/customInput.jquery.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.pager.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.sparkbox-select.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fancybox-1.3.4.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.filestyle.mini.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/date.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.datepicker.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.treeview.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.wysiwyg.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/wysiwyg.rmFormat.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.image.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.link.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.table.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>
+	
+	<!--[if lte IE 8]>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/excanvas.min.js"></script>
+	<![endif]-->
 
-    <script type="text/javascript" src="{{ MEDIA_URL }}bluetheme/js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}bluetheme/js/jquery.easing.1.2.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}bluetheme/js/jquery.anythingslider.js"></script>
-
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.15.custom.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/quoteForm.js"></script>
-
-    <title>{% block title %}Sample Title{% endblock %}</title>
+    <title>{% block title %}Wolfscout{% endblock %}</title>
 </head>
 <body>
-    <div id="header">
+	        {% block content %}
 
-    </div>
+	        {% endblock %}
 
-    <div id="mainContent">
-        {% block content %}
-
-        {% endblock %}
-    </div>
-
-    <div id="footer">
-        
-    </div>
 </body>
 </html>

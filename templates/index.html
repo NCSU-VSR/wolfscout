@@ -1,7 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}Shiny Title{% endblock %}
+{% block title %}Wolfscout{% endblock %}
 
 {% block content %}
-
+<div class="wrapper">
+		
+	<div class="box">
+		<div class="container hide-input">
+			<h1><a href="#">CleanDream</a></h1>
+			<h2>Login:</h2>
+			<form action="dashboard.html" method="post">
+				<input type="text" class="small" value="Username" />
+				<input type="password" class="small" value="Password" />
+				<button type="submit" class="blue medium"><span>Login</span></button>
+				<button type="reset" class="red medium"><span>Reset</span></button>
+			</form>
+			<div class="bottom">
+				<div class="messages blue">
+					<span></span>
+					Press the login button to see the CleanDream template.
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
 {% endblock %}
