@@ -46,13 +46,14 @@
 			<ul>
 				<li><a href="#"><span>Settings</span></a></li>
 				<li class="usermessage"><a href="#"><span>1 new message</span></a></li>
-				<li class="logout"><a href="#"><span>Logout</span></a></li>
+				{% load url from future %}
+				<li class="logout"><a href="{% url 'django.contrib.auth.views.logout' %}"><span>Logout</span></a></li>
 			</ul>
 		</div>
 
 		<div class="menu-search">
 			<ul> 
-				<li class="current"><a href="dashboard.html">Dashboard</a></li> 
+				<li class="current"><a href="/">Home</a></li> 
 				<li> 
 					<a href="#">Dropdown</a> 
 					<ul> 
