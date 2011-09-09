@@ -6,13 +6,14 @@
 
     <title>{% block title %}Wolfscout{% endblock %}</title>
 
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/login.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style_text.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form-buttons.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/link-buttons.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/messages.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/forms.css">
-
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
+	
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+	
+	<!--[if lte IE 8]> 
+		<script type="text/javascript" src="{{ STATIC_URL }}js/excanvas.min.js"></script>
+	<![endif]-->
+	
 	<script type="text/javascript" src="{{ STATIC_URL }}js/superfish.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/supersubs.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/hoverIntent.js"></script>
@@ -35,16 +36,73 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.link.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.table.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>
-	
-	<!--[if lte IE 8]>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/excanvas.min.js"></script>
-	<![endif]-->
-
+		
 </head>
 <body>
+	<div class="container">   
+
+		<div class="logo-labels">
+			<h1><a href="#">CleanDream</a></h1>
+			<ul>
+				<li><a href="#"><span>Settings</span></a></li>
+				<li class="usermessage"><a href="#"><span>1 new message</span></a></li>
+				<li class="logout"><a href="#"><span>Logout</span></a></li>
+			</ul>
+		</div>
+
+		<div class="menu-search">
+			<ul> 
+				<li class="current"><a href="dashboard.html">Dashboard</a></li> 
+				<li> 
+					<a href="#">Dropdown</a> 
+					<ul> 
+						<li><a href="#">Submenu item 001</a></li>
+						<li><a href="#">Submenu item 002</a></li>
+						<li><a href="#">Submenu item 003</a></li>
+						<li class="current">
+							<a href="#">Submenu item 004</a>
+							<ul> 
+								<li><a href="#">Subsubmenu item 001</a></li>
+								<li><a href="#">Subsubmenu item 002</a></li>
+								<li class="current"><a href="#">Subsubmenu item 003</a></li>
+								<li><a href="#">Subsubmenu item 003</a></li>
+								<li><a href="#">Subsubmenu item 005</a></li>
+							</ul> 
+						</li> 
+						<li> <a href="#">Submenu item 005</a> </li>
+					</ul> 
+				</li> 
+				<li><a href="typography.html">Typography</a></li>
+				<li><a href="boxgrid.html">Boxes Grid</a></li>
+				<li><a href="forms.html">Forms</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li><a href="tables.html">Tables</a></li>
+				<li><a href="more.html">More</a></li>
+			</ul>
+			<div class="search">
+				<form action="" method="post">
+					<input type="text" value="Seachterm" />
+					<button type="submit"></button>
+				</form> 
+			</div>
+		</div>
+
+		<div class="breadcrumbs">
+			<ul>
+				<li class="home"><a href="#"></a></li>
+				<li class="break">&#187;</li>
+				<li><a href="#">Menu item</a></li>
+				<li class="break">&#187;</li>
+				<li><a href="#">Menu item</a></li>
+			</ul>
+		</div>
 	        {% block content %}
 
 	        {% endblock %}
-
+		<div class="footer">
+			<div class="split">&#169; Copyright <a href="#">website.com</a></div> 
+			<div class="split right">Powered by <a href="http://themeforest.net/item/cleandream/490140" target="_blank">CleanDream</a></div> 
+		</div>
+	</div>
 </body>
 </html>

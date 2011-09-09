@@ -1,5 +1,5 @@
 #Local Imports
-from apps.wildlife.views import index
+from apps.general.views import index
 
 # Django Imports
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -20,8 +20,11 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
+	## Authentication ##
+	url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+
     # ROOT DIR #
-    url(r'^$', index),
+    url(r'^$', index),	
 )
 
 urlpatterns += staticfiles_urlpatterns()

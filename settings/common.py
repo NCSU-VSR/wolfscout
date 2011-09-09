@@ -114,7 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 LOGIN_REDIRECT_URL = "/"
-
+LOGIN_URL = "/login/"
 # set path to include apps subdir
 import sys
 sys.path.insert(0,os.path.join(PROJECT_DIR, 'apps'))
@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'crawler',
     'study',
     'wildlife',
+	'general',
     #Core Applications From Non-Django Sources
     'south',
     #Nose must be below south or it all fails
