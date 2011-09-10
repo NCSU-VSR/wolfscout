@@ -44,7 +44,7 @@
 		<div class="logo-labels">
 			<h1><a href="#">CleanDream</a></h1>
 			<ul>
-				<li><a href="#"><span>Settings</span></a></li>
+				<li><a href="/admin"><span>Admin</span></a></li>
 				<li class="usermessage"><a href="#"><span>1 new message</span></a></li>
 				{% load url from future %}
 				<li class="logout"><a href="{% url 'django.contrib.auth.views.logout' %}"><span>Logout</span></a></li>
@@ -55,7 +55,7 @@
 			<ul> 
 				<li class="current"><a href="/">Home</a></li> 
 				<li> 
-					<a href="#">Dropdown</a> 
+					<a href="wildlife.html">Wildlife</a> 
 					<ul> 
 						<li><a href="#">Submenu item 001</a></li>
 						<li><a href="#">Submenu item 002</a></li>
@@ -73,16 +73,14 @@
 						<li> <a href="#">Submenu item 005</a> </li>
 					</ul> 
 				</li> 
-				<li><a href="typography.html">Typography</a></li>
-				<li><a href="boxgrid.html">Boxes Grid</a></li>
-				<li><a href="forms.html">Forms</a></li>
-				<li><a href="gallery.html">Gallery</a></li>
-				<li><a href="tables.html">Tables</a></li>
-				<li><a href="more.html">More</a></li>
+				<li><a href="typography.html">Study</a></li>
+				<li><a href="boxgrid.html">Crawler</a></li>
+				<li><a href="forms.html">Mapping</a></li>
+				<li><a href="deer_vs_coyote.html">Deer vs. Coyote</a></li>
 			</ul>
 			<div class="search">
 				<form action="" method="post">
-					<input type="text" value="Seachterm" />
+					<input type="text" value="Seach" />
 					<button type="submit"></button>
 				</form> 
 			</div>
@@ -101,8 +99,8 @@
 
 	        {% endblock %}
 		<div class="footer">
-			<div class="split">&#169; Copyright <a href="#">website.com</a></div> 
-			<div class="split right">Powered by <a href="http://themeforest.net/item/cleandream/490140" target="_blank">CleanDream</a></div> 
+			<div class="split">&#169; Copyright <a href="#">wolfscout.ncsu.com</a></div> 
+			<div class="split right">Owned by <a href="http://www.cvm.ncsu.edu/" target="_blank">NCSU College Of Veterinary Medicine</a></div> 
 		</div>
 	</div>
 </body>
