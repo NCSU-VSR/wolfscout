@@ -155,7 +155,7 @@ class CollarParser(object):
     def processCSVIntoDatabase(self):
         self.extractCollarIDFromFilename(self.filename)
         self.createCollar(self.collarID)
-        self.line = None
+        self.line = ""
         self.fileReader()
 
     def __init__(self, filename):
@@ -163,3 +163,4 @@ class CollarParser(object):
         Takes in a filename, calls reader.
         """
         self.filename = filename
+        self.processCSVIntoDatabase()
