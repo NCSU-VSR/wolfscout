@@ -1,9 +1,10 @@
 #Global Imports
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 from sys import *
 #Local Imports
-from wolfscout.apps.wildlife.models import *
+from apps.wildlife.models import *
 
 class CollarParser(object):
     """
@@ -36,6 +37,17 @@ class CollarParser(object):
             self.collar.collarID = collarIDToCheck
             self.collar.save()
 
+    def stringToBool(self, string):
+        """
+        stringToBool takes in a string, in this case it must be
+        Yes or No
+        If the string is Yes: return True
+        Else: return False
+        """
+        if (string=="Yes"):
+            return True
+        return False
+
     def createCollarData(self, lineContents):
         """
         createCollarData uses the contents of the current value of self.line
@@ -59,7 +71,7 @@ class CollarParser(object):
         newCollarDataPoint.HEIGHT = lineContents[10]
         newCollarDataPoint.DOP = lineContents[11]
         newCollarDataPoint.NAV = lineContents[12]
-        newCollarDataPoint.VALIDATED = False
+        newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[13]))
         newCollarDataPoint.SATS_USED = lineContents[14]
         newCollarDataPoint.CH1_SATID = lineContents[15]
         newCollarDataPoint.CH1_CN = lineContents[16]
@@ -153,6 +165,10 @@ class CollarParser(object):
         self.collarID = filename.split('/')[-1].split('.')[0][3:]
 
     def processCSVIntoDatabase(self):
+        """
+        processCSVIntoDatabase issues the funcitons listed below in linear order.
+        This places all of the data from a CSV into the database unless an error is found
+        """
         self.extractCollarIDFromFilename(self.filename)
         self.createCollar(self.collarID)
         self.line = ""
@@ -163,4 +179,3 @@ class CollarParser(object):
         Takes in a filename, calls reader.
         """
         self.filename = filename
-        self.processCSVIntoDatabase()
