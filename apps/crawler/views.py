@@ -30,6 +30,8 @@ def getCollarData(request):
     """
     """
     collarData = CollarData.objects.all()
+    collars = Collar.objects.all()
     siteDictionary = getDictionary(request)
     siteDictionary['collarData']=collarData
+    siteDictionary['collars']=collars
     return render_to_response('collars_test.html', siteDictionary)

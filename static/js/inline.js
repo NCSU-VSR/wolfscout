@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    
+    ///////CUSTOM FUNCTIONS///////
+    
+    //IFRAME RELOAD
+    $('.iframe_reload').click(function() {
+        $('.iframe').attr("src", $('.iframe').attr("src"));
+    });
+    
+    ///////END CUSTOM FUNCTIONS///////
 
     // MENU
     $(".menu-search ul li li:first-child a").css("border-top", "none");

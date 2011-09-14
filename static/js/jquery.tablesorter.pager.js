@@ -134,7 +134,7 @@
 				cssLast: '.last',
 				cssPageDisplay: '.pagedisplay',
 				cssPageSize: '.pagesize',
-				seperator: "/",
+				seperator: "-",
 				positionFixed: true,
 				appender: this.appender
 			};
