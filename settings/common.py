@@ -162,4 +162,48 @@ LOGGING = {
 }
 
 #Testing Configuration For Nose
-#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+#CSV Dictionary Mapping
+CSV_DICTIONARY = {
+    'GMT_DATETIME':(1, 2),
+    'LMT_DATETIME' : (3, 4),
+    'ECEF_X' : 5,
+    'ECEF_Y' : 6,
+    'ECEF_Z' : 7,
+    'LATITUDE' : 8,
+    'LONGITUDE' : 9,
+    'HEIGHT' : 10,
+    'DOP' : 11,
+    'NAV' : 12,
+    'VALIDATED' : 13,
+    'SATS_USED' : 14,
+    'CH1_SATID' : 15,
+    'CH1_CN' : 16,
+    'CH2_SATID' : 17,
+    'CH2_CN' : 18,
+    'CH3_SATID' : 19,
+    'CH3_CN' : 20,
+    'CH4_SATID' : 21,
+    'CH4_CN' : 22,
+    'CH5_SATID' : 23,
+    'CH5_CN' : 24,
+    'CH6_SATID' : 25,
+    'CH6_CN' : 26,
+    'CH7_SATID' : 27,
+    'CH7_CN' : 28,
+    'CH8_SATID' : 29,
+    'CH8_CN' : 30,
+    'CH9_SATID' : 31,
+    'CH9_CN' : 32,
+    'CH10_SATID' : 33,
+    'CH10_CN' : 34,
+    'CH11_SATID' : 35,
+    'CH11_CN' : 36,
+    'CH12_SATID' : 37,
+    'CH12_CN' : 38,
+    'MAIN_VOL' : 39,
+    'BU_VOL' : 40,
+    'TEMP' : 41,
+    'REMARKS' : 42,
+}

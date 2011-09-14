@@ -7,6 +7,7 @@ from sys import *
 from apps.wildlife.models import *
 
 class CollarParser(object):
+    invalidCollarId = "Invalid"
     """
     CollarParser receives input from a textfile source.
     once the input arrives it is parsed and inserted into the DB using the models from
@@ -22,20 +23,27 @@ class CollarParser(object):
         6. Return
     """
 
-    def createCollar(self, collarIDToCheck):
+    def createCollar(self, collarID):
         """
-        createCollarID first looks up the collar in the db
-        to determine if the collar already exists.
-        If the collar is not found, it is created.
+        Creates a collar in the db. If the collar already exists,
+        then it will be overwritten.
         After identification or creation, the collar object is added to self.
         """
+        #Create Collar
+        self.collar = Collar()
+        self.collar.collarID = collarID
+        self.collar.save()
+
+    def collarExists(self, collarIDToCheck):
+        """
+        Returns the collar in the db if it exists.
+        Else returns None
+        """
         try:
-            self.collar = Collar.objects.get(collarID=collarIDToCheck)
+            Collar.objects.get(collarID=collarIDToCheck)
+            return True
         except ObjectDoesNotExist:
-            #Create Collar
-            self.collar = Collar()
-            self.collar.collarID = collarIDToCheck
-            self.collar.save()
+            return False
 
     def stringToBool(self, string):
         """
@@ -49,6 +57,7 @@ class CollarParser(object):
         return False
 
     def createCollarData(self, lineContents):
+        CSV_DICTIONARY = settings.CSV_DICTIONARY
         """
         createCollarData uses the contents of the current value of self.line
         to populate a data point for a specific collar. Once created the data
@@ -63,45 +72,45 @@ class CollarParser(object):
         newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
                                                                         lineContents[4])
 
-        newCollarDataPoint.ECEF_X = lineContents[5]
-        newCollarDataPoint.ECEF_Y = lineContents[6]
-        newCollarDataPoint.ECEF_Z = lineContents[7]
-        newCollarDataPoint.LATITUDE = lineContents[8]
-        newCollarDataPoint.LONGITUDE = lineContents[9]
-        newCollarDataPoint.HEIGHT = lineContents[10]
-        newCollarDataPoint.DOP = lineContents[11]
-        newCollarDataPoint.NAV = lineContents[12]
-        newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[13]))
-        newCollarDataPoint.SATS_USED = lineContents[14]
-        newCollarDataPoint.CH1_SATID = lineContents[15]
-        newCollarDataPoint.CH1_CN = lineContents[16]
-        newCollarDataPoint.CH2_SATID = lineContents[17]
-        newCollarDataPoint.CH2_CN = lineContents[18]
-        newCollarDataPoint.CH3_SATID = lineContents[19]
-        newCollarDataPoint.CH3_CN = lineContents[20]
-        newCollarDataPoint.CH4_SATID = lineContents[21]
-        newCollarDataPoint.CH4_CN = lineContents[22]
-        newCollarDataPoint.CH5_SATID = lineContents[23]
-        newCollarDataPoint.CH5_CN = lineContents[24]
-        newCollarDataPoint.CH6_SATID = lineContents[25]
-        newCollarDataPoint.CH6_CN = lineContents[26]
-        newCollarDataPoint.CH7_SATID = lineContents[27]
-        newCollarDataPoint.CH7_CN = lineContents[28]
-        newCollarDataPoint.CH8_SATID = lineContents[29]
-        newCollarDataPoint.CH8_CN = lineContents[30]
-        newCollarDataPoint.CH9_SATID = lineContents[31]
-        newCollarDataPoint.CH9_CN = lineContents[32]
-        newCollarDataPoint.CH10_SATID = lineContents[33]
-        newCollarDataPoint.CH10_CN = lineContents[34]
-        newCollarDataPoint.CH11_SATID = lineContents[35]
-        newCollarDataPoint.CH11_CN = lineContents[36]
-        newCollarDataPoint.CH12_SATID = lineContents[37]
-        newCollarDataPoint.CH12_CN = lineContents[38]
-        newCollarDataPoint.MAIN_VOL = lineContents[39]
-        newCollarDataPoint.BU_VOL = lineContents[40]
-        newCollarDataPoint.TEMP = lineContents[41]
-        newCollarDataPoint.REMARKS = lineContents[42]
-
+        newCollarDataPoint.ECEF_X = lineContents[CSV_DICTIONARY['ECEF_X']]
+        newCollarDataPoint.ECEF_Y = lineContents[CSV_DICTIONARY['ECEF_Y']]
+        newCollarDataPoint.ECEF_Z = lineContents[CSV_DICTIONARY['ECEF_Z']]
+        newCollarDataPoint.LATITUDE = lineContents[CSV_DICTIONARY['LATITUDE']]
+        newCollarDataPoint.LONGITUDE = lineContents[CSV_DICTIONARY['LONGITUDE']]
+        newCollarDataPoint.HEIGHT = lineContents[CSV_DICTIONARY['HEIGHT']]
+        newCollarDataPoint.DOP = lineContents[CSV_DICTIONARY['DOP']]
+        newCollarDataPoint.NAV = lineContents[CSV_DICTIONARY['NAV']]
+        newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV_DICTIONARY['VALIDATED']]))
+        newCollarDataPoint.SATS_USED = lineContents[CSV_DICTIONARY['SATS_USED']]
+        newCollarDataPoint.CH1_SATID = lineContents[CSV_DICTIONARY['CH1_SATID']]
+        newCollarDataPoint.CH1_CN = lineContents[CSV_DICTIONARY['CH1_CN']]
+        newCollarDataPoint.CH2_SATID = lineContents[CSV_DICTIONARY['CH2_SATID']]
+        newCollarDataPoint.CH2_CN = lineContents[CSV_DICTIONARY['CH2_CN']]
+        newCollarDataPoint.CH3_SATID = lineContents[CSV_DICTIONARY['CH3_SATID']]
+        newCollarDataPoint.CH3_CN = lineContents[CSV_DICTIONARY['CH3_CN']]
+        newCollarDataPoint.CH4_SATID = lineContents[CSV_DICTIONARY['CH4_SATID']]
+        newCollarDataPoint.CH4_CN = lineContents[CSV_DICTIONARY['CH4_CN']]
+        newCollarDataPoint.CH5_SATID = lineContents[CSV_DICTIONARY['CH5_SATID']]
+        newCollarDataPoint.CH5_CN = lineContents[CSV_DICTIONARY['CH5_CN']]
+        newCollarDataPoint.CH6_SATID = lineContents[CSV_DICTIONARY['CH6_SATID']]
+        newCollarDataPoint.CH6_CN = lineContents[CSV_DICTIONARY['CH6_CN']]
+        newCollarDataPoint.CH7_SATID = lineContents[CSV_DICTIONARY['CH7_SATID']]
+        newCollarDataPoint.CH7_CN = lineContents[CSV_DICTIONARY['CH7_CN']]
+        newCollarDataPoint.CH8_SATID = lineContents[CSV_DICTIONARY['CH8_SATID']]
+        newCollarDataPoint.CH8_CN = lineContents[CSV_DICTIONARY['CH8_CN']]
+        newCollarDataPoint.CH9_SATID = lineContents[CSV_DICTIONARY['CH9_SATID']]
+        newCollarDataPoint.CH9_CN = lineContents[CSV_DICTIONARY['CH9_CN']]
+        newCollarDataPoint.CH10_SATID = lineContents[CSV_DICTIONARY['CH10_SATID']]
+        newCollarDataPoint.CH10_CN = lineContents[CSV_DICTIONARY['CH10_CN']]
+        newCollarDataPoint.CH11_SATID = lineContents[CSV_DICTIONARY['CH11_SATID']]
+        newCollarDataPoint.CH11_CN = lineContents[CSV_DICTIONARY['CH11_CN']]
+        newCollarDataPoint.CH12_SATID = lineContents[CSV_DICTIONARY['CH12_SATID']]
+        newCollarDataPoint.CH12_CN = lineContents[CSV_DICTIONARY['CH12_CN']]
+        newCollarDataPoint.MAIN_VOL = lineContents[CSV_DICTIONARY['MAIN_VOL']]
+        newCollarDataPoint.BU_VOL = lineContents[CSV_DICTIONARY['BU_VOL']]
+        newCollarDataPoint.TEMP = lineContents[CSV_DICTIONARY['TEMP']]
+        newCollarDataPoint.REMARKS = lineContents[CSV_DICTIONARY['REMARKS']]
+        newCollarDataPoint.VALID = True
         newCollarDataPoint.save()
 
     def generateDateTimeFromList(self, dateString, timeString):
@@ -151,7 +160,7 @@ class CollarParser(object):
             return err
         return 0
         
-    def extractCollarIDFromFilename(self, filename):
+    def extractCollarIDFromFilename(self, fullFileName):
         """
         extractCollarIDFromFilename uses the filename that is passed into the object
         to determine what the correct collarID is. This requires removing
@@ -161,21 +170,29 @@ class CollarParser(object):
 
         Example:
         /BeanBagChairs/Sample/GSM30812.TXT becomes 30812
+
+        If the file name is malformed, the collar ID will be set to
+        'Invalid'.
         """
-        self.collarID = filename.split('/')[-1].split('.')[0][3:]
+        fileName = fullFileName.split('/')[-1]
+        if fileName.startswith("GSM") and fileName.endswith(".TXT"):
+            self.collarID = fileName.split('.')[0][3:]
+        else:
+            self.collarID = CollarParser.invalidCollarId
 
     def processCSVIntoDatabase(self):
         """
-        processCSVIntoDatabase issues the funcitons listed below in linear order.
+        processCSVIntoDatabase issues the functions listed below in linear order.
         This places all of the data from a CSV into the database unless an error is found
         """
         self.extractCollarIDFromFilename(self.filename)
-        self.createCollar(self.collarID)
+        if(self.collarExists(self.collarID) == False):
+            self.createCollar(self.collarID)
         self.line = ""
         self.fileReader()
 
     def __init__(self, filename):
         """
-        Takes in a filename, calls reader.
+        Takes in a filename and sets the filename
         """
         self.filename = filename

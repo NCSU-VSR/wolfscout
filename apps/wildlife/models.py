@@ -57,7 +57,8 @@ class CollarData(models.Model):
     BU_VOL = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     TEMP = models.IntegerField(null=True, blank=True)
     REMARKS =models.TextField(null=True, blank=True)
-
+    VALID = models.BooleanField(default=True)
+    
     def __unicode__(self):
         return str(self.id)
 
