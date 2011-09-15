@@ -1,0 +1,162 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/table-sorter.sass */
+table {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* line 14, ../../compass/sass/table-sorter.sass */
+td, tr, th {
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* line 21, ../../compass/sass/table-sorter.sass */
+table thead tr th, table tfoot tr th {
+  color: #002e68;
+}
+/* line 23, ../../compass/sass/table-sorter.sass */
+table thead {
+  background: url(../gfx/table-thead.gif) repeat-x right top;
+  border: 1px solid #d2dce9;
+  border-right: none;
+}
+/* line 27, ../../compass/sass/table-sorter.sass */
+table thead tr th {
+  border: 1px solid #d2dce9;
+  padding: 5px 8px;
+  line-height: 19px;
+}
+/* line 31, ../../compass/sass/table-sorter.sass */
+table thead tr th.header {
+  border: 1px solid #d2dce9;
+  background-color: transparent;
+}
+/* line 35, ../../compass/sass/table-sorter.sass */
+table tbody td {
+  border: 1px solid #d2dce9;
+  padding: 5px 8px;
+  line-height: 19px;
+}
+/* line 39, ../../compass/sass/table-sorter.sass */
+table tbody tr.odd td {
+  background-color: #f9f9f9;
+}
+/* line 42, ../../compass/sass/table-sorter.sass */
+table thead tr .headerSortUp {
+  background: url(../gfx/table-asc-arrow.gif) no-repeat right center;
+}
+/* line 44, ../../compass/sass/table-sorter.sass */
+table thead tr .headerSortDown {
+  background: url(../gfx/table-desc-arrow.gif) no-repeat right center;
+}
+/* line 46, ../../compass/sass/table-sorter.sass */
+table td:first-child {
+  width: 13px;
+}
+/* line 48, ../../compass/sass/table-sorter.sass */
+table td:first-child + td + td + td + td + td {
+  text-align: center;
+  padding: 0;
+  line-height: 0;
+  width: 65px;
+}
+
+/* line 54, ../../compass/sass/table-sorter.sass */
+.pager {
+  display: inline-block;
+  width: 100%;
+}
+/* line 57, ../../compass/sass/table-sorter.sass */
+.pager .sb-overlay {
+  float: none;
+  margin: 0;
+}
+/* line 60, ../../compass/sass/table-sorter.sass */
+.pager .sb-custom {
+  width: 59px;
+  height: 23px;
+}
+/* line 63, ../../compass/sass/table-sorter.sass */
+.pager input.sb-select {
+  background: url(../gfx/table-rows.gif) no-repeat right top transparent;
+  padding: 5px 23px 6px 0;
+  color: #5a5a5a;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 1.2em;
+  *line-height: 1.1em;
+  width: 37px;
+  height: 12px;
+}
+/* line 73, ../../compass/sass/table-sorter.sass */
+.pager ul.sb-dropdown {
+  *position: relative;
+  top: 21px;
+  *top: -2px;
+  left: -55px;
+  *left: 5px;
+  width: 47px;
+}
+/* line 80, ../../compass/sass/table-sorter.sass */
+.pager ul.sb-dropdown a {
+  padding: 2px 5px;
+  font-size: 11px;
+  line-height: 17px;
+}
+/* line 84, ../../compass/sass/table-sorter.sass */
+.pager ul.sb-dropdown a:link, .pager ul.sb-dropdown a:active, .pager ul.sb-dropdown a:visited {
+  padding: 2px 5px;
+  font-size: 11px;
+  line-height: 17px;
+}
+/* line 88, ../../compass/sass/table-sorter.sass */
+.pager div {
+  float: right;
+  *margin: -31px 0 0;
+  padding: 8px 0 0;
+}
+/* line 92, ../../compass/sass/table-sorter.sass */
+.pager input {
+  float: left;
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  line-height: 21px;
+  font-size: 12px;
+  color: #5a5a5a;
+  width: 60px;
+  height: 21px;
+}
+
+/* Opera */
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {
+  /* line 109, ../../compass/sass/table-sorter.sass */
+  head ~ body .pager ul.sb-dropdown {
+    top: -2px;
+    left: 5px;
+  }
+}
+/* line 114, ../../compass/sass/table-sorter.sass */
+table.sorter th:first-child input, table.sorter td:first-child input {
+  width: auto;
+}
+
+/* line 117, ../../compass/sass/table-sorter.sass */
+.pager img {
+  float: left;
+  margin: 0 0 0 3px;
+  cursor: pointer;
+  height: 23px;
+}

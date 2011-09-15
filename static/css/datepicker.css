@@ -1,0 +1,257 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/datepicker.sass */
+table.jCalendar {
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+}
+/* line 11, ../../compass/sass/datepicker.sass */
+table.jCalendar thead {
+  background: none;
+  border: 0;
+}
+/* line 14, ../../compass/sass/datepicker.sass */
+table.jCalendar th {
+  background: #c3d0e1;
+  border: 1px solid white;
+  padding: 5px;
+  color: #002e68;
+  font-weight: bold;
+  text-align: center;
+  line-height: normal;
+}
+/* line 22, ../../compass/sass/datepicker.sass */
+table.jCalendar td {
+  border: 1px solid white;
+  padding: 4px 0;
+  text-align: center;
+  line-height: normal;
+  width: 25px;
+}
+/* line 28, ../../compass/sass/datepicker.sass */
+table.jCalendar td:first-child + td + td + td + td + td {
+  width: 25px;
+}
+/* line 30, ../../compass/sass/datepicker.sass */
+table.jCalendar td.other-month {
+  background-color: #e0e0e0;
+  color: #8f8f8f;
+}
+/* line 33, ../../compass/sass/datepicker.sass */
+table.jCalendar td.today {
+  background-color: #1c1c1c;
+  color: white;
+}
+/* line 36, ../../compass/sass/datepicker.sass */
+table.jCalendar td.selected {
+  background-color: #002e68;
+  color: white;
+}
+/* line 39, ../../compass/sass/datepicker.sass */
+table.jCalendar td.selected.dp-hover {
+  background-color: #002e68;
+  color: white;
+}
+/* line 42, ../../compass/sass/datepicker.sass */
+table.jCalendar td.dp-hover {
+  background-color: #002e68;
+  color: white;
+}
+/* line 46, ../../compass/sass/datepicker.sass */
+table.jCalendar tr.activeWeekHover td {
+  background-color: #002e68;
+  color: white;
+}
+/* line 49, ../../compass/sass/datepicker.sass */
+table.jCalendar tr.selectedWeek td {
+  background-color: #ff6666;
+  color: white;
+}
+/* line 53, ../../compass/sass/datepicker.sass */
+table.jCalendar td.disabled {
+  background-color: #e0e0e0;
+  color: #8f8f8f;
+}
+/* line 56, ../../compass/sass/datepicker.sass */
+table.jCalendar td.disabled.dp-hover {
+  background-color: #e0e0e0;
+  color: #8f8f8f;
+}
+/* line 59, ../../compass/sass/datepicker.sass */
+table.jCalendar td.unselectable {
+  background: #e0e0e0;
+  color: #8f8f8f;
+}
+/* line 62, ../../compass/sass/datepicker.sass */
+table.jCalendar td.unselectable:hover, table.jCalendar td.unselectable.dp-hover {
+  background: #e0e0e0;
+  color: #8f8f8f;
+}
+
+/* For the popup */
+/* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
+/* line 70, ../../compass/sass/datepicker.sass */
+.dp-choose-date {
+  display: none;
+}
+
+/* line 74, ../../compass/sass/datepicker.sass */
+div.dp-popup {
+  position: relative;
+  background-color: white;
+  border: 1px solid #c3d0e1;
+  margin: 25px 0 0;
+  font-size: 11px;
+  padding: 5px 10px 10px;
+  width: 171px;
+  line-height: 1.2em;
+}
+/* line 83, ../../compass/sass/datepicker.sass */
+div#dp-popup {
+  position: absolute;
+  z-index: 199;
+}
+/* line 86, ../../compass/sass/datepicker.sass */
+div.dp-popup h2 {
+  font-size: 12px;
+  text-align: center;
+  margin: 2px 0 6px;
+  padding: 0;
+}
+
+/* line 92, ../../compass/sass/datepicker.sass */
+a#dp-close {
+  font-size: 11px;
+  padding: 4px 0;
+  text-align: center;
+  display: block;
+}
+/* line 97, ../../compass/sass/datepicker.sass */
+a#dp-close:hover {
+  text-decoration: underline;
+}
+
+/* line 101, ../../compass/sass/datepicker.sass */
+div.dp-popup a {
+  color: black;
+  text-decoration: none;
+}
+/* line 105, ../../compass/sass/datepicker.sass */
+div.dp-popup div.dp-nav-prev {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  width: 100px;
+}
+/* line 111, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-prev-month {
+  float: left;
+  background-image: url(../gfx/forms/date-prev.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0 0 0 5px;
+  width: 5px;
+  height: 7px;
+}
+/* line 120, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-prev-next-month:link, div.dp-popup div a.dp-prev-next-month:active, div.dp-popup div a.dp-prev-next-month:visited {
+  float: left;
+  background-image: url(../gfx/forms/date-prev.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0 0 0 5px;
+  width: 5px;
+  height: 7px;
+}
+/* line 128, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-prev-year {
+  float: left;
+  background-image: url(../gfx/forms/date-prev.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 11px;
+  height: 7px;
+}
+/* line 135, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-prev-year:link, div.dp-popup div a.dp-nav-prev-year:active, div.dp-popup div a.dp-nav-prev-year:visited {
+  float: left;
+  background-image: url(../gfx/forms/date-prev.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 11px;
+  height: 7px;
+}
+/* line 142, ../../compass/sass/datepicker.sass */
+div.dp-popup div.dp-nav-prev a, div.dp-popup div.dp-nav-next a {
+  cursor: pointer;
+}
+/* line 144, ../../compass/sass/datepicker.sass */
+div.dp-popup div.dp-nav-prev a.disabled {
+  cursor: default;
+}
+/* line 146, ../../compass/sass/datepicker.sass */
+div.dp-popup div.dp-nav-next {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  width: 100px;
+}
+/* line 147, ../../compass/sass/datepicker.sass */
+div.dp-popup div.dp-nav-next a.disabled {
+  cursor: default;
+}
+/* line 154, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-next-month {
+  float: right;
+  background-image: url(../gfx/forms/date-next.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0 5px 0 0;
+  width: 5px;
+  height: 7px;
+}
+/* line 162, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-next-month:link, div.dp-popup div a.dp-nav-next-month:active, div.dp-popup div a.dp-nav-next-month:visited {
+  float: right;
+  background-image: url(../gfx/forms/date-next.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin: 0 5px 0 0;
+  width: 5px;
+  height: 7px;
+}
+/* line 170, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-next-year {
+  float: right;
+  background-image: url(../gfx/forms/date-next.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 11px;
+  height: 7px;
+}
+/* line 177, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-next-year:link, div.dp-popup div a.dp-nav-next-year:active, div.dp-popup div a.dp-nav-next-year:visited {
+  float: right;
+  background-image: url(../gfx/forms/date-next.gif);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 11px;
+  height: 7px;
+}
+/* line 184, ../../compass/sass/datepicker.sass */
+div.dp-popup div a.dp-nav-prev-year:hover, div.dp-popup div a.dp-nav-prev-month:hover, div.dp-popup div a.dp-nav-next-year:hover, div.dp-popup div a.dp-nav-next-month:hover {
+  background-position: left bottom;
+}
+/* line 186, ../../compass/sass/datepicker.sass */
+div.dp-popup td {
+  cursor: pointer;
+}
+/* line 188, ../../compass/sass/datepicker.sass */
+div.dp-popup td.disabled {
+  cursor: default;
+}
+
+/* Opera needs the rules to be this specific otherwise it doesn't change the cursor back to pointer after you have disabled and re-enabled a link */
