@@ -43,10 +43,9 @@
 	<!--ARCGIS JS AND STYLING-->
 	
 	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.4/js/dojo/dijit/themes/claro/claro.css">
-	
 	<script type="text/javascript">var djConfig = {parseOnLoad: true};</script>	
 	<script type="text/javascript" src="http://servicesbeta.esri.com/jsapi/arcgis/2.5/"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/arcgis_layout.js"></script>	
+	<script type="text/javascript" src="{{ STATIC_URL }}js/arcgis_layout.js"></script>
 		
 </head>
 <body>
@@ -63,10 +62,10 @@
 		</div>
 
 		<div class="menu-search">
-			<ul> 
-				<li class="current"><a href="/">Home</a></li> 
-				<li><a href="wildlife.html">Wildlife</a></li> 
-				<li><a href="collar_test.html">Collar Test</a></li>
+			<ul> 			    
+				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Home</a></li> 
+				<li class="{% ifequal request.path "/wildlife" %}current{% endifequal %}"><a href="/wildlife">Wildlife</a></li> 
+				<li class="{% ifequal request.path "/collar_test" %}current{% endifequal %}"><a href="/collar_test">Collar Test</a></li>
 			</ul>
 			<div class="search">
 				<form action="" method="post">

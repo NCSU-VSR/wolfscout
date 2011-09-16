@@ -10,8 +10,7 @@ var map, urlObject;
 var configOptions;
 
 function init() {
-		//specify any default settings for your map 
-	//for example a bing maps key or a default web map id
+
 	configOptions = {
 		webmap:"4b517a5d748d4d66a8926b4cd28c2e17",
 		//arcgis.com sharing url is used modify this if yours is different
@@ -71,7 +70,7 @@ function initUI(){
 	var scalebar = new esri.dijit.Scalebar({
 		map: map,
 		scalebarUnit:"english" 
-	});         
+	});    
 }
         
 //show map on load 

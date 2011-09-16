@@ -19,6 +19,7 @@ def index(request):
         request - the request object
     """
     siteDictionary = getDictionary(request)
+    print str(request.path)
     return render_to_response('index.html', siteDictionary)
     
 @login_required()

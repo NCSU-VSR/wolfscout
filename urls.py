@@ -27,8 +27,8 @@ urlpatterns = patterns('',
     # ROOT DIR #
     url(r'^$', index),	
     
-    url(r'^collar_test', 'wolfscout.apps.crawler.views.getCollarData'),
-    url(r'^wildlife', 'wolfscout.apps.general.views.wildlife'),
+    url(r'^collar_test/$', 'wolfscout.apps.crawler.views.getCollarData'),
+    url(r'^wildlife/$', 'wolfscout.apps.general.views.wildlife'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
