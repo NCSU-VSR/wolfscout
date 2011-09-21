@@ -6,6 +6,8 @@ dojo.require("esri.dijit.Scalebar");
 dojo.require("esri.arcgis.utils");
 dojo.require("dijit.layout.StackContainer"); 
 
+dojo.require("esri.layers.FeatureLayer");
+
 var map, urlObject;
 var configOptions;
 
