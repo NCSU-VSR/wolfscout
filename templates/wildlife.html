@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2 id="arc_title"></h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="line">
+					<div class="claro">
+						<div id="arc_subtitle" class="caption" dojotype="dijit.layout.ContentPane" region="top"></div>
+						<div id="arc_map" class="loading shadow"></div>
+						<div dojotype="dijit.layout.ContentPane" region="bottom">
+							<div class="messages blue">
+								<span></span>
+								<div id="arc_description"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="line">
+					<button type="submit" class="green"><span>Execute Query</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<div class="section">
+		<div class="box medium">
+			<div class="title">
+				<h2>Dates</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Select Date Range</div> 
+				<form action="" method="post">
+					<div class="line">
+						<label>From</label>
+						<input type="text" class="datepicker" /> 
+					</div>
+					<div class="line">
+						<label>To</label>
+						<input type="text" class="datepicker" /> 
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box medium">
+			<div class="title">
+				<h2>Time of Day</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Set Time</div> 
+				<form action="" method="post">
+					<div class="line">
+						<label>From</label>
+						<input type="text" class="datepicker" /> 
+					</div>
+					<div class="line">
+						<label>To</label>
+						<input type="text" class="datepicker" /> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="box medium">
+			<div class="title">
+				<h2>Position</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Add Position Layers</div> 
+				<table cellspacing="0" cellpadding="0" border="0"> 
+					<thead> 
+						<tr> 
+							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th>Layers</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>WSN Data (1 layer)</td>
+						</tr>
+					</tbody> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>GPS Data(1 layer)</td>
+						</tr>
+					</tbody>
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Position Data (WSN &amp; GPS)</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" class="red"><span>Delete</span></button>
+			</div>
+		</div>
+		<div class="box medium">
+			<div class="title">
+				<h2>Field Sites</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Add Position Layers</div> 
+				<table cellspacing="0" cellpadding="0" border="0"> 
+					<thead> 
+						<tr> 
+							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th>Locations</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>CVM</td>
+						</tr>
+					</tbody> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Fornaro Farm</td>
+						</tr>
+					</tbody>
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Lake Wheeler</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" class="red"><span>Delete</span></button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section">
+		<div class="box medium">
+			<div class="title">
+				<h2>Sensors</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Add Sensor Layer</div> 
+				<table cellspacing="0" cellpadding="0" border="0"> 
+					<thead> 
+						<tr> 
+							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th>Sensors</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Light (Lumens)</td>
+						</tr>
+					</tbody> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Temperature (F)</td>
+						</tr>
+					</tbody>
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Battery Power Remaining</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" class="red"><span>Delete</span></button>
+			</div>
+		</div>
+		<div class="box medium">
+			<div class="title">
+				<h2>Species</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="caption">Choose Species</div> 
+				<table cellspacing="0" cellpadding="0" border="0"> 
+					<thead> 
+						<tr> 
+							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th>Species</th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Cattle</td>
+						</tr>
+					</tbody> 
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Deer</td>
+						</tr>
+					</tbody>
+					<tbody> 
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td>Hippopotamus</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="submit" class="red"><span>Delete</span></button>
+				<div class="line">
+					<label>ID</label>
+					<input type="text" class="small" value="" />
+				</div>
+			</div>
+		</div>
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Submit</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<button type="submit" class="green"><span>Submit</span></button>
+			</div>
+		</div>		
+	</div>-->
+{% endblock %}

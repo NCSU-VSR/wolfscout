@@ -1,0 +1,54 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/messages.sass */
+.messages {
+  display: block;
+  margin: 15px 0 3px 0;
+  *margin: 15px 0 0;
+  text-align: left;
+  overflow: hidden;
+  line-height: 2.45em;
+  color: white;
+  height: 30px;
+}
+/* line 16, ../../compass/sass/messages.sass */
+.messages span {
+  float: left;
+  margin: 0 8px 0 0;
+  width: 31px;
+  height: 30px;
+}
+/* line 21, ../../compass/sass/messages.sass */
+.messages.green {
+  background: url(../gfx/system-messages.gif) no-repeat right top transparent;
+}
+/* line 23, ../../compass/sass/messages.sass */
+.messages.green span {
+  background: url(../gfx/system-messages.gif) no-repeat left top transparent;
+}
+/* line 25, ../../compass/sass/messages.sass */
+.messages.blue {
+  background: url(../gfx/system-messages.gif) no-repeat right -30px transparent;
+}
+/* line 27, ../../compass/sass/messages.sass */
+.messages.blue span {
+  background: url(../gfx/system-messages.gif) no-repeat left -30px transparent;
+}
+/* line 29, ../../compass/sass/messages.sass */
+.messages.orange {
+  background: url(../gfx/system-messages.gif) no-repeat right -60px transparent;
+}
+/* line 31, ../../compass/sass/messages.sass */
+.messages.orange span {
+  background: url(../gfx/system-messages.gif) no-repeat left -60px transparent;
+}
+/* line 33, ../../compass/sass/messages.sass */
+.messages.red {
+  background: url(../gfx/system-messages.gif) no-repeat right -90px transparent;
+}
+/* line 35, ../../compass/sass/messages.sass */
+.messages.red span {
+  background: url(../gfx/system-messages.gif) no-repeat left -90px transparent;
+}

@@ -2,17 +2,21 @@
    "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7" >
 
     <title>{% block title %}Wolfscout{% endblock %}</title>
 
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/login.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style_text.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/form-buttons.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/link-buttons.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/messages.css">
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/forms.css">
-
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
+	
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+	
+	<!--[if lte IE 8]> 
+		<script type="text/javascript" src="{{ STATIC_URL }}js/excanvas.min.js"></script>
+	<![endif]-->
+	
 	<script type="text/javascript" src="{{ STATIC_URL }}js/superfish.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/supersubs.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/hoverIntent.js"></script>
@@ -34,16 +38,59 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.image.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.link.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.table.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>	
 	
-	<!--[if lte IE 8]>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/excanvas.min.js"></script>
-	<![endif]-->
+	<!--ARCGIS JS AND STYLING-->
+	
+	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.4/js/dojo/dijit/themes/claro/claro.css">
+	<script type="text/javascript">var djConfig = {parseOnLoad: true};</script>	
+	<script type="text/javascript" src="http://servicesbeta.esri.com/jsapi/arcgis/2.5/"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/arcgis_layout.js"></script>
+		
 </head>
 <body>
+	<a name="top"/>
+	<div class="container">   
+		<div class="logo-labels">
+			<h1><a href="#">CleanDream</a></h1>
+			<ul>
+				<li><a href="/admin"><span>Admin</span></a></li>
+				<li class="usermessage"><a href="#"><span>1 new message</span></a></li>
+				{% load url from future %}
+				<li class="logout"><a href="{% url 'django.contrib.auth.views.logout' %}"><span>Logout</span></a></li>
+			</ul>
+		</div>
+
+		<div class="menu-search">
+			<ul> 			    
+				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Home</a></li> 
+				<li class="{% ifequal request.path "/wildlife/" %}current{% endifequal %}"><a href="/wildlife">Wildlife</a></li> 
+				<li class="{% ifequal request.path "/collar_test/" %}current{% endifequal %}"><a href="/collar_test">Collar Test</a></li>
+			</ul>
+			<div class="search">
+				<form action="" method="post">
+					<input type="text" value="Seach" />
+					<button type="submit"></button>
+				</form> 
+			</div>
+		</div>
+
+		<div class="breadcrumbs">
+			<ul>
+				<li class="home"><a href="#"></a></li>
+				<li class="break">&#187;</li>
+				<li><a href="#">Menu item</a></li>
+				<li class="break">&#187;</li>
+				<li><a href="#">Menu item</a></li>
+			</ul>
+		</div>
 	        {% block content %}
 
 	        {% endblock %}
-
+		<div class="footer">
+			<div class="split">&#169; Copyright <a href="#">wolfscout.ncsu.com</a></div> 
+			<div class="split right"><a href="#top"><IMG SRC="{{ STATIC_URL }}gfx/anchorarrow_02.gif"></a><a href="#top">Back to Top</a></div> 
+		</div>
+	</div>
 </body>
 </html>

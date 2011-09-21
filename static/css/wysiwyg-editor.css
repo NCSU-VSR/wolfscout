@@ -1,0 +1,20 @@
+/* line 1, ../../compass/sass/wysiwyg-editor.sass */
+html {
+  font-family: Arial;
+  font-size: 12px;
+  line-height: 18px;
+  height: 100%;
+}
+
+/* line 7, ../../compass/sass/wysiwyg-editor.sass */
+body {
+  font-family: Arial;
+  font-size: 12px;
+  line-height: 18px;
+  height: 100%;
+}
+/* line 12, ../../compass/sass/wysiwyg-editor.sass */
+body.wysiwyg {
+  cursor: text;
+  height: 100%;
+}
