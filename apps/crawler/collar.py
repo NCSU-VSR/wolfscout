@@ -54,10 +54,13 @@ class CollarParser(object):
         """
         if (string=="Yes"):
             return True
-        return False
+        elif (string == "No"):
+            return False
+        else:
+            raise ValueError("Invalid argument (must be Yes or No): {0}".format(string))
 
     def createCollarData(self, lineContents):
-        CSV_DICTIONARY = settings.CSV_DICTIONARY
+        CSV = settings.CSV_DICTIONARY
         """
         createCollarData uses the contents of the current value of self.line
         to populate a data point for a specific collar. Once created the data
@@ -72,45 +75,45 @@ class CollarParser(object):
         newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
                                                                         lineContents[4])
 
-        newCollarDataPoint.ECEF_X = lineContents[CSV_DICTIONARY['ECEF_X']]
-        newCollarDataPoint.ECEF_Y = lineContents[CSV_DICTIONARY['ECEF_Y']]
-        newCollarDataPoint.ECEF_Z = lineContents[CSV_DICTIONARY['ECEF_Z']]
-        newCollarDataPoint.LATITUDE = lineContents[CSV_DICTIONARY['LATITUDE']]
-        newCollarDataPoint.LONGITUDE = lineContents[CSV_DICTIONARY['LONGITUDE']]
-        newCollarDataPoint.HEIGHT = lineContents[CSV_DICTIONARY['HEIGHT']]
-        newCollarDataPoint.DOP = lineContents[CSV_DICTIONARY['DOP']]
-        newCollarDataPoint.NAV = lineContents[CSV_DICTIONARY['NAV']]
-        newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV_DICTIONARY['VALIDATED']]))
-        newCollarDataPoint.SATS_USED = lineContents[CSV_DICTIONARY['SATS_USED']]
-        newCollarDataPoint.CH1_SATID = lineContents[CSV_DICTIONARY['CH1_SATID']]
-        newCollarDataPoint.CH1_CN = lineContents[CSV_DICTIONARY['CH1_CN']]
-        newCollarDataPoint.CH2_SATID = lineContents[CSV_DICTIONARY['CH2_SATID']]
-        newCollarDataPoint.CH2_CN = lineContents[CSV_DICTIONARY['CH2_CN']]
-        newCollarDataPoint.CH3_SATID = lineContents[CSV_DICTIONARY['CH3_SATID']]
-        newCollarDataPoint.CH3_CN = lineContents[CSV_DICTIONARY['CH3_CN']]
-        newCollarDataPoint.CH4_SATID = lineContents[CSV_DICTIONARY['CH4_SATID']]
-        newCollarDataPoint.CH4_CN = lineContents[CSV_DICTIONARY['CH4_CN']]
-        newCollarDataPoint.CH5_SATID = lineContents[CSV_DICTIONARY['CH5_SATID']]
-        newCollarDataPoint.CH5_CN = lineContents[CSV_DICTIONARY['CH5_CN']]
-        newCollarDataPoint.CH6_SATID = lineContents[CSV_DICTIONARY['CH6_SATID']]
-        newCollarDataPoint.CH6_CN = lineContents[CSV_DICTIONARY['CH6_CN']]
-        newCollarDataPoint.CH7_SATID = lineContents[CSV_DICTIONARY['CH7_SATID']]
-        newCollarDataPoint.CH7_CN = lineContents[CSV_DICTIONARY['CH7_CN']]
-        newCollarDataPoint.CH8_SATID = lineContents[CSV_DICTIONARY['CH8_SATID']]
-        newCollarDataPoint.CH8_CN = lineContents[CSV_DICTIONARY['CH8_CN']]
-        newCollarDataPoint.CH9_SATID = lineContents[CSV_DICTIONARY['CH9_SATID']]
-        newCollarDataPoint.CH9_CN = lineContents[CSV_DICTIONARY['CH9_CN']]
-        newCollarDataPoint.CH10_SATID = lineContents[CSV_DICTIONARY['CH10_SATID']]
-        newCollarDataPoint.CH10_CN = lineContents[CSV_DICTIONARY['CH10_CN']]
-        newCollarDataPoint.CH11_SATID = lineContents[CSV_DICTIONARY['CH11_SATID']]
-        newCollarDataPoint.CH11_CN = lineContents[CSV_DICTIONARY['CH11_CN']]
-        newCollarDataPoint.CH12_SATID = lineContents[CSV_DICTIONARY['CH12_SATID']]
-        newCollarDataPoint.CH12_CN = lineContents[CSV_DICTIONARY['CH12_CN']]
-        newCollarDataPoint.MAIN_VOL = lineContents[CSV_DICTIONARY['MAIN_VOL']]
-        newCollarDataPoint.BU_VOL = lineContents[CSV_DICTIONARY['BU_VOL']]
-        newCollarDataPoint.TEMP = lineContents[CSV_DICTIONARY['TEMP']]
-        newCollarDataPoint.REMARKS = lineContents[CSV_DICTIONARY['REMARKS']]
-        newCollarDataPoint.VALID = True
+        newCollarDataPoint.ECEF_X = lineContents[CSV['ECEF_X']]
+        newCollarDataPoint.ECEF_Y = lineContents[CSV['ECEF_Y']]
+        newCollarDataPoint.ECEF_Z = lineContents[CSV['ECEF_Z']]
+        newCollarDataPoint.LATITUDE = lineContents[CSV['LATITUDE']]
+        newCollarDataPoint.LONGITUDE = lineContents[CSV['LONGITUDE']]
+        newCollarDataPoint.HEIGHT = lineContents[CSV['HEIGHT']]
+        newCollarDataPoint.DOP = lineContents[CSV['DOP']]
+        newCollarDataPoint.NAV = lineContents[CSV['NAV']]
+        newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV['VALIDATED']]))
+        newCollarDataPoint.SATS_USED = lineContents[CSV['SATS_USED']]
+        newCollarDataPoint.CH1_SATID = lineContents[CSV['CH1_SATID']]
+        newCollarDataPoint.CH1_CN = lineContents[CSV['CH1_CN']]
+        newCollarDataPoint.CH2_SATID = lineContents[CSV['CH2_SATID']]
+        newCollarDataPoint.CH2_CN = lineContents[CSV['CH2_CN']]
+        newCollarDataPoint.CH3_SATID = lineContents[CSV['CH3_SATID']]
+        newCollarDataPoint.CH3_CN = lineContents[CSV['CH3_CN']]
+        newCollarDataPoint.CH4_SATID = lineContents[CSV['CH4_SATID']]
+        newCollarDataPoint.CH4_CN = lineContents[CSV['CH4_CN']]
+        newCollarDataPoint.CH5_SATID = lineContents[CSV['CH5_SATID']]
+        newCollarDataPoint.CH5_CN = lineContents[CSV['CH5_CN']]
+        newCollarDataPoint.CH6_SATID = lineContents[CSV['CH6_SATID']]
+        newCollarDataPoint.CH6_CN = lineContents[CSV['CH6_CN']]
+        newCollarDataPoint.CH7_SATID = lineContents[CSV['CH7_SATID']]
+        newCollarDataPoint.CH7_CN = lineContents[CSV['CH7_CN']]
+        newCollarDataPoint.CH8_SATID = lineContents[CSV['CH8_SATID']]
+        newCollarDataPoint.CH8_CN = lineContents[CSV['CH8_CN']]
+        newCollarDataPoint.CH9_SATID = lineContents[CSV['CH9_SATID']]
+        newCollarDataPoint.CH9_CN = lineContents[CSV['CH9_CN']]
+        newCollarDataPoint.CH10_SATID = lineContents[CSV['CH10_SATID']]
+        newCollarDataPoint.CH10_CN = lineContents[CSV['CH10_CN']]
+        newCollarDataPoint.CH11_SATID = lineContents[CSV['CH11_SATID']]
+        newCollarDataPoint.CH11_CN = lineContents[CSV['CH11_CN']]
+        newCollarDataPoint.CH12_SATID = lineContents[CSV['CH12_SATID']]
+        newCollarDataPoint.CH12_CN = lineContents[CSV['CH12_CN']]
+        newCollarDataPoint.MAIN_VOL = lineContents[CSV['MAIN_VOL']]
+        newCollarDataPoint.BU_VOL = lineContents[CSV['BU_VOL']]
+        newCollarDataPoint.TEMP = lineContents[CSV['TEMP']]
+        newCollarDataPoint.REMARKS = lineContents[CSV['REMARKS']]
+        newCollarDataPoint.VALID = True #TODO this should be set to false if any data is invalid
         newCollarDataPoint.save()
 
     def generateDateTimeFromList(self, dateString, timeString):
@@ -124,8 +127,14 @@ class CollarParser(object):
         """
         dateList = dateString.split('.')
         timeList = timeString.split(':')
-        dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
+        validArgs = len(dateList) == 3 and len(timeList) == 3 and dateString.find(" ") == False and timeString.find(" ") == False
+        
+        if validArgs:
+            dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
                                   int(timeList[0]),int(timeList[1]),int(timeList[2]))
+        else:
+            raise ValueError("Invalid args\nDate String (day.month.year): {0}\nTime String (hour:min:second): {1}".format(dateString, timeString))
+
         return dateTimeObject
 
     def lineParser(self):
