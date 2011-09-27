@@ -65,12 +65,12 @@ Use only your firstname or combo first and last together(no spaces)
 
 ### Configuring Fabric
 
-Using your favorite text editor called .fabricrc in your home directory (~/.fabricrc). Complete it like so:
+Using your favorite text editor, create a file called .fabricrc in your home directory (~/.fabricrc). Complete it like so:
 
     user = ubuntu
     localBranch = yournamme
 
-The user argument is for the remote server(everyone shares this) and the localBrach tells fabric which branch it is currently working with.
+The user argument is for the remote server(everyone shares this) and the localBranch tells fabric which branch it is currently working with.
 
 Development Utilities:
 ---------------------
