@@ -26,6 +26,11 @@ In this section replace ubuntu with your username such as chris or cpturtle (onl
     cd ncsu
     source bin/activate
 
+### Set up SSH Keys
+
+If you haven't already, set up SSH keys by going to https://help.github.com/linux-set-up-git and skipping down to
+the section called 'Next: Set up SSH Keys'. Follow the instructions in that section only.
+
 ###  Getting The Codebase:
 
     cd /opt/webapps/ncsu/
