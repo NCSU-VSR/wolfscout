@@ -127,13 +127,18 @@ class CollarParser(object):
         """
         dateList = dateString.split('.')
         timeList = timeString.split(':')
-        validArgs = len(dateList) == 3 and len(timeList) == 3 and dateString.find(" ") == False and timeString.find(" ") == False
-        
+        validArgs = len(dateList) == 3 and len(timeList) == 3 and dateString.find(" ") == -1 and timeString.find(" ") == -1
+
         if validArgs:
             dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
                                   int(timeList[0]),int(timeList[1]),int(timeList[2]))
+            if dateTimeObject > datetime.today():
+	            raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
+            elif dateTimeObject.year < 1950:
+	            raise ValueError("Date is before the year 1950\nGiven date: {0}".format(dateTimeObject))
+
         else:
-            raise ValueError("Invalid args\nDate String (day.month.year): {0}\nTime String (hour:min:second): {1}".format(dateString, timeString))
+            raise ValueError("Invalid args\nDate String (day.month.year): {0}\nTime String (hour:min:second): {1}, {2}{3}{4}{5}".format(dateString, timeString, len(dateList) == 3, len(timeList) == 3, dateString.find(" ") == False, timeString.find(" ") == False))
 
         return dateTimeObject
 

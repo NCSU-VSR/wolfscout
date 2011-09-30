@@ -26,6 +26,11 @@ In this section replace ubuntu with your username such as chris or cpturtle (onl
     cd ncsu
     source bin/activate
 
+### Set up SSH Keys
+
+If you haven't already, set up SSH keys by going to https://help.github.com/linux-set-up-git and skipping down to
+the section called 'Next: Set up SSH Keys'. Follow the instructions in that section only.
+
 ###  Getting The Codebase:
 
     cd /opt/webapps/ncsu/
@@ -60,12 +65,12 @@ Use only your firstname or combo first and last together(no spaces)
 
 ### Configuring Fabric
 
-Using your favorite text editor called .fabricrc in your home directory (~/.fabricrc). Complete it like so:
+Using your favorite text editor, create a file called .fabricrc in your home directory (~/.fabricrc). Complete it like so:
 
     user = ubuntu
     localBranch = yournamme
 
-The user argument is for the remote server(everyone shares this) and the localBrach tells fabric which branch it is currently working with.
+The user argument is for the remote server(everyone shares this) and the localBranch tells fabric which branch it is currently working with.
 
 Development Utilities:
 ---------------------

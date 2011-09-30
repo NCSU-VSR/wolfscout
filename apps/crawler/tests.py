@@ -100,54 +100,53 @@ class CollarTestCases(TestCase):
         testCollarParser = CollarParser(badFilename)
         self.assertEquals(testCollarParser.fileReader().args[1],noFileIOError.args[1])
 
-    def test_generateDateTimeFromList(self):
-        return True
-        dateString = "12.1.2011"
-        timeString = "1:25:10"
-        dateList = dateString.split('.')
-        timeList = timeString.split(':')
-        dateTimeObjectToTest = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
-                                  int(timeList[0]),int(timeList[1]),int(timeList[2]))
-        testCollarParser = self.getTestCollarParser()
-        self.assertEqual(testCollarParser.generateDateTimeFromList(dateString,timeString),dateTimeObjectToTest)
-
-    def test_generateDateTimeFromList_badInput(self):
-        validDateString = "29.2.2012"
+    def test_generateDateTimeFromList_validInput(self):
+        validDateString = "28.2.2011"
         validTimeString = "0:0:0"
-        badDateStrings = ("-1.1.2011", "29.2.2011", "31.4.2011", "0.1.2011", "a.1.2011", "1a.1.2011", "one.1.2011", ".1.2011", "1 .1.2011",
-            "1.-1.2011", "1.0.2011", "1.13.2011", "1.1a.2011", "1.a.2011", "1.one.2011", "1..2011", "1. 1.2011",
-            "1.1.-1", "1.1.2025", "1.1.500", "1.1.0", "1.1.2011a", "1.1.201a", "1.1.a", "1.1.twozerooneone", "1.1.", "1.1. 2011",
-            "1.1.2011.", ".1.1.2011", "1 1 2011", "1 1.2011", "1,1.2011", "1:1.2011", "1,1,2011", "1:1:2011")
-        badTimeStrings = ("-1:1:1", "24:1:1", "1a:1:1", "a:1:1", ":1:1", "1 :1:1",
-            "1:-1:1" "1:60:1", "1:1a:1", "1:a:1", "1::1", "1:1 :1",
-            "1:1:-1", "1:1:60", "1:1:1a", "1:1:a", "1:1:", "1:1:1 ",
-            "1:1:1:", ":1:1:1", "1 1 1", "1 1:1", "1,1:1", "1.1:1", "1,1,1", "1.1.1")
         testCollarParser = self.getTestCollarParser()
-        for date in badDateStrings:
+        testCollarParser.generateDateTimeFromList(validDateString, validTimeString)
+
+    def test_generateDateTimeFromList_badDate(self):
+        testCollarParser = self.getTestCollarParser()
+        for badDate in self.getBadDateStrings():
             try:
-                testCollarParser.generateDateTimeFromList(date, validTimeString)
-                self.fail(date)
+                testCollarParser.generateDateTimeFromList(badDate, self.getValidTimeString())
+                self.fail(badDate)
             except ValueError:
                 pass
+            except AttributeError:
+                if badDate != None:
+                    raise
 
-        for time in badTimeStrings:
+    def test_generateDateTimeFromList_badTime(self):
+        testCollarParser = self.getTestCollarParser()
+        for badTime in self.getBadTimeStrings():
             try:
-                testCollarParser.generateDateTimeFromList(validDateString, time)
-                self.fail(time)
+                testCollarParser.generateDateTimeFromList(self.getValidDateString(), badTime)
+                self.fail(badTime)
             except ValueError:
                 pass
-
-        try:
-            testCollarParser.generateDateTimeFromList(validDateString, None)
-            self.fail(None)
-        except AttributeError:
-            pass
-
-        try:
-            testCollarParser.generateDateTimeFromList(None, validTimeString)
-            self.fail(None)
-        except AttributeError:
-            pass
+            except AttributeError:
+                if badTime != None:
+                    raise
 
     def getTestCollarParser(self):
         return CollarParser(self.validFileName)
+
+    def getValidDateString(self):
+        return "28.2.2011"
+
+    def getValidTimeString(self):
+        return "0:0:0"
+
+    def getBadDateStrings(self):
+        return (None, "-1.1.2011", "29.2.2011", "31.4.2011", "0.1.2011", "a.1.2011", "1a.1.2011", "one.1.2011", ".1.2011", "1 .1.2011",
+            "1.-1.2011", "1.0.2011", "1.13.2011", "1.1a.2011", "1.a.2011", "1.one.2011", "1..2011", "1. 1.2011",
+            "1.1.-1", "1.1.2025", "1.1.500", "1.1.0", "1.1.2011a", "1.1.201a", "1.1.a", "1.1.twozerooneone", "1.1.", "1.1. 2011",
+            "1.1.2011.", ".1.1.2011", "1 1 2011", "1 1.2011", "1,1.2011", "1:1.2011", "1,1,2011", "1:1:2011")
+
+    def getBadTimeStrings(self):
+        return (None, "-1:1:1", "24:1:1", "1a:1:1", "a:1:1", ":1:1", "1 :1:1",
+            "1:-1:1" "1:60:1", "1:1a:1", "1:a:1", "1::1", "1:1 :1",
+            "1:1:-1", "1:1:60", "1:1:1a", "1:1:a", "1:1:", "1:1:1 ",
+            "1:1:1:", ":1:1:1", "1 1 1", "1 1:1", "1,1:1", "1.1:1", "1,1,1", "1.1.1")
