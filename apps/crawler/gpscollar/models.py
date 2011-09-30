@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+import datetime
 # Create your models here.
 class Collar(models.Model):
 
@@ -59,6 +60,7 @@ class CollarData(models.Model):
     REMARKS =models.TextField(null=True, blank=True)
     VALID = models.BooleanField(default=True)
 
+    DATE_ADDED = models.DateTimeField(default=datetime.datetime.now())
     objects = models.GeoManager()
 
     def __unicode__(self):
