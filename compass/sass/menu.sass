@@ -1,0 +1,218 @@
+/*
+ *Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0
+
+.menu-search ul
+  margin: 0
+  padding: 0
+  list-style-type: none
+  *
+    margin: 0
+    padding: 0
+    list-style-type: none
+  line-height: 1.0
+  ul
+    position: absolute
+    top: -999em
+    width: 10em
+    li
+      width: 100%
+  li
+    &:hover
+      visibility: inherit
+    float: left
+    position: relative
+  a
+    display: block
+    position: relative
+  li
+    &:hover ul, &.sfHover ul
+      left: 0
+      top: 31px
+      /* match top ul list item height
+      z-index: 99
+    &:hover li ul, &.sfHover li ul
+      top: -999em
+    li
+      &:hover ul, &.sfHover ul
+        left: 10em
+        top: 0
+      &:hover li ul, &.sfHover li ul
+        top: -999em
+      li
+        &:hover ul, &.sfHover ul
+          left: 10em
+          top: 0
+    background: none
+    border-right: 1px solid #c3d0e1
+  float: left
+  border-left: 1px solid #c3d0e1
+  border-bottom: 1px solid #c3d0e1
+  font-family: 'MuseoSans300', Arial
+  text-transform: uppercase
+  font-size: 12px
+  line-height: 1.0em
+  ul
+    border-top: 1px solid #c3d0e1
+    border-right: 1px solid #c3d0e1
+    border-bottom: none
+    padding: 1px 0 0
+    margin: 0 0 0 -1px
+  li li
+    border-bottom: 1px solid #c3d0e1
+  ul ul
+    margin: -1px 0 0 0
+  li
+    a
+      position: relative
+      z-index: 999
+      border-left: 1px solid #FFFFFF
+      border-right: 1px solid #FFFFFF
+      padding: 10px 16px 0
+      text-decoration: none
+      color: #5d6f87
+      white-space: nowrap
+      height: 21px
+      &:link, &:active, &:visited
+        position: relative
+        z-index: 999
+        border-left: 1px solid #FFFFFF
+        border-right: 1px solid #FFFFFF
+        padding: 10px 16px 0
+        text-decoration: none
+        color: #5d6f87
+        white-space: nowrap
+        height: 21px
+    li a
+      position: relative
+      z-index: 999
+      background: url(../gfx/back-submenu.gif) repeat-x left top
+      border: 1px solid #FFFFFF
+      padding: 7px 20px 7px
+      font: 12px Arial
+      color: #002e68
+      text-transform: none
+      text-decoration: none
+      overflow: hidden
+      white-space: nowrap
+      height: auto
+      &:link, &:active, &:visited
+        position: relative
+        z-index: 999
+        background: url(../gfx/back-submenu.gif) repeat-x left top
+        border: 1px solid #FFFFFF
+        padding: 7px 20px 7px
+        font: 12px Arial
+        color: #002e68
+        text-transform: none
+        text-decoration: none
+        overflow: hidden
+        white-space: nowrap
+        height: auto
+    &.current
+      li a
+        position: relative
+        z-index: 999
+        background: url(../gfx/back-submenu.gif) repeat-x left top
+        border: 1px solid #FFFFFF
+        padding: 7px 20px 7px
+        font: 12px Arial
+        color: #002e68
+        text-transform: none
+        text-decoration: none
+        overflow: hidden
+        white-space: nowrap
+        height: auto
+        &:link, &:active, &:visited
+          position: relative
+          z-index: 999
+          background: url(../gfx/back-submenu.gif) repeat-x left top
+          border: 1px solid #FFFFFF
+          padding: 7px 20px 7px
+          font: 12px Arial
+          color: #002e68
+          text-transform: none
+          text-decoration: none
+          overflow: hidden
+          white-space: nowrap
+          height: auto
+      a
+        outline: 0
+        &:link, &:active, &:visited
+          outline: 0
+    li.current a
+      outline: 0
+      &:link, &:active, &:visited
+        outline: 0
+    &:hover, &.sfHover
+      outline: 0
+    a
+      &:focus, &:hover
+        outline: 0
+    li a
+      &:focus, &:hover
+        outline: 0
+    &.current a
+      background: url(../gfx/back-menu.gif) repeat-x left top
+      color: #002e68
+      &:link, &:active, &:visited
+        background: url(../gfx/back-menu.gif) repeat-x left top
+        color: #002e68
+    &:hover, &.sfHover
+      background: url(../gfx/back-menu.gif) repeat-x left top
+      color: #002e68
+    a
+      &:focus, &:hover
+        background: url(../gfx/back-menu.gif) repeat-x left top
+        color: #002e68
+    &.current
+      a
+        font-family: 'MuseoSans700', Arial
+        &:link, &:active, &:visited
+          font-family: 'MuseoSans700', Arial
+      li.current a
+        background: url(../gfx/back-submenu.gif) repeat-x left bottom
+        font-family: Arial
+        &:link, &:active, &:visited
+          background: url(../gfx/back-submenu.gif) repeat-x left bottom
+          font-family: Arial
+    li
+      &.current a
+        background: url(../gfx/back-submenu.gif) repeat-x left bottom
+        font-family: Arial
+        &:link, &:active, &:visited
+          background: url(../gfx/back-submenu.gif) repeat-x left bottom
+          font-family: Arial
+      a
+        &:focus, &:hover
+          background: url(../gfx/back-submenu.gif) repeat-x left bottom
+          font-family: Arial
+    &.current li a
+      &:focus, &:hover
+        background: url(../gfx/back-submenu.gif) repeat-x left bottom
+        font-family: Arial
+    li.current li a
+      background: url(../gfx/back-submenu.gif) repeat-x left top
+      &:link, &:active, &:visited
+        background: url(../gfx/back-submenu.gif) repeat-x left top
+    &.current li.current li a
+      background: url(../gfx/back-submenu.gif) repeat-x left top
+      &:link, &:active, &:visited
+        background: url(../gfx/back-submenu.gif) repeat-x left top
+    li.current li a
+      &:focus, &:hover
+        background: url(../gfx/back-submenu.gif) repeat-x left bottom
+        font-family: Arial
+    &.current li.current li
+      a
+        &:focus, &:hover
+          background: url(../gfx/back-submenu.gif) repeat-x left bottom
+          font-family: Arial
+      &.current a
+        background: url(../gfx/back-submenu.gif) repeat-x left bottom
+        font-family: Arial
+        &:link, &:active, &:visited
+          background: url(../gfx/back-submenu.gif) repeat-x left bottom
+          font-family: Arial

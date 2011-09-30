@@ -1,0 +1,466 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/forms.sass */
+.box .content.forms {
+  padding: 0;
+}
+
+/* line 10, ../../compass/sass/forms.sass */
+form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 16, ../../compass/sass/forms.sass */
+.line {
+  display: block;
+  padding: 15px;
+}
+/* line 19, ../../compass/sass/forms.sass */
+.line.button {
+  padding: 7px 15px 10px;
+}
+
+/* line 22, ../../compass/sass/forms.sass */
+label {
+  float: left;
+  padding: 4px 0 0 0;
+  font-size: 12px;
+  color: #002e68;
+  font-weight: bold;
+  cursor: text;
+  width: 124px;
+}
+
+/* //////////////////// INPUTFIELD \\\\\\\\\\\\\\\\\\\\ */
+/* line 33, ../../compass/sass/forms.sass */
+input {
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  padding: 6px 7px 6px;
+  margin: 0;
+  font-size: 12px;
+  color: #002e68;
+  *cursor: text;
+  line-height: 1.2em;
+  height: 15px;
+}
+/* line 44, ../../compass/sass/forms.sass */
+input.small {
+  background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 166px;
+}
+/* line 48, ../../compass/sass/forms.sass */
+input.medium {
+  background: url(../gfx/forms/forms-input-medium.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 297px;
+}
+/* line 52, ../../compass/sass/forms.sass */
+input.big {
+  background: url(../gfx/forms/forms-input-big.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 552px;
+}
+/* line 56, ../../compass/sass/forms.sass */
+input.xl {
+  background: url(../gfx/forms/forms-input-xl.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 802px;
+}
+/* line 60, ../../compass/sass/forms.sass */
+input:hover, input:focus {
+  background-position: left bottom;
+  color: #5a5a5a;
+}
+
+/* line 65, ../../compass/sass/forms.sass */
+div.input-small {
+  display: inline;
+  background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 166px;
+  height: 28px;
+}
+/* line 71, ../../compass/sass/forms.sass */
+div.input-medium {
+  display: inline;
+  background: url(../gfx/forms/forms-input-medium.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 297px;
+  height: 28px;
+}
+/* line 77, ../../compass/sass/forms.sass */
+div.input-big {
+  display: inline;
+  background: url(../gfx/forms/forms-input-big.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 552px;
+  height: 28px;
+}
+/* line 83, ../../compass/sass/forms.sass */
+div.input-xl {
+  display: inline;
+  background: url(../gfx/forms/forms-input-xl.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 802px;
+  height: 28px;
+}
+
+/* //////////////////// SELECTBOX \\\\\\\\\\\\\\\\\\\\ */
+/* line 92, ../../compass/sass/forms.sass */
+.sb-custom {
+  display: inline-block;
+  *display: inline;
+  height: 26px;
+}
+
+/* line 97, ../../compass/sass/forms.sass */
+select {
+  display: none;
+}
+/* line 99, ../../compass/sass/forms.sass */
+select .no-js {
+  display: none;
+}
+
+/* line 102, ../../compass/sass/forms.sass */
+div.sb-overlay {
+  display: inline-block;
+  position: relative;
+  *display: inline;
+  *zoom: 1;
+  *z-index: 1;
+  padding: 0;
+}
+
+/* line 110, ../../compass/sass/forms.sass */
+input.sb-select {
+  display: inline-block;
+  background: url(../gfx/forms/forms-selectbox.gif) no-repeat right top transparent;
+  border: none;
+  padding: 5px 34px 6px 7px;
+  *padding: 6px 34px 6px 7px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #002e68;
+  text-decoration: none;
+  line-height: 1.3em;
+  *line-height: 1.1em;
+  width: 140px;
+  height: 16px;
+}
+
+/* line 125, ../../compass/sass/forms.sass */
+ul.sb-dropdown {
+  position: absolute;
+  display: none;
+  background-color: white;
+  border: 1px solid #c3d0e1;
+  top: 7px;
+  *top: 1px;
+  left: -176px;
+  list-style-type: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  width: 168px;
+  max-height: 250px;
+}
+/* line 141, ../../compass/sass/forms.sass */
+ul.sb-dropdown li {
+  background: none;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+}
+/* line 146, ../../compass/sass/forms.sass */
+ul.sb-dropdown a {
+  display: block;
+  background-color: white;
+  padding: 3px 5px;
+  overflow: hidden;
+  font-family: Arial;
+  font-weight: 100;
+  cursor: pointer;
+  color: #5a5a5a;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: none;
+}
+/* line 158, ../../compass/sass/forms.sass */
+ul.sb-dropdown a:link, ul.sb-dropdown a:active, ul.sb-dropdown a:visited {
+  display: block;
+  background-color: white;
+  padding: 3px 5px;
+  overflow: hidden;
+  font-family: Arial;
+  font-weight: 100;
+  cursor: pointer;
+  color: #5a5a5a;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: none;
+}
+/* line 170, ../../compass/sass/forms.sass */
+ul.sb-dropdown a:hover {
+  background-color: #eff2f6;
+  color: #002e68;
+}
+/* line 173, ../../compass/sass/forms.sass */
+ul.sb-dropdown .selected {
+  background-color: #eff2f6;
+  color: #002e68;
+}
+
+/* //////////////////// UPLOAD BUTTON \\\\\\\\\\\\\\\\\\\\ */
+/* line 179, ../../compass/sass/forms.sass */
+input.file {
+  float: left;
+  background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
+  margin: 0 2px 0 0;
+  z-index: 99;
+  height: 15px;
+}
+
+/* line 186, ../../compass/sass/forms.sass */
+div.btn-upload {
+  display: inline-block;
+  *display: inline;
+  background: url(../gfx/forms/forms-file.gif) no-repeat right top transparent;
+}
+/* line 190, ../../compass/sass/forms.sass */
+div.btn-upload:hover {
+  background-position: right bottom;
+}
+/* line 192, ../../compass/sass/forms.sass */
+div.btn-upload input {
+  *position: relative;
+  *z-index: -1;
+}
+
+/* //////////////////// TEXTAREA \\\\\\\\\\\\\\\\\\\\ */
+/* line 198, ../../compass/sass/forms.sass */
+textarea {
+  display: inline-block;
+  overflow: auto;
+  border: 0;
+  outline: 0;
+  padding: 6px 7px 6px;
+  margin: 0;
+  cursor: text;
+  resize: none;
+  font: 12px Arial;
+  color: #002e68;
+  line-height: 1.42em;
+  height: 69px;
+}
+/* line 211, ../../compass/sass/forms.sass */
+textarea.small {
+  background: url(../gfx/forms/forms-textarea-small.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 166px;
+}
+/* line 215, ../../compass/sass/forms.sass */
+textarea.medium {
+  background: url(../gfx/forms/forms-textarea-medium.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 297px;
+}
+/* line 219, ../../compass/sass/forms.sass */
+textarea.big {
+  background: url(../gfx/forms/forms-textarea-big.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 552px;
+}
+/* line 223, ../../compass/sass/forms.sass */
+textarea.xl {
+  background: url(../gfx/forms/forms-textarea-xl.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 802px;
+}
+/* line 227, ../../compass/sass/forms.sass */
+textarea:hover, textarea:focus {
+  background-position: left bottom;
+}
+
+/* line 231, ../../compass/sass/forms.sass */
+div.textarea-small {
+  display: inline;
+  background: url(../gfx/forms/forms-textarea-small.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 166px;
+  height: 80px;
+}
+/* line 237, ../../compass/sass/forms.sass */
+div.textarea-medium {
+  display: inline;
+  background: url(../gfx/forms/forms-textarea-medium.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 297px;
+  height: 80px;
+}
+/* line 243, ../../compass/sass/forms.sass */
+div.textarea-big {
+  display: inline;
+  background: url(../gfx/forms/forms-textarea-big.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 552px;
+  height: 80px;
+}
+/* line 249, ../../compass/sass/forms.sass */
+div.textarea-xl {
+  display: inline;
+  background: url(../gfx/forms/forms-textarea-xl.gif) no-repeat left top transparent;
+  overflow: hidden;
+  width: 802px;
+  height: 80px;
+}
+
+/* //////////////////// CHECKBOXES & RADIOBUTTONS \\\\\\\\\\\\\\\\\\\\ */
+/* line 259, ../../compass/sass/forms.sass */
+table input[type=checkbox], table input[type=radio] {
+  background: none;
+  padding: 0;
+}
+
+/* line 263, ../../compass/sass/forms.sass */
+.custom-checkbox, .custom-radio {
+  display: inline-block;
+  position: relative;
+  *display: inline;
+  margin: 3px 20px -2px 0;
+  *zoom: 1;
+}
+
+/* line 270, ../../compass/sass/forms.sass */
+.custom-checkbox input, .custom-radio input {
+  position: absolute;
+  background: transparent;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: -1;
+  width: 13px;
+  height: 13px;
+}
+
+/* line 280, ../../compass/sass/forms.sass */
+.custom-checkbox label, .custom-radio label {
+  display: inline-block;
+  padding: 0 0 0 26px;
+  color: #5a5a5a;
+  font-weight: 100;
+  line-height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  width: auto;
+  height: 19px;
+}
+
+/* line 291, ../../compass/sass/forms.sass */
+.custom-checkbox label {
+  background: url(../gfx/forms/forms-checkbox.gif) no-repeat;
+}
+
+/* line 294, ../../compass/sass/forms.sass */
+.custom-radio label {
+  background: url(../gfx/forms/forms-radio.gif) no-repeat;
+}
+
+/* line 298, ../../compass/sass/forms.sass */
+.custom-checkbox label.hover, .custom-checkbox label.focus {
+  background-position: left bottom;
+}
+
+/* line 302, ../../compass/sass/forms.sass */
+.custom-radio label.hover, .custom-radio label.focus {
+  background-position: left bottom;
+}
+
+/* line 305, ../../compass/sass/forms.sass */
+.custom-checkbox label, .custom-radio label {
+  background-position: left bottom;
+}
+
+/* line 308, ../../compass/sass/forms.sass */
+.custom-checkbox label.checked, .custom-radio label.checked {
+  background-position: left top;
+}
+
+/* line 312, ../../compass/sass/forms.sass */
+.custom-checkbox label.checkedHover, .custom-checkbox label.checkedFocus {
+  background-position: left top;
+}
+
+/* //////////////////// DATE PICKER \\\\\\\\\\\\\\\\\\\\ */
+/* line 317, ../../compass/sass/forms.sass */
+input.datepicker {
+  background: url(../gfx/forms/forms-date.gif) no-repeat right top transparent;
+  margin: 0 20px 0 0;
+  padding: 6px 34px 6px 7px;
+  cursor: pointer;
+  width: 69px;
+}
+
+/* //////////////////// SLIDER \\\\\\\\\\\\\\\\\\\\ */
+/* line 326, ../../compass/sass/forms.sass */
+.slider {
+  display: block;
+  color: #002e68;
+}
+/* line 329, ../../compass/sass/forms.sass */
+.slider .ui-slider-horizontal {
+  position: relative;
+  border: 1px solid #c3d0e1;
+  margin: 5px 0 0;
+  height: 10px;
+}
+/* line 334, ../../compass/sass/forms.sass */
+.slider .ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
+}
+/* line 337, ../../compass/sass/forms.sass */
+.slider .ui-slider .ui-slider-range {
+  position: absolute;
+  background: #f2f4f7;
+  z-index: 1;
+  font-size: 0.7em;
+  display: block;
+  border: 0;
+  background-position: 0 0;
+}
+/* line 345, ../../compass/sass/forms.sass */
+.slider .ui-slider-horizontal .ui-slider-handle {
+  margin-left: -0.6em;
+}
+/* line 347, ../../compass/sass/forms.sass */
+.slider .ui-slider .ui-slider-handle {
+  position: absolute;
+  background: url(../gfx/slider-button.gif) no-repeat;
+  top: -3px;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  cursor: default;
+}
+/* line 355, ../../compass/sass/forms.sass */
+.slider input {
+  padding: 0;
+  text-align: right;
+  color: #5a5a5a;
+  width: 30px;
+}
+/* line 360, ../../compass/sass/forms.sass */
+.slider input.amount-second {
+  text-align: left;
+}

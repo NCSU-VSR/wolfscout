@@ -1,0 +1,58 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/statics.sass */
+.space {
+  display: block;
+  height: 19px;
+}
+
+/* line 11, ../../compass/sass/statics.sass */
+.flot-graph {
+  display: inline-block;
+  padding: 0;
+  line-height: normal;
+}
+/* line 15, ../../compass/sass/statics.sass */
+.flot-graph .xAxis {
+  line-height: 7px;
+}
+
+/* line 18, ../../compass/sass/statics.sass */
+.caption {
+  float: left;
+  margin: -3px 0 0 0;
+  font-size: 12px;
+  line-height: normalpagedisplay;
+  color: #1c1c1c;
+  font-weight: bold;
+}
+
+/* line 26, ../../compass/sass/statics.sass */
+.flot-graph .legend {
+  line-height: 12px;
+}
+/* line 28, ../../compass/sass/statics.sass */
+.flot-graph .legend table {
+  border: 0;
+  width: auto;
+}
+/* line 31, ../../compass/sass/statics.sass */
+.flot-graph .legend table td {
+  border: 0;
+  padding: 2px 0 0 5px;
+  line-height: 18px;
+  white-space: nowrap;
+  width: auto;
+}
+
+/* line 38, ../../compass/sass/statics.sass */
+#tooltip {
+  background-color: #1c1c1c;
+  padding: 0 8px;
+  color: white;
+  font-size: 11px;
+  line-height: 25px;
+  height: 25px;
+}

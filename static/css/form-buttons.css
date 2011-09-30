@@ -1,0 +1,182 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* line 7, ../../compass/sass/form-buttons.sass */
+button {
+  display: inline-block;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  *margin: 8px 3px 0 0;
+  cursor: pointer;
+  overflow: visible;
+  width: auto;
+  height: 23px;
+}
+/* line 8, ../../compass/sass/form-buttons.sass */
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+/* line 22, ../../compass/sass/form-buttons.sass */
+button span {
+  float: left;
+  padding: 0 8px 0 4px;
+  margin: 0 0 0 4px;
+  font: 10px Arial;
+  font-weight: bold;
+  line-height: 2.1em;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+  height: 23px;
+}
+/* line 33, ../../compass/sass/form-buttons.sass */
+button.medium {
+  height: 28px;
+}
+/* line 35, ../../compass/sass/form-buttons.sass */
+button.medium span {
+  padding: 0 10px 0 6px;
+  font: 12px Arial;
+  line-height: 2.35em;
+  *line-height: 2.2em;
+  height: 28px;
+}
+/* line 41, ../../compass/sass/form-buttons.sass */
+button.big {
+  height: 31px;
+}
+/* line 43, ../../compass/sass/form-buttons.sass */
+button.big span {
+  padding: 0 12px 0 8px;
+  font: 13px Arial;
+  line-height: 2.4em;
+  height: 31px;
+}
+/* line 48, ../../compass/sass/form-buttons.sass */
+button.green {
+  background: url(../gfx/link-button.gif) no-repeat left top transparent;
+}
+/* line 50, ../../compass/sass/form-buttons.sass */
+button.green span {
+  background: url(../gfx/link-button.gif) no-repeat right top transparent;
+}
+/* line 52, ../../compass/sass/form-buttons.sass */
+button.blue {
+  background: url(../gfx/link-button.gif) no-repeat left -23px transparent;
+}
+/* line 54, ../../compass/sass/form-buttons.sass */
+button.blue span {
+  background: url(../gfx/link-button.gif) no-repeat right -23px transparent;
+}
+/* line 56, ../../compass/sass/form-buttons.sass */
+button.orange {
+  background: url(../gfx/link-button.gif) no-repeat left -46px transparent;
+}
+/* line 58, ../../compass/sass/form-buttons.sass */
+button.orange span {
+  background: url(../gfx/link-button.gif) no-repeat right -46px transparent;
+}
+/* line 60, ../../compass/sass/form-buttons.sass */
+button.red {
+  background: url(../gfx/link-button.gif) no-repeat left -69px transparent;
+}
+/* line 62, ../../compass/sass/form-buttons.sass */
+button.red span {
+  background: url(../gfx/link-button.gif) no-repeat right -69px transparent;
+}
+/* line 64, ../../compass/sass/form-buttons.sass */
+button.grey {
+  background: url(../gfx/link-button.gif) no-repeat left -92px transparent;
+}
+/* line 66, ../../compass/sass/form-buttons.sass */
+button.grey span {
+  background: url(../gfx/link-button.gif) no-repeat right -92px transparent;
+}
+/* line 69, ../../compass/sass/form-buttons.sass */
+button.medium.green {
+  background: url(../gfx/link-button-medium.gif) no-repeat left top transparent;
+}
+/* line 71, ../../compass/sass/form-buttons.sass */
+button.medium.green span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right top transparent;
+}
+/* line 73, ../../compass/sass/form-buttons.sass */
+button.medium.blue {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -28px transparent;
+}
+/* line 75, ../../compass/sass/form-buttons.sass */
+button.medium.blue span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -28px transparent;
+}
+/* line 77, ../../compass/sass/form-buttons.sass */
+button.medium.orange {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -56px transparent;
+}
+/* line 79, ../../compass/sass/form-buttons.sass */
+button.medium.orange span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -56px transparent;
+}
+/* line 81, ../../compass/sass/form-buttons.sass */
+button.medium.red {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -84px transparent;
+}
+/* line 83, ../../compass/sass/form-buttons.sass */
+button.medium.red span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -84px transparent;
+}
+/* line 85, ../../compass/sass/form-buttons.sass */
+button.medium.grey {
+  background: url(../gfx/link-button-medium.gif) no-repeat left -112px transparent;
+}
+/* line 87, ../../compass/sass/form-buttons.sass */
+button.medium.grey span {
+  background: url(../gfx/link-button-medium.gif) no-repeat right -112px transparent;
+}
+/* line 90, ../../compass/sass/form-buttons.sass */
+button.big.green {
+  background: url(../gfx/link-button-big.gif) no-repeat left top transparent;
+}
+/* line 92, ../../compass/sass/form-buttons.sass */
+button.big.green span {
+  background: url(../gfx/link-button-big.gif) no-repeat right top transparent;
+}
+/* line 94, ../../compass/sass/form-buttons.sass */
+button.big.blue {
+  background: url(../gfx/link-button-big.gif) no-repeat left -31px transparent;
+}
+/* line 96, ../../compass/sass/form-buttons.sass */
+button.big.blue span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -31px transparent;
+}
+/* line 98, ../../compass/sass/form-buttons.sass */
+button.big.orange {
+  background: url(../gfx/link-button-big.gif) no-repeat left -62px transparent;
+}
+/* line 100, ../../compass/sass/form-buttons.sass */
+button.big.orange span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -62px transparent;
+}
+/* line 102, ../../compass/sass/form-buttons.sass */
+button.big.red {
+  background: url(../gfx/link-button-big.gif) no-repeat left -93px transparent;
+}
+/* line 104, ../../compass/sass/form-buttons.sass */
+button.big.red span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -93px transparent;
+}
+/* line 106, ../../compass/sass/form-buttons.sass */
+button.big.grey {
+  background: url(../gfx/link-button-big.gif) no-repeat left -124px transparent;
+}
+/* line 108, ../../compass/sass/form-buttons.sass */
+button.big.grey span {
+  background: url(../gfx/link-button-big.gif) no-repeat right -124px transparent;
+}
+
+/* MEDIUM SIZE LINK BUTTONS */
+/* BIG SIZE LINK BUTTONS */

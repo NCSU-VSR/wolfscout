@@ -1,0 +1,562 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* //////////////////// LAYOUT \\\\\\\\\\\\\\\\\\\\ */
+/*CUSTOM */
+/* line 12, ../../compass/sass/style.sass */
+.shadow {
+  box-shadow: 4px 4px 8px #323834;
+  -webkit-box-shadow: 4px 4px 8px #323834;
+  -moz-box-shadow: 4px 4px 8px #323834;
+  -o-box-shadow: 4px 4px 8px #323834;
+}
+
+/* line 18, ../../compass/sass/style.sass */
+.loading {
+  width: 100%;
+  height: 100%;
+  background: url("../gfx/loading_background.gif") no-repeat center;
+}
+
+/* line 23, ../../compass/sass/style.sass */
+#arc_map {
+  width: 100%;
+  height: 500px;
+  border: 1px solid black;
+}
+
+/* line 28, ../../compass/sass/style.sass */
+#arc_title {
+  width: 50%;
+}
+
+/*STANDARD */
+/* line 32, ../../compass/sass/style.sass */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: url(../gfx/background.gif) repeat-x left top #fbfcfd;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 41, ../../compass/sass/style.sass */
+img {
+  border: 0;
+}
+
+/* line 44, ../../compass/sass/style.sass */
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 980px;
+}
+
+/* line 49, ../../compass/sass/style.sass */
+.logo-labels {
+  float: left;
+  position: relative;
+  overflow: hidden;
+  width: 980px;
+  height: 49px;
+}
+/* line 55, ../../compass/sass/style.sass */
+.logo-labels h1 {
+  position: absolute;
+  background: url(../gfx/logo2.png) no-repeat left top;
+  left: 0;
+  top: 8px;
+  font-size: 0;
+  width: 210px;
+  height: 30px;
+}
+/* line 65, ../../compass/sass/style.sass */
+.logo-labels h1 a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 69, ../../compass/sass/style.sass */
+.logo-labels h1 a:link, .logo-labels h1 a:visited, .logo-labels h1 a:active {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* line 73, ../../compass/sass/style.sass */
+.logo-labels ul {
+  float: right;
+  margin: 0;
+  padding: 13px 0 0;
+  list-style: none;
+  width: auto;
+}
+/* line 79, ../../compass/sass/style.sass */
+.logo-labels ul li {
+  float: left;
+  background: none;
+  padding: 0 0 0 1px;
+  font: 11px Arial;
+  line-height: 1.9em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  height: 22px;
+}
+/* line 89, ../../compass/sass/style.sass */
+.logo-labels ul li a {
+  float: left;
+  background: url(../gfx/label-icons.gif) no-repeat left top;
+  padding: 0 0 0 19px;
+  color: white;
+  text-decoration: none;
+  height: 22px;
+}
+/* line 96, ../../compass/sass/style.sass */
+.logo-labels ul li a:link, .logo-labels ul li a:visited, .logo-labels ul li a:active {
+  float: left;
+  background: url(../gfx/label-icons.gif) no-repeat left top;
+  padding: 0 0 0 19px;
+  color: white;
+  text-decoration: none;
+  height: 22px;
+}
+/* line 103, ../../compass/sass/style.sass */
+.logo-labels ul li.usermessage a {
+  background: url(../gfx/label-icons.gif) no-repeat left -22px;
+}
+/* line 105, ../../compass/sass/style.sass */
+.logo-labels ul li.usermessage a:link, .logo-labels ul li.usermessage a:visited, .logo-labels ul li.usermessage a:active {
+  background: url(../gfx/label-icons.gif) no-repeat left -22px;
+}
+/* line 107, ../../compass/sass/style.sass */
+.logo-labels ul li.logout a {
+  background: url(../gfx/label-icons.gif) no-repeat left -44px;
+}
+/* line 109, ../../compass/sass/style.sass */
+.logo-labels ul li.logout a:link, .logo-labels ul li.logout a:visited, .logo-labels ul li.logout a:active {
+  background: url(../gfx/label-icons.gif) no-repeat left -44px;
+}
+/* line 111, ../../compass/sass/style.sass */
+.logo-labels ul li span {
+  float: left;
+  background: url(../gfx/label.gif) no-repeat right top;
+  padding: 0 8px 0 6px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 22px;
+}
+/* line 118, ../../compass/sass/style.sass */
+.logo-labels ul li:hover span {
+  background: url(../gfx/label.gif) no-repeat right -22px;
+}
+
+/* line 121, ../../compass/sass/style.sass */
+.menu-search {
+  float: left;
+  position: relative;
+  z-index: 999;
+  width: 980px;
+  height: 32px;
+}
+/* line 127, ../../compass/sass/style.sass */
+.menu-search .search {
+  float: right;
+  padding: 4px 0 0;
+}
+/* line 130, ../../compass/sass/style.sass */
+.menu-search .search input {
+  float: left;
+  background: url(../gfx/search-input.gif) no-repeat left top transparent;
+  border: 0;
+  outline: none;
+  padding: 4px 7px 4px;
+  margin: 0;
+  font-size: 10px;
+  color: #c9c9c9;
+  line-height: 1.5em;
+  text-transform: uppercase;
+  width: 174px;
+}
+/* line 142, ../../compass/sass/style.sass */
+.menu-search .search input:focus {
+  color: #5a5a5a;
+}
+/* line 144, ../../compass/sass/style.sass */
+.menu-search .search button {
+  float: left;
+  background: url(../gfx/search-button.gif) no-repeat left top transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: visible;
+  width: 28px;
+  height: 22px;
+}
+
+/* line 156, ../../compass/sass/style.sass */
+.breadcrumbs {
+  float: left;
+  overflow: hidden;
+  font-size: 10px;
+  color: #adadad;
+  text-transform: uppercase;
+  width: 980px;
+  height: 29px;
+}
+/* line 164, ../../compass/sass/style.sass */
+.breadcrumbs a {
+  color: #adadad;
+  text-decoration: none;
+}
+/* line 167, ../../compass/sass/style.sass */
+.breadcrumbs a:link, .breadcrumbs a:active, .breadcrumbs a:visited {
+  color: #adadad;
+  text-decoration: none;
+}
+/* line 170, ../../compass/sass/style.sass */
+.breadcrumbs a:hover {
+  color: #8f8f8f;
+}
+/* line 172, ../../compass/sass/style.sass */
+.breadcrumbs ul {
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 177, ../../compass/sass/style.sass */
+.breadcrumbs ul li {
+  float: left;
+  background: none;
+  padding: 9px 0 0;
+  line-height: 1.05em;
+}
+/* line 182, ../../compass/sass/style.sass */
+.breadcrumbs ul li.home {
+  float: left;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+  padding: 8px 6px 0;
+  width: 16px;
+  height: 21px;
+}
+/* line 189, ../../compass/sass/style.sass */
+.breadcrumbs ul li.home a {
+  float: left;
+  background: url(../gfx/icon-home.gif) no-repeat left top transparent;
+  width: 16px;
+  height: 14px;
+}
+/* line 194, ../../compass/sass/style.sass */
+.breadcrumbs ul li.home a:link, .breadcrumbs ul li.home a:active, .breadcrumbs ul li.home a:visited {
+  float: left;
+  background: url(../gfx/icon-home.gif) no-repeat left top transparent;
+  width: 16px;
+  height: 14px;
+}
+/* line 199, ../../compass/sass/style.sass */
+.breadcrumbs ul li.home a:hover {
+  background: url(../gfx/icon-home.gif) no-repeat left bottom transparent;
+}
+/* line 201, ../../compass/sass/style.sass */
+.breadcrumbs ul li.break {
+  float: left;
+  padding: 9px 7px 0;
+  font-size: 11px;
+  line-height: 0.8em;
+}
+
+/* line 207, ../../compass/sass/style.sass */
+.section {
+  float: left;
+  width: 1000px;
+}
+
+/* line 211, ../../compass/sass/style.sass */
+.box {
+  float: left;
+  display: inline;
+  border: 1px solid #c3d0e1;
+  margin: 20px 20px 0 0;
+  width: 978px;
+}
+/* line 217, ../../compass/sass/style.sass */
+.box.small {
+  width: 228px;
+}
+/* line 219, ../../compass/sass/style.sass */
+.box.medium {
+  width: 478px;
+}
+/* line 221, ../../compass/sass/style.sass */
+.box.big {
+  width: 728px;
+}
+/* line 223, ../../compass/sass/style.sass */
+.box .title {
+  display: block;
+  background: url(../gfx/box-title.gif) repeat-x left top transparent;
+  border-bottom: 1px solid #e2e5e8;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding: 10px 0 0 0;
+  height: 24px;
+}
+/* line 231, ../../compass/sass/style.sass */
+.box .title h2 {
+  float: left;
+  padding: 0 0 0 10px;
+  font: 14px "MuseoSans700", Arial;
+  color: #002e68;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+/* line 240, ../../compass/sass/style.sass */
+.box .title span.hide {
+  float: right;
+  margin: -4px 5px 0;
+  background: url(../gfx/box-hide.png) no-repeat left top transparent;
+  overflow: hidden;
+  cursor: pointer;
+  width: 40px;
+  height: 21px;
+}
+/* line 248, ../../compass/sass/style.sass */
+.box .title span.hide:hover {
+  background: url(../gfx/box-hide.png) no-repeat left bottom transparent;
+}
+/* line 250, ../../compass/sass/style.sass */
+.box .title span.search {
+  float: right;
+  margin: -4px 0 0;
+  background: url(../gfx/box-search.png) no-repeat left top transparent;
+  overflow: hidden;
+  cursor: pointer;
+  width: 57px;
+  height: 21px;
+}
+/* line 258, ../../compass/sass/style.sass */
+.box .title span.search:hover {
+  background: url(../gfx/box-search.png) no-repeat left bottom transparent;
+}
+/* line 260, ../../compass/sass/style.sass */
+.box .title .box-search {
+  float: right;
+  margin: -4px 0 0;
+}
+/* line 263, ../../compass/sass/style.sass */
+.box .title .box-search input {
+  float: left;
+  background: url(../gfx/search-input.gif) no-repeat left top transparent;
+  border: 0;
+  outline: none;
+  padding: 4px 7px 4px;
+  margin: 0;
+  font-size: 10px;
+  color: #c9c9c9;
+  line-height: 1.5em;
+  text-transform: uppercase;
+  width: 100px;
+}
+/* line 275, ../../compass/sass/style.sass */
+.box .title .box-search input:focus {
+  color: #5a5a5a;
+}
+/* line 277, ../../compass/sass/style.sass */
+.box .title .box-search button {
+  float: left;
+  background: url(../gfx/search-button.gif) no-repeat left top transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: visible;
+  width: 28px;
+  height: 22px;
+}
+/* line 288, ../../compass/sass/style.sass */
+.box .content {
+  display: block;
+  background-color: white;
+  border: 4px solid #f2f4f7;
+  padding: 15px;
+}
+/* line 293, ../../compass/sass/style.sass */
+.box .content span.shadow {
+  display: inline-block;
+  border: 1px solid #f2f4f7;
+  cursor: pointer;
+}
+/* line 297, ../../compass/sass/style.sass */
+.box .content span.shadow.left {
+  float: left;
+  border: 1px solid #f2f4f7;
+  margin: 3px 14px 15px 0;
+}
+/* line 301, ../../compass/sass/style.sass */
+.box .content span.shadow.right {
+  float: right;
+  border: 1px solid #f2f4f7;
+  margin: 3px 0 15px 14px;
+}
+/* line 305, ../../compass/sass/style.sass */
+.box .content span.shadow img {
+  background-color: white;
+  border: 1px solid #c3d0e1;
+  padding: 1px;
+}
+/* line 309, ../../compass/sass/style.sass */
+.box .content.gallery {
+  display: block;
+  padding: 5px 6px 15px 15px;
+  *padding: 5px 5px 12px 15px;
+  line-height: 0.7em;
+  text-align: center;
+}
+/* line 315, ../../compass/sass/style.sass */
+.box .content.gallery a {
+  display: inline-block;
+}
+/* line 317, ../../compass/sass/style.sass */
+.box .content a span.shadow {
+  display: inline-block;
+  margin: 12px 7px 0 0;
+  *margin: 10px 7px 0 0;
+}
+/* line 321, ../../compass/sass/style.sass */
+.box.shadow img {
+  width: 74px;
+  height: 74px;
+}
+/* line 325, ../../compass/sass/style.sass */
+.box .content a:hover span.shadow img {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+/* line 328, ../../compass/sass/style.sass */
+.box .content div.thumb {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  position: relative;
+  overflow: hidden;
+  margin: 12px 7px 0 0;
+  *margin: 10px 9px 3px 1px;
+  width: 80px;
+  height: 80px;
+}
+/* line 338, ../../compass/sass/style.sass */
+.box .thumb div {
+  position: absolute;
+  background: url(../gfx/img-hover.png) repeat left bottom transparent;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+/* line 349, ../../compass/sass/style.sass */
+.box .thumb div a.zoom {
+  display: inline-block;
+  margin: 18px 0 0;
+}
+/* line 352, ../../compass/sass/style.sass */
+.box .thumb div a:hover img {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+/* line 355, ../../compass/sass/style.sass */
+.box .content .message {
+  display: block;
+  border-bottom: 1px solid #c3d0e1;
+  padding: 0 0 13px;
+  *padding: 0 0 8px;
+  font-size: 11px;
+}
+
+@-moz-document url-prefix() {
+  /* line 363, ../../compass/sass/style.sass */
+  .box .title h2 {
+    font-weight: 100;
+  }
+}
+
+/* line 367, ../../compass/sass/style.sass */
+.tipsy {
+  background: url(../gfx/tooltip.gif) no-repeat top center;
+  padding: 5px;
+}
+
+/* line 371, ../../compass/sass/style.sass */
+.tipsy-inner {
+  background-color: #002e68;
+  padding: 5px 8px 4px 8px;
+  text-align: center;
+  color: white;
+  font-size: 11px;
+  max-width: 200px;
+}
+
+/* line 379, ../../compass/sass/style.sass */
+.progressbar {
+  border: 1px solid #c3d0e1;
+  padding: 0 1px;
+  height: 29px;
+  text-align: left;
+}
+/* line 384, ../../compass/sass/style.sass */
+.progressbar div {
+  display: block;
+  background: url(../gfx/loading-2.gif) repeat left top transparent;
+  height: 100%;
+}
+/* line 388, ../../compass/sass/style.sass */
+.progressbar.animated div {
+  display: block;
+  background: url(../gfx/loading.gif) repeat left top transparent;
+  height: 100%;
+}
+
+/* line 393, ../../compass/sass/style.sass */
+.footer {
+  float: left;
+  border-top: 1px solid #c3d0e1;
+  margin: 18px 0 0;
+  padding: 10px 0;
+  font-size: 11px;
+  color: #949ea8;
+  width: 980px;
+}
+/* line 401, ../../compass/sass/style.sass */
+.footer a {
+  color: #949ea8;
+  text-decoration: underline;
+}
+/* line 404, ../../compass/sass/style.sass */
+.footer a:link, .footer a:active, .footer a:visited {
+  color: #949ea8;
+  text-decoration: underline;
+}
+/* line 407, ../../compass/sass/style.sass */
+.footer a:hover {
+  color: #949ea8;
+  text-decoration: none;
+}
+/* line 410, ../../compass/sass/style.sass */
+.footer .split {
+  float: left;
+  width: 50%;
+}
+/* line 413, ../../compass/sass/style.sass */
+.footer .split.right {
+  text-align: right;
+}

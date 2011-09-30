@@ -1,0 +1,69 @@
+.treeview
+  padding: 0
+  margin: 0
+  list-style: none
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
+    margin: 3px 0 0
+  .hitarea
+    float: left
+    background: url(../gfx/treeview/treeview-default.gif) -64px -25px no-repeat
+    margin-left: -16px
+    cursor: pointer
+    height: 16px
+    width: 16px
+
+/* fix for IE6
+
+* html .hitarea
+  display: inline
+  float: none
+
+.treeview
+  li
+    margin: 0
+    padding: 3px 0 3px 16px
+  .hover
+    color: #002e68
+    cursor: pointer
+  li
+    background: url(../gfx/treeview/treeview-default-line.gif) 0 0 no-repeat
+    &.collapsable, &.expandable
+      background-position: 0 -176px
+  .expandable-hitarea
+    background-position: -80px -3px
+  li
+    &.last
+      background-position: 0 -1766px
+    &.lastCollapsable, &.lastExpandable
+      background-image: url(../gfx/treeview/treeview-default.gif)
+    &.lastCollapsable
+      background-position: 0 -111px
+    &.lastExpandable
+      background-position: -32px -67px
+  div
+    &.lastCollapsable-hitarea, &.lastExpandable-hitarea
+      background-position: 0
+  .placeholder
+    display: block
+    background: url(../gfx/treeview/ajax-loader.gif) 0 0 no-repeat
+    height: 16px
+    width: 16px
+
+.filetree
+  li
+    padding: 3px 0 2px 16px
+  span
+    padding: 1px 0 1px 5px
+    display: block
+    &.folder, &.file
+      padding: 1px 0 1px 23px
+      display: block
+    &.folder
+      background: url(../gfx/treeview/folder.gif) 4px 0 no-repeat
+  li.expandable span.folder
+    background: url(../gfx/treeview/folder-closed.gif) 4px 0 no-repeat
+  span.file
+    background: url(../gfx/treeview/file.gif) 0 0 no-repeat

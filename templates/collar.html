@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Collar Data</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<form name="collarIDForm" id="collarIDForm" method="post" action="">
+					{% csrf_token %}
+					<div class="line">
+                        {{ form }}
+					</div>
+					<div class="line">
+						<button type="submit" class="green medium"><span>Get selected collar data</span></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

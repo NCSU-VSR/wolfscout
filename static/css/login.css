@@ -1,0 +1,120 @@
+/*Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0 */
+/* //////////////////// LAYOUT \\\\\\\\\\\\\\\\\\\\ */
+/* line 9, ../../compass/sass/login.sass */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fbfcfd;
+  height: 100%;
+}
+
+/* line 15, ../../compass/sass/login.sass */
+img {
+  border: 0;
+}
+
+/* line 18, ../../compass/sass/login.sass */
+.wrapper {
+  position: relative;
+  background: #002e68;
+  width: 100%;
+  height: 45%;
+}
+
+/* line 24, ../../compass/sass/login.sass */
+.box {
+  position: absolute;
+  bottom: 0;
+  background: url(../gfx/box-title.gif) repeat-x left top transparent;
+  border-bottom: 1px solid #e2e5e8;
+  padding: 4px 0 0 0;
+  width: 100%;
+  height: 30px;
+}
+
+/* line 33, ../../compass/sass/login.sass */
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 547px;
+  height: 35px;
+}
+/* line 38, ../../compass/sass/login.sass */
+.container h1 {
+  position: absolute;
+  left: 0;
+  top: -45px;
+  background: url(../gfx/logo2.png) no-repeat center top;
+  text-align: left;
+  font-size: 0;
+  width: 480px;
+  height: 30px;
+}
+/* line 47, ../../compass/sass/login.sass */
+.container h1 a {
+  position: absolute;
+  top: 0;
+  font-size: 0;
+}
+/* line 51, ../../compass/sass/login.sass */
+.container h1 a:link, .container h1 a:active, .container h1 a:visited {
+  position: absolute;
+  top: 0;
+  font-size: 0;
+}
+/* line 55, ../../compass/sass/login.sass */
+.container h2 {
+  float: left;
+  padding: 6px 5px 0 0;
+  font: 14px "MuseoSans700", Arial;
+  color: #002e68;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+/* line 63, ../../compass/sass/login.sass */
+.container form {
+  float: left;
+  width: auto;
+}
+/* line 66, ../../compass/sass/login.sass */
+.container input {
+  float: left;
+  margin: 0 5px 0 0;
+}
+/* line 69, ../../compass/sass/login.sass */
+.container div.input-small {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 180px;
+  height: 26px;
+}
+/* line 74, ../../compass/sass/login.sass */
+.container div.input-small input {
+  float: none;
+  margin: 0;
+}
+/* line 77, ../../compass/sass/login.sass */
+.container button.medium {
+  float: left;
+  margin: -1px 3px 0 0;
+}
+/* line 80, ../../compass/sass/login.sass */
+.container .bottom {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  bottom: -22px;
+  width: 543px;
+  height: 20px;
+}
+
+@-moz-document url-prefix() {
+  /* line 89, ../../compass/sass/login.sass */
+  .container h2 {
+    font-weight: 100;
+  }
+}

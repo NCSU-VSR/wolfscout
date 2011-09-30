@@ -1,0 +1,121 @@
+/*
+ *Template Name: CleanDream
+ *Author: Rory Kranendonk
+ *Author URI: http://www.dreamwire.nl
+ *Version: 1.0
+
+table
+  width: 100%
+  padding: 0
+  margin: 0
+  border-collapse: collapse
+  text-align: left
+
+td, tr, th
+  padding: 0
+  margin: 0
+  border-collapse: collapse
+  text-align: left
+
+table
+  thead tr th, tfoot tr th
+    color: #002e68
+  thead
+    background: url(../gfx/table-thead.gif) repeat-x right top
+    border: 1px solid #d2dce9
+    border-right: none
+    tr th
+      border: 1px solid #d2dce9
+      padding: 5px 8px
+      line-height: 19px
+      &.header
+        border: 1px solid #d2dce9
+        background-color: transparent
+  tbody
+    td
+      border: 1px solid #d2dce9
+      padding: 5px 8px
+      line-height: 19px
+    tr.odd td
+      background-color: #f9f9f9
+  thead tr
+    .headerSortUp
+      background: url(../gfx/table-asc-arrow.gif) no-repeat right center
+    .headerSortDown
+      background: url(../gfx/table-desc-arrow.gif) no-repeat right center
+  td:first-child
+    width: 13px
+    + td + td + td + td + td
+      text-align: center
+      padding: 0
+      line-height: 0
+      width: 65px
+
+.pager
+  display: inline-block
+  width: 100%
+  .sb-overlay
+    float: none
+    margin: 0
+  .sb-custom
+    width: 59px
+    height: 23px
+  input.sb-select
+    background: url(../gfx/table-rows.gif) no-repeat right top transparent
+    padding: 5px 23px 6px 0
+    color: #5a5a5a
+    font-weight: bold
+    font-size: 11px
+    line-height: 1.2em
+    *line-height: 1.1em
+    width: 37px
+    height: 12px
+  ul.sb-dropdown
+    *position: relative
+    top: 21px
+    *top: -2px
+    left: -55px
+    *left: 5px
+    width: 47px
+    a
+      padding: 2px 5px
+      font-size: 11px
+      line-height: 17px
+      &:link, &:active, &:visited
+        padding: 2px 5px
+        font-size: 11px
+        line-height: 17px
+  div
+    float: right
+    *margin: -31px 0 0
+    padding: 8px 0 0
+  input
+    float: left
+    background: transparent
+    padding: 0
+    overflow: hidden
+    border: 0
+    outline: 0
+    text-align: center
+    line-height: 21px
+    font-size: 12px
+    color: #5a5a5a
+    width: 60px
+    height: 21px
+
+/* Opera
+
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0)
+  head ~ body .pager ul.sb-dropdown
+    top: -2px
+    left: 5px
+
+table.sorter
+  th:first-child input, td:first-child input
+    width: auto
+
+.pager img
+  float: left
+  margin: 0 0 0 3px
+  cursor: pointer
+  height: 23px
