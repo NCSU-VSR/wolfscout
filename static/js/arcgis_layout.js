@@ -47,7 +47,7 @@ function init() {
 	mapDeferred.addCallback(function (response) {
 		//map title and subtitle
 		dojo.byId("arc_title").innerHTML = configOptions.title ||response.itemInfo.item.title;
-		dojo.byId("arc_subtitle").innerHTML = configOptions.subtitle || response.itemInfo.item.snippet || "";
+		//dojo.byId("arc_subtitle").innerHTML = configOptions.subtitle || response.itemInfo.item.snippet || "";
 	    dojo.byId("arc_description").innerHTML = configOptions.description || response.itemInfo.item.description || "";
 		map = response.map;
 		if(map.loaded){

@@ -23,18 +23,6 @@ def index(request):
     return render_to_response('index.html', siteDictionary)
     
 @login_required()
-def collars_test(request):
-    """
-    index
-    Description:
-        Responsible for the login being rendered to the user.
-    Parameters:
-        request - the request object
-    """
-    siteDictionary = getDictionary(request)
-    return render_to_response('collars_test.html', siteDictionary)
-    
-@login_required()
 def wildlife(request):
     """
     index
