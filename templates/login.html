@@ -53,12 +53,12 @@
 				</form>
 				<div class="bottom">
 					{% if form.errors %}
-					<div class="messages red">
+					<div name="message" id="loginFailed" class="messages red">
 						<span></span>
 						Your username and password = No Bueno!
 					</div>
 					{% else %}
-					<div class="messages blue">
+					<div name="message" class="messages blue">
 						<span></span>
 						Please enter your username and password.
 					</div>

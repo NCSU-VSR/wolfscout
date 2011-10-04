@@ -15,3 +15,4 @@ unittest2==0.5.1
 wsgiref==0.1.2
 git+git://github.com/cmheisel/nose-xcover.git#egg=nosexcover
 git+git://github.com/jbalogh/django-nose.git#egg=django-nose
+selenium==2.7.0
