@@ -36,7 +36,6 @@
 	<![endif]-->
 	
 	{% load url from future %}
-
 </head>
 <body>
 	<div class="wrapper">
@@ -44,10 +43,9 @@
 			<div class="container hide-input">
 				<h1><a href="#">WolfScout</a></h1>
 				<h2>Login:</h2>
-				<form name="loginForm" id="loginForm" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-					{% csrf_token %}				
+				<form name="loginForm" id="loginForm" method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
 					<input type="text" class="small" name="username" id="id_username" maxlength="30" />
-					<input type="password" class="loginSubmitPass small" name="password" id="id_password" />				
+					<input type="password" class="loginSubmitPass small" name="password" id="id_password" />
 					<button type="submit" class="blue medium"><span>Login</span></button>
 					<button type="reset" class="red medium"><span>Reset</span></button>
 				</form>

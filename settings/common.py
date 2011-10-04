@@ -129,8 +129,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.gis',
     #Locally Installed Apps
-    'crawler',
+    'crawler.cronos',
+    'crawler.gpscollar',
     'study',
     'wildlife',
 	'general',
