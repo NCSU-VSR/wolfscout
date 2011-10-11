@@ -12,7 +12,7 @@ server {
     # no security problem here, since / is always passed to upstream
     root /opt/webapps/ncsu/wolfscout;
     # serve directly - analogous for static/staticfiles
-    location /static/ {
+    location /static/admin/ {
         # if asset versioning is used
         if ($query_string) {
             expires max;
