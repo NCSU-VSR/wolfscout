@@ -12,10 +12,11 @@ from django.template import RequestContext
 ### Global Imports ####
 import datetime
 ### Local Imports ###
-from apps.wildlife.models import Collar
-from apps.wildlife.models import CollarData
+from apps.crawler.gpscollar.collar import CollarParser
+from apps.crawler.gpscollar.models import Collar
+from apps.crawler.gpscollar.models import CollarData
 from apps.general.views import getDictionary
-
+from apps.crawler.gpscollar.forms import collarDataFileForm
 ### Views ####
 
 def getCollars(request):
@@ -60,4 +61,33 @@ def collarForm(request):
     else:
         form = CollarIDForm()
     return render_to_response('collar.html', {'form': form,}, context_instance=RequestContext(request))
+
+
+def uploadCollarDataFile(request):
+    if request.method == 'POST':
+        form = collarDataFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            processCollarDataFile(request.FILES['file'])
+            return HttpResponseRedirect('/')
+    else:
+        form = collarDataFileForm()
+    return render_to_response('uploadCollarData.html', {'form': form},context_instance=RequestContext(request))
+
+def processCollarDataFile(fileToWrite):
+    """
+    Start by saving the file to disk based on a timestamp
+    Then After write has been completed please process the file
+    """
+    finalFilename = '/opt/webapps/ncsu/collarFiles/'+fileToWrite.name
+
+    destination = open(finalFilename, 'wb+')
+    for chunk in fileToWrite.chunks():
+        destination.write(chunk)
+    destination.close()
+
+    #time to process the file
+    cp = CollarParser(finalFilename)
+    cp.processCSVIntoDatabase()
+
+    return 0
 
