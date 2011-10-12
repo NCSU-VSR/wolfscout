@@ -61,6 +61,7 @@ sitemap*
 #Settings Files To Ignore (Your Local Ones)
 settings/chrisDev.py
 settings/production.py
+settings/scott_dev.py
 
 
 #Coverage Reports
