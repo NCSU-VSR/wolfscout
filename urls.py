@@ -5,6 +5,8 @@ from apps.general.views import index
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
+#Import The CollarData URLS
+from apps.crawler.gpscollar import urls
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -35,4 +37,9 @@ urlpatterns = patterns('',
     url(r'^wildlife/$', 'wolfscout.apps.general.views.wildlife'),
 )
 
+#Add Static Data
 urlpatterns += staticfiles_urlpatterns()
+
+#Add Restful Inteface To CollarData
+urlpatterns += urls.urlpatterns
+

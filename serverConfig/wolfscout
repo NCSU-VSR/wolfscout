@@ -12,13 +12,13 @@ server {
     # no security problem here, since / is always passed to upstream
     root /opt/webapps/ncsu/wolfscout;
     # serve directly - analogous for static/staticfiles
-    location /static/admin/ {
+    location /static/ {
         # if asset versioning is used
         if ($query_string) {
             expires max;
         }
     }
-    location /media/ {
+    location /static/admin/ {
         # this changes depending on your python version
         root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin;
     }
