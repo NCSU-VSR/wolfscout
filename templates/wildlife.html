@@ -28,7 +28,8 @@
 					<input type="checkbox" id="check-2" checked="featureLayer.layer.visible" name="checkFL" onChange="toggleLayer(this);"/>
 					<label for="check-2">Feature Layer</label>
 				<div class="line">
-					<button type="submit" class="green"><span>Execute Query</span></button>
+					<button class="green" onClick="selectionToolbar.activate(esri.toolbars.Draw.EXTENT);"><span>Select Fields</span></button>
+					<button class="green" onClick="featureLayer.clearSelection();"><span>Clear Selection</span></button>
 				</div>
 			</div>
 		</div>
