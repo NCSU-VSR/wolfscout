@@ -13,22 +13,27 @@
 				<div class="line">
 					<div class="claro">
 						<!--<div id="arc_subtitle" class="caption line" dojotype="dijit.layout.ContentPane" region="top"></div>-->
-						<div id="arc_map" class="loading shadow"></div>
-						<div dojotype="dijit.layout.ContentPane" region="bottom">
-							<div class="messages blue">
-								<span></span>
-								<div id="arc_description"></div>
-							</div>
+						<div id="arc_map" class="loading shadow">
+							<span id="status" style="position: absolute; z-index: 100; right: 5px; top: 5px;">
+							        Loading...
+							</span>
+						</div>
+						<div class="messages blue">
+							<span></span>
+							<div id="arc_description"></div>
 						</div>
 					</div>
-				</div>
+					<input type="checkbox" id="check-1" checked="basemap.layer.visible" name="checkBM" onChange="toggleLayer(this);"/>
+					<label for="check-1">Basemap</label>
+					<input type="checkbox" id="check-2" checked="featureLayer.layer.visible" name="checkFL" onChange="toggleLayer(this);"/>
+					<label for="check-2">Feature Layer</label>
 				<div class="line">
 					<button type="submit" class="green"><span>Execute Query</span></button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<!--<div class="section">
 		<div class="box medium">
 			<div class="title">
 				<h2>Dates</h2>
@@ -230,5 +235,5 @@
 				<button type="submit" class="green"><span>Submit</span></button>
 			</div>
 		</div>		
-	</div>
+	</div>-->
 {% endblock %}
