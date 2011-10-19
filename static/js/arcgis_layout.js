@@ -1,79 +1,94 @@
-dojo.require("dijit.dijit"); // optimize: load dijit layer
-dojo.require("dijit.layout.BorderContainer");
-dojo.require("dijit.layout.ContentPane");
-dojo.require("esri.map");
-dojo.require("esri.dijit.Scalebar");
-dojo.require("esri.arcgis.utils");
-dojo.require("dijit.layout.StackContainer"); 
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.Popup");
+      dojo.require("esri.layers.FeatureLayer");
+      
+      var map;
+      
+      function pageReady() {
+        var popup = new esri.dijit.Popup({
+          fillSymbol: new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.25]))
+        }, dojo.create("div"));
 
-dojo.require("esri.layers.FeatureLayer");
-
-var map, urlObject;
-var configOptions;
-
-function init() {
-
-	configOptions = {
-		webmap:"4b517a5d748d4d66a8926b4cd28c2e17",
-		//arcgis.com sharing url is used modify this if yours is different
-		sharingurl:"http://arcgis.com/sharing/content/items",
-		//enter the bing maps key for your organization if you want to display bing maps
-		bingMapsKey:""
-	}
-
-	esri.arcgis.utils.arcgisUrl = configOptions.sharingurl;
-
-	//configure map slider to be horizontally place at bottom right
-    esriConfig.defaults.map.slider = { right:"70px", bottom:"10px", width:"200px", height:null };
-
-	//get the web map id from the url 
-	urlObject = esri.urlToObject(document.location.href);
-	urlObject.query = urlObject.query || {};
-	if(urlObject.query && urlObject.query.webmap){
-		configOptions.webmap = urlObject.query.webmap;
-	}
-
-	//create the map using the web map id specified using configOptions or via the url parameter
-	var mapDeferred = esri.arcgis.utils.createMap(configOptions.webmap, "arc_map", {
-		mapOptions: {
-			slider: true,
-			nav: false,
-			wrapAround180:true
-		},
-		ignorePopups:false,
-		bingMapsKey: configOptions.bingMapsKey
-	});
-
-	mapDeferred.addCallback(function (response) {
-		//map title and subtitle
-		dojo.byId("arc_title").innerHTML = configOptions.title ||response.itemInfo.item.title;
-		//dojo.byId("arc_subtitle").innerHTML = configOptions.subtitle || response.itemInfo.item.snippet || "";
-	    dojo.byId("arc_description").innerHTML = configOptions.description || response.itemInfo.item.description || "";
-		map = response.map;
-		if(map.loaded){
-			initUI();
-		}else{
-			dojo.connect(map,"onLoad",function(){
-				initUI();
-			});
-		}       
-	});
-
-	mapDeferred.addErrback(function (error) {
-		console.log("CreateMap failed: ", dojo.toJson(error));
-	});
-
-}
-
-function initUI(){   
-	//resize the map when the browser resizes
-	dojo.connect(dijit.byId('arc_map'), 'resize', map,map.resize);        
-	//add scalebar or other components like a legend, overview map etc
-	var scalebar = new esri.dijit.Scalebar({
-		map: map,
-		scalebarUnit:"english" 
-	});    
-}
         
-//show map on load 
-dojo.addOnLoad(init);
+        var initExtent = new esri.geometry.Extent({"xmin":-13626637,"ymin":4550020,"xmax":-13624728,"ymax":4551042,"spatialReference":{"wkid":102100}});
+        map = new esri.Map("arc_map",{
+          extent:initExtent,
+          infoWindow:popup,
+          outFields: ["*"]
+        });
+        
+        dojo.addClass(map.infoWindow.domNode, "myTheme");
+
+
+        dojo.connect(map,"onClick",function(evt){
+          var query = new esri.tasks.Query();
+          query.geometry = pointToExtent(map,evt.mapPoint,10);
+          
+          var deferred = featureLayer.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_NEW);
+
+           map.infoWindow.setFeatures([deferred]);
+           map.infoWindow.show(evt.mapPoint);
+    
+        });
+        
+        //Add the topographic layer to the map. View the ArcGIS Online site for services http://arcgisonline/home/search.html?t=content&f=typekeywords:service    
+        var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
+        map.addLayer(basemap);
+        
+        var incidentLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://servicesbeta.esri.com/ArcGIS/rest/services/SanFrancisco/SFStreetTreesRendered/MapServer");
+        map.addLayer(incidentLayer);
+        
+               
+        var template = new esri.InfoTemplate();
+        template.setContent(getTextContent);
+
+        var featureLayer = new esri.layers.FeatureLayer("http://servicesbeta.esri.com/ArcGIS/rest/services/SanFrancisco/SFStreetTreesRendered/MapServer/0",{
+          mode: esri.layers.FeatureLayer.MODE_SELECTION,
+         outFields: ["*"],
+          infoTemplate:template
+        });
+        
+        map.addLayer(featureLayer);
+
+    
+        dojo.connect(map, 'onLoad', function(theMap) { 
+         //resize the map when the browser resizes
+         dojo.connect(dijit.byId('map'), 'resize', map,map.resize);
+        });
+      }
+
+     function getTextContent(graphic) {
+        var attr = graphic.attributes.qSpecies.replace('"',"").split("::");
+        var content;
+        var scientificName = attr[0];
+        //display the common name if it exists - otherwise just the scientific
+        if(attr[1]){
+          content = "<b>" + dojo.string.trim(attr[1].replace('"',"")) + "</b><br/><i>" + scientificName + "</i>";
+        }
+        else{
+          content = "<i>" + scientificName + "</i>"
+        }
+        return  content + "<br>" + graphic.attributes.qAddress  + "<br/> Planted on " + formatDate(graphic.attributes.PlantDate);
+        
+      }
+      function formatDate(value){
+        var inputDate = new Date(value);
+        return dojo.date.locale.format(inputDate, {
+          selector: 'date',
+          datePattern: 'MMMM d, y' 
+        });
+      }
+      
+     function pointToExtent(map, point, toleranceInPixel) {
+       var pixelWidth = map.extent.getWidth() / map.width;
+       var toleraceInMapCoords = toleranceInPixel * pixelWidth;
+       return new esri.geometry.Extent( point.x - toleraceInMapCoords,
+                    point.y - toleraceInMapCoords,
+                    point.x + toleraceInMapCoords,
+                    point.y + toleraceInMapCoords,
+                    map.spatialReference );                           
+      }
+      
+      dojo.addOnLoad(pageReady);
