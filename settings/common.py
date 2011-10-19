@@ -134,7 +134,7 @@ INSTALLED_APPS = (
     #Locally Installed Apps
     'crawler.cronos',
     'crawler.gpscollar',
-    'study',
+    'apps.study',
     'wildlife',
 	'general',
     #Core Applications From Non-Django Sources

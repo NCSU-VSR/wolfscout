@@ -1,3 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+from apps.crawler.gpscollar.models import Collar
 # Create your models here.
+
+class Experiment(models.Model):
+    """
+    Experiment sets up the owner for an experiment,
+    All of the collars used, and the other members.
+    """
+
+    owner = models.ForeignKey(User)
+
+    collars = models.ManyToManyField(Collar,related_name="collarsForExperiment",
+                                     null=True,blank=True)
+    members = models.ManyToManyField(User,related_name="membersForExperiment",
+                                         null=True,blank=True)
+    def __unicode__(self):
+        return str(self.owner.username)
