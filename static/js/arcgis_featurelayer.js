@@ -14,7 +14,7 @@ dojo.require("esri.layers.FeatureLayer");
         extent = esri.geometry.geographicToWebMercator(extent);
 
         //configure map slider to be horizontally place at bottom right
-        esriConfig.defaults.map.slider = { right:"70px", bottom:"10px", width:"200px", height:null };
+        esriConfig.defaults.map.slider = { left:"10px", bottom:"10px", width:"250px", height:null };
         
         map = new esri.Map("arc_map", {extent: extent});
         
@@ -73,10 +73,10 @@ dojo.require("esri.layers.FeatureLayer");
     
     function toggleLayer(val){
         if(val.name === 'checkBM'){
-            baseMapLayer.visible ? baseMapLayer.hide():baseMapLayer.show();
+            (val.checked) ? baseMapLayer.show() : baseMapLayer.hide();
         }
         if(val.name === 'checkFL'){
-            featureLayer.visible ? featureLayer.hide():featureLayer.show();
+            (val.checked) ? featureLayer.show() : featureLayer.hide();
         } 
     }
     

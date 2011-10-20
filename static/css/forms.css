@@ -464,3 +464,12 @@ input.datepicker {
 .slider input.amount-second {
   text-align: left;
 }
+/* line 362, ../../compass/sass/forms.sass */
+.slider input.amount-first-time {
+  width: 70px;
+}
+/* line 364, ../../compass/sass/forms.sass */
+.slider input.amount-second-time {
+  width: 70px;
+  text-align: left;
+}

@@ -28,6 +28,29 @@
 			</div>
 			<div class="content">
 				<div class="accordion">
+					<h3><a href="#">Date Range</a></h3>
+					<div>
+						<form action="" method="post">
+							<div class="line">
+								<label>From</label>
+								<input type="text" class="datepicker" /> 
+							</div>
+							<div class="line">
+								<label>To</label>
+								<input type="text" class="datepicker" /> 
+							</div>
+						</form>
+					</div>
+					<h3><a href="#">Time of Day</a></h3>
+					<div>
+						<form action="" method="post">
+							<div class="slider range-time-slide">
+								<input type="text" class="amount-first-time" value=""/> -
+								<input type="text" class="amount-second-time" value=""/>
+								<div class="slide" value="0,1439" max="1439" min="0"></div> 
+							</div>
+						</form>
+					</div>
 					<h3><a href="#">Position Layers</a></h3>
 					<div>
 						<table cellspacing="0" cellpadding="0" border="0"> 
@@ -80,66 +103,10 @@
 							</tbody>
 						</table>
 					</div>
-					<h3><a href="#">Date Range</a></h3>
-					<div>
-						<form action="" method="post">
-							<div class="line">
-								<label>From</label>
-								<input type="text" class="datepicker" /> 
-							</div>
-							<div class="line">
-								<label>To</label>
-								<input type="text" class="datepicker" /> 
-							</div>
-						</form>
-					</div>
-					<h3><a href="#">Time of Day</a></h3>
-					<div>
-						<div class="caption">Set Time</div> 
-						<form action="" method="post">
-							<div class="line">
-								<label>From</label>
-								<input type="text" class="datepicker" /> 
-							</div>
-							<div class="line">
-								<label>To</label>
-								<input type="text" class="datepicker" /> 
-							</div>
-						</form>
-					</div>
-					<h3><href="#">Collars Displayed</a></h3>
-					<div>
-						<table cellspacing="0" cellpadding="0" border="0"> 
-							<thead> 
-								<tr> 
-									<th><input type="checkbox" name="check" class="checkall" /></th>
-									<th>Species</th>
-								</tr> 
-							</thead> 
-							<tbody> 
-								<tr> 
-									<td><input type="checkbox" name="check" /></td>
-									<td>Deer</td>
-								</tr>
-							</tbody> 
-							<tbody> 
-								<tr> 
-									<td><input type="checkbox" name="check" /></td>
-									<td>Coyote</td>
-								</tr>
-							</tbody>
-							<tbody> 
-								<tr> 
-									<td><input type="checkbox" name="check" /></td>
-									<td>Cattle</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<!--<div class="section">
 		<div class="box medium">
 			<div class="title">
