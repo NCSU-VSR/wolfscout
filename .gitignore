@@ -1,4 +1,4 @@
-Compiled source #
+#Compiled source #
 ###################
 *.com
 *.class
@@ -61,7 +61,7 @@ sitemap*
 #Settings Files To Ignore (Your Local Ones)
 settings/chrisDev.py
 settings/production.py
-
+settings/bo_dev.py
 
 #Coverage Reports
 .coverage
