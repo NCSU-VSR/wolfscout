@@ -1,6 +1,7 @@
 #Global Imports
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.gis.geos import Point
 from datetime import datetime
 from sys import *
 #Local Imports
@@ -70,10 +71,13 @@ class CollarParser(object):
         newCollarDataPoint.collar = self.collar
 
         #Big list of things there from the line:
-        newCollarDataPoint.GMT_DATETIME = self.generateDateTimeFromList(lineContents[1],
-                                                                        lineContents[2])
-        newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
-                                                                        lineContents[4])
+        try:
+            newCollarDataPoint.GMT_DATETIME = self.generateDateTimeFromList(lineContents[1],
+                                                                            lineContents[2])
+            newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
+                                                                            lineContents[4])
+        except:
+            return 0
 
         newCollarDataPoint.ECEF_X = lineContents[CSV['ECEF_X']]
         newCollarDataPoint.ECEF_Y = lineContents[CSV['ECEF_Y']]
@@ -81,6 +85,7 @@ class CollarParser(object):
         newCollarDataPoint.LATITUDE = lineContents[CSV['LATITUDE']]
         newCollarDataPoint.LONGITUDE = lineContents[CSV['LONGITUDE']]
         newCollarDataPoint.HEIGHT = lineContents[CSV['HEIGHT']]
+        newCollarDataPoint.LOCATION = Point(float(lineContents[CSV['LATITUDE']]), float(lineContents[CSV['LONGITUDE']]))
         newCollarDataPoint.DOP = lineContents[CSV['DOP']]
         newCollarDataPoint.NAV = lineContents[CSV['NAV']]
         newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV['VALIDATED']]))
@@ -202,6 +207,8 @@ class CollarParser(object):
         self.extractCollarIDFromFilename(self.filename)
         if(self.collarExists(self.collarID) == False):
             self.createCollar(self.collarID)
+        else:
+            self.collar = Collar.objects.get(pk=self.collarID)
         self.line = ""
         self.fileReader()
 

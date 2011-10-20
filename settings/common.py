@@ -130,10 +130,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.gis',
+    'djangorestframework',
     #Locally Installed Apps
     'crawler.cronos',
     'crawler.gpscollar',
-    'study',
+    'apps.study',
     'wildlife',
 	'general',
     #Core Applications From Non-Django Sources

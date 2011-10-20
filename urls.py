@@ -5,6 +5,8 @@ from apps.general.views import index
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
+#Import The CollarData URLS
+from apps.crawler.gpscollar import urls
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -26,11 +28,18 @@ urlpatterns = patterns('',
 
     # ROOT DIR #
     url(r'^$', index),	
-    
+
+
     url(r'^collar/$', 'wolfscout.apps.crawler.gpscollar.views.collarForm'),
+    url(r'^collarDataUpload/$', 'wolfscout.apps.crawler.gpscollar.views.uploadCollarDataFile'),
     url(r'^collarData/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     
     url(r'^wildlife/$', 'wolfscout.apps.general.views.wildlife'),
 )
 
+#Add Static Data
 urlpatterns += staticfiles_urlpatterns()
+
+#Add Restful Inteface To CollarData
+urlpatterns += urls.urlpatterns
+
