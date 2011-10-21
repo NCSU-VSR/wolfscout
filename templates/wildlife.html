@@ -3,8 +3,6 @@
 {% block title %}Wolfscout{% endblock %}
 
 {% block content %}	
-
-	
 	<div class="section">
 		<div class="box big">
 			<div class="title">
@@ -44,11 +42,20 @@
 					<h3><a href="#">Time of Day</a></h3>
 					<div>
 						<form action="" method="post">
-							<div class="slider range-time-slide">
-								<input type="text" class="amount-first-time" value=""/> -
-								<input type="text" class="amount-second-time" value=""/>
-								<div class="slide" value="0,1439" max="1439" min="0"></div> 
+							<div class="line">
+								<label>From</label>
+								<input type="text" class="timepicker" /> 
 							</div>
+							<div class="line">
+								<label>To</label>
+								<input type="text" class="timepicker" /> 
+							</div>
+							<!--<div class="slider range-time-slide">
+								<div class="slide" value="0,1439" max="1439" min="0"></div> 
+								<br/>
+								<input type="text" class="small amount-first-time"/> -
+								<input type="text" class="small amount-second-time" />
+							</div>-->
 						</form>
 					</div>
 					<h3><a href="#">Position Layers</a></h3>

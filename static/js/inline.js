@@ -257,6 +257,12 @@ $(document).ready(function() {
         clickInput: true,
         startDate: '01/01/1995'
     });
+    
+    $('input.timepicker').timepicker({
+        defaultTime: 'now',
+        showPeriod: true,
+        showLeadingZero: true
+    });
 
     $(".pager select, select").sbCustomSelect().each(
 
