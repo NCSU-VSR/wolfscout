@@ -39,7 +39,7 @@ def getCollarData(request, theCollarID):
     siteDictionary = getDictionary(request)
     siteDictionary['collar'] = theCollar
     siteDictionary['collarDatas']=collarDatas
-    return render_to_response('collarData.html', siteDictionary)
+    return render_to_response('collarData.html', siteDictionary, context_instance=RequestContext(request))
     
 from django.forms.util import ErrorList
 class DivErrorList(ErrorList):

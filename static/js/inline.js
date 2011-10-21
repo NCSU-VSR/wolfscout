@@ -259,9 +259,10 @@ $(document).ready(function() {
     });
     
     $('input.timepicker').timepicker({
-        defaultTime: 'now',
         showPeriod: true,
-        showLeadingZero: true
+        showLeadingZero: true,
+        showNowButton: true,       // Shows the 'now' button
+        nowButtonText: 'Now'       // Text for the now button
     });
 
     $(".pager select, select").sbCustomSelect().each(
