@@ -4,7 +4,8 @@
  *Version: 1.0 */
 /* line 7, ../../compass/sass/messages.sass */
 .messages {
-  display: block;
+  display: inline-block;
+  padding: 0 8px 0 0;
   margin: 15px 0 3px 0;
   *margin: 15px 0 0;
   text-align: left;

@@ -409,27 +409,37 @@ input.datepicker {
   padding: 6px 34px 6px 7px;
   cursor: pointer;
   width: 69px;
+  /* //////////////////// TIME PICKER \\\\\\\\\\\\\\\\\\\\ */
+}
+
+/* line 326, ../../compass/sass/forms.sass */
+input.timepicker {
+  background: url(../gfx/forms/forms-date.gif) no-repeat right top transparent;
+  margin: 0 20px 0 0;
+  padding: 6px 34px 6px 7px;
+  cursor: pointer;
+  width: 69px;
 }
 
 /* //////////////////// SLIDER \\\\\\\\\\\\\\\\\\\\ */
-/* line 326, ../../compass/sass/forms.sass */
+/* line 335, ../../compass/sass/forms.sass */
 .slider {
   display: block;
   color: #002e68;
 }
-/* line 329, ../../compass/sass/forms.sass */
+/* line 338, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal {
   position: relative;
   border: 1px solid #c3d0e1;
   margin: 5px 0 0;
   height: 10px;
 }
-/* line 334, ../../compass/sass/forms.sass */
+/* line 343, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal .ui-slider-range {
   top: 0;
   height: 100%;
 }
-/* line 337, ../../compass/sass/forms.sass */
+/* line 346, ../../compass/sass/forms.sass */
 .slider .ui-slider .ui-slider-range {
   position: absolute;
   background: #f2f4f7;
@@ -439,11 +449,11 @@ input.datepicker {
   border: 0;
   background-position: 0 0;
 }
-/* line 345, ../../compass/sass/forms.sass */
+/* line 354, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal .ui-slider-handle {
   margin-left: -0.6em;
 }
-/* line 347, ../../compass/sass/forms.sass */
+/* line 356, ../../compass/sass/forms.sass */
 .slider .ui-slider .ui-slider-handle {
   position: absolute;
   background: url(../gfx/slider-button.gif) no-repeat;
@@ -453,14 +463,23 @@ input.datepicker {
   height: 16px;
   cursor: default;
 }
-/* line 355, ../../compass/sass/forms.sass */
+/* line 364, ../../compass/sass/forms.sass */
 .slider input {
   padding: 0;
   text-align: right;
   color: #5a5a5a;
   width: 30px;
 }
-/* line 360, ../../compass/sass/forms.sass */
+/* line 369, ../../compass/sass/forms.sass */
 .slider input.amount-second {
+  text-align: left;
+}
+/* line 371, ../../compass/sass/forms.sass */
+.slider input.amount-first-time {
+  width: 70px;
+}
+/* line 373, ../../compass/sass/forms.sass */
+.slider input.amount-second-time {
+  width: 70px;
   text-align: left;
 }

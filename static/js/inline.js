@@ -121,7 +121,7 @@ $(document).ready(function() {
 
     // CHECK ALL PAGES
     $('.checkall').click(function() {
-        $(this).parents('table').find(':checkbox').attr('checked', this.checked);
+        $(this).parents('table').find(':checkbox').attr('checked', this.checked).change();
     });
 
     // BUTTON LINKS
@@ -181,8 +181,61 @@ $(document).ready(function() {
         });
         rangeSpan.val("" + $(this).slider("value"));
     });
+    
+    $(".range-time-slide div.slide").each(function() {        
+        values = $(this).attr('value').split(',');
+        firstVal = values[0];
+        secondVal = values[1];
 
+        rangeInputfirst = $(this).siblings('input.amount-first-time');
+        rangeInputsecond = $(this).siblings('input.amount-second-time');
 
+        $(this).slider({
+           values: [firstVal, secondVal],
+           min: parseInt($(this).attr('min'), 0),
+           max: parseInt($(this).attr('max'), 0),
+           range: true,
+           step: 30,
+           slide: function(event, ui) {
+               var minutes0 = parseInt(ui.values[0] % 60);
+               var hours0 = parseInt(ui.values[0] / 60 % 24);
+               var minutes1 = parseInt(ui.values[1] % 60);
+               var hours1 = parseInt(ui.values[1] / 60 % 24);
+
+               $(this).siblings('input.amount-first-time').val("" + getTime(hours0, minutes0));
+               $(this).siblings('input.amount-second-time').val("" + getTime(hours1, minutes1));
+           }
+        });
+        var minutes0 = parseInt(firstVal % 60);
+        var hours0 = parseInt(firstVal / 60 % 24);
+        var minutes1 = parseInt(secondVal % 60);
+        var hours1 = parseInt(secondVal / 60 % 24);
+           
+        rangeInputfirst.val("" + getTime(hours0, minutes0));
+        rangeInputsecond.val("" + getTime(hours1, minutes1));
+    });
+    
+    function getTime(hours, minutes) {
+        var time = null;
+        minutes = minutes + "";
+        if (hours < 12) {
+            time = "AM";
+        }
+        else {
+            time = "PM";
+        }
+        if (hours == 0) {
+            hours = 12;
+        }
+        if (hours > 12) {
+            hours = hours - 12;
+        }
+        if (minutes.length == 1) {
+            minutes = "0" + minutes;
+        }
+        return hours + ":" + minutes + " " + time;
+    }
+    
     // PROGRESSBAR
     $(".progressbar div").progressbar({
         value: 100
@@ -203,6 +256,13 @@ $(document).ready(function() {
     $('input.datepicker').datePicker({
         clickInput: true,
         startDate: '01/01/1995'
+    });
+    
+    $('input.timepicker').timepicker({
+        showPeriod: true,
+        showLeadingZero: true,
+        showNowButton: true,       // Shows the 'now' button
+        nowButtonText: 'Now'       // Text for the now button
     });
 
     $(".pager select, select").sbCustomSelect().each(

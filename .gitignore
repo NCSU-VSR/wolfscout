@@ -62,6 +62,7 @@ sitemap*
 settings/chrisDev.py
 settings/production.py
 settings/bo_dev.py
+settings/scott_dev.py
 
 #Coverage Reports
 .coverage
