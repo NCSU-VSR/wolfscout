@@ -1,0 +1,56 @@
+/*Template Name: Esri Popup
+ *Author: Scott Gentry
+ *Version: 1.0 */
+/* line 6, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .titlePane, .dj_ie7 .esriPopup.myTheme .titlePane .title {
+  background: url(../gfx/box-title.gif) repeat-x left top transparent;
+  color: #002e68;
+  font-weight: bold;
+}
+
+/* line 13, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .titlePane {
+  border-bottom: 1px solid #121310;
+}
+/* line 15, ../../compass/sass/esri.sass */
+.esriPopup.myTheme a {
+  color: #adadad;
+  text-decoration: none;
+}
+/* line 18, ../../compass/sass/esri.sass */
+.esriPopup.myTheme a:link, .esriPopup.myTheme a:active, .esriPopup.myTheme a:visited {
+  color: #adadad;
+  text-decoration: none;
+}
+/* line 21, ../../compass/sass/esri.sass */
+.esriPopup.myTheme a:hover {
+  color: #8f8f8f;
+}
+/* line 23, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .title {
+  display: block;
+  background: right;
+  border: 0;
+  padding: 0 0 0 0;
+}
+/* line 28, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .titleButton, .esriPopup.myTheme .pointer, .esriPopup.myTheme .outerPointer {
+  background-image: url(../gfx/popup.png);
+}
+/* line 31, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .esriViewPopup .gallery .mediaHandle, .esriPopup.myTheme .esriViewPopup .gallery .mediaIcon {
+  background-image: url(../gfx/popup.png);
+}
+/* line 33, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .contentPane, .esriPopup.myTheme .actionsPane {
+  border: 0;
+  background-color: #002e68;
+  color: white;
+}
+/* line 37, ../../compass/sass/esri.sass */
+.esriPopup.myTheme .content {
+  display: block;
+  background-color: white;
+  border: 0;
+  padding: 0;
+}
