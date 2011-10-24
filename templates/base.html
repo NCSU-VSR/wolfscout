@@ -65,7 +65,20 @@
 		<div class="menu-search">
 			<ul> 			    
 				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Dashboard</a></li> 
-				<li class="{% ifequal request.path "/wildlife/" %}current{% endifequal %}"><a href="/wildlife">Wildlife</a></li> 
+				<li class="{% ifequal request.path "/experiments/" %}current{% endifequal %}"> 
+					<a href="/experiments">Experiments</a>
+					<ul> 
+						<li><a href="/experiments">All</a></li>
+						<li class="current">
+							<a href="#">Most Recent</a>
+							<ul> 
+								<li><a href="#">Experiment 1</a></li>
+								<li><a href="#">Coyote tracking - Jan-Feb 2009</a></li>
+								<li><a href="#">Future Coyote</a></li>
+							</ul> 
+						</li> 
+					</ul> 
+				</li>
 				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}"><a href="/collar">Collar</a></li>
 			</ul>
 			<div class="search">

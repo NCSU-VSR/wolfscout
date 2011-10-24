@@ -23,7 +23,7 @@ def index(request):
     return render_to_response('index.html', siteDictionary, context_instance=RequestContext(request))
     
 @login_required()
-def wildlife(request):
+def experiments(request):
     """
     index
     Description:
@@ -32,7 +32,7 @@ def wildlife(request):
         request - the request object
     """
     siteDictionary = getDictionary(request)
-    return render_to_response('wildlife.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('experiments.html', siteDictionary, context_instance=RequestContext(request))
     
 def getDictionary(request):
     siteDictionary = {}
