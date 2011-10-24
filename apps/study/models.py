@@ -16,5 +16,7 @@ class Experiment(models.Model):
                                      null=True,blank=True)
     members = models.ManyToManyField(User,related_name="membersForExperiment",
                                          null=True,blank=True)
+    title = models.CharField(max_length=100,null=False,blank=False)
+    description = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return str(self.owner.username)
