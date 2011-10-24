@@ -5,6 +5,8 @@ import datetime
 
 from apps.crawler.gpscollar.models import Collar
 # Create your models here.
+# Add entry below, run commands: django-admin.py schemamigration apps.study --auto
+#                                django-admin.py migrate apps.study
 
 class Experiment(models.Model):
     """

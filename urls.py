@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^collarData/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     
     url(r'^experiments/$', 'wolfscout.apps.general.views.experiments'),
+    url(r'^experiment/(?P<theExperimentID>\d+)/$', 'wolfscout.apps.general.views.experiment'),
 )
 
 #Add Static Data

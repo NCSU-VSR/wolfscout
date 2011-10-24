@@ -53,10 +53,9 @@
 				<br />
 				<h4>Your experiments...</h4>
 				<ol>
-					<li>Experiment 1</li>
-					<li>Experiment 2</li>
-					<li>Experiment 3</li>
-					<li>Experiment 4</li>
+					{% for data in myExperiments %}
+					<li><a href="experiment/{{ data.pk }}" class="tooltip" title="{{ data.description }}">{{ data.title }}</a></li>
+					{% endfor %}
 				</ol>
 			</div>
 		</div>
