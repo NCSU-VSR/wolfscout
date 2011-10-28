@@ -1,0 +1,3 @@
+{% for dataPoint in dataPoints %}
+    {{ dataPoint.LOCATION.kml }}
+{% endfor %}

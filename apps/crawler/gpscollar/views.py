@@ -91,7 +91,12 @@ def processCollarDataFile(fileToWrite):
 
     return 0
 
-
+def getKMLForAllCollarPoints(request, theCollarID):
+    theCollar = get_object_or_404(Collar, collarID=theCollarID)
+    dataPoints = CollarData.objects.filter(collar=theCollar)
+    siteDictionary = getDictionary(request)
+    siteDictionary['dataPoints'] = dataPoints
+    return render_to_response('dataPoints.kml', siteDictionary, context_instance=RequestContext(request))
 
 from django.core.urlresolvers import reverse
 
