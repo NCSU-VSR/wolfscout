@@ -40,29 +40,37 @@ table thead tr th.header {
   border: 1px solid #d2dce9;
   background-color: transparent;
 }
-/* line 35, ../../compass/sass/table-sorter.sass */
+/* line 34, ../../compass/sass/table-sorter.sass */
+table thead tr th.experiment-title {
+  width: 180px;
+}
+/* line 36, ../../compass/sass/table-sorter.sass */
+table thead tr th.experiment-lastaccessed {
+  width: 130px;
+}
+/* line 39, ../../compass/sass/table-sorter.sass */
 table tbody td {
   border: 1px solid #d2dce9;
   padding: 5px 8px;
   line-height: 19px;
 }
-/* line 39, ../../compass/sass/table-sorter.sass */
+/* line 43, ../../compass/sass/table-sorter.sass */
 table tbody tr.odd td {
   background-color: #f9f9f9;
 }
-/* line 42, ../../compass/sass/table-sorter.sass */
+/* line 46, ../../compass/sass/table-sorter.sass */
 table thead tr .headerSortUp {
   background: url(../gfx/table-asc-arrow.gif) no-repeat right center;
 }
-/* line 44, ../../compass/sass/table-sorter.sass */
+/* line 48, ../../compass/sass/table-sorter.sass */
 table thead tr .headerSortDown {
   background: url(../gfx/table-desc-arrow.gif) no-repeat right center;
 }
-/* line 46, ../../compass/sass/table-sorter.sass */
+/* line 50, ../../compass/sass/table-sorter.sass */
 table td:first-child {
   width: 13px;
 }
-/* line 48, ../../compass/sass/table-sorter.sass */
+/* line 52, ../../compass/sass/table-sorter.sass */
 table td:first-child + td + td + td + td + td {
   text-align: center;
   padding: 0;
@@ -70,22 +78,22 @@ table td:first-child + td + td + td + td + td {
   width: 65px;
 }
 
-/* line 54, ../../compass/sass/table-sorter.sass */
+/* line 58, ../../compass/sass/table-sorter.sass */
 .pager {
   display: inline-block;
   width: 100%;
 }
-/* line 57, ../../compass/sass/table-sorter.sass */
+/* line 61, ../../compass/sass/table-sorter.sass */
 .pager .sb-overlay {
   float: none;
   margin: 0;
 }
-/* line 60, ../../compass/sass/table-sorter.sass */
+/* line 64, ../../compass/sass/table-sorter.sass */
 .pager .sb-custom {
   width: 59px;
   height: 23px;
 }
-/* line 63, ../../compass/sass/table-sorter.sass */
+/* line 67, ../../compass/sass/table-sorter.sass */
 .pager input.sb-select {
   background: url(../gfx/table-rows.gif) no-repeat right top transparent;
   padding: 5px 23px 6px 0;
@@ -97,7 +105,7 @@ table td:first-child + td + td + td + td + td {
   width: 37px;
   height: 12px;
 }
-/* line 73, ../../compass/sass/table-sorter.sass */
+/* line 77, ../../compass/sass/table-sorter.sass */
 .pager ul.sb-dropdown {
   *position: relative;
   top: 21px;
@@ -106,25 +114,25 @@ table td:first-child + td + td + td + td + td {
   *left: 5px;
   width: 47px;
 }
-/* line 80, ../../compass/sass/table-sorter.sass */
+/* line 84, ../../compass/sass/table-sorter.sass */
 .pager ul.sb-dropdown a {
   padding: 2px 5px;
   font-size: 11px;
   line-height: 17px;
 }
-/* line 84, ../../compass/sass/table-sorter.sass */
+/* line 88, ../../compass/sass/table-sorter.sass */
 .pager ul.sb-dropdown a:link, .pager ul.sb-dropdown a:active, .pager ul.sb-dropdown a:visited {
   padding: 2px 5px;
   font-size: 11px;
   line-height: 17px;
 }
-/* line 88, ../../compass/sass/table-sorter.sass */
+/* line 92, ../../compass/sass/table-sorter.sass */
 .pager div {
   float: right;
   *margin: -31px 0 0;
   padding: 8px 0 0;
 }
-/* line 92, ../../compass/sass/table-sorter.sass */
+/* line 96, ../../compass/sass/table-sorter.sass */
 .pager input {
   float: left;
   background: transparent;
@@ -142,18 +150,18 @@ table td:first-child + td + td + td + td + td {
 
 /* Opera */
 @media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {
-  /* line 109, ../../compass/sass/table-sorter.sass */
+  /* line 113, ../../compass/sass/table-sorter.sass */
   head ~ body .pager ul.sb-dropdown {
     top: -2px;
     left: 5px;
   }
 }
-/* line 114, ../../compass/sass/table-sorter.sass */
+/* line 118, ../../compass/sass/table-sorter.sass */
 table.sorter th:first-child input, table.sorter td:first-child input {
   width: auto;
 }
 
-/* line 117, ../../compass/sass/table-sorter.sass */
+/* line 121, ../../compass/sass/table-sorter.sass */
 .pager img {
   float: left;
   margin: 0 0 0 3px;

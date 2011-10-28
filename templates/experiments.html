@@ -14,9 +14,9 @@
 					<thead> 
 						<tr> 
 							<th><input type="checkbox" name="check" class="checkall" /></th>
-							<th>Title</th>
+							<th class="experiment-title">Title</th>
 							<th>Description</th>
-							<th width="16%">Last accessed</th>
+							<th class="experiment-lastaccessed">Last accessed</th>
 							<th>Owner</th>
 							<th>Members</th>
 							<th></th>
@@ -26,16 +26,14 @@
 						{% for experiment in myExperiments %}
 						<tr> 
 							<td><input type="checkbox" name="check" /></td>
-							<td><a href="/experiment/{{ data.pk }}">{{ experiment.title }}</a></td>
+							<td><a href="/experiment/{{ experiment.pk }}">{{ experiment.title }}</a></td>
 							<td>{{ experiment.description }}</td>
 							<td>{{ experiment.last_accessed }}</td>
 							<td>{{ experiment.owner }}</td>
 							<td>
-								<ul>
 								{% for member in experiment.members.all %}
-								<li>{{ member.username }}</li>
+								<p>{{ member.username }}</p>
 								{% endfor %}
-								</ul>
 							</td>
 							<td>
 								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
