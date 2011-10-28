@@ -30,11 +30,16 @@
 							<td>{{ experiment.description }}</td>
 							<td>{{ experiment.last_accessed }}</td>
 							<td>{{ experiment.owner }}</td>
-							<td class="tooltip" title="
+							<td>
+							{% if experiment.members.all|length != 0 %}
+							<a href="#" class="tooltip" title="
 								{% for member in experiment.members.all %}
 								{{ member.username }}
-								{% endfor %}"
-								>{{ experiment.members.all|length }} members
+								{% endfor %}
+							">{{ experiment.members.all|length }} members</a>
+							{% else %}
+							<a href="">0 members</a>
+							{% endif %}
 							</td>
 							<td>
 								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
