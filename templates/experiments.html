@@ -18,7 +18,7 @@
 							<th>Description</th>
 							<th class="experiment-lastaccessed">Last accessed</th>
 							<th>Owner</th>
-							<th>Members</th>
+							<th class="experiment-lastaccessed">Number of Members</th>
 							<th></th>
 						</tr> 
 					</thead> 
@@ -30,10 +30,11 @@
 							<td>{{ experiment.description }}</td>
 							<td>{{ experiment.last_accessed }}</td>
 							<td>{{ experiment.owner }}</td>
-							<td>
+							<td class="tooltip" title="
 								{% for member in experiment.members.all %}
-								<p>{{ member.username }}</p>
-								{% endfor %}
+								{{ member.username }}
+								{% endfor %}"
+								>{{ experiment.members.all|length }} members
 							</td>
 							<td>
 								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
