@@ -6,7 +6,7 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
-from apps.crawler.collar import *
+from apps.crawler.gpscollar.collar import *
 from sys import *
 
 class CollarTestCases(TestCase):
