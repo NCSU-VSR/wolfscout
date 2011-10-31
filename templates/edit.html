@@ -12,8 +12,8 @@
 			<div class="content">
 				<form name="studyForm" id="studyForm" method="post" action="">
 					{% csrf_token %}
-					{{ formset.management_form }}
-					{% for field in formset %}
+					{{ form.management_form }}
+					{% for field in form %}
 					<div class="line">
 						{{ field.label_tag }}: {{ field }}
 					</div>

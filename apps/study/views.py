@@ -36,13 +36,11 @@ def edit(request, theStudyID):
     """
     """
     study = get_object_or_404(Study, pk=theStudyID)
-    siteDictionary = getDictionary(request)
-    siteDictionary['study'] = study
     if request.method == 'POST':
-        formset = EditStudyForm(request.POST, error_class=DivErrorList, auto_id='id_%s', instance=study)
-        if formset.is_valid():
-            formset.save()
+        form = EditStudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect('studies.html')
     else:
-        formset = EditStudyForm()
-    return render_to_response('edit.html', {'formset': formset,}, context_instance=RequestContext(request))
+        form = EditStudyForm()
+    return render_to_response('edit.html', {'form': form,}, context_instance=RequestContext(request))
