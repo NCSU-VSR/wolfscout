@@ -1,3 +1,15 @@
-{% for dataPoint in dataPoints %}
-    {{ dataPoint.LOCATION.kml }}
-{% endfor %}
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.google.com/earth/kml/2">
+<Document>
+	{% for dataPoint in dataPoints %}
+	<Placemark>
+	    <name>{{dataPoint.collar}}</name>
+	    <description>{{dataPoint.collar}}</description>
+	       <Point>
+                <coordinates>{{dataPoint.LOCATION.y}},{{dataPoint.LOCATION.x}},0</coordinates>
+        </Point>
+    </Placemark>
+	{% endfor %}
+
+</Document>
+</kml>
