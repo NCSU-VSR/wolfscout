@@ -39,9 +39,10 @@ def edit(request, theStudyID):
     siteDictionary = getDictionary(request)
     siteDictionary['study'] = study
     if request.method == 'POST':
-        form = EditStudyForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
-        if form.is_valid():
-            return HttpResponseRedirect('/')
+        formset = EditStudyForm(request.POST, error_class=DivErrorList, auto_id='id_%s', instance=study)
+        if formset.is_valid():
+            formset.save()
+            return HttpResponseRedirect('studies.html')
     else:
-        form = EditStudyForm()
-    return render_to_response('edit.html', {'form': form,}, context_instance=RequestContext(request))
+        formset = EditStudyForm()
+    return render_to_response('edit.html', {'formset': formset,}, context_instance=RequestContext(request))

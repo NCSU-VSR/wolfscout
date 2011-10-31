@@ -12,9 +12,12 @@
 			<div class="content">
 				<form name="studyForm" id="studyForm" method="post" action="">
 					{% csrf_token %}
+					{{ formset.management_form }}
+					{% for field in formset %}
 					<div class="line">
-                        {{ form }}
+						{{ field.label_tag }}: {{ field }}
 					</div>
+					{% endfor %}
 					<div class="line">
 						<button type="submit" class="green medium"><span>Get selected collar data</span></button>
 					</div>
