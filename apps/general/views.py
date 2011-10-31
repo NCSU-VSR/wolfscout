@@ -9,7 +9,7 @@ from django.template import RequestContext
 ### Global Imports ####
 import datetime
 ### Local Imports ####
-from apps.study.models import Experiment
+from apps.study.models import Study
 ### Views ####
 
 @login_required()
@@ -20,26 +20,26 @@ def index(request):
     return render_to_response('index.html', siteDictionary, context_instance=RequestContext(request))
     
 @login_required()
-def experiments(request):
+def studies(request):
     """
     """
     siteDictionary = getDictionary(request)
-    return render_to_response('experiments.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('studies.html', siteDictionary, context_instance=RequestContext(request))
   
 @login_required()  
-def experiment(request, theExperimentID):
+def study(request, theStudyID):
     """
     """
-    experiment = get_object_or_404(Experiment, pk=theExperimentID)
+    study = get_object_or_404(Study, pk=theStudyID)
     siteDictionary = getDictionary(request)
-    siteDictionary['experiment'] = experiment
-    return render_to_response('experiment.html', siteDictionary, context_instance=RequestContext(request))
+    siteDictionary['study'] = study
+    return render_to_response('study.html', siteDictionary, context_instance=RequestContext(request))
     
 def getDictionary(request):
     siteDictionary = {}
     siteDictionary['request'] = request
     siteDictionary['STATIC_URL'] = settings.STATIC_URL
     ### Required data for all pages ###
-    myExperiments = Experiment.objects.all().filter(owner=request.user) ### Creates object
-    siteDictionary['myExperiments']=myExperiments ### Associates dictionary field with object to be called in html
+    myStudies = Study.objects.all().filter(owner=request.user) ### Creates object
+    siteDictionary['myStudies']=myStudies ### Associates dictionary field with object to be called in html
     return siteDictionary

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}studys{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Your studys</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<table cellspacing="0" cellpadding="0" border="0" class="table-all"> 
+					<thead> 
+						<tr> 
+							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th class="study-title">Title</th>
+							<th>Description</th>
+							<th class="study-lastaccessed">Last accessed</th>
+							<th>Owner</th>
+							<th class="study-lastaccessed">Number of Members</th>
+							<th></th>
+						</tr> 
+					</thead> 
+					<tbody> 
+						{% for study in mystudys %}
+						<tr> 
+							<td><input type="checkbox" name="check" /></td>
+							<td><a href="/study/{{ study.pk }}">{{ study.title }}</a></td>
+							<td>{{ study.description }}</td>
+							<td>{{ study.last_accessed }}</td>
+							<td>{{ study.owner }}</td>
+							<td>
+							{% if study.members.all|length != 0 %}
+							<a href="#" class="tooltip" title="
+								{% for member in study.members.all %}
+								{{ member.username }}
+								{% endfor %}
+							">{{ study.members.all|length }} members</a>
+							{% else %}
+							<a href="">0 members</a>
+							{% endif %}
+							</td>
+							<td>
+								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
+								<a href="#" class="tooltip" title="Delete"><img src="{{ STATIC_URL }}gfx/icon-delete.png" alt="delete" /></a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div id="pager" class="pager">
+					<form action="">
+						<button type="submit" class="red"><span>Delete</span></button>
+						<div>
+							<img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
+							<img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />
+							<input type="text" class="pagedisplay"/>
+							<img src="{{ STATIC_URL }}gfx/table-next.gif" class="next" alt="Next" />
+							<img src="{{ STATIC_URL }}gfx/table-last.gif" class="last" alt="Last" />
+						</div>
+						<select class="pagesize">
+							<option selected="selected" value="5">5</option>
+							<option value="10">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+						</select>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
