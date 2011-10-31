@@ -13,7 +13,6 @@ class Study(models.Model):
     Study sets up the owner for an study,
     All of the collars used, and the other members.
     """
-
     owner = models.ForeignKey(User)
 
     collars = models.ManyToManyField(Collar,related_name="collarsForStudy",

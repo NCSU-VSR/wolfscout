@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Study{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Study</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<form name="studyForm" id="studyForm" method="post" action="">
+					{% csrf_token %}
+					{{ form.management_form }}
+					{% for field in form %}
+					<div class="line">
+						{{ field.label_tag }}: {{ field }}
+					</div>
+					{% endfor %}
+					<div class="line">
+						<button type="submit" class="green medium"><span>Get selected collar data</span></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
