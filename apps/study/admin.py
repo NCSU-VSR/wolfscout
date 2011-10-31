@@ -2,13 +2,13 @@
 from django.contrib import admin
 
 ##### Local Imports #####
-from apps.study.models import Experiment
+from apps.study.models import Study
 
 ##### Admin Classes ######
-class ExperimentAdmin(admin.ModelAdmin):
+class StudyAdmin(admin.ModelAdmin):
     list_display = ('owner',)
     search_fields = ('owner',)
 
 
 ##### Admin Registers ######
-admin.site.register(Experiment, ExperimentAdmin)
+admin.site.register(Study, StudyAdmin)

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Experiments{% endblock %}
+{% block title %}Studies{% endblock %}
 
 {% block content %}	
 	<div class="section">
 		<div class="box">
 			<div class="title">
-				<h2>Your Experiments</h2>
+				<h2>Your studies</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content">
@@ -14,35 +14,35 @@
 					<thead> 
 						<tr> 
 							<th><input type="checkbox" name="check" class="checkall" /></th>
-							<th class="experiment-title">Title</th>
+							<th class="study-title">Title</th>
 							<th>Description</th>
-							<th class="experiment-lastaccessed">Last accessed</th>
+							<th class="study-lastaccessed">Last accessed</th>
 							<th>Owner</th>
-							<th class="experiment-lastaccessed">Number of Members</th>
+							<th class="study-lastaccessed">Number of Members</th>
 							<th></th>
 						</tr> 
 					</thead> 
 					<tbody> 
-						{% for experiment in myExperiments %}
+						{% for study in myStudies %}
 						<tr> 
 							<td><input type="checkbox" name="check" /></td>
-							<td><a href="/experiment/{{ experiment.pk }}">{{ experiment.title }}</a></td>
-							<td>{{ experiment.description }}</td>
-							<td>{{ experiment.last_accessed }}</td>
-							<td>{{ experiment.owner }}</td>
+							<td><a href="/study/{{ study.pk }}">{{ study.title }}</a></td>
+							<td>{{ study.description }}</td>
+							<td>{{ study.last_accessed }}</td>
+							<td>{{ study.owner }}</td>
 							<td>
-							{% if experiment.members.all|length != 0 %}
+							{% if study.members.all|length != 0 %}
 							<a href="#" class="tooltip" title="
-								{% for member in experiment.members.all %}
-								{{ member.username }}
+								{% for member in study.members.all %}
+								{{ member.username }}</br>
 								{% endfor %}
-							">{{ experiment.members.all|length }} members</a>
+							">{{ study.members.all|length }} members</a>
 							{% else %}
 							<a href="">0 members</a>
 							{% endif %}
 							</td>
 							<td>
-								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
+								<a href="/study/{{ study.pk }}/edit" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
 								<a href="#" class="tooltip" title="Delete"><img src="{{ STATIC_URL }}gfx/icon-delete.png" alt="delete" /></a>
 							</td>
 						</tr>
@@ -52,6 +52,7 @@
 				<div id="pager" class="pager">
 					<form action="">
 						<button type="submit" class="red"><span>Delete</span></button>
+						<button type="submit" class="green"><span>Add</span></button>
 						<div>
 							<img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
 							<img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />

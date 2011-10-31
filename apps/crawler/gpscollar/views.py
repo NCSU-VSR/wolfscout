@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.forms import ModelForm, ValidationError
 from django import forms
 from django.template import RequestContext
-
+from django.contrib.gis.shortcuts import render_to_kml
 ### Global Imports ####
 import datetime
 ### Local Imports ###
@@ -96,7 +96,8 @@ def getKMLForAllCollarPoints(request, theCollarID):
     dataPoints = CollarData.objects.filter(collar=theCollar)
     siteDictionary = getDictionary(request)
     siteDictionary['dataPoints'] = dataPoints
-    return render_to_response('dataPoints.kml', siteDictionary, context_instance=RequestContext(request))
+    siteDictionary['theCollar'] = theCollar
+    return render_to_kml('dataPoints.kml', siteDictionary, context_instance=RequestContext(request))
 
 from django.core.urlresolvers import reverse
 

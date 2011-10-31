@@ -13,7 +13,6 @@ dojo.require("esri.dijit.Popup");
           fillSymbol: new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.25]))
         }, dojo.create("div"));
 
-
         var initExtent = new esri.geometry.Extent({"xmin":-13626637,"ymin":4550020,"xmax":-13624728,"ymax":4551042,"spatialReference":{"wkid":102100}});
         map = new esri.Map("arc_map",{
           extent:initExtent,
@@ -34,7 +33,6 @@ dojo.require("esri.dijit.Popup");
 
            map.infoWindow.setFeatures([deferred]);
            map.infoWindow.show(evt.mapPoint);
-
         });
 
         //Add the topographic layer to the map. View the ArcGIS Online site for services http://arcgisonline/home/search.html?t=content&f=typekeywords:service    

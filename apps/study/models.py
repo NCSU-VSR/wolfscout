@@ -8,17 +8,16 @@ from apps.crawler.gpscollar.models import Collar
 # Add entry below, run commands: django-admin.py schemamigration apps.study --auto
 #                                django-admin.py migrate apps.study
 
-class Experiment(models.Model):
+class Study(models.Model):
     """
-    Experiment sets up the owner for an experiment,
+    Study sets up the owner for an study,
     All of the collars used, and the other members.
     """
-
     owner = models.ForeignKey(User)
 
-    collars = models.ManyToManyField(Collar,related_name="collarsForExperiment",
+    collars = models.ManyToManyField(Collar,related_name="collarsForStudy",
                                      null=True,blank=True)
-    members = models.ManyToManyField(User,related_name="membersForExperiment",
+    members = models.ManyToManyField(User,related_name="membersForStudy",
                                          null=True,blank=True)
     title = models.CharField(max_length=100,null=False,blank=False)
     description = models.TextField(null=True, blank=True)
