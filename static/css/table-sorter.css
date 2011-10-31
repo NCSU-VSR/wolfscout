@@ -41,12 +41,12 @@ table thead tr th.header {
   background-color: transparent;
 }
 /* line 34, ../../compass/sass/table-sorter.sass */
-table thead tr th.experiment-title {
+table thead tr th.study-title {
   width: 180px;
 }
 /* line 36, ../../compass/sass/table-sorter.sass */
-table thead tr th.experiment-lastaccessed {
-  width: 130px;
+table thead tr th.study-lastaccessed {
+  width: 150px;
 }
 /* line 39, ../../compass/sass/table-sorter.sass */
 table tbody td {

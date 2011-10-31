@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}studys{% endblock %}
+{% block title %}Studies{% endblock %}
 
 {% block content %}	
 	<div class="section">
 		<div class="box">
 			<div class="title">
-				<h2>Your studys</h2>
+				<h2>Your studies</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content">
@@ -23,7 +23,7 @@
 						</tr> 
 					</thead> 
 					<tbody> 
-						{% for study in mystudys %}
+						{% for study in myStudies %}
 						<tr> 
 							<td><input type="checkbox" name="check" /></td>
 							<td><a href="/study/{{ study.pk }}">{{ study.title }}</a></td>
@@ -34,7 +34,7 @@
 							{% if study.members.all|length != 0 %}
 							<a href="#" class="tooltip" title="
 								{% for member in study.members.all %}
-								{{ member.username }}
+								{{ member.username }}</br>
 								{% endfor %}
 							">{{ study.members.all|length }} members</a>
 							{% else %}
@@ -42,7 +42,7 @@
 							{% endif %}
 							</td>
 							<td>
-								<a href="#" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
+								<a href="/study/{{ study.pk }}/edit" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
 								<a href="#" class="tooltip" title="Delete"><img src="{{ STATIC_URL }}gfx/icon-delete.png" alt="delete" /></a>
 							</td>
 						</tr>

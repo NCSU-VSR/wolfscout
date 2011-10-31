@@ -34,8 +34,9 @@ urlpatterns = patterns('',
     url(r'^collarData/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     url(r'^collarDataKML/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPoints'),
     
-    url(r'^studies/$', 'wolfscout.apps.general.views.studies'),
-    url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.general.views.study'),
+    url(r'^studies/$', 'wolfscout.apps.study.views.studies'),
+    url(r'^study/(?P<theStudyID>\d+)/edit/$', 'wolfscout.apps.study.views.edit'),
+    url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
 )
 
 #Add Static Data
