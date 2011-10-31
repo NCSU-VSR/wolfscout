@@ -10,6 +10,12 @@ the code for release onto a production server
 
 env.hosts = ['wolfscout.ncsu.edu']
 
+def commands():
+    """
+    prints out all the fab commands
+    """
+    print 'test runServer commit pushLocal syncLocalWithDev syncLocalWithMaster updateLocal updateDev updateMaster deployToProduction'
+
 def test():
     """
     Runs all tests in the django project

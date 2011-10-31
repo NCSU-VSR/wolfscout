@@ -211,4 +211,7 @@ CSV_DICTIONARY = {
     'BU_VOL' : 40,
     'TEMP' : 41,
     'REMARKS' : 42,
+    'MAX_INDEX' : 42
 }
+
+FIXTURE_DIRS = '/opt/webapps/ncsu/wolfscout/tests/data/fixtures'
