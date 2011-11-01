@@ -13,10 +13,6 @@ class DivErrorList(ErrorList):
         if not self: return u''
         return u'<div class="errorlist">%s</div>' % ''.join([u'<div class="messages red"><span></span>%s</div>' % e for e in self])
         
-class EditStudyForm(ModelForm):
-        class Meta:
-            model = Study
-            
-class AddStudyForm(ModelForm):
+class StudyForm(ModelForm):
         class Meta:
             model = Study

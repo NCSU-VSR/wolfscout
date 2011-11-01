@@ -23,4 +23,4 @@ class Study(models.Model):
     description = models.TextField(null=True, blank=True)
     last_accessed = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now())
     def __unicode__(self):
-        return str(self.owner.username)
+        return str(self.pk)

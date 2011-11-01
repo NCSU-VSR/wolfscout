@@ -11,8 +11,7 @@ import datetime
 ### Local Imports ####
 from apps.general.views import getDictionary
 from apps.study.models import Study
-from apps.study.forms import EditStudyForm
-from apps.study.forms import AddStudyForm
+from apps.study.forms import StudyForm
 from apps.study.forms import DivErrorList
 ### Views ####
 
@@ -38,23 +37,17 @@ def edit(request, theStudyID):
     """
     study = get_object_or_404(Study, pk=theStudyID)
     if request.method == 'POST':
-        form = EditStudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
+        form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('studies.html')
     else:
-        form = EditStudyForm()
+        form = StudyForm(instance=study)
     return render_to_response('editStudy.html', {'form': form,}, context_instance=RequestContext(request))
     
 @login_required()  
 def add(request):
     """
     """
-    if request.method == 'POST':
-        form = AddStudyForm(error_class=DivErrorList, auto_id='id_%s', instance=Study)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('studies.html')
-    else:
-        form = AddStudyForm()
+    form = StudyForm()
     return render_to_response('addStudy.html', {'form': form,}, context_instance=RequestContext(request))

@@ -6,8 +6,8 @@ from apps.study.models import Study
 
 ##### Admin Classes ######
 class StudyAdmin(admin.ModelAdmin):
-    list_display = ('owner',)
-    search_fields = ('owner',)
+    list_display = ('title','description','owner',)
+    search_fields = ('title','owner',)
 
 
 ##### Admin Registers ######
