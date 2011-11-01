@@ -39,10 +39,10 @@ def edit(request, theStudyID):
     siteDictionary['title'] = "Edit Study"
     study = get_object_or_404(Study, pk=theStudyID)
     if request.method == 'POST':
-        form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
+        form = StudyForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('studies.html')
+            return HttpResponseRedirect('/studies')
     else:
         form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
     siteDictionary['form'] = form

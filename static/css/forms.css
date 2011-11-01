@@ -49,38 +49,41 @@ input {
   *cursor: text;
   line-height: 1.2em;
   height: 15px;
+  background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 166px;
 }
-/* line 44, ../../compass/sass/forms.sass */
+/* line 47, ../../compass/sass/forms.sass */
 input.small {
   background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
   *background: transparent;
   width: 166px;
 }
-/* line 48, ../../compass/sass/forms.sass */
+/* line 51, ../../compass/sass/forms.sass */
 input.medium {
   background: url(../gfx/forms/forms-input-medium.gif) no-repeat left top transparent;
   *background: transparent;
   width: 297px;
 }
-/* line 52, ../../compass/sass/forms.sass */
+/* line 55, ../../compass/sass/forms.sass */
 input.big {
   background: url(../gfx/forms/forms-input-big.gif) no-repeat left top transparent;
   *background: transparent;
   width: 552px;
 }
-/* line 56, ../../compass/sass/forms.sass */
+/* line 59, ../../compass/sass/forms.sass */
 input.xl {
   background: url(../gfx/forms/forms-input-xl.gif) no-repeat left top transparent;
   *background: transparent;
   width: 802px;
 }
-/* line 60, ../../compass/sass/forms.sass */
+/* line 63, ../../compass/sass/forms.sass */
 input:hover, input:focus {
   background-position: left bottom;
   color: #5a5a5a;
 }
 
-/* line 65, ../../compass/sass/forms.sass */
+/* line 68, ../../compass/sass/forms.sass */
 div.input-small {
   display: inline;
   background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
@@ -88,7 +91,7 @@ div.input-small {
   width: 166px;
   height: 28px;
 }
-/* line 71, ../../compass/sass/forms.sass */
+/* line 74, ../../compass/sass/forms.sass */
 div.input-medium {
   display: inline;
   background: url(../gfx/forms/forms-input-medium.gif) no-repeat left top transparent;
@@ -96,7 +99,7 @@ div.input-medium {
   width: 297px;
   height: 28px;
 }
-/* line 77, ../../compass/sass/forms.sass */
+/* line 80, ../../compass/sass/forms.sass */
 div.input-big {
   display: inline;
   background: url(../gfx/forms/forms-input-big.gif) no-repeat left top transparent;
@@ -104,7 +107,7 @@ div.input-big {
   width: 552px;
   height: 28px;
 }
-/* line 83, ../../compass/sass/forms.sass */
+/* line 86, ../../compass/sass/forms.sass */
 div.input-xl {
   display: inline;
   background: url(../gfx/forms/forms-input-xl.gif) no-repeat left top transparent;
@@ -114,23 +117,23 @@ div.input-xl {
 }
 
 /* //////////////////// SELECTBOX \\\\\\\\\\\\\\\\\\\\ */
-/* line 92, ../../compass/sass/forms.sass */
+/* line 95, ../../compass/sass/forms.sass */
 .sb-custom {
   display: inline-block;
   *display: inline;
   height: 26px;
 }
 
-/* line 97, ../../compass/sass/forms.sass */
+/* line 100, ../../compass/sass/forms.sass */
 select {
   display: none;
 }
-/* line 99, ../../compass/sass/forms.sass */
+/* line 102, ../../compass/sass/forms.sass */
 select .no-js {
   display: none;
 }
 
-/* line 102, ../../compass/sass/forms.sass */
+/* line 105, ../../compass/sass/forms.sass */
 div.sb-overlay {
   display: inline-block;
   position: relative;
@@ -140,7 +143,7 @@ div.sb-overlay {
   padding: 0;
 }
 
-/* line 110, ../../compass/sass/forms.sass */
+/* line 113, ../../compass/sass/forms.sass */
 input.sb-select {
   display: inline-block;
   background: url(../gfx/forms/forms-selectbox.gif) no-repeat right top transparent;
@@ -157,7 +160,7 @@ input.sb-select {
   height: 16px;
 }
 
-/* line 125, ../../compass/sass/forms.sass */
+/* line 128, ../../compass/sass/forms.sass */
 ul.sb-dropdown {
   position: absolute;
   display: none;
@@ -175,14 +178,14 @@ ul.sb-dropdown {
   width: 168px;
   max-height: 250px;
 }
-/* line 141, ../../compass/sass/forms.sass */
+/* line 144, ../../compass/sass/forms.sass */
 ul.sb-dropdown li {
   background: none;
   background-color: white;
   padding: 0;
   margin: 0;
 }
-/* line 146, ../../compass/sass/forms.sass */
+/* line 149, ../../compass/sass/forms.sass */
 ul.sb-dropdown a {
   display: block;
   background-color: white;
@@ -196,7 +199,7 @@ ul.sb-dropdown a {
   line-height: 18px;
   text-decoration: none;
 }
-/* line 158, ../../compass/sass/forms.sass */
+/* line 161, ../../compass/sass/forms.sass */
 ul.sb-dropdown a:link, ul.sb-dropdown a:active, ul.sb-dropdown a:visited {
   display: block;
   background-color: white;
@@ -210,19 +213,19 @@ ul.sb-dropdown a:link, ul.sb-dropdown a:active, ul.sb-dropdown a:visited {
   line-height: 18px;
   text-decoration: none;
 }
-/* line 170, ../../compass/sass/forms.sass */
+/* line 173, ../../compass/sass/forms.sass */
 ul.sb-dropdown a:hover {
   background-color: #eff2f6;
   color: #002e68;
 }
-/* line 173, ../../compass/sass/forms.sass */
+/* line 176, ../../compass/sass/forms.sass */
 ul.sb-dropdown .selected {
   background-color: #eff2f6;
   color: #002e68;
 }
 
 /* //////////////////// UPLOAD BUTTON \\\\\\\\\\\\\\\\\\\\ */
-/* line 179, ../../compass/sass/forms.sass */
+/* line 182, ../../compass/sass/forms.sass */
 input.file {
   float: left;
   background: url(../gfx/forms/forms-input-small.gif) no-repeat left top transparent;
@@ -231,24 +234,24 @@ input.file {
   height: 15px;
 }
 
-/* line 186, ../../compass/sass/forms.sass */
+/* line 189, ../../compass/sass/forms.sass */
 div.btn-upload {
   display: inline-block;
   *display: inline;
   background: url(../gfx/forms/forms-file.gif) no-repeat right top transparent;
 }
-/* line 190, ../../compass/sass/forms.sass */
+/* line 193, ../../compass/sass/forms.sass */
 div.btn-upload:hover {
   background-position: right bottom;
 }
-/* line 192, ../../compass/sass/forms.sass */
+/* line 195, ../../compass/sass/forms.sass */
 div.btn-upload input {
   *position: relative;
   *z-index: -1;
 }
 
 /* //////////////////// TEXTAREA \\\\\\\\\\\\\\\\\\\\ */
-/* line 198, ../../compass/sass/forms.sass */
+/* line 201, ../../compass/sass/forms.sass */
 textarea {
   display: inline-block;
   overflow: auto;
@@ -262,37 +265,40 @@ textarea {
   color: #002e68;
   line-height: 1.42em;
   height: 69px;
+  background: url(../gfx/forms/forms-textarea-small.gif) no-repeat left top transparent;
+  *background: transparent;
+  width: 166px;
 }
-/* line 211, ../../compass/sass/forms.sass */
+/* line 218, ../../compass/sass/forms.sass */
 textarea.small {
   background: url(../gfx/forms/forms-textarea-small.gif) no-repeat left top transparent;
   *background: transparent;
   width: 166px;
 }
-/* line 215, ../../compass/sass/forms.sass */
+/* line 222, ../../compass/sass/forms.sass */
 textarea.medium {
   background: url(../gfx/forms/forms-textarea-medium.gif) no-repeat left top transparent;
   *background: transparent;
   width: 297px;
 }
-/* line 219, ../../compass/sass/forms.sass */
+/* line 226, ../../compass/sass/forms.sass */
 textarea.big {
   background: url(../gfx/forms/forms-textarea-big.gif) no-repeat left top transparent;
   *background: transparent;
   width: 552px;
 }
-/* line 223, ../../compass/sass/forms.sass */
+/* line 230, ../../compass/sass/forms.sass */
 textarea.xl {
   background: url(../gfx/forms/forms-textarea-xl.gif) no-repeat left top transparent;
   *background: transparent;
   width: 802px;
 }
-/* line 227, ../../compass/sass/forms.sass */
+/* line 234, ../../compass/sass/forms.sass */
 textarea:hover, textarea:focus {
   background-position: left bottom;
 }
 
-/* line 231, ../../compass/sass/forms.sass */
+/* line 238, ../../compass/sass/forms.sass */
 div.textarea-small {
   display: inline;
   background: url(../gfx/forms/forms-textarea-small.gif) no-repeat left top transparent;
@@ -300,7 +306,7 @@ div.textarea-small {
   width: 166px;
   height: 80px;
 }
-/* line 237, ../../compass/sass/forms.sass */
+/* line 244, ../../compass/sass/forms.sass */
 div.textarea-medium {
   display: inline;
   background: url(../gfx/forms/forms-textarea-medium.gif) no-repeat left top transparent;
@@ -308,7 +314,7 @@ div.textarea-medium {
   width: 297px;
   height: 80px;
 }
-/* line 243, ../../compass/sass/forms.sass */
+/* line 250, ../../compass/sass/forms.sass */
 div.textarea-big {
   display: inline;
   background: url(../gfx/forms/forms-textarea-big.gif) no-repeat left top transparent;
@@ -316,7 +322,7 @@ div.textarea-big {
   width: 552px;
   height: 80px;
 }
-/* line 249, ../../compass/sass/forms.sass */
+/* line 256, ../../compass/sass/forms.sass */
 div.textarea-xl {
   display: inline;
   background: url(../gfx/forms/forms-textarea-xl.gif) no-repeat left top transparent;
@@ -326,13 +332,13 @@ div.textarea-xl {
 }
 
 /* //////////////////// CHECKBOXES & RADIOBUTTONS \\\\\\\\\\\\\\\\\\\\ */
-/* line 259, ../../compass/sass/forms.sass */
+/* line 266, ../../compass/sass/forms.sass */
 table input[type=checkbox], table input[type=radio] {
   background: none;
   padding: 0;
 }
 
-/* line 263, ../../compass/sass/forms.sass */
+/* line 270, ../../compass/sass/forms.sass */
 .custom-checkbox, .custom-radio {
   display: inline-block;
   position: relative;
@@ -341,7 +347,7 @@ table input[type=checkbox], table input[type=radio] {
   *zoom: 1;
 }
 
-/* line 270, ../../compass/sass/forms.sass */
+/* line 277, ../../compass/sass/forms.sass */
 .custom-checkbox input, .custom-radio input {
   position: absolute;
   background: transparent;
@@ -353,7 +359,7 @@ table input[type=checkbox], table input[type=radio] {
   height: 13px;
 }
 
-/* line 280, ../../compass/sass/forms.sass */
+/* line 287, ../../compass/sass/forms.sass */
 .custom-checkbox label, .custom-radio label {
   display: inline-block;
   padding: 0 0 0 26px;
@@ -366,43 +372,43 @@ table input[type=checkbox], table input[type=radio] {
   height: 19px;
 }
 
-/* line 291, ../../compass/sass/forms.sass */
+/* line 298, ../../compass/sass/forms.sass */
 .custom-checkbox label {
   background: url(../gfx/forms/forms-checkbox.gif) no-repeat;
 }
 
-/* line 294, ../../compass/sass/forms.sass */
+/* line 301, ../../compass/sass/forms.sass */
 .custom-radio label {
   background: url(../gfx/forms/forms-radio.gif) no-repeat;
 }
 
-/* line 298, ../../compass/sass/forms.sass */
+/* line 305, ../../compass/sass/forms.sass */
 .custom-checkbox label.hover, .custom-checkbox label.focus {
   background-position: left bottom;
 }
 
-/* line 302, ../../compass/sass/forms.sass */
+/* line 309, ../../compass/sass/forms.sass */
 .custom-radio label.hover, .custom-radio label.focus {
   background-position: left bottom;
 }
 
-/* line 305, ../../compass/sass/forms.sass */
+/* line 312, ../../compass/sass/forms.sass */
 .custom-checkbox label, .custom-radio label {
   background-position: left bottom;
 }
 
-/* line 308, ../../compass/sass/forms.sass */
+/* line 315, ../../compass/sass/forms.sass */
 .custom-checkbox label.checked, .custom-radio label.checked {
   background-position: left top;
 }
 
-/* line 312, ../../compass/sass/forms.sass */
+/* line 319, ../../compass/sass/forms.sass */
 .custom-checkbox label.checkedHover, .custom-checkbox label.checkedFocus {
   background-position: left top;
 }
 
 /* //////////////////// DATE PICKER \\\\\\\\\\\\\\\\\\\\ */
-/* line 317, ../../compass/sass/forms.sass */
+/* line 324, ../../compass/sass/forms.sass */
 input.datepicker {
   background: url(../gfx/forms/forms-date.gif) no-repeat right top transparent;
   margin: 0 20px 0 0;
@@ -412,7 +418,7 @@ input.datepicker {
   /* //////////////////// TIME PICKER \\\\\\\\\\\\\\\\\\\\ */
 }
 
-/* line 326, ../../compass/sass/forms.sass */
+/* line 333, ../../compass/sass/forms.sass */
 input.timepicker {
   background: url(../gfx/forms/forms-date.gif) no-repeat right top transparent;
   margin: 0 20px 0 0;
@@ -422,24 +428,24 @@ input.timepicker {
 }
 
 /* //////////////////// SLIDER \\\\\\\\\\\\\\\\\\\\ */
-/* line 335, ../../compass/sass/forms.sass */
+/* line 342, ../../compass/sass/forms.sass */
 .slider {
   display: block;
   color: #002e68;
 }
-/* line 338, ../../compass/sass/forms.sass */
+/* line 345, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal {
   position: relative;
   border: 1px solid #c3d0e1;
   margin: 5px 0 0;
   height: 10px;
 }
-/* line 343, ../../compass/sass/forms.sass */
+/* line 350, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal .ui-slider-range {
   top: 0;
   height: 100%;
 }
-/* line 346, ../../compass/sass/forms.sass */
+/* line 353, ../../compass/sass/forms.sass */
 .slider .ui-slider .ui-slider-range {
   position: absolute;
   background: #f2f4f7;
@@ -449,11 +455,11 @@ input.timepicker {
   border: 0;
   background-position: 0 0;
 }
-/* line 354, ../../compass/sass/forms.sass */
+/* line 361, ../../compass/sass/forms.sass */
 .slider .ui-slider-horizontal .ui-slider-handle {
   margin-left: -0.6em;
 }
-/* line 356, ../../compass/sass/forms.sass */
+/* line 363, ../../compass/sass/forms.sass */
 .slider .ui-slider .ui-slider-handle {
   position: absolute;
   background: url(../gfx/slider-button.gif) no-repeat;
@@ -463,22 +469,22 @@ input.timepicker {
   height: 16px;
   cursor: default;
 }
-/* line 364, ../../compass/sass/forms.sass */
+/* line 371, ../../compass/sass/forms.sass */
 .slider input {
   padding: 0;
   text-align: right;
   color: #5a5a5a;
   width: 30px;
 }
-/* line 369, ../../compass/sass/forms.sass */
+/* line 376, ../../compass/sass/forms.sass */
 .slider input.amount-second {
   text-align: left;
 }
-/* line 371, ../../compass/sass/forms.sass */
+/* line 378, ../../compass/sass/forms.sass */
 .slider input.amount-first-time {
   width: 70px;
 }
-/* line 373, ../../compass/sass/forms.sass */
+/* line 380, ../../compass/sass/forms.sass */
 .slider input.amount-second-time {
   width: 70px;
   text-align: left;

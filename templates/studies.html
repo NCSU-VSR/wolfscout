@@ -13,12 +13,12 @@
 				<table cellspacing="0" cellpadding="0" border="0" class="table-all"> 
 					<thead> 
 						<tr> 
-							<th><input type="checkbox" name="check" class="checkall" /></th>
+							<th class="study-checkbox"><input type="checkbox" name="check" class="checkall" /></th>
 							<th class="study-title">Title</th>
 							<th>Description</th>
 							<th class="study-lastaccessed">Last accessed</th>
 							<th>Owner</th>
-							<th class="study-lastaccessed">Number of Members</th>
+							<th class="study-members">Number of Members</th>
 							<th></th>
 						</tr> 
 					</thead> 
@@ -33,9 +33,11 @@
 							<td>
 							{% if study.members.all|length != 0 %}
 							<a href="#" class="tooltip" title="
+								<ol>
 								{% for member in study.members.all %}
-								{{ member.username }}</br>
+									<li>{{ member.username }}</li>
 								{% endfor %}
+								</ol>
 							">{{ study.members.all|length }} members</a>
 							{% else %}
 							<a href="">0 members</a>
