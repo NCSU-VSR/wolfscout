@@ -13,8 +13,8 @@ class Tests(unittest.TestCase):
     """
     _driver = None
     _waiter = None
-    _validUser = ("a","a")
-    _validUserWrongCase = (("A", "a"),("a","A"))
+    _validUser = ("bo","bo")
+    _validUserWrongCase = (("Bo", "bo"),("bo","Bo"))
     _invalidUser = ("invalid", "invalid")
 
     @classmethod
