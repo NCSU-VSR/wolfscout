@@ -35,6 +35,8 @@ def study(request, theStudyID):
 def edit(request, theStudyID):
     """
     """
+    siteDictionary = {}
+    siteDictionary['title'] = "Edit Study"
     study = get_object_or_404(Study, pk=theStudyID)
     if request.method == 'POST':
         form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
@@ -42,12 +44,16 @@ def edit(request, theStudyID):
             form.save()
             return HttpResponseRedirect('studies.html')
     else:
-        form = StudyForm(instance=study)
-    return render_to_response('editStudy.html', {'form': form,}, context_instance=RequestContext(request))
+        form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
+    siteDictionary['form'] = form
+    return render_to_response('editStudy.html', siteDictionary, context_instance=RequestContext(request))
     
 @login_required()  
 def add(request):
     """
     """
-    form = StudyForm()
-    return render_to_response('addStudy.html', {'form': form,}, context_instance=RequestContext(request))
+    siteDictionary = {}
+    siteDictionary['title'] = "Add Study"
+    form = StudyForm(error_class=DivErrorList, auto_id='id_%s', initial={'owner':request.user})
+    siteDictionary['form'] = form
+    return render_to_response('editStudy.html', siteDictionary, context_instance=RequestContext(request))
