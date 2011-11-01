@@ -8,20 +8,20 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'Experiment.title'
-        db.add_column('study_experiment', 'title', self.gf('django.db.models.fields.CharField')(default='demo', max_length=100), keep_default=False)
+        # Adding field 'Strudy.title'
+        db.add_column('study_study', 'title', self.gf('django.db.models.fields.CharField')(default='demo', max_length=100), keep_default=False)
 
-        # Adding field 'Experiment.description'
-        db.add_column('study_experiment', 'description', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Adding field 'Strudy.description'
+        db.add_column('study_study', 'description', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting field 'Experiment.title'
-        db.delete_column('study_experiment', 'title')
+        # Deleting field 'Strudy.title'
+        db.delete_column('study_study', 'title')
 
-        # Deleting field 'Experiment.description'
-        db.delete_column('study_experiment', 'description')
+        # Deleting field 'Strudy.description'
+        db.delete_column('study_study', 'description')
 
 
     models = {
@@ -65,12 +65,12 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Collar'},
             'collarID': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'})
         },
-        'study.experiment': {
-            'Meta': {'object_name': 'Experiment'},
-            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
+        'study.study': {
+            'Meta': {'object_name': 'Strudy'},
+            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForStrudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForStrudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         }

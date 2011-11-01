@@ -52,7 +52,7 @@
 		
 </head>
 <body>
-	<a name="top"/>
+	<a href="/" name="top"/>
 	<div class="container">   
 		<div class="logo-labels">
 			<h1><a href="/">Wolfscout</a></h1>
@@ -72,8 +72,8 @@
 						<li class="current">
 							<a href="#">Most Recent</a>
 							<ul> 
-								{% for data in myStudies %}
-								<li><a href="#">{{ data.title }}</a></li>
+								{% for study in myStudies %}
+								<li><a href="/study/{{ study.pk }}/">{{ study.title }}</a></li>
 								{% endfor %}
 							</ul> 
 						</li> 

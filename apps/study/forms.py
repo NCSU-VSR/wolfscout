@@ -16,3 +16,7 @@ class DivErrorList(ErrorList):
 class EditStudyForm(ModelForm):
         class Meta:
             model = Study
+            
+class AddStudyForm(ModelForm):
+        class Meta:
+            model = Study

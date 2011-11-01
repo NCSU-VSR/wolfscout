@@ -10,31 +10,18 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<h1>This is a H1 heading.</h1>
+				<h1>Hey there, {% if user.first_name != '' %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.  Here's what's new...</h1>
 				Duis libero lectus, vestibulum at laoreet sed, elementum id augue. Maecenas ut dapibus arcu. Curabitur
 				malesuada venenatis orci, sed adipiscing diam pharetra sit amet. Donec vulputate consequat ante, a
 				eleifend urna feugiat suscipit. Nunc est dolor.<br />
 				<br />
-				<h2>This is a H2 heading.</h2>
-				Duis libero lectus, vestibulum at laoreet sed, elementum id augue. Maecenas ut dapibus arcu. Curabitur
-				malesuada venenatis orci, sed adipiscing diam pharetra sit amet. Donec vulputate consequat ante, a
-				eleifend urna feugiat suscipit. Nunc est dolor.<br />
-				<br />
-				<h4>A bullet list</h4>
+				<h2>You have been added to 2 new studies:</h2>
 				<ul>
-					<li>Morbi porttitor risus a nulla vestibulum vulputate.</li>
-					<li>Curabitur vestibulum condimentum arcu non.</li>
-					<li>Vestibulum mollis rutrum diam nec euismod.</li>
-					<li>Aenean feugiat vestibulum congue donec nibh nulla, ullamcorper.</li>
+					<li>"March 2009 Coyote Tracker" (Added Yesterday - 11:36 AM, by <strong>fuzzybunny</strong>)</li>
+					<li>"2007 Deer/Coyote spatial &amp; temporial" (Added 3 days ago - 8:05 AM, by <strong>awesomepossum</strong>)</li>
 				</ul>
-				<br />
-				<h4>A numbered list</h4>
-				<ol>
-					<li>Morbi porttitor risus a nulla vestibulum vulputate.</li>
-					<li>Curabitur vestibulum condimentum arcu non.</li>
-					<li>Vestibulum mollis rutrum diam nec euismod.</li>
-					<li>Aenean feugiat vestibulum congue donec nibh nulla, ullamcorper.</li>
-				</ol>
+				</br>
+				<img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Coyote_by_Rebecca_Richardson.jpg" width="100%"/>
 			</div>
 		</div>
 		<div class="box small">
@@ -43,15 +30,9 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<h2>This is a H2 heading.</h2>
-				Duis libero lectus, vestibulum at laoreet sed, elementum id augue. Maecenas ut dapibus arcu.<br />
+				<h2>Preview...</h2>
 				<br />
-				<h4>Most recent study...</h4>
-				<ul>
-					<li>A sexy Study.</li>
-				</ul>
-				<br />
-				<h4>Your studies...</h4>
+				<h4>Most recent studies...</h4>
 				<ol>
 					{% for data in myStudies %}
 					<li><a href="study/{{ data.pk }}" class="tooltip" title="{{ data.description }}">{{ data.title }}</a></li>

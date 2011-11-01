@@ -8,14 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'Experiment.last_accessed'
-        db.add_column('study_experiment', 'last_accessed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 10, 24, 9, 58, 21, 915037), null=True, blank=True), keep_default=False)
+        # Adding field 'Study.last_accessed'
+        db.add_column('study_study', 'last_accessed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2011, 10, 24, 9, 58, 21, 915037), null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting field 'Experiment.last_accessed'
-        db.delete_column('study_experiment', 'last_accessed')
+        # Deleting field 'Study.last_accessed'
+        db.delete_column('study_study', 'last_accessed')
 
 
     models = {
@@ -59,13 +59,13 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Collar'},
             'collarID': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'})
         },
-        'study.experiment': {
-            'Meta': {'object_name': 'Experiment'},
-            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
+        'study.study': {
+            'Meta': {'object_name': 'Study'},
+            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForStudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_accessed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2011, 10, 24, 9, 58, 21, 915037)', 'null': 'True', 'blank': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForStudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         }

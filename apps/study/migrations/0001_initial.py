@@ -8,40 +8,40 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Experiment'
-        db.create_table('study_experiment', (
+        # Adding model 'Study'
+        db.create_table('study_study', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
         ))
-        db.send_create_signal('study', ['Experiment'])
+        db.send_create_signal('study', ['Study'])
 
-        # Adding M2M table for field collars on 'Experiment'
-        db.create_table('study_experiment_collars', (
+        # Adding M2M table for field collars on 'Study'
+        db.create_table('study_study_collars', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('experiment', models.ForeignKey(orm['study.experiment'], null=False)),
+            ('study', models.ForeignKey(orm['study.study'], null=False)),
             ('collar', models.ForeignKey(orm['gpscollar.collar'], null=False))
         ))
-        db.create_unique('study_experiment_collars', ['experiment_id', 'collar_id'])
+        db.create_unique('study_study_collars', ['study_id', 'collar_id'])
 
-        # Adding M2M table for field members on 'Experiment'
-        db.create_table('study_experiment_members', (
+        # Adding M2M table for field members on 'Study'
+        db.create_table('study_study_members', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('experiment', models.ForeignKey(orm['study.experiment'], null=False)),
+            ('study', models.ForeignKey(orm['study.study'], null=False)),
             ('user', models.ForeignKey(orm['auth.user'], null=False))
         ))
-        db.create_unique('study_experiment_members', ['experiment_id', 'user_id'])
+        db.create_unique('study_study_members', ['study_id', 'user_id'])
 
 
     def backwards(self, orm):
         
-        # Deleting model 'Experiment'
-        db.delete_table('study_experiment')
+        # Deleting model 'Study'
+        db.delete_table('study_study')
 
-        # Removing M2M table for field collars on 'Experiment'
-        db.delete_table('study_experiment_collars')
+        # Removing M2M table for field collars on 'Study'
+        db.delete_table('study_study_collars')
 
-        # Removing M2M table for field members on 'Experiment'
-        db.delete_table('study_experiment_members')
+        # Removing M2M table for field members on 'Study'
+        db.delete_table('study_study_members')
 
 
     models = {
@@ -85,11 +85,11 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Collar'},
             'collarID': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'})
         },
-        'study.experiment': {
-            'Meta': {'object_name': 'Experiment'},
-            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
+        'study.study': {
+            'Meta': {'object_name': 'Study'},
+            'collars': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'collarsForStudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['gpscollar.Collar']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForExperiment'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'membersForStudy'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['auth.User']"}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         }
     }
