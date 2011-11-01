@@ -1,10 +1,3 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
@@ -105,10 +98,10 @@ class CollarTestCases(TestCase):
         return CollarParser(self.existingSampleData['fileName'])
 
     def getValidDateStrings(self):
-        return ('28.2.2011', '1.1.2000', '31.1.2010', '31.12.2010', '1.1.1990')
+        return '28.2.2011', '1.1.2000', '31.1.2010', '31.12.2010', '1.1.1990'
 
     def getValidTimeStrings(self):
-        return ('0:0:0', '23:59:59', '0:59:59', '23:0:0')
+        return '0:0:0', '23:59:59', '0:59:59', '23:0:0'
 
     def getBadDateStrings(self):
         return (None, "-1.1.2011", "29.2.2011", "31.4.2011", "0.1.2011", "a.1.2011", "1a.1.2011", "one.1.2011", ".1.2011", "1 .1.2011",
