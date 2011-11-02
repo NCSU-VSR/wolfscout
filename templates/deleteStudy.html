@@ -6,17 +6,20 @@
 	<div class="section">
 		<div class="box">
 			<div class="title">
-				<h2>Add new study</h2>
+				<h2>Delete study</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content">
 				<form method="post" action=".">
 					<div class="line">
 					{% csrf_token %}
-					{{ form.as_p }}
+					<div class="messages orange">
+						<span></span>
+						Are you sure you want to delete {{ study.title }}?  This cannot be undone.
 					</div>
 					<div class="line">
-						<button type="submit" class="green medium"><span>Add Study</span></button>
+						<button type="submit" class="red medium"><span>Delete Study</span></button>
+						<a href="/studies"><button class="green medium"><span>Let me reconsider...</span></button></a>
 					</div>
 				</form>
 			</div>

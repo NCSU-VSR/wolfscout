@@ -36,6 +36,7 @@ urlpatterns = patterns('',
     
     url(r'^studies/$', 'wolfscout.apps.study.views.studies'),
     url(r'^addStudy/$', 'wolfscout.apps.study.views.add'),
+    url(r'^deleteStudy/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
     url(r'^editStudy/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
     url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
 )

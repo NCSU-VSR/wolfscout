@@ -53,10 +53,13 @@ def delete(request, theStudyID):
     """
     """
     siteDictionary = {}
-    siteDictionary['title'] = "Edit Study"
+    siteDictionary['title'] = "Delete Study"
     study = get_object_or_404(Study, pk=theStudyID)
-    study.delete()
-    return render_to_response('studies.html', siteDictionary, context_instance=RequestContext(request))   
+    siteDictionary['study'] = study
+    if request.method == 'POST':
+        study.delete()
+        return HttpResponseRedirect('/studies')
+    return render_to_response('deleteStudy.html', siteDictionary, context_instance=RequestContext(request))   
     
 @login_required()  
 def add(request):
@@ -64,6 +67,12 @@ def add(request):
     """
     siteDictionary = {}
     siteDictionary['title'] = "Add Study"
-    form = StudyForm(error_class=DivErrorList, auto_id='id_%s', initial={'owner':request.user})
+    if request.method == 'POST':
+        form = StudyForm(request.POST,error_class=DivErrorList)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/studies')
+    else:
+        form = StudyForm(auto_id='id_%s',initial={'owner':request.user})
     siteDictionary['form'] = form
-    return render_to_response('editStudy.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('addStudy.html', siteDictionary, context_instance=RequestContext(request))
