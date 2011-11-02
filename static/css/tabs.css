@@ -11,8 +11,9 @@
   display: block;
   border: 1px solid #dde5ef;
   padding: 0;
+  height: 25px;
 }
-/* line 13, ../../compass/sass/tabs.sass */
+/* line 14, ../../compass/sass/tabs.sass */
 .box .content.tabs .tabmenu ul {
   display: inline-block;
   margin: 0;
@@ -20,15 +21,15 @@
   list-style-type: none;
   width: 100%;
 }
-/* line 19, ../../compass/sass/tabs.sass */
+/* line 20, ../../compass/sass/tabs.sass */
 .box .content.tabs .tabmenu ul li {
   float: left;
   background: none;
   border-right: 1px solid #dde5ef;
   padding: 0;
-  line-height: 29px;
+  line-height: 25px;
 }
-/* line 25, ../../compass/sass/tabs.sass */
+/* line 26, ../../compass/sass/tabs.sass */
 .box .content.tabs .tabmenu ul li a {
   float: left;
   border-right: 1px solid white;
@@ -39,23 +40,23 @@
   text-decoration: none;
   outline: none;
 }
-/* line 34, ../../compass/sass/tabs.sass */
+/* line 35, ../../compass/sass/tabs.sass */
 .box .content.tabs .tabmenu ul li a:hover, .box .content.tabs .tabmenu ul li a:active {
   background: url(../gfx/table-thead.gif) repeat-x left top;
   text-decoration: none;
 }
-/* line 37, ../../compass/sass/tabs.sass */
+/* line 38, ../../compass/sass/tabs.sass */
 .box .content.tabs .tabmenu ul li.ui-tabs-selected a {
   background: url(../gfx/table-thead.gif) repeat-x left top;
   text-decoration: none;
 }
-/* line 40, ../../compass/sass/tabs.sass */
+/* line 41, ../../compass/sass/tabs.sass */
 .box .content.tabs div {
   display: block;
   border-top: 1px solid #f2f4f7;
   padding: 15px;
 }
-/* line 44, ../../compass/sass/tabs.sass */
+/* line 45, ../../compass/sass/tabs.sass */
 .box .content.tabs .ui-tabs-hide {
   display: none;
 }

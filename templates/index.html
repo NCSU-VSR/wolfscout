@@ -6,20 +6,45 @@
 	<div class="section">
 		<div class="box big">
 			<div class="title">
-				<h2>Your Dashboard</h2>
+				<h2>Hey there, {% if user.first_name != '' %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.  Here's what's new...</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<h1>Hey there, {% if user.first_name != '' %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.  Here's what's new...</h1>
-				Duis libero lectus, vestibulum at laoreet sed, elementum id augue. Maecenas ut dapibus arcu. Curabitur
-				malesuada venenatis orci, sed adipiscing diam pharetra sit amet. Donec vulputate consequat ante, a
-				eleifend urna feugiat suscipit. Nunc est dolor.<br />
-				<br />
-				<h2>You have been added to 2 new studies:</h2>
-				<ul>
-					<li>"March 2009 Coyote Tracker" (Added Yesterday - 11:36 AM, by <strong>fuzzybunny</strong>)</li>
-					<li>"2007 Deer/Coyote spatial &amp; temporial" (Added 3 days ago - 8:05 AM, by <strong>awesomepossum</strong>)</li>
-				</ul>
+				<div class="line">
+					<h2>You have been added to 2 new studies:</h2>
+					<ul>
+						<li>"March 2009 Coyote Tracker" (Added Yesterday - 11:36 AM, by <strong>fuzzybunny</strong>)</li>
+						<li>"2007 Deer/Coyote spatial &amp; temporial" (Added 3 days ago - 8:05 AM, by <strong>awesomepossum</strong>)</li>
+					</ul>
+				</div>
+				
+				<div class="line">
+					<h2>Messages: </h2>
+					<ul>
+						<li><a href=""><strong>FROM: wolfscout</strong> - Welcome to Wolfscout!  Open me for awesome information regarding Wolfscout's awesomeness...</a></li>
+						<li><a href=""><strong>FROML chris</strong> - I am message number 2</a></li>
+					</ul>
+				</div>
+				<div class="line">
+					<h2>Notifications: </h2>
+					<br />
+					<a href="">
+					<div class="messages blue">
+						<span></span>
+						Wolfscout has added new features!  Click  here for more information.
+					</div>
+					</a>
+					
+					<div class="messages orange">
+						<span></span>
+						Study <a href="/study/8">Study #8</a> was recently edited by <a href="">chris</a>
+					</div>
+					
+					<div class="messages orange">
+						<span></span>
+						Study <a href="/study/6">Primary Collar 01</a> was recently edited by <a href="">frank</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="box small">
@@ -31,7 +56,7 @@
 				<h4>Most recent studies...</h4>
 				<ol>
 					{% for study in myStudies %}
-					<li><a href="study/{{ data.pk }}" class="tooltip" title="{{ study.description }}">{{ study.title }}</a></li>
+					<li><a href="study/{{ study.pk }}" class="tooltip" title="{{ study.description }}">{{ study.title }}</a></li>
 					{% endfor %}
 				</ol>
 			</div>

@@ -14,7 +14,7 @@
                     <table cellspacing="0" cellpadding="0" border="0" class="table-all">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" name="check" class="checkall" /></th>
+                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
                                 <th>Collar</th>
                                 <th>LMT DATETIME</th>
                                 <th>LATITUDE</th>
@@ -26,7 +26,7 @@
                         <tbody>
                         {% for data in collarDatas %}
                             <tr>
-                                <td><input type="checkbox" name="check" /></td>
+                                <td><input type="checkbox" name="check" class="checkbox-small"/></td>
                                 <td>{{ data.collar }}</td>
                                 <td>{{ data.LMT_DATETIME }}</td>
                                 <td>{{ data.LATITUDE }}</td>
