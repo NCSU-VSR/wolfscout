@@ -117,4 +117,25 @@ dojo.require("esri.dijit.Popup");
         } 
     }
     
+    function enableInput(val){
+        if(!val.checked){
+           $("#" + val.name + ' :input').attr('disabled', true); 
+           $("#" + val.name).block({ 
+                message: 'disabled', 
+                css: { 
+                            border: 'none', 
+                            padding: '15px', 
+                            backgroundColor: '#000', 
+                            '-webkit-border-radius': '10px', 
+                            '-moz-border-radius': '10px', 
+                            opacity: .6, 
+                            color: '#fff'
+                        }
+                }); 
+        }else{
+            $("#" + val.name + ' :input').removeAttr('disabled');
+            $("#" + val.name).unblock();
+        }
+	}
+    
     dojo.addOnLoad(init);

@@ -27,14 +27,6 @@
 				</div>
 				<div class="line">
 					<h2>Notifications: </h2>
-					<br />
-					<a href="">
-					<div class="messages blue">
-						<span></span>
-						Wolfscout has added new features!  Click  here for more information.
-					</div>
-					</a>
-					<br />
 					<div class="messages orange">
 						<span></span>
 						Study <a href="/study/8">Study #8</a> was recently edited by <a href="">chris</a>
@@ -44,6 +36,12 @@
 						<span></span>
 						Study <a href="/study/6">Primary Collar 01</a> was recently edited by <a href="">frank</a>
 					</div>
+					<br />
+					<div class="messages blue">
+						<span></span>
+						Wolfscout has added new features!  Click  here for more information.
+					</div>
+					<br />
 				</div>
 			</div>
 		</div>
@@ -53,11 +51,17 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<h4>Most recent studies...</h4>
+				<h4>Your most recent studies...</h4>
 				<ol>
 					{% for study in myStudies %}
 					<li><a href="study/{{ study.pk }}" class="tooltip" title="{{ study.description }}">{{ study.title }}</a></li>
 					{% endfor %}
+				</ol>
+				<br />
+				<h4>Most recent studies you are a member of...</h4>
+				<ol>
+					<li><a href="">March 2009 Coyote Tracker</a></li>
+					<li><a href="">2007 Deer/Coyote spatial &amp; temporial</a></li>
 				</ol>
 			</div>
 		</div>

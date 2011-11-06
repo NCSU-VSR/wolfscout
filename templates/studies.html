@@ -25,7 +25,7 @@
 					<tbody> 
 						{% for study in myStudies %}
 						<tr> 
-							<td><input type="checkbox" name="check" class="checkbox-small"/></td>
+							<td><input type="checkbox" name="{{ study.pk }}" class="checkbox-small"/></td>
 							<td><a href="/study/{{ study.pk }}">{{ study.title }}</a></td>
 							<td>{{ study.description }}</td>
 							<td>{{ study.last_accessed }}</td>
@@ -53,7 +53,7 @@
 				</table>
 				<div id="pager" class="pager">
 					<form action="">
-						<button type="submit" class="red"><span>Delete</span></button>
+						<button type="submit" class="red"><span>Delete Selected</span></button>
 						<a href="/addStudy"><button type="submit" class="green"><span>Add New Study</span></button></a>
 						<div>
 							<img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />

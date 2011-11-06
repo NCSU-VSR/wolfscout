@@ -13,13 +13,11 @@
 				<form method="post" action=".">
 					<div class="line">
 					{% csrf_token %}
-					<div class="messages orange">
-						<span></span>
-						Are you sure you want to delete {{ study.title }}?  This cannot be undone.
+						Are you sure you want to delete study <strong>{{ study.title }}</strong>?  This cannot be undone.
 					</div>
 					<div class="line">
 						<button type="submit" class="red medium"><span>Delete Study</span></button>
-						<a href="/studies"><button class="green medium"><span>Let me reconsider...</span></button></a>
+						<a href="/studies"><button class="blue medium"><span>Cancel</span></button></a>
 					</div>
 				</form>
 			</div>
