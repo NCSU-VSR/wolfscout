@@ -1,3 +1,4 @@
+
 ### Django Imports ####
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -17,6 +18,7 @@ from apps.crawler.gpscollar.models import Collar
 from apps.crawler.gpscollar.models import CollarData
 from apps.general.views import getDictionary
 from apps.crawler.gpscollar.forms import collarDataFileForm
+from apps.crawler.gpscollar.support import *
 ### Views ####
 
 def getCollars(request):
@@ -98,6 +100,12 @@ def getKMLForAllCollarPoints(request, theCollarID):
     siteDictionary['dataPoints'] = dataPoints
     siteDictionary['theCollar'] = theCollar
     return render_to_kml('dataPoints.kml', siteDictionary, context_instance=RequestContext(request))
+
+
+def getKMLForAllCollarPointsInteractions(request):
+    siteDictionary = {}
+    siteDictionary['matches'] = processAllCollars()
+    return render_to_kml('interactions.kml', siteDictionary, context_instance=RequestContext(request))
 
 from django.core.urlresolvers import reverse
 
