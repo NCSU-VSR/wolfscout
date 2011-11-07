@@ -485,25 +485,25 @@ img {
 .box .content .message {
   display: block;
   border-bottom: 1px solid #c3d0e1;
-  padding: 0 0 13px;
+  padding: 12px 0 12px;
   *padding: 0 0 8px;
   font-size: 11px;
 }
 
 @-moz-document url-prefix() {
-  /* line 368, ../../compass/sass/style.sass */
+  /* line 369, ../../compass/sass/style.sass */
   .box .title h2 {
     font-weight: 100;
   }
 }
 
-/* line 372, ../../compass/sass/style.sass */
+/* line 373, ../../compass/sass/style.sass */
 .tipsy {
   background: url(../gfx/tooltip.gif) no-repeat top center;
   padding: 5px;
 }
 
-/* line 376, ../../compass/sass/style.sass */
+/* line 377, ../../compass/sass/style.sass */
 .tipsy-inner {
   background-color: #002e68;
   padding: 5px 8px 4px 8px;
@@ -513,27 +513,27 @@ img {
   max-width: 200px;
 }
 
-/* line 384, ../../compass/sass/style.sass */
+/* line 385, ../../compass/sass/style.sass */
 .progressbar {
   border: 1px solid #c3d0e1;
   padding: 0 1px;
   height: 29px;
   text-align: left;
 }
-/* line 389, ../../compass/sass/style.sass */
+/* line 390, ../../compass/sass/style.sass */
 .progressbar div {
   display: block;
   background: url(../gfx/loading-2.gif) repeat left top transparent;
   height: 100%;
 }
-/* line 393, ../../compass/sass/style.sass */
+/* line 394, ../../compass/sass/style.sass */
 .progressbar.animated div {
   display: block;
   background: url(../gfx/loading.gif) repeat left top transparent;
   height: 100%;
 }
 
-/* line 398, ../../compass/sass/style.sass */
+/* line 399, ../../compass/sass/style.sass */
 .footer {
   float: left;
   border-top: 1px solid #c3d0e1;
@@ -543,27 +543,27 @@ img {
   color: #949ea8;
   width: 980px;
 }
-/* line 406, ../../compass/sass/style.sass */
+/* line 407, ../../compass/sass/style.sass */
 .footer a {
   color: #949ea8;
   text-decoration: underline;
 }
-/* line 409, ../../compass/sass/style.sass */
+/* line 410, ../../compass/sass/style.sass */
 .footer a:link, .footer a:active, .footer a:visited {
   color: #949ea8;
   text-decoration: underline;
 }
-/* line 412, ../../compass/sass/style.sass */
+/* line 413, ../../compass/sass/style.sass */
 .footer a:hover {
   color: #949ea8;
   text-decoration: none;
 }
-/* line 415, ../../compass/sass/style.sass */
+/* line 416, ../../compass/sass/style.sass */
 .footer .split {
   float: left;
   width: 50%;
 }
-/* line 418, ../../compass/sass/style.sass */
+/* line 419, ../../compass/sass/style.sass */
 .footer .split.right {
   text-align: right;
 }

@@ -4,23 +4,6 @@
 
 {% block content %}	
 	<div class="section">
-		<div class="box big">
-			<div class="title">
-				<h2>{{ study.title }}</h2>
-				<span class="hide"></span>
-			</div>
-			<div class="content">
-				<div class="line">
-					
-					<iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?vpsrc=6&amp;ctz=240&amp;ie=UTF8&amp;msa=0&amp;msid=208611374930399727747.0004b035dbbb0e6242832&amp;ll=35.472719,-78.931264&amp;spn=23.875,57.630033&amp;t=f&amp;ecpose=35.472719,-78.931264,227846.09,0,0,0&amp;output=embed"></iframe><br /><small>View <a href="http://maps.google.com/maps/ms?vpsrc=6&amp;ctz=240&amp;ie=UTF8&amp;msa=0&amp;msid=208611374930399727747.0004b035dbbb0e6242832&amp;ll=35.472719,-78.931264&amp;spn=23.875,57.630033&amp;t=f&amp;ecpose=35.472719,-78.931264,227846.09,0,0,0&amp;source=embed" style="color:#0000FF;text-align:left">Wolfscout</a> in a larger map</small>
-					<!--<div class="soria">
-						<div id="arc_map" class="shadow">
-							<span id="status" class="loading"></span>
-						</div>
-					</div>-->
-				</div>
-			</div>
-		</div>
 		<div class="box small">
 			<div class="title">
 				<h2>Parameters</h2>
@@ -30,7 +13,10 @@
 				<div class="accordion">
 					<h3><a href="#">Date Range</a></h3>
 					<div>
-						<form action="" method="post">
+						<input type="checkbox" id="check-daterange" name="daterange" checked="checked" onchange="enableInput(this);" />
+						<label for="check-daterange">Enable</label>
+						
+						<form id="daterange" action="" method="post">
 							<div class="line">
 								<label>From</label>
 								<input type="text" class="datepicker" /> 
@@ -39,11 +25,16 @@
 								<label>To</label>
 								<input type="text" class="datepicker" /> 
 							</div>
+							<a href="#"><button type="submit" class="green"><span>Update</span></button></a>
 						</form>
+						
 					</div>
 					<h3><a href="#">Time of Day</a></h3>
 					<div>
-						<form action="" method="post">
+						<input type="checkbox" id="check-timerange" name="timerange" checked="checked" onchange="enableInput(this);" />
+						<label for="check-timerange">Enable</label>
+						
+						<form id="timerange" action="" method="post">
 							<div class="line">
 								<label>From</label>
 								<input type="text" class="timepicker" /> 
@@ -52,26 +43,30 @@
 								<label>To</label>
 								<input type="text" class="timepicker" /> 
 							</div>
+							<a href="#"><button type="submit" class="green"><span>Update</span></button></a>
 						</form>
 					</div>
 					<h3><a href="#">Position Layers</a></h3>
 					<div>
-						<table cellspacing="0" cellpadding="0" border="0"> 
+						<input type="checkbox" id="check-positionlayers" name="positionlayers" checked="checked" onchange="enableInput(this);" />
+						<label for="check-positionlayers">Enable</label>
+
+						<table id="positionlayers" cellspacing="0" cellpadding="0" border="0"> 
 							<thead> 
 								<tr> 
-									<th><input type="checkbox" name="check" class="checkall" /></th>
+									<th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
 									<th>Layers</th>
 								</tr> 
 							</thead> 
 							<tbody> 
 								<tr> 
-									<td><input type="checkbox" checked="basemap.layer.visible" name="checkBM" onChange="toggleLayer(this);"/></td>
+									<td><input type="checkbox" checked="basemap.layer.visible" name="checkBM" onChange="toggleLayer(this);" class="checkbox-small"/></td>
 									<td>Basemap</td>
 								</tr>
 							</tbody> 
 							<tbody> 
 								<tr> 
-									<td><input type="checkbox" checked="featureLayer.layer.visible" name="checkFL" onChange="toggleLayer(this);"/></td>
+									<td><input type="checkbox" checked="featureLayer.layer.visible" name="checkFL" onChange="toggleLayer(this);" class="checkbox-small"/></td>
 									<td>Feature Layer</td>
 								</tr>
 							</tbody>
@@ -79,35 +74,89 @@
 					</div>
 					<h3><href="#">Collars Displayed</a></h3>
 					<div>
-						<table cellspacing="0" cellpadding="0" border="0"> 
+						<input type="checkbox" id="check-collarsdisplayed" name="collarsdisplayed" checked="checked" onchange="enableInput(this);" />
+						<label for="check-collarsdisplayed">Enable</label>
+						
+						<table id="collarsdisplayed" cellspacing="0" cellpadding="0" border="0"> 
 							<thead> 
 								<tr> 
-									<th><input type="checkbox" name="check" class="checkall" /></th>
+									<th><input type="checkbox" name="check" class="checkall  checkbox-small" /></th>
 									<th>Species</th>
 								</tr> 
 							</thead> 
 							<tbody> 
 								<tr> 
-									<td><input type="checkbox" name="check" /></td>
+									<td><input type="checkbox" name="check" class="checkbox-small" /></td>
 									<td>Deer</td>
 								</tr>
 							</tbody> 
 							<tbody> 
 								<tr> 
-									<td><input type="checkbox" name="check" /></td>
+									<td><input type="checkbox" name="check" class="checkbox-small" /></td>
 									<td>Coyote</td>
 								</tr>
 							</tbody>
 							<tbody> 
 								<tr> 
-									<td><input type="checkbox" name="check" /></td>
+									<td><input type="checkbox" name="check" class="checkbox-small" /></td>
 									<td>Cattle</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
+				<div class="message">
+					<h3>Description:</h3>
+					{{ study.description }}
+				</div>
+				<div class="message">
+					<h3>Owner:</h3>
+					{{ study.owner }}
+				</div>
+				<div class="message">
+					<h3>Last accessed:</h3>
+					{{ study.last_accessed }}
+				</div>
+				<div class="message">
+					<h3>Members:</h3>
+					{% if study.members.all|length > 0 %}
+					<ol>
+						{% for member in study.members.all %}
+						<li>{{ member.username }}</li>
+						{% endfor %}
+					</ol>
+					{% else %}
+					None
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="box big">
+			<div class="title">
+				<h2>{{ study.title }}</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="lines">
+					<div class="soria">
+						<div id="arc_map" class="shadow">
+							<span id="status" class="loading"></span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<!--<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Gmaps Demo - Proof of Concept</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content tabs">
+				<div class="line">
+					<iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?vpsrc=6&amp;ctz=240&amp;ie=UTF8&amp;msa=0&amp;msid=208611374930399727747.0004b035dbbb0e6242832&amp;ll=35.472719,-78.931264&amp;spn=23.875,57.630033&amp;t=f&amp;ecpose=35.472719,-78.931264,227846.09,0,0,0&amp;output=embed"></iframe>
+				</div>
+		</div>
+	</div>-->
 {% endblock %}

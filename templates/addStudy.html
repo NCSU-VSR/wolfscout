@@ -10,13 +10,14 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<form name="studyForm" id="studyForm" method="post" action=".">
+				<form method="post" action=".">
 					<div class="line">
 					{% csrf_token %}
 					{{ form.as_p }}
 					</div>
 					<div class="line">
 						<button type="submit" class="green medium"><span>Add Study</span></button>
+						<a href="/studies"><button class="blue medium"><span>Cancel</span></button></a>
 					</div>
 				</form>
 			</div>
