@@ -23,9 +23,9 @@ class Station(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=True)
-    
+
     def __unicode__(self):
-        return str(self.id)
+        return str(self.station_code)
 
 class WeatherDataPoint(models.Model):
     """

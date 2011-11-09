@@ -12,6 +12,7 @@ from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
 ### Global Imports ####
 import datetime
+import requests
 #### Local Imports ####
 from apps.crawler.cronos.models import Station, WeatherDataPoint
 
@@ -24,6 +25,17 @@ def scrapeStations():
     stations to the correct state. This is used to ensure we only query valid
     weather stations.
     """
+    print "Scraping Stations with key: " + settings.CRONOS_API_KEY
+    req = requests.get('http://www.nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSinventory.php')
+    if not req.status_code == 200:
+        return 1
+    lines = req.content.split('\n')
+    lines = lines[16:]
+    for line in lines:
+        the_line = line.split('|')
+        station = Station()
+        station.station_code = str(the_line[0])
+        print "The station is " + str(station)
     return 0
 
 def getClosestStation(dataPoint):
