@@ -10,6 +10,7 @@ from django.forms import ModelForm, ValidationError
 from django import forms
 from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
+from django.contrib.gis.geos import Point
 ### Global Imports ####
 import datetime
 import requests
@@ -24,6 +25,9 @@ def scrapeStations():
     the latest items for the active weather stations and will set all inactive
     stations to the correct state. This is used to ensure we only query valid
     weather stations.
+
+    The staions presently reports the data in the format:
+    station|name|lat|lon|elev|network|city|county|state|huc|climdiv|startdate|enddate|active
     """
     print "Scraping Stations with key: " + settings.CRONOS_API_KEY
     req = requests.get('http://www.nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSinventory.php')
@@ -35,7 +39,17 @@ def scrapeStations():
         the_line = line.split('|')
         station = Station()
         station.station_code = str(the_line[0])
-        print "The station is " + str(station)
+        station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
+        station.name = the_line[1]
+        station.elevation = float(the_line[4])
+        station.network = the_line[5]
+        station.city = the_line[6]
+        station.county = the_line[7]
+        station.state = the_line[8]
+        station.huc = the_line[9]
+        station.climatedir = the_line[10]
+        station.save()
+        print "The station is " + str(station) + "it is at: " + str(station.LOCATION)
     return 0
 
 def getClosestStation(dataPoint):
