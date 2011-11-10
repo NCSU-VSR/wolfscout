@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 import datetime
+from apps.crawler.cronos.models import WeatherDataPoint
 # Create your models here.
 class Collar(models.Model):
 
@@ -63,5 +64,7 @@ class CollarData(models.Model):
     DATE_ADDED = models.DateTimeField(default=datetime.datetime.now())
     objects = models.GeoManager()
 
+    weatherDataPoint = models.ForeignKey(WeatherDataPoint, null=True,
+            blank=True)
     def __unicode__(self):
         return str(self.id)
