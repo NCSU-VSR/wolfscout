@@ -99,14 +99,52 @@ def buildRequest(station, startDate, endDate, obType):
     """
     url = "http://www.nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSdata.php?" \
           "station=" + str(station.station_code) + "&" +\
-          "start=" + "2009-08-14" + "&" \
-          "end=" + "2009-08-24" + "&" \
-          "obtype=" + "H" + "&" \
-          "parameter=" + "temp,rh,sr,ws,precip" + "&" \
+          "start=" + startDate + "&" \
+          "end=" + endDate + "&" \
+          "obtype=" + obType + "&" \
+          "parameter=" + "ob,temp,temp10,rh,rh10,ws,ws02,wd,wd02,gust,precip,pres,sr,par,st,sm,leafwetness1" + "&" \
           "hash=" + settings.CRONOS_API_KEY
-    url = "http://nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSdata.php?station=317079&start=2009-01-01&end=2009-01-01%2003:00:00&obtype=H&parameter=temp,dew,slp&hash="
-    url += settings.CRONOS_API_KEY
+    #url = "http://nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSdata.php?station=317079&start=2009-01-01&end=2009-01-01%2003:00:00&obtype=H&parameter=temp,dew,slp&hash="
+    #url += settings.CRONOS_API_KEY
     return url
+
+def generateDateTimeString(dataPoint):
+    dateString = ""
+    dateString += str(dataPoint.LMT_DATETIME.date().year) + "-"
+    if dataPoint.LMT_DATETIME.date().month < 10:
+        dateString += "0" + str(dataPoint.LMT_DATETIME.date().month) + "-"
+    else:
+        dateString += str(dataPoint.LMT_DATETIME.date().month) + "-"
+    if dataPoint.LMT_DATETIME.date().day < 10:
+        dateString += "0" + str(dataPoint.LMT_DATETIME.date().day)
+    else:
+        dateString += str(dataPoint.LMT_DATETIME.date().day)
+    return dateString
+
+def processWeatherData(dataPoint, station, WeatherDataResponse):
+    weather_lines = WeatherDataResponse.content.split('\n')
+    #First we must remove all metadata
+    new_weather_lines = []
+    for line in weather_lines:
+        if "##" not in line:
+            #line is probably worthless
+            new_weather_lines.append(line)
+    #Now we get the categories
+    print "the categories are: "
+    categories = new_weather_lines[1].split('|')
+    print categories
+    #now make a weather point
+    print "the weather data is: "
+    print new_weather_lines[2]
+    weatherData = new_weather_lines[2].split('|')
+    weatherDict = {}
+    for index, value in enumerate(categories):
+        weatherDict[value] = weatherData[index]
+    weatherPoint = WeatherDataPoint()
+    weatherPoint.station = station
+    weatherPoint.save()
+    dataPoint.weatherDataPoint = weatherPoint
+    return True
 
 def getWeatherData(dataPoint):
     """
@@ -115,5 +153,11 @@ def getWeatherData(dataPoint):
     results will be validated and added into the database
     """
     station = getClosestStation(dataPoint=dataPoint)
-    url =  buildRequest(station=station, startDate="fred", endDate="sue", obType="steve")
-    return requests.get(url)
+    dateToSearch = generateDateTimeString(dataPoint)
+    print dateToSearch
+    url =  buildRequest(station=station, startDate=dateToSearch, endDate=dateToSearch, obType="H")
+    print url
+    processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
+    return True
+
+
