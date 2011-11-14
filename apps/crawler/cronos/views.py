@@ -102,7 +102,7 @@ def buildRequest(station, startDate, endDate, obType):
           "start=" + startDate + "&" \
           "end=" + endDate + "&" \
           "obtype=" + obType + "&" \
-          "parameter=" + "ob,temp,temp10,rh,rh10,ws,ws02,wd,wd02,gust,precip,pres,sr,par,st,sm,leafwetness1" + "&" \
+          "parameter=" + "all" + "&" \
           "hash=" + settings.CRONOS_API_KEY
     #url = "http://nc-climate.ncsu.edu/dynamic_scripts/cronos/getCRONOSdata.php?station=317079&start=2009-01-01&end=2009-01-01%2003:00:00&obtype=H&parameter=temp,dew,slp&hash="
     #url += settings.CRONOS_API_KEY
@@ -139,11 +139,22 @@ def processWeatherData(dataPoint, station, WeatherDataResponse):
     weatherData = new_weather_lines[2].split('|')
     weatherDict = {}
     for index, value in enumerate(categories):
+        print "Dictionary key is: " + str(value)
+        print "Dictionary value is:" + weatherData[index]
         weatherDict[value] = weatherData[index]
     weatherPoint = WeatherDataPoint()
+
+    for key, value in weatherDict.items():
+        try:
+            print "Key is: " + str(key)
+            print "Value is: " + str(value)
+            setattr(weatherPoint, key, float(value))
+        except:
+            continue
     weatherPoint.station = station
     weatherPoint.save()
     dataPoint.weatherDataPoint = weatherPoint
+    dataPoint.save()
     return True
 
 def getWeatherData(dataPoint):

@@ -10,8 +10,8 @@ class StationAdmin(admin.ModelAdmin):
     search_fields = ('station_code','LOCATION','name',)
 
 class WeatherDataPointAdmin(admin.ModelAdmin):
-    list_display = ('id','temperature','station',)
-    search_fields = ('id','temperature','station',)
+    list_display = ('id','temp','station',)
+    search_fields = ('id','temp','station',)
 
 ##### Admin Registers ######
 admin.site.register(Station, StationAdmin)
