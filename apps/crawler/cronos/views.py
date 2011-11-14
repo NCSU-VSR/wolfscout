@@ -40,11 +40,18 @@ def scrapeStations():
         the_line = line.split('|')
         if len(the_line) != 14:
             continue
+        print the_line
+        print "Station Type: " + the_line[5]
         if the_line[5] == "ASOS":
             station, created = Station.objects.get_or_create(station_code=str(the_line[0]))
+            #station = Station()
+            station.station_code = str(the_line[0])
             station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
             station.name = the_line[1]
-            station.elevation = float(the_line[4])
+            try:
+                station.elevation = float(the_line[4])
+            except:
+                pass
             station.network = the_line[5]
             station.city = the_line[6]
             station.county = the_line[7]
@@ -73,6 +80,7 @@ def getClosestStation(dataPoint):
             the_closest_station = station
     print "The closest station was: " + str(the_closest_station)
     print "It was: " + str(distance_to_station) + " kilometers away from the collar data point."
+    station.distanceToPoint = distance_to_station
     return station
 
 def buildRequest(station, startDate, endDate, obType):
@@ -152,6 +160,7 @@ def processWeatherData(dataPoint, station, WeatherDataResponse):
         except:
             continue
     weatherPoint.station = station
+    weatherPoint.distance_to_station = station.distanceToPoint
     weatherPoint.save()
     dataPoint.weatherDataPoint = weatherPoint
     dataPoint.save()

@@ -14,7 +14,7 @@ class Station(models.Model):
     station_code = models.CharField(max_length=10,null=False, blank=False, unique=True)
     LOCATION = models.PointField()
     name = models.CharField(max_length=100,)
-    elevation = models.DecimalField(max_digits=12, decimal_places=2)
+    elevation = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     network = models.CharField(max_length=100,)
     city = models.CharField(max_length=100,)
     county = models.CharField(max_length=100,)
@@ -197,6 +197,7 @@ class WeatherDataPoint(models.Model):
     #sunset = models.DateTimeField()
     #heat_index = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     #extreme_events = models.TextField(null=True, blank=True)
+    distance_to_station = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     station = models.ForeignKey(Station, null=True, blank=True)
 
     def __unicode__(self):
