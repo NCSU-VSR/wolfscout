@@ -38,20 +38,22 @@ def scrapeStations():
     lines = lines[16:]
     for line in lines:
         the_line = line.split('|')
-        station = Station()
-        station.station_code = str(the_line[0])
-        station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
-        station.name = the_line[1]
-        station.elevation = float(the_line[4])
-        station.network = the_line[5]
-        station.city = the_line[6]
-        station.county = the_line[7]
-        station.state = the_line[8]
-        station.huc = the_line[9]
-        station.climatedir = the_line[10]
-        station.save()
-        print "The station is " + str(station) + "it is at: " + str(station.LOCATION)
-    return 0
+        if len(the_line) != 14:
+            continue
+        if the_line[5] == "ASOS":
+            station, created = Station.objects.get_or_create(station_code=str(the_line[0]))
+            station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
+            station.name = the_line[1]
+            station.elevation = float(the_line[4])
+            station.network = the_line[5]
+            station.city = the_line[6]
+            station.county = the_line[7]
+            station.state = the_line[8]
+            station.huc = the_line[9]
+            station.climatedir = the_line[10]
+            station.save()
+            print "The station is " + str(station) + "it is at: " + str(station.LOCATION)
+    return True
 
 def getClosestStation(dataPoint):
     """
