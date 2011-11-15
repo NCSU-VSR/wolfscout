@@ -9,6 +9,10 @@ class Collar(models.Model):
     def __unicode__(self):
         return str(self.collarID)
 
+    def get_fields(self):
+        # make a list of field/values.
+        return [(field.name, field.value_to_string(self)) for field in Collar._meta.fields]
+
 class CollarData(models.Model):
     """
     Collar Data should relate to a single specimen at a given time
@@ -68,3 +72,7 @@ class CollarData(models.Model):
             blank=True)
     def __unicode__(self):
         return str(self.id)
+    
+    def get_fields(self):
+        # make a list of field/values.
+        return [(field.name, field.value_to_string(self)) for field in CollarData._meta.fields]

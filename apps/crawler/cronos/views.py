@@ -43,8 +43,8 @@ def scrapeStations():
         print the_line
         print "Station Type: " + the_line[5]
         if the_line[5] == "ASOS":
-            station, created = Station.objects.get_or_create(station_code=str(the_line[0]))
-            #station = Station()
+            #station, created = Station.objects.get_or_create(station_code=str(the_line[0]))
+            station = Station()
             station.station_code = str(the_line[0])
             station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
             station.name = the_line[1]

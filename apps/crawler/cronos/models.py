@@ -27,6 +27,10 @@ class Station(models.Model):
 
     def __unicode__(self):
         return str(self.station_code)
+    
+    def get_fields(self):
+        # make a list of field/values.
+        return [(field.name, field.value_to_string(self)) for field in Station._meta.fields]
 
 class WeatherDataPoint(models.Model):
     """
@@ -202,5 +206,9 @@ class WeatherDataPoint(models.Model):
 
     def __unicode__(self):
         return str(self.id)
+    
+    def get_fields(self):
+        # make a list of field/values.
+        return [(field.name, field.value_to_string(self)) for field in WeatherDataPoint._meta.fields]
 
 

@@ -19,6 +19,7 @@ from apps.crawler.gpscollar.models import CollarData
 from apps.general.views import getDictionary
 from apps.crawler.gpscollar.forms import collarDataFileForm
 from apps.crawler.gpscollar.support import *
+from apps.crawler.cronos.models import *
 ### Views ####
 
 import csv
@@ -31,12 +32,19 @@ def getCollarCSV(request, theCollarID):
     
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
-
     writer = csv.writer(response)
     
-    writer.writerow(['Collar ID', 'LMT Date/Time', 'Latitude', 'Longitude', 'Height'])
-    
+    #writer.writerow(['Collar ID', 'LMT Date/Time', 'Latitude', 'Longitude', 'Height'])
+    headerList = []
+    #fields = 
+    for field in CollarData._meta.fields:
+        headerList.append(field.name)
+    #Now add the weather fields
+    for field in WeatherDataPoint._meta.fields:
+        headerList.append(field.name)
+    writer.writerow(headerList)
     for data in collarDatas:
+        #data.weatherDataPoint.
         writer.writerow([data.collar, data.LMT_DATETIME, data.LATITUDE, data.LONGITUDE, data.HEIGHT])
 
     return response
