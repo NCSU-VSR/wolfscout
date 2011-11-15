@@ -10,15 +10,47 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<form name="collarIDForm" id="collarIDForm" method="post" action="">
-					{% csrf_token %}
-					<div class="line">
-                        {{ form }}
-					</div>
-					<div class="line">
-						<button type="submit" class="green medium"><span>Get selected collar data</span></button>
-					</div>
-				</form>
+				<div class="line">
+                    <table cellspacing="0" cellpadding="0" border="0" class="table-all">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
+                                <th>Collar ID</th>
+                                <th>Export Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for collar in collars %}
+                            <tr>
+                                <td><input type="checkbox" name="check" class="checkbox-small"/></td>
+                                <td>{{ collar }}</td>
+                                <td>
+                                    <a href="/collar/{{ collar }}/csv" class="tooltip" title="Export CSV"><img src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div id="pager" class="pager">
+                        <form action="">
+                            <button type="submit" class="red"><span>Delete</span></button>
+                            <div>
+                                <img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
+                                <img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />
+                                <input type="text" class="pagedisplay"/>
+                                <img src="{{ STATIC_URL }}gfx/table-next.gif" class="next" alt="Next" />
+                                <img src="{{ STATIC_URL }}gfx/table-last.gif" class="last" alt="Last" />
+                            </div>
+                            <select class="pagesize">
+                                <option selected="selected" value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>

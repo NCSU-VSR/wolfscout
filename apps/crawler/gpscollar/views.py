@@ -19,6 +19,26 @@ from apps.general.views import getDictionary
 from apps.crawler.gpscollar.forms import collarDataFileForm
 ### Views ####
 
+import csv
+from django.http import HttpResponse
+
+def getCollarCSV(request, theCollarID):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=' + theCollarID + '.csv'
+    
+    theCollar = get_object_or_404(Collar, collarID=theCollarID)
+    collarDatas = CollarData.objects.filter(collar=theCollar)
+
+    writer = csv.writer(response)
+    
+    writer.writerow(['Collar ID', 'LMT Date/Time', 'Latitude', 'Longitude', 'Height'])
+    
+    for data in collarDatas:
+        writer.writerow([data.collar, data.LMT_DATETIME, data.LATITUDE, data.LONGITUDE, data.HEIGHT])
+
+    return response
+
 def getCollars(request):
     """
     createCollarID first looks up the collar in the db
@@ -61,7 +81,6 @@ def collarForm(request):
     else:
         form = CollarIDForm()
     return render_to_response('collar.html', {'form': form,}, context_instance=RequestContext(request))
-
 
 def uploadCollarDataFile(request):
     if request.method == 'POST':

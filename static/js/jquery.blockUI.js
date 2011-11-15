@@ -89,8 +89,8 @@ $.blockUI.defaults = {
 		textAlign:	'center',
 		color:		'#000',
 		border:		'3px solid #aaa',
-		backgroundColor:'#fff',
-		cursor:		'wait'
+		backgroundColor:'#fff'
+		//cursor:		'wait'
 	},
 	
 	// minimal style set used when themes are used
@@ -103,8 +103,8 @@ $.blockUI.defaults = {
 	// styles for the overlay
 	overlayCSS:  {
 		backgroundColor: '#000',
-		opacity:	  	 0.6,
-		cursor:		  	 'wait'
+		opacity:	  	 0.6
+		//cursor:		  	 'wait'
 	},
 
 	// styles applied when using $.growlUI
@@ -398,7 +398,7 @@ function remove(el, opts) {
 		els = $('body').children().filter('.blockUI').add('body > .blockUI');
 	else
 		els = $('.blockUI', el);
-
+    
 	if (full)
 		pageBlock = pageBlockEls = null;
 

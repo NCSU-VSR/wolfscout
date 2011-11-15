@@ -17,8 +17,10 @@ class Study(models.Model):
 
     collars = models.ManyToManyField(Collar,related_name="collarsForStudy",
                                      null=True,blank=True)
+    collars.help_text = ''
     members = models.ManyToManyField(User,related_name="membersForStudy",
                                          null=True,blank=True)
+    members.help_text = ''
     title = models.CharField(max_length=100,null=False,blank=False)
     description = models.TextField(null=True, blank=True)
     last_accessed = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now())

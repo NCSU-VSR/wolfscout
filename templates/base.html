@@ -80,7 +80,12 @@
 						</li> 
 					</ul> 
 				</li>
-				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}"><a href="/collar">Collar</a></li>
+				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}">
+					<a href="/collar">Collar</a>
+					<ul> 
+						<li><a href="/collar">Export</a></li>
+					</ul>
+				</li>
 			</ul>
 			<div class="search">
 				<form action="" method="post">

@@ -129,7 +129,8 @@ dojo.require("esri.dijit.Popup");
                             '-webkit-border-radius': '10px', 
                             '-moz-border-radius': '10px', 
                             opacity: .6, 
-                            color: '#fff'
+                            color: '#fff',
+                            cursor: null
                         }
                 }); 
         }else{
