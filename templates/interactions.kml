@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.google.com/earth/kml/2">
+<Document>
+	{% for dataPoint in matches %}
+	<Placemark>
+	    <name>Match for {{dataPoint.sourceCollarID}} and {{ dataPoint.matchedCollarID }}</name>
+	    <description>{{dataPoint.sourceCollarID}} and {{ dataPoint.matchedCollarID }} matched on {{dataPoint.datetime}}.
+	    They were {{ dataPoint.distance }} apart.
+	    </description>
+	       <Point>
+                <coordinates>{{dataPoint.locationY}},{{dataPoint.locationX}},0</coordinates>
+        </Point>
+    </Placemark>
+	{% endfor %}
+</Document>
+</kml>
