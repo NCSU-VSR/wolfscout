@@ -43,9 +43,18 @@ def getCollarCSV(request, theCollarID):
     for field in WeatherDataPoint._meta.fields:
         headerList.append(field.name)
     writer.writerow(headerList)
+    
     for data in collarDatas:
-        #data.weatherDataPoint.
-        writer.writerow([data.collar, data.LMT_DATETIME, data.LATITUDE, data.LONGITUDE, data.HEIGHT])
+        dataList = []
+        dataValues = data.get_fields()
+        for val in dataValues:
+            dataList.append(val[1])
+        if data.weatherDataPoint:
+            weatherValues = data.weatherDataPoint.get_fields()
+            for weatherVal in weatherValues:
+                print "The value was " + str(weatherVal[1])
+                dataList.append(weatherVal[1])
+        writer.writerow(dataList)
 
     return response
 
