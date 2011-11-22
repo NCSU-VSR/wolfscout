@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Collar Data</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="line">
+                    <table cellspacing="0" cellpadding="0" border="0" class="table-all">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
+                                <th>Collar ID</th>
+                                <th>Export Single</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+						{% for field in form_collars %}
+                            <tr>
+								<td>{{ field }}</td>
+                                <td>{{ field.label }}</td>
+								<td>
+                                    <a href="/collar_export/{{ collar }}/csv/0" class="tooltip" title="Export Collar Data CSV"><img src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></a>
+									<a href="/collar_export/{{ collar }}/csv/1" class="tooltip" title="Export Collar Data + Weather CSV"><img src="{{ STATIC_URL }}gfx/icon-csv-weather.png" alt="edit" /></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div id="pager" class="pager">
+                        <form method="post" action=".">{% csrf_token %}
+							<button type="submit" class="green"><span>Export Multiple Collar Data CSV</span></button>
+							<button type="submit" class="blue"><span>Export Multiple Collar Data + Weather CSV</span></button>
+                            <div>
+                                <img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
+                                <img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />
+                                <input type="text" class="pagedisplay"/>
+                                <img src="{{ STATIC_URL }}gfx/table-next.gif" class="next" alt="Next" />
+                                <img src="{{ STATIC_URL }}gfx/table-last.gif" class="last" alt="Last" />
+                            </div>
+                            <select class="pagesize">
+                                <option selected="selected" value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section">
+		<div class="box medium">
+			<div class="title">
+				<h2>Filter Collar Data</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="line">
+                    <table cellspacing="0" cellpadding="0" border="0" >
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
+                                <th>Collar Fields</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for field in form_collars_filter %}
+                            <tr>
+								<td>{{ field }}</td>
+                                <td>{{ field.label }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+			</div>
+		</div>
+		<div class="box medium">
+			<div class="title">
+				<h2>Filter Weather Data</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<div class="line">
+					<div class="line">
+	                    <table cellspacing="0" cellpadding="0" border="0" >
+	                        <thead>
+	                            <tr>
+	                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
+	                                <th>Weather Fields</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                        {% for field in form_weather_filter %}
+	                            <tr>
+									<td>{{ field }}</td>
+	                                <td>{{ field.label }}</td>
+	                            </tr>
+	                        {% endfor %}
+	                        </tbody>
+	                    </table>
+	                </div>
+                </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Study</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<form method="post" action="">
+					<div class="line">
+					{% csrf_token %}
+					{{ form.as_p }}
+					</div>
+					<div class="line">
+						<button type="submit" class="green medium"><span>Save</span></button>
+						<a href="/studies"><button class="blue medium"><span>Cancel</span></button></a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

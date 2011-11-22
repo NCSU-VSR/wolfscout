@@ -46,7 +46,7 @@ def edit(request, theStudyID):
     else:
         form = StudyForm(error_class=DivErrorList, auto_id='id_%s', instance=study)
     siteDictionary['form'] = form
-    return render_to_response('editStudy.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('study_edit.html', siteDictionary, context_instance=RequestContext(request))
 
 @login_required()  
 def delete(request, theStudyID):
@@ -59,7 +59,7 @@ def delete(request, theStudyID):
     if request.method == 'POST':
         study.delete()
         return HttpResponseRedirect('/studies')
-    return render_to_response('deleteStudy.html', siteDictionary, context_instance=RequestContext(request))   
+    return render_to_response('study_delete.html', siteDictionary, context_instance=RequestContext(request))   
     
 @login_required()  
 def add(request):
@@ -75,4 +75,4 @@ def add(request):
     else:
         form = StudyForm(auto_id='id_%s', initial={'owner':request.user})
     siteDictionary['form'] = form
-    return render_to_response('addStudy.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('study_add.html', siteDictionary, context_instance=RequestContext(request))

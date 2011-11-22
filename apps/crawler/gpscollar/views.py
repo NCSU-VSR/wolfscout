@@ -10,86 +10,99 @@ from django.forms import ModelForm, ValidationError
 from django import forms
 from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
+from django.http import HttpResponse
 ### Global Imports ####
 import datetime
+import csv
 ### Local Imports ###
-from apps.crawler.gpscollar.collar import CollarParser
-from apps.crawler.gpscollar.models import Collar
-from apps.crawler.gpscollar.models import CollarData
+from apps.crawler.gpscollar.collar import *
 from apps.general.views import getDictionary
-from apps.crawler.gpscollar.forms import collarDataFileForm
+from apps.crawler.gpscollar.forms import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
 ### Views ####
+    
+### SCOTT BEGIN ###
 
-import csv
-from django.http import HttpResponse
-
-def getCollarCSV(request, theCollarID):
+def getCollarCSV(request, theCollarID, exportType):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=' + theCollarID + '.csv'
-    
+
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
     writer = csv.writer(response)
-    
-    #writer.writerow(['Collar ID', 'LMT Date/Time', 'Latitude', 'Longitude', 'Height'])
+
     headerList = []
-    #fields = 
     for field in CollarData._meta.fields:
         headerList.append(field.name)
     #Now add the weather fields
-    for field in WeatherDataPoint._meta.fields:
-        headerList.append(field.name)
+    if exportType == '1':
+        for field in WeatherDataPoint._meta.fields:
+            headerList.append(field.name)
     writer.writerow(headerList)
-    
+
     for data in collarDatas:
         dataList = []
         dataValues = data.get_fields()
         for val in dataValues:
             dataList.append(val[1])
-        if data.weatherDataPoint:
+        if data.weatherDataPoint and (exportType == '1'):
             weatherValues = data.weatherDataPoint.get_fields()
             for weatherVal in weatherValues:
-                print "The value was " + str(weatherVal[1])
                 dataList.append(weatherVal[1])
         writer.writerow(dataList)
 
     return response
+    
+def export(request):
+    siteDictionary = getDictionary(request)
+    if request.method == 'POST':
+        form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        if form_collars.is_valid():
+            collars = Collar.objects.all()
+            for collar in collars:
+                if form_collars.cleaned_data[collar]:
+                    getCollarCSV(request, collar, 0)
+    else:
+        form_collars = ExportCollarDataForm()
+        form_collars_filter = ExportCollarDataFilterForm()
+        form_weather_filter = ExportWeatherDataFilterForm()
+    siteDictionary['form_collars'] = form_collars
+    siteDictionary['form_collars_filter'] = form_collars_filter
+    siteDictionary['form_weather_filter'] = form_weather_filter
+    return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
+    
+def interactions(request):
+    siteDictionary = getDictionary(request)
+    siteDictionary['collars'] = getCollars(request)
+    if request.method == 'POST':
+        form = InteractionsDistanceForm(request.POST, request.FILES, error_class=DivErrorList, auto_id='id_%s')
+        form_shapeFile = UploadShapeFileForm(request.POST, request.FILES, error_class=DivErrorList, auto_id='id_%s')
+        if form.is_valid():
+            distance = form.cleaned_data['distance_in_km']
+            selectedCollars = form.cleaned_data['selected_collars']
+            #print selectedCollars + " " + distance
+            #print findAllMatchingByDistance(get_object_or_404(Collar, collarID=selectedCollars), distance)
+            #request.FILES['shapes_file']
+            #return HttpResponseRedirect('/collarData/' + str(theID) + "/")
+    else:
+        form = InteractionsDistanceForm()
+        form_shapeFile = UploadShapeFileForm()
+        form.fields['distance_in_km'].widget.attrs['disabled'] = True
+    siteDictionary['form'] = form
+    siteDictionary['form_shapeFile'] = form_shapeFile
+    return render_to_response('collar_interactions.html', siteDictionary, context_instance=RequestContext(request))
 
 def getCollars(request):
-    """
-    createCollarID first looks up the collar in the db
-    to determine if the collar already exists.
-    If the collar is not found, it is created.
-    After identification or creation, the collar object is added to self.
-    """
     collars = Collar.objects.all()
-    siteDictionary = getDictionary(request)
-    siteDictionary['collars']=collars
-    return render_to_response('collar.html', siteDictionary, context_instance=RequestContext(request))
+    return collars
     
 def getCollarData(request, theCollarID):
-    """
-    """
-    theCollar = get_object_or_404(Collar, collarID=theCollarID)
-    collarDatas = CollarData.objects.filter(collar=theCollar)
     siteDictionary = getDictionary(request)
-    siteDictionary['collar'] = theCollar
-    siteDictionary['collarDatas']=collarDatas
-    return render_to_response('collarData.html', siteDictionary, context_instance=RequestContext(request))
-    
-from django.forms.util import ErrorList
-class DivErrorList(ErrorList):
-    def __unicode__(self):
-        return self.as_divs()
-    def as_divs(self):
-        if not self: return u''
-        return u'<div class="errorlist">%s</div>' % ''.join([u'<div class="messages red"><span></span>%s</div>' % e for e in self])
-
-class CollarIDForm(forms.Form):
-    collar_id = forms.ModelChoiceField(Collar.objects.all())
+    siteDictionary['collar'] = get_object_or_404(Collar, collarID=theCollarID)
+    siteDictionary['collarDatas']=CollarData.objects.filter(collar=theCollar)
+    return render_to_response('collar_data.html', siteDictionary, context_instance=RequestContext(request))
 
 def collarForm(request):
     if request.method == 'POST':
@@ -100,6 +113,8 @@ def collarForm(request):
     else:
         form = CollarIDForm()
     return render_to_response('collar.html', {'form': form,}, context_instance=RequestContext(request))
+    
+### SCOTT END ###
 
 def uploadCollarDataFile(request):
     if request.method == 'POST':

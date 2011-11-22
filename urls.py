@@ -29,18 +29,19 @@ urlpatterns = patterns('',
     # ROOT DIR #
     url(r'^$', index),	
 
-    url(r'^collar/$', 'wolfscout.apps.crawler.gpscollar.views.getCollars'),
-    url(r'^collar/(?P<theCollarID>\d+)/csv$', 'wolfscout.apps.crawler.gpscollar.views.getCollarCSV'),
+    url(r'^collar_export/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
+    url(r'^collar_export/(?P<theCollarID>\d+)/csv/(?P<exportType>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarCSV'),
+    url(r'^collar_data/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
+    url(r'^collar_interactions/$', 'wolfscout.apps.crawler.gpscollar.views.interactions'),
     
     url(r'^collarDataUpload/$', 'wolfscout.apps.crawler.gpscollar.views.uploadCollarDataFile'),
-    url(r'^collarData/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     url(r'^collarDataKML/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPoints'),
     url(r'^getInteractionKML/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPointsInteractions'),
 
     url(r'^studies/$', 'wolfscout.apps.study.views.studies'),
-    url(r'^addStudy/$', 'wolfscout.apps.study.views.add'),
-    url(r'^deleteStudy/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
-    url(r'^editStudy/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
+    url(r'^study_add/$', 'wolfscout.apps.study.views.add'),
+    url(r'^study_delete/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
+    url(r'^study_edit/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
     url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
 )
 

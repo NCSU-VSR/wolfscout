@@ -44,8 +44,8 @@
 							{% endif %}
 							</td>
 							<td>
-								<a href="/editStudy/{{ study.pk }}/" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
-								<a href="/deleteStudy/{{ study.pk }}/" class="tooltip" title="Delete"><img src="{{ STATIC_URL }}gfx/icon-delete.png" alt="delete" /></a>
+								<a href="/study_edit/{{ study.pk }}/" class="tooltip" title="Edit"><img src="{{ STATIC_URL }}gfx/icon-edit.png" alt="edit" /></a>
+								<a href="/study_delete/{{ study.pk }}/" class="tooltip" title="Delete"><img src="{{ STATIC_URL }}gfx/icon-delete.png" alt="delete" /></a>
 							</td>
 						</tr>
 						{% endfor %}
@@ -54,7 +54,7 @@
 				<div id="pager" class="pager">
 					<form action="">
 						<button type="submit" class="red"><span>Delete Selected</span></button>
-						<a href="/addStudy"><button type="submit" class="green"><span>Add New Study</span></button></a>
+						<a href="/study_add"><button type="submit" class="green"><span>Add New Study</span></button></a>
 						<div>
 							<img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
 							<img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />
