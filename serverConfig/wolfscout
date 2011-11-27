@@ -20,7 +20,7 @@ server {
     }
     location /static/admin/ {
         # this changes depending on your python version
-        root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin;
+        root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin/media;
     }
     location / {
         proxy_pass_header Server;
