@@ -1,16 +1,18 @@
 ##### Global Imports #####
-from django.contrib import admin
+from django.contrib.gis import admin
 
 from apps.crawler.gpscollar.models import Collar, CollarData
 
 ##### Admin Classes ######
-class CollarAdmin(admin.ModelAdmin):
+
+class CollarAdmin(admin.GeoModelAdmin):
     list_display = ('collarID',)
     search_fields = ('collarID',)
 
-class CollarDataAdmin(admin.ModelAdmin):
+class CollarDataAdmin(admin.GeoModelAdmin):
     list_display = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
     search_fields = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
+
 
 ##### Admin Registers ######
 admin.site.register(Collar, CollarAdmin)

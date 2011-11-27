@@ -132,11 +132,11 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'djangorestframework',
     #Locally Installed Apps
-    'crawler.cronos',
-    'crawler.gpscollar',
+    'apps.crawler.cronos',
+    'apps.crawler.gpscollar',
     'apps.study',
-    'wildlife',
-	'general',
+    'apps.wildlife',
+	'apps.general',
     #Core Applications From Non-Django Sources
     'south',
     #Nose must be below south or it all fails

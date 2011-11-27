@@ -1,7 +1,6 @@
 __author__ = 'chris'
  ##### Global Imports #####
-from django.contrib import admin
-
+from django.contrib.gis import admin
 from apps.crawler.cronos.models import Station, WeatherDataPoint
 
 ##### Admin Classes ######
