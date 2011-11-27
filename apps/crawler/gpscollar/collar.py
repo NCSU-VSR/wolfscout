@@ -90,7 +90,7 @@ class CollarParser(object):
             newCollarDataPoint.LATITUDE = lineContents[CSV['LATITUDE']]
             newCollarDataPoint.LONGITUDE = lineContents[CSV['LONGITUDE']]
             newCollarDataPoint.HEIGHT = lineContents[CSV['HEIGHT']]
-            newCollarDataPoint.LOCATION = Point(float(lineContents[CSV['LATITUDE']]), float(lineContents[CSV['LONGITUDE']]))
+            newCollarDataPoint.LOCATION = Point(float(lineContents[CSV['LONGITUDE']]),float(lineContents[CSV['LATITUDE']]),)
             newCollarDataPoint.DOP = lineContents[CSV['DOP']]
             newCollarDataPoint.NAV = lineContents[CSV['NAV']]
             newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV['VALIDATED']]))
