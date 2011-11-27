@@ -10,31 +10,32 @@
 				<span class="hide"></span>
 			</div>
 			<div class="content">
-				<div class="line">
-                    <table cellspacing="0" cellpadding="0" border="0" class="table-all">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
-                                <th>Collar ID</th>
-                                <th>Export Single</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-						{% for field in form_collars %}
-                            <tr>
-								<td>{{ field }}</td>
-                                <td>{{ field.label }}</td>
-								<td>
-                                    <a href="/collar_export/{{ collar }}/csv/0" class="tooltip" title="Export Collar Data CSV"><img src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></a>
-									<a href="/collar_export/{{ collar }}/csv/1" class="tooltip" title="Export Collar Data + Weather CSV"><img src="{{ STATIC_URL }}gfx/icon-csv-weather.png" alt="edit" /></a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+				<form method="post" action=".">{% csrf_token %}
+					<div class="line">
+						
+	                    <table cellspacing="0" cellpadding="0" border="0" class="table-all">
+	                        <thead>
+	                            <tr>
+	                                <th><input type="checkbox" name="check" class="checkall checkbox-small" /></th>
+	                                <th>Collar ID</th>
+	                                <th>Export Single</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+							{% for field in form_collars %}
+	                            <tr>
+									<td>{{ field }}</td>
+	                                <td>{{ field.label }}</td>
+									<td>
+	                                    <a href="/collar_export/{{ field.label }}/csv/0" class="tooltip" title="Export Collar Data CSV"><img src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></a>
+										<a href="/collar_export/{{ field.label }}/csv/1" class="tooltip" title="Export Collar Data + Weather CSV"><img src="{{ STATIC_URL }}gfx/icon-csv-weather.png" alt="edit" /></a>
+	                                </td>
+	                            </tr>
+	                        {% endfor %}
+	                        </tbody>
+	                    </table>
 
-                    <div id="pager" class="pager">
-                        <form method="post" action=".">{% csrf_token %}
+	                    <div id="pager" class="pager">
 							<button type="submit" class="green"><span>Export Multiple Collar Data CSV</span></button>
 							<button type="submit" class="blue"><span>Export Multiple Collar Data + Weather CSV</span></button>
                             <div>
@@ -50,9 +51,9 @@
                                 <option value="25">25</option>
                                 <option value="50">50</option>
                             </select>
-                        </form>
-                    </div>
-                </div>
+	                    </div>
+                	</div>
+				</form>
 			</div>
 		</div>
 	</div>

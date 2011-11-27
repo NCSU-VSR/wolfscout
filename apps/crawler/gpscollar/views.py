@@ -58,19 +58,20 @@ def getCollarCSV(request, theCollarID, exportType):
 def export(request):
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
-        form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%s')
         if form_collars.is_valid():
             collars = Collar.objects.all()
+            print form_collars.clean()
             for collar in collars:
-                if form_collars.cleaned_data[collar]:
-                    getCollarCSV(request, collar, 0)
+                if form_collars.cleaned_data[str(collar.collarID)]:
+                    getCollarCSV(request, str(collar.collarID), exportType)
     else:
         form_collars = ExportCollarDataForm()
-        form_collars_filter = ExportCollarDataFilterForm()
-        form_weather_filter = ExportWeatherDataFilterForm()
-    siteDictionary['form_collars'] = form_collars
-    siteDictionary['form_collars_filter'] = form_collars_filter
-    siteDictionary['form_weather_filter'] = form_weather_filter
+        #form_collars_filter = ExportCollarDataFilterForm()
+        #form_weather_filter = ExportWeatherDataFilterForm()
+        siteDictionary['form_collars'] = form_collars
+        #siteDictionary['form_collars_filter'] = form_collars_filter
+        #siteDictionary['form_weather_filter'] = form_weather_filter
     return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
     
 def interactions(request):
