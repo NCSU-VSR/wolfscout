@@ -76,11 +76,12 @@ class CollarParser(object):
         #Big list of things there from the line:
         try:
             newCollarDataPoint.GMT_DATETIME = self.generateDateTimeFromList(lineContents[1],
-                                                                            lineContents[2])
+                lineContents[2])
             newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
-                                                                            lineContents[4])
+                lineContents[4])
         except ValueError:
             newCollarDataPoint.VALID = False
+            return 0
 
         try:
             newCollarDataPoint.ECEF_X = lineContents[CSV['ECEF_X']]
@@ -144,10 +145,9 @@ class CollarParser(object):
             validArgs = len(dateList) == 3 and len(timeList) == 3 and dateString.find(" ") == -1 and timeString.find(" ") == -1
         else:
             validArgs = False
-
         if validArgs:
             dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
-                                  int(timeList[0]),int(timeList[1]),int(timeList[2]))
+                int(timeList[0]),int(timeList[1]),int(timeList[2]))
             if dateTimeObject > datetime.today():
                 raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
             elif dateTimeObject.year < 1950:
@@ -185,11 +185,13 @@ class CollarParser(object):
         try:
             with open(self.filePath, 'r') as file:
                 for self.line in file:
+                    if self.line == "":
+                        continue
                     self.lineParser()
         except IOError, err:
             return err
         return 0
-        
+
     def extractCollarIDFromFilename(self):
         """
         Returns the collar ID based on this collar parser's file name.
