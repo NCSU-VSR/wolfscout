@@ -44,9 +44,13 @@ def scrapeStations():
         print "Station Type: " + the_line[5]
         if the_line[5] == "ASOS":
             #station, created = Station.objects.get_or_create(station_code=str(the_line[0]))
-            station = Station()
+            try:
+                station = Station.objects.get(station_code=str(the_line[0]))
+            except Station.DoesNotExist:
+                station = Station()
+            #station = Station()
             station.station_code = str(the_line[0])
-            station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
+            station.LOCATION = Point(float(the_line[3]),float(the_line[2]))
             station.name = the_line[1]
             try:
                 station.elevation = float(the_line[4])
@@ -162,9 +166,7 @@ def processWeatherData(dataPoint, station, WeatherDataResponse):
     weatherPoint.station = station
     weatherPoint.distance_to_station = station.distanceToPoint
     weatherPoint.save()
-    dataPoint.weatherDataPoint = weatherPoint
-    dataPoint.save()
-    return True
+    return weatherPoint
 
 def getWeatherData(dataPoint):
     """
@@ -177,7 +179,6 @@ def getWeatherData(dataPoint):
     print dateToSearch
     url =  buildRequest(station=station, startDate=dateToSearch, endDate=dateToSearch, obType="H")
     print url
-    processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
-    return True
+    return processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
 
 

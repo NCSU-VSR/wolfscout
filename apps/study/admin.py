@@ -1,5 +1,5 @@
 ##### Global Imports #####
-from django.contrib import admin
+from django.contrib.gis import admin
 
 ##### Local Imports #####
 from apps.study.models import Study

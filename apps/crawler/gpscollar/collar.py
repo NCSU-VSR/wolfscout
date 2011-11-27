@@ -6,7 +6,7 @@ from datetime import datetime
 from sys import *
 #Local Imports
 from apps.wildlife.models import *
-
+from apps.crawler.cronos.views import *
 class CollarParser(object):
     invalidCollarId = "Invalid"
     collarID = None
@@ -76,11 +76,12 @@ class CollarParser(object):
         #Big list of things there from the line:
         try:
             newCollarDataPoint.GMT_DATETIME = self.generateDateTimeFromList(lineContents[1],
-                                                                            lineContents[2])
+                lineContents[2])
             newCollarDataPoint.LMT_DATETIME = self.generateDateTimeFromList(lineContents[3],
-                                                                            lineContents[4])
+                lineContents[4])
         except ValueError:
             newCollarDataPoint.VALID = False
+            return 0
 
         try:
             newCollarDataPoint.ECEF_X = lineContents[CSV['ECEF_X']]
@@ -89,7 +90,7 @@ class CollarParser(object):
             newCollarDataPoint.LATITUDE = lineContents[CSV['LATITUDE']]
             newCollarDataPoint.LONGITUDE = lineContents[CSV['LONGITUDE']]
             newCollarDataPoint.HEIGHT = lineContents[CSV['HEIGHT']]
-            newCollarDataPoint.LOCATION = Point(float(lineContents[CSV['LATITUDE']]), float(lineContents[CSV['LONGITUDE']]))
+            newCollarDataPoint.LOCATION = Point(float(lineContents[CSV['LONGITUDE']]),float(lineContents[CSV['LATITUDE']]),)
             newCollarDataPoint.DOP = lineContents[CSV['DOP']]
             newCollarDataPoint.NAV = lineContents[CSV['NAV']]
             newCollarDataPoint.VALIDATED = self.stringToBool(str(lineContents[CSV['VALIDATED']]))
@@ -125,6 +126,7 @@ class CollarParser(object):
                 newCollarDataPoint.REMARKS = lineContents[CSV['REMARKS']]
             except IndexError:
                 pass
+            newCollarDataPoint.weatherDataPoint = getWeatherData(newCollarDataPoint)
         except IndexError:
             newCollarDataPoint.VALID = False
         newCollarDataPoint.save()
@@ -144,11 +146,9 @@ class CollarParser(object):
             validArgs = len(dateList) == 3 and len(timeList) == 3 and dateString.find(" ") == -1 and timeString.find(" ") == -1
         else:
             validArgs = False
-
         if validArgs:
-            dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
-                                  int(timeList[0]),int(timeList[1]),int(timeList[2]))
-            if dateTimeObject > datetime.today():
+            dateTimeObject = datetime.datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]), int(timeList[0]),int(timeList[1]),int(timeList[2]))
+            if dateTimeObject > datetime.datetime.today():
                 raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
             elif dateTimeObject.year < 1950:
                 raise ValueError("Date is before the year 1950\nGiven date: {0}".format(dateTimeObject))
@@ -189,7 +189,7 @@ class CollarParser(object):
         except IOError, err:
             return err
         return 0
-        
+
     def extractCollarIDFromFilename(self):
         """
         Returns the collar ID based on this collar parser's file name.

@@ -18,7 +18,7 @@ server {
             expires max;
         }
     }
-    location /static/admin/ {
+    location /media/{
         # this changes depending on your python version
         root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin;
     }

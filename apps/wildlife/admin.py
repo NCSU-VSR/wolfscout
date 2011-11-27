@@ -4,7 +4,7 @@ and the django admin interface. Update this to update your view of your models.
 """
 
 ##### Global Imports #####
-from django.contrib import admin
+from django.contrib.gis import admin
 
 ##### Local Imports #####
 from apps.wildlife.models import Species, Specimen

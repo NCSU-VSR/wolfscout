@@ -8,7 +8,8 @@ from django.conf.urls.defaults import patterns, include, url
 #Import The CollarData URLS
 from apps.crawler.gpscollar import urls
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
+from django.contrib.gis import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
