@@ -50,7 +50,7 @@ def scrapeStations():
                 station = Station()
             #station = Station()
             station.station_code = str(the_line[0])
-            station.LOCATION = Point(float(the_line[2]), float(the_line[3]))
+            station.LOCATION = Point(float(the_line[3]),float(the_line[2]))
             station.name = the_line[1]
             try:
                 station.elevation = float(the_line[4])
