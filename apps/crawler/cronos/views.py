@@ -166,9 +166,7 @@ def processWeatherData(dataPoint, station, WeatherDataResponse):
     weatherPoint.station = station
     weatherPoint.distance_to_station = station.distanceToPoint
     weatherPoint.save()
-    dataPoint.weatherDataPoint = weatherPoint
-    dataPoint.save()
-    return True
+    return weatherPoint
 
 def getWeatherData(dataPoint):
     """
@@ -181,7 +179,7 @@ def getWeatherData(dataPoint):
     print dateToSearch
     url =  buildRequest(station=station, startDate=dateToSearch, endDate=dateToSearch, obType="H")
     print url
-    processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
-    return True
+    return processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
+
 
 

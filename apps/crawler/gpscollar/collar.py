@@ -6,7 +6,7 @@ from datetime import datetime
 from sys import *
 #Local Imports
 from apps.wildlife.models import *
-
+from apps.crawler.cronos.views import *
 class CollarParser(object):
     invalidCollarId = "Invalid"
     collarID = None
@@ -126,6 +126,7 @@ class CollarParser(object):
                 newCollarDataPoint.REMARKS = lineContents[CSV['REMARKS']]
             except IndexError:
                 pass
+            newCollarDataPoint.weatherDataPoint = getWeatherData(newCollarDataPoint)
         except IndexError:
             newCollarDataPoint.VALID = False
         newCollarDataPoint.save()
@@ -146,9 +147,8 @@ class CollarParser(object):
         else:
             validArgs = False
         if validArgs:
-            dateTimeObject = datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]),
-                int(timeList[0]),int(timeList[1]),int(timeList[2]))
-            if dateTimeObject > datetime.today():
+            dateTimeObject = datetime.datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]), int(timeList[0]),int(timeList[1]),int(timeList[2]))
+            if dateTimeObject > datetime.datetime.today():
                 raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
             elif dateTimeObject.year < 1950:
                 raise ValueError("Date is before the year 1950\nGiven date: {0}".format(dateTimeObject))
@@ -185,8 +185,6 @@ class CollarParser(object):
         try:
             with open(self.filePath, 'r') as file:
                 for self.line in file:
-                    if self.line == "":
-                        continue
                     self.lineParser()
         except IOError, err:
             return err
