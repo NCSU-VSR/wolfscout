@@ -18,9 +18,9 @@ server {
             expires max;
         }
     }
-    location /static/admin/ {
+    location /media/{
         # this changes depending on your python version
-        root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin/media;
+        root /opt/webapps/ncsu/lib/python2.7/site-packages/django/contrib/admin;
     }
     location / {
         proxy_pass_header Server;
