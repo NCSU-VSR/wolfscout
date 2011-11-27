@@ -24,54 +24,77 @@ from apps.crawler.cronos.models import *
     
 ### SCOTT BEGIN ###
 
-def getCollarCSV(request, theCollarID, exportType):
+def getSingleCollarCSV(request, theCollarID, exportType):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=' + theCollarID + '.csv'
 
+    writer = csv.writer(response)
+
+    writer = createCollarCSV(writer, theCollarID, exportType)
+
+    return response
+
+def getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, form_weather_filter):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=MultiExport.csv'
+
+    writer = csv.writer(response)
+
+    collars = Collar.objects.all()
+    for collar in collars:
+        if form_collars.cleaned_data[str(collar.collarID)]:
+            writer = createCollarCSV(writer, str(collar.collarID), exportType, form_collars_filter, form_weather_filter)
+
+    return response
+
+def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_weather_filter):
+
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
-    writer = csv.writer(response)
 
     headerList = []
     for field in CollarData._meta.fields:
-        headerList.append(field.name)
+        if form_collars_filter.cleaned_data[str(field.name)]:
+            headerList.append(field.name)
     #Now add the weather fields
     if exportType == '1':
         for field in WeatherDataPoint._meta.fields:
-            headerList.append(field.name)
+            if form_weather_filter.cleaned_data[str(field.name)]:
+                headerList.append(field.name)
     writer.writerow(headerList)
 
     for data in collarDatas:
         dataList = []
         dataValues = data.get_fields()
         for val in dataValues:
-            dataList.append(val[1])
+            if form_collars_filter.cleaned_data[str(val[0])]:
+                dataList.append(val[1])
         if data.weatherDataPoint and (exportType == '1'):
             weatherValues = data.weatherDataPoint.get_fields()
             for weatherVal in weatherValues:
-                dataList.append(weatherVal[1])
+                if form_weather_filter.cleaned_data[str(weatherVal[0])]:
+                    dataList.append(weatherVal[1])
         writer.writerow(dataList)
 
-    return response
-    
+    return writer
+
 def export(request):
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
         form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%s')
-        if form_collars.is_valid():
-            collars = Collar.objects.all()
-            print form_collars.clean()
-            for collar in collars:
-                if form_collars.cleaned_data[str(collar.collarID)]:
-                    getCollarCSV(request, str(collar.collarID), exportType)
+        form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
+        form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
+        if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid():
+            return getMultiCollarCSV(request, form_collars, 0, form_collars_filter, form_weather_filter)
     else:
         form_collars = ExportCollarDataForm()
-        #form_collars_filter = ExportCollarDataFilterForm()
-        #form_weather_filter = ExportWeatherDataFilterForm()
+        form_collars_filter = ExportCollarDataFilterForm()
+        form_weather_filter = ExportWeatherDataFilterForm()
         siteDictionary['form_collars'] = form_collars
-        #siteDictionary['form_collars_filter'] = form_collars_filter
-        #siteDictionary['form_weather_filter'] = form_weather_filter
+        siteDictionary['form_collars_filter'] = form_collars_filter
+        siteDictionary['form_weather_filter'] = form_weather_filter
     return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
     
 def interactions(request):

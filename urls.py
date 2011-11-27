@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     url(r'^$', index),	
 
     url(r'^collar_export/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
-    url(r'^collar_export/(?P<theCollarID>\d+)/csv/(?P<exportType>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarCSV'),
+    url(r'^collar_export/(?P<theCollarID>\d+)/csv/(?P<exportType>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getSingleCollarCSV'),
     url(r'^collar_data/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     url(r'^collar_interactions/$', 'wolfscout.apps.crawler.gpscollar.views.interactions'),
     

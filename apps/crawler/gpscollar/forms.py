@@ -47,12 +47,12 @@ class ExportCollarDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportCollarDataFilterForm, self).__init__(*args, **kwargs)
         for field in CollarData._meta.fields:
-            field_name = field.name
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name)
+            field_name = str(field.name)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name, initial=True)
             
 class ExportWeatherDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportWeatherDataFilterForm, self).__init__(*args, **kwargs)
         for field in WeatherDataPoint._meta.fields:
-            field_name = field.name
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name)
+            field_name = str(field.name)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name, initial=True)
