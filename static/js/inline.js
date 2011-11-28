@@ -124,7 +124,7 @@ $(document).ready(function() {
         $(this).parents('table').find(':checkbox').attr('checked', this.checked).change();
     });
     
-    //INTERACTION PAGE CHECKBOX FUNCTIONS 
+    //INTERACTION PAGE CHECKBOX FUNCTIONS
     $('.enableDistance').change(function() {
         if($(this).parents('table').find(':checkbox').is(':checked')){
             blockEnabledDisable_Field('#id_distance_in_km', true);
@@ -138,44 +138,15 @@ $(document).ready(function() {
         $('.enableDistance').each(function(){
             if($(this).is(':checked')){
                 collarList += $(this).closest("td").next().html() + ', ';
-            }              
+            }
         });
        $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
     });
-    
+
     blockEnabledDisable_Field('#id_distance_in_km', false);
     blockEnabledDisable_Field('#id_selected_collars', false);
-    
-    function blockEnabledDisable_Field(field, enable){
-        if(enable){
-            $(field).attr('disabled', false); 
-            $(field).parents("p").unblock();
-        }else{
-            $(field).attr('disabled', true); 
-            $(field).parents("p").block({ 
-                message: '', 
-                css: { 
-                    border: 'none', 
-                    padding: '15px', 
-                    backgroundColor: '#000', 
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius': '10px', 
-                    opacity: .6, 
-                    color: '#fff',
-                    cursor: null
-                },
-                
-                // styles for the overlay 
-                overlayCSS:  { 
-                    backgroundColor: '#000', 
-                    opacity:         0.2,
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius':    '10px' 
-                }
-            });
-        }
-    }
 
+    // HIDE EXPORT TYPE FIELDS
     $('.export_box_hidden').hide();
 
     // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collat data)
@@ -190,7 +161,6 @@ $(document).ready(function() {
         $('#id_is_multi').attr('checked','checked');
     });
 
-    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collat data)
     $('.is_single').click(function() {
         $('#id_add_weather').removeAttr('checked');
         $('#id_is_multi').removeAttr('checked');
@@ -203,7 +173,35 @@ $(document).ready(function() {
         $('#id_single_collar').val($(this).attr("name"));
     });
 
+    function blockEnabledDisable_Field(field, enable){
+        if(enable){
+            $(field).attr('disabled', false);
+            $(field).parents("p").unblock();
+        }else{
+            $(field).attr('disabled', true);
+            $(field).parents("p").block({
+                message: '',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .6,
+                    color: '#fff',
+                    cursor: null
+                },
 
+                // styles for the overlay
+                overlayCSS:  {
+                    backgroundColor: '#000',
+                    opacity:         0.2,
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius':    '10px'
+                }
+            });
+        }
+    }
 
     // BUTTON LINKS
     $("a.button").wrapInner("<span></span>");

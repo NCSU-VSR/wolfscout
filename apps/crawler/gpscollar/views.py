@@ -42,12 +42,18 @@ def getMultiCollarCSV(request, form_collars, add_weather, form_collars_filter, f
 
     writer = csv.writer(response)
 
+    hasValues = False
     collars = Collar.objects.all()
     for collar in collars:
         if form_collars.cleaned_data[str(collar.collarID)]:
+            hasValues = True
             writer = createCollarCSV(writer, str(collar.collarID), add_weather, form_collars_filter, form_weather_filter)
-
+    # If at east one checkbox is checked, return csv
     return response
+    """if hasValues:
+        return response
+    else:
+        return render_to_response("")"""
 
 def createCollarCSV(writer, theCollarID, add_weather, form_collars_filter, form_weather_filter):
 
