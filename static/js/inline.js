@@ -172,18 +172,38 @@ $(document).ready(function() {
                     '-webkit-border-radius': '10px', 
                     '-moz-border-radius':    '10px' 
                 }
-                
             });
         }
     }
 
+    $('.export_box_hidden').hide();
+
+    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collat data)
     $('.export_collardata').click(function() {
-        $('#id_export_type').removeAttr('checked');
+        $('#id_add_weather').removeAttr('checked');
+        $('#id_is_multi').attr('checked','checked');
     });
 
+    // CHANGE EXPORT TYPE TO TRUE ONCLICK (collar+weather data)
     $('.export_collardata_weatherdata').click(function() {
-        $('#id_export_type').attr('checked','checked');
+        $('#id_add_weather').attr('checked','checked');
+        $('#id_is_multi').attr('checked','checked');
     });
+
+    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collat data)
+    $('.is_single').click(function() {
+        $('#id_add_weather').removeAttr('checked');
+        $('#id_is_multi').removeAttr('checked');
+        $('#id_single_collar').val($(this).attr("name"));
+    });
+
+    $('.is_single_weather').click(function() {
+        $('#id_add_weather').attr('checked','checked');
+        $('#id_is_multi').removeAttr('checked');
+        $('#id_single_collar').val($(this).attr("name"));
+    });
+
+
 
     // BUTTON LINKS
     $("a.button").wrapInner("<span></span>");

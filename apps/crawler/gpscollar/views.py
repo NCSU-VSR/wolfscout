@@ -24,18 +24,18 @@ from apps.crawler.cronos.models import *
     
 ### SCOTT BEGIN ###
 
-def getSingleCollarCSV(request, theCollarID, exportType):
+def getSingleCollarCSV(request, theCollarID, add_weather, form_collars_filter, form_weather_filter):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=' + theCollarID + '.csv'
+    response['Content-Disposition'] = 'attachment; filename=' + str(theCollarID) + '.csv'
 
     writer = csv.writer(response)
 
-    writer = createCollarCSV(writer, theCollarID, exportType)
+    writer = createCollarCSV(writer, theCollarID, add_weather, form_collars_filter, form_weather_filter)
 
     return response
 
-def getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, form_weather_filter):
+def getMultiCollarCSV(request, form_collars, add_weather, form_collars_filter, form_weather_filter):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=MultiExport.csv'
@@ -45,11 +45,11 @@ def getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, fo
     collars = Collar.objects.all()
     for collar in collars:
         if form_collars.cleaned_data[str(collar.collarID)]:
-            writer = createCollarCSV(writer, str(collar.collarID), exportType, form_collars_filter, form_weather_filter)
+            writer = createCollarCSV(writer, str(collar.collarID), add_weather, form_collars_filter, form_weather_filter)
 
     return response
 
-def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_weather_filter):
+def createCollarCSV(writer, theCollarID, add_weather, form_collars_filter, form_weather_filter):
 
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
@@ -59,7 +59,7 @@ def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_w
         if form_collars_filter.cleaned_data[str(field.name)]:
             headerList.append(field.name)
     #Now add the weather fields
-    if exportType:
+    if add_weather:
         for field in WeatherDataPoint._meta.fields:
             if form_weather_filter.cleaned_data[str(field.name)]:
                 headerList.append(field.name)
@@ -71,7 +71,7 @@ def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_w
         for val in dataValues:
             if form_collars_filter.cleaned_data[str(val[0])]:
                 dataList.append(val[1])
-        if data.weatherDataPoint and exportType:
+        if data.weatherDataPoint and add_weather:
             weatherValues = data.weatherDataPoint.get_fields()
             for weatherVal in weatherValues:
                 if form_weather_filter.cleaned_data[str(weatherVal[0])]:
@@ -88,9 +88,13 @@ def export(request):
         form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
         form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='%s')
         if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
-            exportType = form_export_type.cleaned_data['export_type']
-            print exportType
-            return getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, form_weather_filter)
+            is_multi = form_export_type.cleaned_data['is_multi']
+            add_weather = form_export_type.cleaned_data['add_weather']
+            single_collar = form_export_type.cleaned_data['single_collar']
+            if is_multi:
+                return getMultiCollarCSV(request, form_collars, add_weather, form_collars_filter, form_weather_filter)
+            else:
+                return getSingleCollarCSV(request, single_collar, add_weather, form_collars_filter, form_weather_filter)
     else:
         form_collars = ExportCollarDataForm()
         form_collars_filter = ExportCollarDataFilterForm()
