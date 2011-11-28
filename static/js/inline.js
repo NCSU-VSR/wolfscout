@@ -176,7 +176,15 @@ $(document).ready(function() {
             });
         }
     }
-    
+
+    $('.export_collardata').click(function() {
+        $('#id_export_type').removeAttr('checked');
+    });
+
+    $('.export_collardata_weatherdata').click(function() {
+        $('#id_export_type').attr('checked','checked');
+    });
+
     // BUTTON LINKS
     $("a.button").wrapInner("<span></span>");
     $("a.button, button, .pager img").hover(

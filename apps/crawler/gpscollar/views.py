@@ -49,7 +49,7 @@ def getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, fo
 
     return response
 
-def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_weather_filter):
+def createCollarCSV(writer, theCollarID, isWeather, form_collars_filter, form_weather_filter):
 
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
@@ -59,7 +59,7 @@ def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_w
         if form_collars_filter.cleaned_data[str(field.name)]:
             headerList.append(field.name)
     #Now add the weather fields
-    if exportType == '1':
+    if exportType:
         for field in WeatherDataPoint._meta.fields:
             if form_weather_filter.cleaned_data[str(field.name)]:
                 headerList.append(field.name)
@@ -71,7 +71,7 @@ def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_w
         for val in dataValues:
             if form_collars_filter.cleaned_data[str(val[0])]:
                 dataList.append(val[1])
-        if data.weatherDataPoint and (exportType == '1'):
+        if data.weatherDataPoint and exportType:
             weatherValues = data.weatherDataPoint.get_fields()
             for weatherVal in weatherValues:
                 if form_weather_filter.cleaned_data[str(weatherVal[0])]:
@@ -86,15 +86,20 @@ def export(request):
         form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%s')
         form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
         form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
-        if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid():
-            return getMultiCollarCSV(request, form_collars, 0, form_collars_filter, form_weather_filter)
+        form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='%s')
+        if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
+            exportType = form_export_type.cleaned_data['export_type']
+            print exportType
+            return getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, form_weather_filter)
     else:
         form_collars = ExportCollarDataForm()
         form_collars_filter = ExportCollarDataFilterForm()
         form_weather_filter = ExportWeatherDataFilterForm()
+        form_export_type = ExportTypeForm()
         siteDictionary['form_collars'] = form_collars
         siteDictionary['form_collars_filter'] = form_collars_filter
         siteDictionary['form_weather_filter'] = form_weather_filter
+        siteDictionary['form_export_type'] = form_export_type
     return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
     
 def interactions(request):

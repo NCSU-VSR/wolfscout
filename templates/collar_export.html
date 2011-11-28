@@ -35,8 +35,9 @@
                     </table>
 
                     <div id="pager" class="pager">
-                        <button type="submit" class="green"><span>Export Multiple Collar Data</span></button>
-                        <button type="submit" class="blue"><span>Export Multiple Collar Data + Weather</span></button>
+                        <button type="submit" class="green export_collardata"><span>Export Multiple Collar Data</span></button>
+                        <button type="submit" class="blue export_collardata_weatherdata"><span>Export Multiple Collar Data + Weather</span></button>
+                        {{ form_export_type.as_p }}
                         <div>
                             <img src="{{ STATIC_URL }}gfx/table-first.gif" class="first" alt="First" />
                             <img src="{{ STATIC_URL }}gfx/table-prev.gif" class="prev" alt="Previous" />

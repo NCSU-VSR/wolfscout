@@ -42,7 +42,10 @@ class ExportCollarDataForm(forms.Form):
         for collar in collars:
             field_name = str(collar.collarID)
             self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name)
-                                  
+
+class ExportTypeForm(forms.Form):
+    export_type = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+
 class ExportCollarDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportCollarDataFilterForm, self).__init__(*args, **kwargs)
