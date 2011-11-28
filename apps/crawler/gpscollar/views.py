@@ -49,7 +49,7 @@ def getMultiCollarCSV(request, form_collars, exportType, form_collars_filter, fo
 
     return response
 
-def createCollarCSV(writer, theCollarID, isWeather, form_collars_filter, form_weather_filter):
+def createCollarCSV(writer, theCollarID, exportType, form_collars_filter, form_weather_filter):
 
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
