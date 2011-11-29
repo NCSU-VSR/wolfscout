@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 import datetime
 
@@ -35,9 +36,23 @@ class AnimalInteraction(models.Model):
 
     distance is in km
     """
-    source_animal = models.ForeignKey(CollarData, related_name="AnimalSourceOfInteraction")
-    destination_animal = models.ForeignKey(CollarData, related_name="AnimalDestinationOfInteraction")
+    source_animal_data_point = models.ForeignKey(CollarData, related_name="AnimalSourceOfInteraction")
+    destination_animal_data_point = models.ForeignKey(CollarData, related_name="AnimalDestinationOfInteraction")
     distance = models.DecimalField(max_digits=15, decimal_places=5)
+
+    def clean(self):
+        """
+        clean is used for validation purposes, if an interactione exists in the database already this will
+        prevent it from being duplicated.
+        """
+        list_of_interactions = AnimalInteraction.objects.all()
+        for interaction in list_of_interactions:
+            if interaction.source_animal_data_point == self.source_animal_data_point:
+                if interaction.destination_animal_data_point == self.destination_animal_data_point:
+                    raise ValidationError("This item already exists")
+            elif interaction.destination_animal_data_point == self.source_animal_data_point:
+                if interaction.source_animal_data_point == self.destination_animal_data_point:
+                    raise ValidationError("This item already exists")
 
     def __unicode__(self):
         return str(self.pk)
