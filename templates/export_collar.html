@@ -5,7 +5,7 @@
 {% block content %}
 <form method="post" action=".">{% csrf_token %}
 	<div class="section">
-		<div class="box">
+		<div class="box medium">
 			<div class="title">
 				<h2>Collar Data</h2>
 				<span class="hide"></span>
@@ -34,30 +34,23 @@
                         </tbody>
                     </table>
                 </div>
-                    <button type="submit" class="green"><span class="export_collardata">Export Multiple Collar Data CSV</span></button>
-                    <button type="submit" class="blue"><span class="export_collardata_weatherdata">Export Multiple Collar Data + Weather CSV</span></button>
 			</div>
 		</div>
-	</div>
 
-    <div class="section">
-        <div class="box">
+        <div class="box medium">
             <div class="title">
                 <h2>Filter Options</h2>
                 <span class="hide"></span>
             </div>
             <div class="content tabs">
-
-
                 <div class="tabmenu">
                     <ul>
                         <li><a href="#tabs-1">Collar</a></li>
                         <li><a href="#tabs-2">Weather</a></li>
-                        <li><a href="#tabs-3">Specimen</a></li>
                     </ul>
                 </div>
 
-                <div class="line scrollbox big" >
+                <div class="line scrollbox medium" >
                     <div id="tabs-1">
                         <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
                             <thead>
@@ -95,10 +88,21 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div id="tabs-3">
-
-                    </div>
+    <div class="section">
+        <div class="box">
+            <div class="title">
+                <h2>Export</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                    <button type="submit" class="green"><span class="export_collardata">Export by Species</span></button>
+                    <button type="submit" class="blue"><span class="export_collardata_weatherdata">Export Multiple Collar Data + Weather CSV</span></button>
                 </div>
             </div>
         </div>

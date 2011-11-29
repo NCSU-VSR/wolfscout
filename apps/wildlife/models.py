@@ -27,3 +27,7 @@ class Specimen(models.Model):
 
     def __unicode__(self):
         return str(self.common_name)
+
+    def get_fields(self):
+        # make a list of field/values.
+        return [(field.name, field.value_to_string(self)) for field in Specimen._meta.fields]

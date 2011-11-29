@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}
+<form method="post" action=".">{% csrf_token %}
+	<div class="section">
+		<div class="box medium">
+			<div class="title">
+				<h2>Specimen Filter</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content tabs">
+
+                <div class="tabmenu">
+                    <ul>
+                        <li><a href="#specimen">Specimen</a></li>
+                        <li><a href="#date-range">Date Range</a></li>
+                        <li><a href="#time-of-day">Time of Day</a></li>
+                        <li><a href="#sex">Sex</a></li>
+                        <li><a href="#species">Species</a></li>
+                    </ul>
+                </div>
+
+                <div class="line scrollbox medium" >
+                    <div id="specimen">
+                        <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked"/></th>
+                                    <th>Specimen Fields</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_specimen_filter %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="date-range">
+                        <h3><a href="#">Date Range</a></h3>
+                        <div>
+                            <div class="line">
+                                <label>From</label>
+                                <input type="text" class="datepicker" />
+                            </div>
+                            <div class="line">
+                                <label>To</label>
+                                <input type="text" class="datepicker" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="time-of-day">
+                        <h3><a href="#">Time of Day</a></h3>
+                        <div>
+                            <div class="line">
+                                <label>From</label>
+                                <input type="text" class="timepicker" />
+                            </div>
+                            <div class="line">
+                                <label>To</label>
+                                <input type="text" class="timepicker" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sex">
+                        <h3><a href="#">Time of Day</a></h3>
+                        <div>
+                            <div class="line">
+                                <label>From</label>
+                                <input type="text" class="timepicker" />
+                            </div>
+                            <div class="line">
+                                <label>To</label>
+                                <input type="text" class="timepicker" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="species">
+                        <h3><href="#">Species</a></h3>
+                        <div>
+                            <table id="collarsdisplayed" cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" name="check" class="checkall  checkbox-small" /></th>
+                                        <th>Species</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
+                                        <td>Deer</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
+                                        <td>Coyote</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
+                                        <td>Cattle</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box medium">
+            <div class="title">
+                <h2>Collar  Filter</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content tabs">
+                <div class="tabmenu">
+                    <ul>
+                        <li><a href="#tabs-1">Collar</a></li>
+                        <li><a href="#tabs-2">Weather</a></li>
+                    </ul>
+                </div>
+
+                <div class="line scrollbox medium" >
+                    <div id="tabs-1">
+                        <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked" /></th>
+                                    <th>Collar Fields</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_collars_filter %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="tabs-2">
+                        <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked"/></th>
+                                    <th>Weather Fields</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_weather_filter %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="box">
+            <div class="title">
+                <h2>Export</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                    <button type="submit" class="green"><span class="export_species">Export Specimen Data CSV</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section export_box_hidden">
+        <div class="box">
+            <div class="title">
+                <h2>Export Parameters</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                {{ form_export_type.as_p }}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

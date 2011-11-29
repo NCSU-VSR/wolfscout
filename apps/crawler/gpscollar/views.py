@@ -109,7 +109,7 @@ def export(request):
         siteDictionary['form_collars_filter'] = form_collars_filter
         siteDictionary['form_weather_filter'] = form_weather_filter
         siteDictionary['form_export_type'] = form_export_type
-    return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('export_collar.html', siteDictionary, context_instance=RequestContext(request))
     
 def interactions(request):
     siteDictionary = getDictionary(request)

@@ -9,6 +9,7 @@ from django import forms
 from apps.crawler.gpscollar.collar import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
+from apps.wildlife.models import *
 
 class DivErrorList(ErrorList):
     def __unicode__(self):
@@ -47,7 +48,6 @@ class ExportTypeForm(forms.Form):
     is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
     add_weather = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
     single_collar = forms.CharField(required=False)
-
 
 class ExportCollarDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
