@@ -7,6 +7,7 @@ from sys import *
 #Local Imports
 from apps.wildlife.models import *
 from apps.crawler.cronos.views import *
+from apps.study.interaction_calculator import *
 class CollarParser(object):
     invalidCollarId = "Invalid"
     collarID = None
@@ -130,6 +131,7 @@ class CollarParser(object):
         except IndexError:
             newCollarDataPoint.VALID = False
         newCollarDataPoint.save()
+        findInteractionFromDataPoint(newCollarDataPoint)
 
     def generateDateTimeFromList(self, dateString, timeString):
         """
