@@ -1,12 +1,145 @@
 $(document).ready(function() {
-    
+
     ///////CUSTOM FUNCTIONS///////
-    
+
     //IFRAME RELOAD
     $('.iframe_reload').click(function() {
         $('.iframe').attr("src", $('.iframe').attr("src"));
     });
-    
+
+    //INTERACTION PAGE CHECKBOX FUNCTIONS
+    $('.enableDistance').change(function() {
+        if($(this).parents('table').find(':checkbox').is(':checked')){
+            blockEnabledDisable_Field('#id_distance_in_km', true, "p");
+            blockEnabledDisable_Field('#id_selected_collars', true, "p");
+        }else{
+            blockEnabledDisable_Field('#id_distance_in_km', false, "p");
+            blockEnabledDisable_Field('#id_selected_collars', false, "p");
+        }
+        //Update collar list
+        var collarList = '';
+        $('.enableDistance').each(function(){
+            if($(this).is(':checked')){
+                collarList += $(this).closest("td").next().html() + ', ';
+            }
+        });
+       $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
+    });
+
+    //INTERACTION PAGE CHECKBOX FUNCTIONS
+    $('.enableExport').change(function() {
+        checkCollarAndFilterOptionsSelected();
+    });
+
+    $('.enableExport_collarFilter').change(function() {
+        checkCollarAndFilterOptionsSelected();
+    });
+
+    $('.enableExport_weatherFilter').change(function() {
+        checkCollarAndFilterOptionsSelected();
+    });
+
+    function checkCollarAndFilterOptionsSelected(){
+        var isCollarSelected = $('.enableExport').parents('table').find(':checkbox').is(':checked');
+        var isCollarFilterSelected = $('.enableExport_collarFilter').parents('table').find(':checkbox').is(':checked');
+        var isWeatherFilterSelected = $('.enableExport_weatherFilter').parents('table').find(':checkbox').is(':checked');
+
+        if(isCollarSelected){
+            if(isCollarFilterSelected){
+                blockEnabledDisable_Field('.export_collardata', true, "button");
+                blockEnabledDisable_Field('.export_single_collardata', true, "button");
+            }else{
+                blockEnabledDisable_Field('.export_collardata', false, "button");
+                blockEnabledDisable_Field('.export_single_collardata', false, "button");
+            }
+            if(isWeatherFilterSelected){
+                blockEnabledDisable_Field('.export_collardata_weatherdata', true, "button");
+                blockEnabledDisable_Field('.export_single_collardata_weatherdata', true, "button");
+            }else{
+                blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
+                blockEnabledDisable_Field('.export_single_collardata_weatherdata', false, "button");
+            }
+        }else{
+            if(isCollarFilterSelected){
+                blockEnabledDisable_Field('.export_single_collardata', true, "button");
+            }else{
+                blockEnabledDisable_Field('.export_single_collardata', false, "button");
+            }
+            if(isWeatherFilterSelected){
+                blockEnabledDisable_Field('.export_single_collardata_weatherdata', true, "button");
+            }else{
+                blockEnabledDisable_Field('.export_single_collardata_weatherdata', false, "button");
+            }
+            blockEnabledDisable_Field('.export_collardata', false, "button");
+            blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
+        }
+    }
+
+    blockEnabledDisable_Field('#id_distance_in_km', false, "p");
+    blockEnabledDisable_Field('#id_selected_collars', false, "p");
+
+    blockEnabledDisable_Field('.export_collardata', false, "button");
+    blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
+
+    // HIDE EXPORT TYPE FIELDS
+    $('.export_box_hidden').hide();
+
+    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collar data)
+    $('.export_collardata').click(function() {
+        $('#id_add_weather').removeAttr('checked');
+        $('#id_is_multi').attr('checked','checked');
+    });
+
+    // CHANGE EXPORT TYPE TO TRUE ONCLICK (collar+weather data)
+    $('.export_collardata_weatherdata').click(function() {
+        $('#id_add_weather').attr('checked','checked');
+        $('#id_is_multi').attr('checked','checked');
+    });
+
+    $('.is_single').click(function() {
+        $('#id_add_weather').removeAttr('checked');
+        $('#id_is_multi').removeAttr('checked');
+        $('#id_single_collar').val($(this).attr("name"));
+    });
+
+    $('.is_single_weather').click(function() {
+        $('#id_add_weather').attr('checked','checked');
+        $('#id_is_multi').removeAttr('checked');
+        $('#id_single_collar').val($(this).attr("name"));
+    });
+
+    function blockEnabledDisable_Field(field, enable, parent){
+        if(enable && $(field).parents(parent).is(':disabled')){
+            $(field).parents(parent).attr('disabled', false);
+            $(field).parents(parent).unblock();
+        }else{
+            if(!enable && !$(field).parents(parent).is(':disabled')){
+                $(field).parents(parent).attr('disabled', true);
+                $(field).parents(parent).block({
+                    message: '',
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .6,
+                        color: '#fff',
+                        cursor: null
+                    },
+
+                    // styles for the overlay
+                    overlayCSS:  {
+                        backgroundColor: '#000',
+                        opacity:         0.4,
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius':    '10px'
+                    }
+                });
+            }
+        }
+    }
+
     ///////END CUSTOM FUNCTIONS///////
 
     // MENU
@@ -26,7 +159,7 @@ $(document).ready(function() {
     $('span.hide').click(function() {
         $(this).parent().next('.content').fadeToggle(100);
     });
-	
+
 	// TITLE SEARCH BOX
 	$('.box-search').hide();
 	$('span.search').click( function() {
@@ -92,7 +225,7 @@ $(document).ready(function() {
 
     $(".tooltip").tipsy();
 
-    // TABLE SORTER    
+    // TABLE SORTER
     var $allTable = $(".table-all");
     var tablesorterConfig = {
         widgets: ['zebra'],
@@ -123,85 +256,6 @@ $(document).ready(function() {
     $('.checkall').click(function() {
         $(this).parents('table').find(':checkbox').attr('checked', this.checked).change();
     });
-    
-    //INTERACTION PAGE CHECKBOX FUNCTIONS
-    $('.enableDistance').change(function() {
-        if($(this).parents('table').find(':checkbox').is(':checked')){
-            blockEnabledDisable_Field('#id_distance_in_km', true);
-            blockEnabledDisable_Field('#id_selected_collars', true);
-        }else{
-            blockEnabledDisable_Field('#id_distance_in_km', false);
-            blockEnabledDisable_Field('#id_selected_collars', false);
-        }
-        //Update collar list
-        var collarList = '';
-        $('.enableDistance').each(function(){
-            if($(this).is(':checked')){
-                collarList += $(this).closest("td").next().html() + ', ';
-            }
-        });
-       $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
-    });
-
-    blockEnabledDisable_Field('#id_distance_in_km', false);
-    blockEnabledDisable_Field('#id_selected_collars', false);
-
-    // HIDE EXPORT TYPE FIELDS
-    $('.export_box_hidden').hide();
-
-    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collat data)
-    $('.export_collardata').click(function() {
-        $('#id_add_weather').removeAttr('checked');
-        $('#id_is_multi').attr('checked','checked');
-    });
-
-    // CHANGE EXPORT TYPE TO TRUE ONCLICK (collar+weather data)
-    $('.export_collardata_weatherdata').click(function() {
-        $('#id_add_weather').attr('checked','checked');
-        $('#id_is_multi').attr('checked','checked');
-    });
-
-    $('.is_single').click(function() {
-        $('#id_add_weather').removeAttr('checked');
-        $('#id_is_multi').removeAttr('checked');
-        $('#id_single_collar').val($(this).attr("name"));
-    });
-
-    $('.is_single_weather').click(function() {
-        $('#id_add_weather').attr('checked','checked');
-        $('#id_is_multi').removeAttr('checked');
-        $('#id_single_collar').val($(this).attr("name"));
-    });
-
-    function blockEnabledDisable_Field(field, enable){
-        if(enable){
-            $(field).attr('disabled', false);
-            $(field).parents("p").unblock();
-        }else{
-            $(field).attr('disabled', true);
-            $(field).parents("p").block({
-                message: '',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .6,
-                    color: '#fff',
-                    cursor: null
-                },
-
-                // styles for the overlay
-                overlayCSS:  {
-                    backgroundColor: '#000',
-                    opacity:         0.2,
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius':    '10px'
-                }
-            });
-        }
-    }
 
     // BUTTON LINKS
     $("a.button").wrapInner("<span></span>");
@@ -260,8 +314,8 @@ $(document).ready(function() {
         });
         rangeSpan.val("" + $(this).slider("value"));
     });
-    
-    $(".range-time-slide div.slide").each(function() {        
+
+    $(".range-time-slide div.slide").each(function() {
         values = $(this).attr('value').split(',');
         firstVal = values[0];
         secondVal = values[1];
@@ -289,11 +343,11 @@ $(document).ready(function() {
         var hours0 = parseInt(firstVal / 60 % 24);
         var minutes1 = parseInt(secondVal % 60);
         var hours1 = parseInt(secondVal / 60 % 24);
-           
+
         rangeInputfirst.val("" + getTime(hours0, minutes0));
         rangeInputsecond.val("" + getTime(hours1, minutes1));
     });
-    
+
     function getTime(hours, minutes) {
         var time = null;
         minutes = minutes + "";
@@ -314,7 +368,7 @@ $(document).ready(function() {
         }
         return hours + ":" + minutes + " " + time;
     }
-    
+
     // PROGRESSBAR
     $(".progressbar div").progressbar({
         value: 100
@@ -336,7 +390,7 @@ $(document).ready(function() {
         clickInput: true,
         startDate: '01/01/1995'
     });
-    
+
     $('input.timepicker').timepicker({
         showPeriod: true,
         showLeadingZero: true,
