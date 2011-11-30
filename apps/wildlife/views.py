@@ -88,7 +88,9 @@ def export(request):
         form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%id_s')
         form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
-        form_specimen_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_specimen_name = SpecimenByNameForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_species_name = SpeciesByNameForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_sex = SexForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
             is_multi = form_export_type.cleaned_data['is_multi']
@@ -99,14 +101,20 @@ def export(request):
             else:
                 return getSingleCollarCSV(request, single_collar, add_weather, form_collars_filter, form_weather_filter)
     else:
+        specimens = Specimen.objects.all()
         form_collars = ExportCollarDataForm()
         form_collars_filter = ExportCollarDataFilterForm()
         form_weather_filter = ExportWeatherDataFilterForm()
-        form_specimen_filter = ExportSpecimenFilterForm()
+        form_specimen_name = SpecimenByNameForm()
+        form_species_name = SpeciesByNameForm()
+        form_sex = SexForm()
         form_export_type = ExportTypeForm()
+        siteDictionary['specimens'] = specimens
         siteDictionary['form_collars'] = form_collars
         siteDictionary['form_collars_filter'] = form_collars_filter
         siteDictionary['form_weather_filter'] = form_weather_filter
-        siteDictionary['form_specimen_filter'] = form_specimen_filter
+        siteDictionary['form_specimen_name'] = form_specimen_name
+        siteDictionary['form_species_name'] = form_species_name
+        siteDictionary['form_sex'] = form_sex
         siteDictionary['form_export_type'] = form_export_type
     return render_to_response('export_specimen.html', siteDictionary, context_instance=RequestContext(request))

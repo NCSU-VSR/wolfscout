@@ -19,3 +19,23 @@ class ExportSpecimenFilterForm(forms.Form):
         for field in Specimen._meta.fields:
             field_name = str(field.name)
             self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_specimenFilter'}), label=field_name, initial=True)
+
+class SpecimenByNameForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+            super(SpecimenByNameForm, self).__init__(*args, **kwargs)
+            specimens = Specimen.objects.all()
+            for field in specimens:
+                field_name = field.pk
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small specimenCheckbox'}), label=field_name, initial=False)
+
+class SpeciesByNameForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+            super(SpeciesByNameForm, self).__init__(*args, **kwargs)
+            species = Species.objects.all()
+            for field in species:
+                field_name = field.name
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_speciesName'}), label=field_name, initial=False)
+
+class SexForm(forms.Form):
+    male = forms.BooleanField(required=False, label='male', initial=False)
+    female = forms.BooleanField(required=False, label='female', initial=False)

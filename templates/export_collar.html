@@ -27,7 +27,6 @@
                                 <td>{{ field.label }}</td>
                                 <td>
                                     <button class="is_single tooltip" name="{{ field.label }}" type="submit" title="Export Collar Data CSV" type="submit"><img class="export_single_collardata" src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></button>
-                                    <button class="is_single_weather tooltip" name="{{ field.label }}" type="submit" title="Export Collar Data + Weather CSV" type="submit"><img class="export_single_collardata_weatherdata" src="{{ STATIC_URL }}gfx/icon-csv-weather.png" alt="edit" /></button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -101,8 +100,7 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_collardata">Export by Species</span></button>
-                    <button type="submit" class="blue"><span class="export_collardata_weatherdata">Export Multiple Collar Data + Weather CSV</span></button>
+                    <button type="submit" class="green"><span class="export_collardata">Export Multiple Collar CSV</span></button>
                 </div>
             </div>
         </div>

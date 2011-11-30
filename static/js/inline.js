@@ -7,7 +7,10 @@ $(document).ready(function() {
         $('.iframe').attr("src", $('.iframe').attr("src"));
     });
 
-    //INTERACTION PAGE CHECKBOX FUNCTIONS
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * INTERACTION DATA PAGE
+     */
     $('.enableDistance').change(function() {
         if($(this).parents('table').find(':checkbox').is(':checked')){
             blockEnabledDisable_Field('#id_distance_in_km', true, "p");
@@ -24,6 +27,53 @@ $(document).ready(function() {
             }
         });
        $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
+    });
+
+    blockEnabledDisable_Field('#id_distance_in_km', false, "p");
+    blockEnabledDisable_Field('#id_selected_collars', false, "p");
+    //////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * SPECIMEN EXPORT PAGE
+      */
+    $('.specimenCheckbox').change(function() {
+        checkSpecimenSelected();
+    });
+
+    function checkSpecimenSelected(){
+        var isSpecimenSelected = $('.specimenCheckbox').parents('table').find(':checkbox').is(':checked');
+
+        if(isSpecimenSelected){
+            $('.species_tab').parent('div').attr('disabled', false);
+            $('.sex_tab').parent('div').attr('disabled', false);
+            blockEnabledDisable_Field('.species_tab', false, "div");
+            blockEnabledDisable_Field('.sex_tab', false, "div");
+        }else{
+            $('.species_tab').parent('div').attr('disabled', true);
+            $('.sex_tab').parent('div').attr('disabled', true);
+            blockEnabledDisable_Field('.species_tab', true, "div");
+            blockEnabledDisable_Field('.sex_tab', true, "div");
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////
+    /**
+     * COLLAR EXPORT PAGE
+     */
+    // HIDE EXPORT TYPE FIELDS
+    $('.export_box_hidden').hide();
+
+    blockEnabledDisable_Field('.export_collardata', false, "button");
+
+    $('.export_collardata').click(function() {
+        $('#id_is_multi').attr('checked','checked');
+    });
+
+    $('.is_single').click(function() {
+        $('#id_is_multi').removeAttr('checked');
+        $('#id_single_collar').val($(this).attr("name"));
     });
 
     //INTERACTION PAGE CHECKBOX FUNCTIONS
@@ -45,77 +95,32 @@ $(document).ready(function() {
         var isWeatherFilterSelected = $('.enableExport_weatherFilter').parents('table').find(':checkbox').is(':checked');
 
         if(isCollarSelected){
-            if(isCollarFilterSelected){
+            if(isCollarFilterSelected || isWeatherFilterSelected){
                 blockEnabledDisable_Field('.export_collardata', true, "button");
                 blockEnabledDisable_Field('.export_single_collardata', true, "button");
             }else{
                 blockEnabledDisable_Field('.export_collardata', false, "button");
                 blockEnabledDisable_Field('.export_single_collardata', false, "button");
             }
-            if(isWeatherFilterSelected){
-                blockEnabledDisable_Field('.export_collardata_weatherdata', true, "button");
-                blockEnabledDisable_Field('.export_single_collardata_weatherdata', true, "button");
-            }else{
-                blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
-                blockEnabledDisable_Field('.export_single_collardata_weatherdata', false, "button");
-            }
         }else{
-            if(isCollarFilterSelected){
+            if(isCollarFilterSelected || isWeatherFilterSelected){
                 blockEnabledDisable_Field('.export_single_collardata', true, "button");
             }else{
                 blockEnabledDisable_Field('.export_single_collardata', false, "button");
             }
-            if(isWeatherFilterSelected){
-                blockEnabledDisable_Field('.export_single_collardata_weatherdata', true, "button");
-            }else{
-                blockEnabledDisable_Field('.export_single_collardata_weatherdata', false, "button");
-            }
             blockEnabledDisable_Field('.export_collardata', false, "button");
-            blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
         }
     }
 
-    blockEnabledDisable_Field('#id_distance_in_km', false, "p");
-    blockEnabledDisable_Field('#id_selected_collars', false, "p");
-
-    blockEnabledDisable_Field('.export_collardata', false, "button");
-    blockEnabledDisable_Field('.export_collardata_weatherdata', false, "button");
-
-    // HIDE EXPORT TYPE FIELDS
-    $('.export_box_hidden').hide();
-
-    // CHANGE EXPORT TYPE TO FALSE ONCLICK (just collar data)
-    $('.export_collardata').click(function() {
-        $('#id_add_weather').removeAttr('checked');
-        $('#id_is_multi').attr('checked','checked');
-    });
-
-    // CHANGE EXPORT TYPE TO TRUE ONCLICK (collar+weather data)
-    $('.export_collardata_weatherdata').click(function() {
-        $('#id_add_weather').attr('checked','checked');
-        $('#id_is_multi').attr('checked','checked');
-    });
-
-    $('.is_single').click(function() {
-        $('#id_add_weather').removeAttr('checked');
-        $('#id_is_multi').removeAttr('checked');
-        $('#id_single_collar').val($(this).attr("name"));
-    });
-
-    $('.is_single_weather').click(function() {
-        $('#id_add_weather').attr('checked','checked');
-        $('#id_is_multi').removeAttr('checked');
-        $('#id_single_collar').val($(this).attr("name"));
-    });
-
     function blockEnabledDisable_Field(field, enable, parent){
-        if(enable && $(field).parents(parent).is(':disabled')){
-            $(field).parents(parent).attr('disabled', false);
-            $(field).parents(parent).unblock();
+        field = $(field).parent(parent);
+        if(enable && field.is(':disabled')){
+            field.attr('disabled', false);
+            field.unblock();
         }else{
-            if(!enable && !$(field).parents(parent).is(':disabled')){
-                $(field).parents(parent).attr('disabled', true);
-                $(field).parents(parent).block({
+            if(!enable && !field.is(':disabled')){
+                field.attr('disabled', true);
+                field.block({
                     message: '',
                     css: {
                         border: 'none',

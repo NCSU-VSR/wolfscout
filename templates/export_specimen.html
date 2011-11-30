@@ -27,15 +27,25 @@
                         <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked"/></th>
-                                    <th>Specimen Fields</th>
+                                    <th></th>
+                                    <th>Common Name</th>
+                                    <th>Age</th>
+                                    <th>Sex</th>
+                                    <th>Species</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for field in form_specimen_filter %}
+                            {% for field in form_specimen_name %}
                                 <tr>
                                     <td>{{ field }}</td>
-                                    <td>{{ field.label }}</td>
+                                    {% for specimen in specimens %}
+                                        {% ifequal specimen.pk field.name %}
+                                        <td>{{ specimen.common_name }}</td>
+                                        <td>{{ specimen.age }}</td>
+                                        <td>{{ specimen.sex }}</td>
+                                        <td>{{ specimen.species }}</td>
+                                        {% endifequal %}
+                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -71,49 +81,28 @@
                     </div>
 
                     <div id="sex">
-                        <h3><a href="#">Time of Day</a></h3>
-                        <div>
-                            <div class="line">
-                                <label>From</label>
-                                <input type="text" class="timepicker" />
-                            </div>
-                            <div class="line">
-                                <label>To</label>
-                                <input type="text" class="timepicker" />
-                            </div>
+                        <div class="sorting sex_tab">
+                        {{ form_sex }}
                         </div>
                     </div>
 
                     <div id="species">
-                        <h3><href="#">Species</a></h3>
-                        <div>
-                            <table id="collarsdisplayed" cellspacing="0" cellpadding="0" border="0">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" name="check" class="checkall  checkbox-small" /></th>
-                                        <th>Species</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
-                                        <td>Deer</td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
-                                        <td>Coyote</td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" name="check" class="checkbox-small" /></td>
-                                        <td>Cattle</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting species_tab">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Species Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_species_name %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
