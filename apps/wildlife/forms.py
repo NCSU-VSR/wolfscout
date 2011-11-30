@@ -25,19 +25,19 @@ class SpecimenByNameForm(forms.Form):
             super(SpecimenByNameForm, self).__init__(*args, **kwargs)
             specimens = Specimen.objects.all()
             for field in specimens:
-                field_name = str(field.pk)
-                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small specimenCheckbox'}), label=field_name, initial=False)
+                field_name = str(field.common_name)
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small specimenCheckbox'}), initial=False)
 
 class SpeciesByNameForm(forms.Form):
     def __init__(self, *args, **kwargs):
             super(SpeciesByNameForm, self).__init__(*args, **kwargs)
             species = Species.objects.all()
             for field in species:
-                field_name = str(field.pk)
-                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_speciesName'}), label=field_name, initial=False)
+                field_name = str(field.name)
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), initial=False)
 
 class SexForm(forms.Form):
     def __init__(self, *args, **kwargs):
-                super(SexForm, self).__init__(*args, **kwargs)
-                self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
-                self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)
+            super(SexForm, self).__init__(*args, **kwargs)
+            self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
+            self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)

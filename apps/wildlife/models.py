@@ -22,7 +22,7 @@ class Specimen(models.Model):
     Possibilities include a collar GPS unit, weather info, or custom sensors
     """
     collar = models.ForeignKey(Collar, null=True, blank=True)
-    common_name = models.CharField(max_length=50, null=True, blank=True)
+    common_name = models.CharField(max_length=50, unique=True)
     age = models.CharField(max_length=50, null=True, blank=True)
     sex = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)

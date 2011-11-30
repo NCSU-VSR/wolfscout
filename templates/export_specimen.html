@@ -41,12 +41,12 @@
                                 <tr>
                                     <td>{{ field }}</td>
                                     {% for specimen in specimens %}
-                                        {% ifequal specimen.pk|add:"0" field.name|add:"0" %}
-                                        <td>{{ specimen.common_name }}</td>
-                                        <td>{{ specimen.age }}</td>
-                                        <td>{{ specimen.sex }}</td>
-                                        <td>{{ specimen.species }}</td>
-                                        <td>{{ specimen.collar }}</td>
+                                        {% ifequal specimen.common_name field.name %}
+                                    <td>{{ specimen.common_name }}</td>
+                                    <td>{{ specimen.age }}</td>
+                                    <td>{{ specimen.sex }}</td>
+                                    <td>{{ specimen.species }}</td>
+                                    <td>{{ specimen.collar }}</td>
                                         {% endifequal %}
                                     {% endfor %}
                                 </tr>
@@ -112,17 +112,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <form>
                             {% for field in form_species_name %}
                                 <tr>
                                     <td>{{ field }}</td>
                                     {% for sp in species %}
-                                        {% ifequal sp.pk|add:"0" field.name|add:"0" %}
-                                        <td>{{ sp.name }}</td>
-                                        <td>{{ sp.notes }}</td>
+                                        {% ifequal sp.name field.name %}
+                                    <td>{{ sp.name }}</td>
+                                    <td>{{ sp.notes }}</td>
                                         {% endifequal %}
                                     {% endfor %}
                                 </tr>
                             {% endfor %}
+                            </form>
                             </tbody>
                         </table>
                     </div>
