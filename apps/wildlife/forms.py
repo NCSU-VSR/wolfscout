@@ -33,9 +33,11 @@ class SpeciesByNameForm(forms.Form):
             super(SpeciesByNameForm, self).__init__(*args, **kwargs)
             species = Species.objects.all()
             for field in species:
-                field_name = field.name
+                field_name = field.pk
                 self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_speciesName'}), label=field_name, initial=False)
 
 class SexForm(forms.Form):
-    male = forms.BooleanField(required=False, label='male', initial=False)
-    female = forms.BooleanField(required=False, label='female', initial=False)
+    def __init__(self, *args, **kwargs):
+                super(SexForm, self).__init__(*args, **kwargs)
+                self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
+                self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)
