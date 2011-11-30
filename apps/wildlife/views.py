@@ -30,7 +30,7 @@ def getCSV(form_specimen_name, form_species_name, form_sex, form_collars_filter,
 
     writer = writeHeaders(writer, form_specimen_name, form_collars_filter, form_weather_filter)
 
-    iterateThroughFilterHeiarchy(writer, form_specimen_name)
+    writer = iterateThroughFilterHierarchy(writer, form_specimen_name, form_collars_filter, form_weather_filter)
 
     return response
 
@@ -47,22 +47,28 @@ def writeHeaders(writer, form_specimen_name, form_collars_filter, form_weather_f
             headerList.append(field.name)
     writer.writerow(headerList)
 
+    return writer
 
 
+def iterateThroughFilterHierarchy(writer, form_specimen_name, form_collars_filter, form_weather_filter):
+    specimens = Specimen.objects.all()
 
-def iterateThroughFilterHeiarchy(writer, form_specimen_name):
-    collars = Collar.objects.all()
-    for field in form_specimen_name:
-        print field.label
+    for data in specimens:
+        if form_specimen_name.cleaned_data[str(data.pk)]:
+            collarID = data.collar
+            dataList = []
+            dataValues = data.get_fields()
+            for val in dataValues:
+                dataList.append(val[1])
+            writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
 
-#def writeSpecimenData(writer, form_specimen_name):
+    return writer
 
-
-def writeCollarWeatherData(writer, collarID):
+def writeCollarWeatherData(writer, collarID, specimenDataList, form_collars_filter, form_weather_filter):
     theCollar = get_object_or_404(Collar, collarID=collarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
     for data in collarDatas:
-        dataList = []
+        dataList = specimenDataList[:]
         dataValues = data.get_fields()
         for val in dataValues:
             if form_collars_filter.cleaned_data[str(val[0])]:
@@ -115,7 +121,7 @@ def export(request):
         form_specimen_name = SpecimenByNameForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         form_species_name = SpeciesByNameForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         form_sex = SexForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
-        if form_collars_filter.is_valid() and form_weather_filter.is_valid():
+        if form_specimen_name.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid():
             return getCSV(form_specimen_name, form_species_name, form_sex, form_collars_filter, form_weather_filter)
     else:
         specimens = Specimen.objects.all()

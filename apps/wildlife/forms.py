@@ -25,7 +25,7 @@ class SpecimenByNameForm(forms.Form):
             super(SpecimenByNameForm, self).__init__(*args, **kwargs)
             specimens = Specimen.objects.all()
             for field in specimens:
-                field_name = field.pk
+                field_name = str(field.pk)
                 self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small specimenCheckbox'}), label=field_name, initial=False)
 
 class SpeciesByNameForm(forms.Form):
@@ -33,7 +33,7 @@ class SpeciesByNameForm(forms.Form):
             super(SpeciesByNameForm, self).__init__(*args, **kwargs)
             species = Species.objects.all()
             for field in species:
-                field_name = field.pk
+                field_name = str(field.pk)
                 self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_speciesName'}), label=field_name, initial=False)
 
 class SexForm(forms.Form):

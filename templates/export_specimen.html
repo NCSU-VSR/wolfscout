@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{ field }}</td>
                                     {% for specimen in specimens %}
-                                        {% ifequal specimen.pk field.name %}
+                                        {% ifequal specimen.pk|add:"0" field.name|add:"0" %}
                                         <td>{{ specimen.common_name }}</td>
                                         <td>{{ specimen.age }}</td>
                                         <td>{{ specimen.sex }}</td>
@@ -116,7 +116,7 @@
                                 <tr>
                                     <td>{{ field }}</td>
                                     {% for sp in species %}
-                                        {% ifequal sp.pk field.name %}
+                                        {% ifequal sp.pk|add:"0" field.name|add:"0" %}
                                         <td>{{ sp.name }}</td>
                                         <td>{{ sp.notes }}</td>
                                         {% endifequal %}
