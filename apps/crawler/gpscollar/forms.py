@@ -27,10 +27,6 @@ class collarDataFilterForm(forms.Form):
 class CollarIDForm(forms.Form):
     collar_id = forms.ModelChoiceField(Collar.objects.all())
     
-class InteractionsDistanceForm(forms.Form):
-    distance_in_km = forms.RegexField(initial=DISTANCE_TO_SEARCH, required=False, max_length=31, regex=r'^([0-9]*|\d*\.\d{1}?\d*)$', error_message = ("This value must contain only numbers and one decimal point."))
-    selected_collars = forms.CharField(required=False, widget=forms.Textarea(attrs={'readonly':'readonly'}))#,widget=forms.HiddenInput)
-    
 class UploadShapeFileForm(forms.Form):
     shape_file = forms.FileField(required=False)
     selected_shapes = forms.CharField(required=False, widget=forms.Textarea(attrs={'readonly':'readonly'}))#,widget=forms.HiddenInput)
@@ -45,7 +41,7 @@ class ExportCollarDataForm(forms.Form):
 
 class ExportTypeForm(forms.Form):
     is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
-    single_collar = forms.CharField(required=False)
+    single_export = forms.CharField(required=False)
 
 
 class ExportCollarDataFilterForm(forms.Form):
@@ -61,3 +57,4 @@ class ExportWeatherDataFilterForm(forms.Form):
         for field in WeatherDataPoint._meta.fields:
             field_name = str(field.name)
             self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter'}), label=field_name, initial=True)
+

@@ -27,5 +27,8 @@ class StudyForm(forms.ModelForm):
                 #self.fields['collars'].widget = CheckboxSelectMultipleP(choices=self.fields['collars'].choices)
         class Meta:
             model = Study
-            
+
+class ExportTypeForm(forms.Form):
+    is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+    single_export = forms.CharField(required=False)
 

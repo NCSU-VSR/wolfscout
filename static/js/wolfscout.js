@@ -5,11 +5,11 @@ $(document).ready(function() {
      */
     $('.enableDistance').change(function() {
         if($(this).parents('table').find(':checkbox').is(':checked')){
-            blockEnabledDisable_Field('#id_distance_in_km', true, "p");
-            blockEnabledDisable_Field('#id_selected_collars', true, "p");
+            blockEnabledDisable_Field_Specimen('#id_distance_in_km', true, "p");
+            blockEnabledDisable_Field_Specimen('#id_selected_collars', true, "p");
         }else{
-            blockEnabledDisable_Field('#id_distance_in_km', false, "p");
-            blockEnabledDisable_Field('#id_selected_collars', false, "p");
+            blockEnabledDisable_Field_Specimen('#id_distance_in_km', false, "p");
+            blockEnabledDisable_Field_Specimen('#id_selected_collars', false, "p");
         }
         //Update collar list
         var collarList = '';
@@ -21,8 +21,8 @@ $(document).ready(function() {
        $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
     });
 
-    blockEnabledDisable_Field_Collar('#id_distance_in_km', false, "p");
-    blockEnabledDisable_Field_Collar('#id_selected_collars', false, "p");
+    blockEnabledDisable_Field_Specimen('#id_distance_in_km', false, "p");
+    blockEnabledDisable_Field_Specimen('#id_selected_collars', false, "p");
     //////////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
     $('.is_single').click(function() {
         $('#id_is_multi').removeAttr('checked');
-        $('#id_single_collar').val($(this).attr("name"));
+        $('#id_single_export').val($(this).attr("name"));
     });
 
     //INTERACTION PAGE CHECKBOX FUNCTIONS

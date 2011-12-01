@@ -32,9 +32,10 @@ urlpatterns = patterns('',
 
     url(r'^export_specimen/$', 'wolfscout.apps.wildlife.views.export'),
     url(r'^export_collar/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
+    url(r'^export_interactions/$', 'wolfscout.apps.study.views.interactions'),
+    url(r'^export_interactions/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.getInteractionGroups'),
+
     url(r'^collar_data/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
-    url(r'^collar_interactions/$', 'wolfscout.apps.crawler.gpscollar.views.interactions'),
-    
     url(r'^collarDataUpload/$', 'wolfscout.apps.crawler.gpscollar.views.uploadCollarDataFile'),
     url(r'^collarDataKML/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPoints'),
     url(r'^getInteractionKML/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPointsInteractions'),
