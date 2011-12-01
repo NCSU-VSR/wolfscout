@@ -26,5 +26,6 @@ class Specimen(models.Model):
     age = models.CharField(max_length=50, null=True, blank=True)
     sex = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)
+
     def __unicode__(self):
         return str(self.common_name)
