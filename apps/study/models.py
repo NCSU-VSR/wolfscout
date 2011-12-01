@@ -37,6 +37,7 @@ class AnimalInteractionGroup(models.Model):
     title = models.CharField(max_length=100,null=True,blank=True)
     study = models.ForeignKey(Study, related_name="AnimalInteractionStudyGroup")
     distance = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    completed = models.BooleanField(default=False)
     def __unicode__(self):
         return str(self.pk)
 
