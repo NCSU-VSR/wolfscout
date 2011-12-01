@@ -7,29 +7,33 @@
 	<div class="section">
         <div class="box">
             <div class="title">
-                <h2>Animal Interaction Groups for '{{ study.title }}'</h2>
+                <h2>Interactions for group '{{ group.title }}'</h2>
                 <span class="hide"></span>
             </div>
             <div class="content">
                 <div class = "line">
-                    <h2>Click on an Animal Interaction Group to view its interactions or click export...</h2>
+                    <h2>Click on an Interaction to view its individual data or click export...</h2>
                 </div>
                 <div class = "line">
                     <table cellspacing="0" cellpadding="0" border="0" class="sorting">
                         <thead>
                             <tr>
-                                <th class="header-primary">Interaction Group</th>
-                                <th>Distance for this Group</th>
-                                <th>Export Interaction Group</th>
+                                <th class="header-primary">Interaction #</th>
+                                <th>Source Animal Data Point</th>
+                                <th>Destination Animal Data Point</th>
+                                <th>Distance</th>
+                                <th>Export Interaction</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {% for group in studyInteractionGroups %}
+                        {% for i in groupInteractions %}
                             <tr>
-                                <td><a href = "/export_interactions/group/{{ group.pk }}">{{ group.title }}</td>
-                                <td>{{ group.distance }}</td>
+                                <td><a href = "">{{ i.pk }}</a></td>
+                                <td>{{ i.source_animal_data_point }}</td>
+                                <td>{{ i.destination_animal_data_point }}</td>
+                                <td>{{ i.distance }} km</td>
                                 <td>
-                                    <button class="is_single tooltip" name="{{ group.pk }}" type="submit" title="Export Interaction Group SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
+                                    <button class="is_single tooltip" name="{{ i.pk }}" type="submit" title="Export Interaction SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
                                 </td>
                             </tr>
                         {% endfor %}

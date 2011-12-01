@@ -102,9 +102,34 @@ def getInteractionGroups(request, theStudyID):
         for group in interactionGroups:
             if theStudy == group.study:
                 studyInteractionGroups.append(group)
-        interactionGroups = get_object_or_404(AnimalInteractionGroup, study=theStudy)
         siteDictionary['studyInteractionGroups'] = studyInteractionGroups
         siteDictionary['study'] = theStudy
         form_export_type = ExportTypeForm()
         siteDictionary['form_export_type'] = form_export_type
     return render_to_response('export_interaction_groups.html', siteDictionary, context_instance=RequestContext(request))
+
+@login_required()
+def getGroupInteractions(request, theGroupID):
+    siteDictionary = getDictionary(request)
+    if request.method == 'POST':
+        form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        if form_export_type.is_valid():
+            is_multi = form_export_type.cleaned_data['is_multi']
+            single_interaction_pk = form_export_type.cleaned_data['single_export']
+            if is_multi:
+                print is_multi
+            else:
+                interactionGroup = get_object_or_404(Study, pk=single_interaction_pk)
+                print interactionGroup
+    else:
+        theGroup = get_object_or_404(AnimalInteractionGroup, pk=theGroupID)
+        interactions = AnimalInteraction.objects.all()
+        groupInteractions = []
+        for i in interactions:
+            if theGroup == i.interaction_group:
+                groupInteractions.append(i)
+        siteDictionary['groupInteractions'] = groupInteractions
+        siteDictionary['group'] = theGroup
+        form_export_type = ExportTypeForm()
+        siteDictionary['form_export_type'] = form_export_type
+    return render_to_response('export_interaction_groupInteractions.html', siteDictionary, context_instance=RequestContext(request))
