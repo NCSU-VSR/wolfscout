@@ -41,7 +41,8 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.image.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.link.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/controls/wysiwyg.table.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>	
+	<script type="text/javascript" src="{{ STATIC_URL }}js/inline.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/wolfscout.js"></script>
 	
 	<!--ARCGIS JS AND STYLING-->
 	
@@ -81,19 +82,15 @@
 					</ul> 
 				</li>
 				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}">
-					<a href="#">Collar</a>
+					<a href="#">Export</a>
 					<ul> 
-						<li><a href="/collar_export">Export</a></li>
-						<li><a href="/collar_interactions">Interactions</a></li>
+						<li><a href="/export_collar">Export by Collar</a></li>
+						<li><a href="/export_specimen">Export by Specimen</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 		<div class="breadcrumbs">
-			<ul>
-				<li class="home"><a href="/"></a></li>
-				<li class="break">&#187;</li>
-			</ul>
 			<div class="loginmessage">
 				Welcome back, {% if user.first_name != '' %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
 			</div>

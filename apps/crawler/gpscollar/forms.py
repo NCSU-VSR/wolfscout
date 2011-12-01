@@ -41,11 +41,10 @@ class ExportCollarDataForm(forms.Form):
         collars = Collar.objects.all()
         for collar in collars:
             field_name = str(collar.collarID)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport'}), label=field_name)
 
 class ExportTypeForm(forms.Form):
     is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
-    add_weather = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
     single_collar = forms.CharField(required=False)
 
 
@@ -54,11 +53,11 @@ class ExportCollarDataFilterForm(forms.Form):
         super(ExportCollarDataFilterForm, self).__init__(*args, **kwargs)
         for field in CollarData._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_collarFilter'}), label=field_name, initial=True)
             
 class ExportWeatherDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportWeatherDataFilterForm, self).__init__(*args, **kwargs)
         for field in WeatherDataPoint._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter'}), label=field_name, initial=True)

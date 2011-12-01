@@ -30,7 +30,8 @@ urlpatterns = patterns('',
     # ROOT DIR #
     url(r'^$', index),	
 
-    url(r'^collar_export/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
+    url(r'^export_specimen/$', 'wolfscout.apps.wildlife.views.export'),
+    url(r'^export_collar/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
     url(r'^collar_data/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     url(r'^collar_interactions/$', 'wolfscout.apps.crawler.gpscollar.views.interactions'),
     

@@ -49,11 +49,10 @@ def getMultiCollarCSV(request, form_collars, add_weather, form_collars_filter, f
             hasValues = True
             writer = createCollarCSV(writer, str(collar.collarID), add_weather, form_collars_filter, form_weather_filter)
     # If at east one checkbox is checked, return csv
-    return response
-    """if hasValues:
+    if hasValues:
         return response
     else:
-        return render_to_response("")"""
+        return HttpResponseRedirect('/collar_export/')
 
 def createCollarCSV(writer, theCollarID, add_weather, form_collars_filter, form_weather_filter):
 
@@ -89,10 +88,10 @@ def createCollarCSV(writer, theCollarID, add_weather, form_collars_filter, form_
 def export(request):
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
-        form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%s')
-        form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
-        form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='%s')
-        form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='%s')
+        form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%id_s')
+        form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
             is_multi = form_export_type.cleaned_data['is_multi']
             add_weather = form_export_type.cleaned_data['add_weather']
@@ -110,7 +109,7 @@ def export(request):
         siteDictionary['form_collars_filter'] = form_collars_filter
         siteDictionary['form_weather_filter'] = form_weather_filter
         siteDictionary['form_export_type'] = form_export_type
-    return render_to_response('collar_export.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('export_collar.html', siteDictionary, context_instance=RequestContext(request))
     
 def interactions(request):
     siteDictionary = getDictionary(request)
