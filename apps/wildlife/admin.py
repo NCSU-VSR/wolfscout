@@ -10,11 +10,11 @@ from django.contrib.gis import admin
 from apps.wildlife.models import Species, Specimen
 
 ##### Admin Classes ######
-class SpeciesAdmin(admin.ModelAdmin):
+class SpeciesAdmin(admin.GeoModelAdmin):
     list_display = ('name','notes',)
     search_fields = ('name',)
 
-class SpecimenAdmin(admin.ModelAdmin):
+class SpecimenAdmin(admin.GeoModelAdmin):
     list_display = ('collar','common_name','species',)
     search_fields = ('collar','common_name','species',)
 
