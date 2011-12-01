@@ -32,6 +32,7 @@ def getCSV(form_specimen_name, form_species_name, form_sex, form_collars_filter,
 
     # if specimen is selected, filter by specimen
     # STILL NEED TO ADD DATE AND TIME FILTER TO BOTH
+
     if(isSpecimenSelected(form_specimen_name)):
         writer = filterBySpecimen(writer, form_specimen_name, form_collars_filter, form_weather_filter)
     else:
