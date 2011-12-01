@@ -36,7 +36,7 @@ class AnimalInteractionGroup(models.Model):
     """
 
     study = models.ForeignKey(Study, related_name="AnimalInteractionStudyGroup")
-
+    distance = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
     def __unicode__(self):
         return str(self.pk)
 
