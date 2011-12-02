@@ -27,7 +27,7 @@
                         {% for group in studyInteractionGroups %}
                             <tr>
                                 <td><a href = "/export_interactions/group/{{ group.pk }}">{{ group.title }}</td>
-                                <td>{{ group.distance }}</td>
+                                <td>{{ group.distance }} km</td>
                                 <td>
                                     <button class="is_single tooltip" name="{{ group.pk }}" type="submit" title="Export Interaction Group SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
                                 </td>
