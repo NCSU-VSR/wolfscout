@@ -66,25 +66,12 @@
 		</div>
 		<div class="menu-search">
 			<ul> 			    
-				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Dashboard</a></li> 
-				<li class="{% ifequal request.path "/studies/" %}current{% endifequal %}"> 
-					<a href="/studies">Studies</a>
-					<ul> 
-						<li><a href="/studies">All</a></li>
-						<li class="current">
-							<a href="#">Most Recent</a>
-							<ul> 
-								{% for study in myStudies %}
-								<li><a href="/study/{{ study.pk }}/">{{ study.title }}</a></li>
-								{% endfor %}
-							</ul> 
-						</li> 
-					</ul> 
-				</li>
+				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Dashboard</a></li>
 				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}">
 					<a href="#">Export</a>
 					<ul> 
 						<li><a href="/export_collar">Export by Collar</a></li>
+                        <li><a href="/export_interactions">Export by Interactions</a></li>
 						<li><a href="/export_specimen">Export by Specimen</a></li>
 					</ul>
 				</li>

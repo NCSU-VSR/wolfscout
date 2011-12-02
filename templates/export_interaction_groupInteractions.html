@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}
+<form method="post" action=".">{% csrf_token %}
+	<div class="section">
+        <div class="box">
+            <div class="title">
+                <h2>Interactions for group '{{ group.title }}'</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class = "line">
+                    <table cellspacing="0" cellpadding="0" border="0" class="sorting">
+                        <thead>
+                            <tr>
+                                <th class="header-primary">Interaction #</th>
+                                <th>Source Animal Data Point</th>
+                                <th>Destination Animal Data Point</th>
+                                <th>Distance</th>
+                                <th>Export Interaction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in groupInteractions %}
+                            <tr>
+                                <td>{{ i.pk }}</td>
+                                <td>{{ i.source_animal_data_point }}</td>
+                                <td>{{ i.destination_animal_data_point }}</td>
+                                <td>{{ i.distance }} km</td>
+                                <td>
+                                    <button class="is_single tooltip" name="{{ i.pk }}" type="submit" title="Export Interaction SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <div class="section export_box_hidden">
+        <div class="box">
+            <div class="title">
+                <h2>Export Parameters</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                {{ form_export_type.as_p }}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

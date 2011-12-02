@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Wolfscout{% endblock %}
+
+{% block content %}
+	<div class="section">
+        <div class="box">
+            <div class="title">
+                <h2>Available Studies</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class = "line">
+                    <h2>Click on a study to view its Animal Interaction Groups...</h2>
+                </div>
+                <div class = "line">
+                    <table cellspacing="0" cellpadding="0" border="0" class="sorting">
+                        <thead>
+                            <tr>
+                                <th class="header-primary">Study Title</th>
+                                <th>Study Description</th>
+                                <th>Study Owner</th>
+                                <th>Study Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for study in studies %}
+                            <tr>
+                                <td><a href="/export_interactions/{{ study.pk }}">{{ study.title }}</a></td>
+                                <td>{{ study.description }}</td>
+                                <td>{{ study.owner }}</td>
+                                <td>
+                                {% if study.members.all|length != 0 %}
+                                <a href="#" class="tooltip" title="
+                                    <ol>
+                                    {% for member in study.members.all %}
+                                        <li>{{ member.username }}</li>
+                                    {% endfor %}
+                                    </ol>
+                                ">{{ study.members.all|length }} members</a>
+                                {% else %}
+                                <a href="">0 members</a>
+                                {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+	</div>
+{% endblock %}

@@ -28,52 +28,16 @@ def getCSV(form_specimen_name, form_species_name, form_sex, form_collars_filter,
 
     writer = csv.writer(response)
 
-    writer = writeHeaders(writer, form_specimen_name, form_collars_filter, form_weather_filter)
+    writer = writeHeaders(writer, form_collars_filter, form_weather_filter)
 
     # if specimen is selected, filter by specimen
     # STILL NEED TO ADD DATE AND TIME FILTER TO BOTH
-
     if(isSpecimenSelected(form_specimen_name)):
         writer = filterBySpecimen(writer, form_specimen_name, form_collars_filter, form_weather_filter)
     else:
-        writer = filterByEverythingElse(writer, form_species_name, form_sex, form_collars_filter, form_weather_filter)
+        writer = filterByEverythingElse(writer, form_species_name, form_sex, form_collars_filter, form_weather_filter, isSpeciesSelected(form_species_name), isSexSelected(form_sex))
 
     return response
-
-def isSpecimenSelected(form_specimen_name):
-    specimens = Specimen.objects.all()
-    for specimen in specimens:
-        if form_specimen_name.cleaned_data[str(specimen.common_name)]:
-            return True
-    return False
-
-def isSpeciesSelected(form_species_name):
-    species = Species.objects.all()
-    for data in species:
-        if form_species_name.cleaned_data[str(data.name)]:
-            return True
-    return False
-
-def isSexSelected(form_sex):
-    if form_sex.cleaned_data['Male'] or sex_form.cleaned_data['Female']:
-        return True
-    return False
-
-def writeHeaders(writer, form_specimen_name, form_collars_filter, form_weather_filter):
-
-    headerList = []
-    for field in Specimen._meta.fields:
-        headerList.append(field.name)
-    for field in CollarData._meta.fields:
-        if form_collars_filter.cleaned_data[str(field.name)]:
-            headerList.append(field.name)
-    for field in WeatherDataPoint._meta.fields:
-        if form_weather_filter.cleaned_data[str(field.name)]:
-            headerList.append(field.name)
-    writer.writerow(headerList)
-
-    return writer
-
 
 def filterBySpecimen(writer, form_specimen_name, form_collars_filter, form_weather_filter):
     specimens = Specimen.objects.all()
@@ -89,11 +53,15 @@ def filterBySpecimen(writer, form_specimen_name, form_collars_filter, form_weath
 
     return writer
 
-def filterByEverythingElse(writer, form_species_name, form_sex, form_collars_filter, form_weather_filter):
+"""
+I'LL CLEAN UP THIS CODE LATER
+"""
+def filterByEverythingElse(writer, form_species_name, form_sex, form_collars_filter, form_weather_filter, isSpeciesSelected, isSexSelected):
     specimens = Specimen.objects.all()
     species = Species.objects.all()
     for data in species:
-        if isSpeciesSelected(form_species_name):
+        # if species select and no sex
+        if isSpeciesSelected and not isSexSelected:
             if form_species_name.cleaned_data[str(data.name)]:
                 for specimen in specimens:
                     if str(specimen.species) == str(data.name):
@@ -103,11 +71,39 @@ def filterByEverythingElse(writer, form_species_name, form_sex, form_collars_fil
                         for val in dataValues:
                             dataList.append(val[1])
                         writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
-        if isSexSelected(form_sex):
-            print 'le sexy time'
+        # if species and sex selected
+        if isSpeciesSelected and isSexSelected:
+            if form_species_name.cleaned_data[str(data.name)]:
+                for specimen in specimens:
+                    if str(specimen.species) == str(data.name):
+                        writer = filterBySex(writer, specimen, form_sex, form_collars_filter, form_weather_filter)
+        # if sex and no species
+        if isSexSelected and not isSpeciesSelected:
+            for specimen in specimens:
+                writer = filterBySex(writer, specimen, form_sex, form_collars_filter, form_weather_filter)
+    return writer
+
+def filterBySex(writer, specimen, form_sex, form_collars_filter, form_weather_filter):
+    """
+    Filters what specimen/species information is exported based on sex
+    """
+    collarID = specimen.collar
+    dataList = []
+    dataValues = specimen.get_fields()
+    if form_sex.cleaned_data['Male'] and (specimen.sex == 'Male' or specimen.sex == 'male' or specimen.sex == 'M' or specimen.sex == 'm'):
+        for val in dataValues:
+            dataList.append(val[1])
+        writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
+    if form_sex.cleaned_data['Female'] and (specimen.sex == 'Female' or specimen.sex == 'female' or specimen.sex == 'F' or specimen.sex == 'f'):
+        for val in dataValues:
+            dataList.append(val[1])
+        writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
     return writer
 
 def writeCollarWeatherData(writer, collarID, specimenDataList, form_collars_filter, form_weather_filter):
+    """
+    Retrieves and writer Collar/Weather data if their checkboxes are selected in the DOM
+    """
     theCollar = get_object_or_404(Collar, collarID=collarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
     for data in collarDatas:
@@ -124,6 +120,52 @@ def writeCollarWeatherData(writer, collarID, specimenDataList, form_collars_filt
         writer.writerow(dataList)
 
     return writer
+
+def writeHeaders(writer, form_collars_filter, form_weather_filter):
+    """
+    Writes the headers for the csv field starting wth Specimen, Collars
+    and Weather data
+    """
+    headerList = []
+    for field in Specimen._meta.fields:
+        headerList.append(field.name)
+    for field in CollarData._meta.fields:
+        if form_collars_filter.cleaned_data[str(field.name)]:
+            headerList.append(field.name)
+    for field in WeatherDataPoint._meta.fields:
+        if form_weather_filter.cleaned_data[str(field.name)]:
+            headerList.append(field.name)
+    writer.writerow(headerList)
+
+    return writer
+
+def isSpecimenSelected(form_specimen_name):
+    """
+    See's if a specimen is selected in the DOM
+    """
+    specimens = Specimen.objects.all()
+    for specimen in specimens:
+        if form_specimen_name.cleaned_data[str(specimen.common_name)]:
+            return True
+    return False
+
+def isSpeciesSelected(form_species_name):
+    """
+    Checkes to see if a species is selected in the DOM
+    """
+    species = Species.objects.all()
+    for data in species:
+        if form_species_name.cleaned_data[str(data.name)]:
+            return True
+    return False
+
+def isSexSelected(form_sex):
+    """
+    Checks to see if sex is selected in the DOM
+    """
+    if form_sex.cleaned_data['Male'] or form_sex.cleaned_data['Female']:
+        return True
+    return False
 
 def export(request):
     siteDictionary = getDictionary(request)
