@@ -1,8 +1,10 @@
-__author__ = 'chris'
-
-##### Imports #####
-from django.contrib.gis.db import models
+### Standard Library Imports
 import datetime
+### Django Imports
+from django.core.exceptions import ValidationError
+from django.contrib.gis.db import models
+### Project Imports
+
 
 ##### Models #####
 class Station(models.Model):
@@ -109,27 +111,6 @@ class WeatherDataPoint(models.Model):
     ws02avg
     wsavg
     """
-    """
-    temperature = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    temperature10 = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    humidity = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    humidity10 = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    barometric_pressure =  models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    precipitation = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    wind_speed = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    wind_speed2 = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    wind_direction = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    wind_direction = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    wind_gust = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    solar_radiation = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    photosynthetically_active_radiation = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    soil_temperature = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    soil_moisture = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    leaf_wetness = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    distance_from_collar = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    cloud_cover = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    visibility = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    """
 
     altimeter = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     dew = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
@@ -206,7 +187,7 @@ class WeatherDataPoint(models.Model):
 
     def __unicode__(self):
         return str(self.id)
-    
+
     def get_fields(self):
         # make a list of field/values.
         return [(field.name, field.value_to_string(self)) for field in WeatherDataPoint._meta.fields]

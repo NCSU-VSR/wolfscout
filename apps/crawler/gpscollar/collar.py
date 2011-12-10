@@ -140,11 +140,11 @@ class CollarParser(object):
                 newCollarDataPoint.REMARKS = lineContents[CSV['REMARKS']]
             except IndexError:
                 pass
-            newCollarDataPoint.weatherDataPoint = getWeatherData(newCollarDataPoint)
         except IndexError:
             newCollarDataPoint.VALID = False
         try:
             newCollarDataPoint.full_clean()
+            newCollarDataPoint.weatherDataPoint = getWeatherData(newCollarDataPoint)
             newCollarDataPoint.save()
         except ValidationError:
             return
