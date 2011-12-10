@@ -37,6 +37,8 @@ class CollarParser(object):
         self.filePath = filePath
         try:
             self.collarID = self.extractCollarIDFromFilename()
+            if not self.collarID:
+                raise ValueError("The filename was not formatted properly, please submit a correct filename.")
         except ValueError:
             raise ValueError("The filename was not formatted properly, please submit a correct filename.")
 

@@ -66,7 +66,8 @@ class CollarTestCases(TestCase):
 
     def test_createCollar_badFileNames(self):
         for badFileName in self.badFileNames:
-            self.assertRaises(ValueError, CollarParser, badFileName)
+            print "bad_filename: ", badFileName
+            self.assertRaises(ValueError, CollarParser, str(badFileName))
 
     def test_fileReaderWithBadFile(self):
         badFilename = self.createFileNameFromCollarID(self.nonExistentCollarID)
