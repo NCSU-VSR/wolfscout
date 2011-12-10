@@ -224,7 +224,22 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_animal">Export Animal Data CSV</span></button>
+                    <button type="submit" class="green"><span class="export_animal_csv">Export Animal Data CSV</span></button>
+                    <button type="submit" class="blue"><span class="export_animal_shape">Export Animal Data SHAPE</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section export_box_hidden">
+        <div class="box">
+            <div class="title">
+                <h2>Export Parameters</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                {{ form_export_animal_type.as_p }}
                 </div>
             </div>
         </div>

@@ -16,7 +16,6 @@ import csv
 ### Local Imports ###
 from apps.crawler.gpscollar.collar import *
 from apps.general.views import getDictionary
-from apps.crawler.gpscollar.forms import *
 from apps.wildlife.forms import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
@@ -176,8 +175,14 @@ def export(request):
         form_animal_name = AnimalByNameForm(request.POST, error_class=DivErrorList, auto_id='id_animal_%s')
         form_species_name = SpeciesByNameForm(request.POST, error_class=DivErrorList, auto_id='id_species_%s')
         form_sex = SexForm(request.POST, error_class=DivErrorList)
-        if form_animal_name.is_valid()and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_animal_filter.is_valid():
-            return getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, form_weather_filter)
+        form_export_animal_type = ExportAnimalTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
+        if form_animal_name.is_valid()and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_animal_filter.is_valid() and form_export_animal_type.is_valid():
+            is_csv = form_export_animal_type.cleaned_data['is_csv']
+            is_shape = form_export_animal_type.cleaned_data['is_shape']
+            if is_csv:
+                return getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, form_weather_filter)
+            if is_shape:
+                print "is shape"
     else:
         animals = Animal.objects.all()
         species = Species.objects.all()
@@ -187,6 +192,7 @@ def export(request):
         form_animal_name = AnimalByNameForm(auto_id='id_animal_%s')
         form_species_name = SpeciesByNameForm(auto_id='id_species_%s')
         form_sex = SexForm(auto_id='id_sex_%s')
+        form_export_animal_type = ExportAnimalTypeForm(auto_id='id_%s')
         siteDictionary['animals'] = animals
         siteDictionary['species'] = species
         siteDictionary['form_collars_filter'] = form_collars_filter
@@ -195,5 +201,6 @@ def export(request):
         siteDictionary['form_animal_name'] = form_animal_name
         siteDictionary['form_species_name'] = form_species_name
         siteDictionary['form_sex'] = form_sex
+        siteDictionary['form_export_animal_type'] = form_export_animal_type
 
     return render_to_response('export_animal.html', siteDictionary, context_instance=RequestContext(request))

@@ -65,6 +65,7 @@ def createCollarCSV(writer, theCollarID, form_collars_filter, form_weather_filte
             headerList.append(field.name)
     #Now add the weather fields
     for field in WeatherDataPoint._meta.fields:
+        climateDictionary = getClimateDictionary()
         if form_weather_filter.cleaned_data[str(field.name)]:
             headerList.append(field.name)
     writer.writerow(headerList)
@@ -111,8 +112,8 @@ def export(request):
                 return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
     else:
         form_collars = ExportCollarDataForm()
-        form_collars_filter = ExportCollarDataFilterForm()
-        form_weather_filter = ExportWeatherDataFilterForm()
+        form_collars_filter = ExportCollarDataFilterForm(auto_id='id_collar_filter_%s')
+        form_weather_filter = ExportWeatherDataFilterForm(auto_id='id_weather_filter_%s')
         form_export_type = ExportTypeForm()
         siteDictionary['form_collars'] = form_collars
         siteDictionary['form_collars_filter'] = form_collars_filter

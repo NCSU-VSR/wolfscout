@@ -9,6 +9,7 @@ from django import forms
 from apps.crawler.gpscollar.collar import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
+from apps.general.views import *
 
 class DivErrorList(ErrorList):
     def __unicode__(self):
@@ -46,18 +47,18 @@ class ExportTypeForm(forms.Form):
     is_single_shape = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
     single_export = forms.CharField(required=False)
 
-
 class ExportCollarDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportCollarDataFilterForm, self).__init__(*args, **kwargs)
         for field in CollarData._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_collarFilter'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_collarFilter_COLLAR_EXPORT_PAGE'}), label=field_name, initial=True)
             
 class ExportWeatherDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportWeatherDataFilterForm, self).__init__(*args, **kwargs)
+        climateDictionary = getClimateDictionary()
         for field in WeatherDataPoint._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter_COLLAR_EXPORT_PAGE'}), label=climateDictionary[str(field.name)][0], initial=True)
 

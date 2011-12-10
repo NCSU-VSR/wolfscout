@@ -45,6 +45,41 @@ $(document).ready(function() {
         }
     }*/
 
+    $('.export_animal_csv').click(function() {
+        $('#id_is_csv').attr('checked','checked');
+        $('#id_is_shape').removeAttr('checked');
+    });
+
+    $('.export_animal_shape').click(function() {
+        $('#id_is_csv').removeAttr('checked');
+        $('#id_is_shape').attr('checked','checked');
+    });
+
+    $('.enableExport_collarFilter_ANIMAL_EXPORT_PAGE').change(function() {
+        checkCollarAndFilterOptionsSelected_ANIMAL_EXPORT_PAGE();
+    });
+
+    $('.enableExport_weatherFilter_ANIMAL_EXPORT_PAGE').change(function() {
+        checkCollarAndFilterOptionsSelected_ANIMAL_EXPORT_PAGE();
+    });
+
+    function checkCollarAndFilterOptionsSelected_ANIMAL_EXPORT_PAGE(){
+        var isCollarFilterSelected = $('.enableExport_collarFilter_ANIMAL_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
+        var isWeatherFilterSelected = $('.enableExport_weatherFilter_ANIMAL_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
+
+        if(isCollarFilterSelected || isWeatherFilterSelected){
+            blockEnabledDisable_Field_Collar('.export_animal_csv', true, "button");
+            if($('#id_collar_filter_LOCATION').is(':checked')){
+                blockEnabledDisable_Field_Collar('.export_animal_shape', true, "button");
+            }else{
+                blockEnabledDisable_Field_Collar('.export_animal_shape', false, "button");
+            }
+        }else{
+            blockEnabledDisable_Field_Collar('.export_animal_csv', false, "button");
+            blockEnabledDisable_Field_Collar('.export_animal_shape', false, "button");
+        }
+    }
+
     function blockEnabledDisable_Field_Animal(field, enable, parent){
         field = $(field).parent(parent);
         if(enable){
@@ -124,27 +159,27 @@ $(document).ready(function() {
 
     // If any checkbox checkbox state change - perform relevant UI logic
     $('.enableExport').change(function() {
-        checkCollarAndFilterOptionsSelected();
+        checkCollarAndFilterOptionsSelected_COLLAR_EXPORT_PAGE();
     });
 
-    $('.enableExport_collarFilter').change(function() {
-        checkCollarAndFilterOptionsSelected();
+    $('.enableExport_collarFilter_COLLAR_EXPORT_PAGE').change(function() {
+        checkCollarAndFilterOptionsSelected_COLLAR_EXPORT_PAGE();
     });
 
-    $('.enableExport_weatherFilter').change(function() {
-        checkCollarAndFilterOptionsSelected();
+    $('.enableExport_weatherFilter_COLLAR_EXPORT_PAGE').change(function() {
+        checkCollarAndFilterOptionsSelected_COLLAR_EXPORT_PAGE();
     });
 
-    function checkCollarAndFilterOptionsSelected(){
+    function checkCollarAndFilterOptionsSelected_COLLAR_EXPORT_PAGE(){
         var isCollarSelected = $('.enableExport').parents('table').find(':checkbox').is(':checked');
-        var isCollarFilterSelected = $('.enableExport_collarFilter').parents('table').find(':checkbox').is(':checked');
-        var isWeatherFilterSelected = $('.enableExport_weatherFilter').parents('table').find(':checkbox').is(':checked');
+        var isCollarFilterSelected = $('.enableExport_collarFilter_COLLAR_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
+        var isWeatherFilterSelected = $('.enableExport_weatherFilter_COLLAR_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
 
         if(isCollarSelected){
             if(isCollarFilterSelected || isWeatherFilterSelected){
                 blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', true, "button");
                 blockEnabledDisable_Field_Collar('.export_single_collardata_csv', true, "button");
-                if($('#id_LOCATION').is(':checked')){
+                if($('#id_collar_filter_LOCATION').is(':checked')){
                     blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', true, "button");
                     blockEnabledDisable_Field_Collar('.export_single_collardata_shape', true, "button");
                 }else{
@@ -160,7 +195,7 @@ $(document).ready(function() {
         }else{
             if(isCollarFilterSelected || isWeatherFilterSelected){
                 blockEnabledDisable_Field_Collar('.export_single_collardata_csv', true, "button");
-                if($('#id_LOCATION').is(':checked')){
+                if($('#id_collar_filter_LOCATION').is(':checked')){
                     blockEnabledDisable_Field_Collar('.export_single_collardata_shape', true, "button");
                 }else{
                     blockEnabledDisable_Field_Collar('.export_single_collardata_shape', false, "button");
