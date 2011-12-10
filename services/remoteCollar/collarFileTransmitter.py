@@ -14,4 +14,4 @@ class CollarFileTransmitter(object):
         self.HOST = '152.14.104.35'
         self.URL = "http://152.14.104.35/collar_data_upload/"
         self.file = {"demofile.TXT": open(filename, 'rb')}
-        requests.post(self.URL, files=file)
+        requests.post(self.URL, files=self.file)
