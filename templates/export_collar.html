@@ -5,7 +5,7 @@
 {% block content %}
 <form method="post" action=".">{% csrf_token %}
 	<div class="section">
-		<div class="box big">
+		<div class="box medium-custom">
 			<div class="title">
 				<h2>Collar Data</h2>
 				<span class="hide"></span>
@@ -26,7 +26,8 @@
                                 <td>{{ field }}</td>
                                 <td>{{ field.label }}</td>
                                 <td>
-                                    <button class="is_single tooltip" name="{{ field.label }}" type="submit" title="Export Collar Data CSV" type="submit"><img class="export_single_collardata" src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></button>
+                                    <button class="is_single_csv tooltip" name="{{ field.label }}" type="submit" title="Export Collar Data CSV" type="submit"><img class="export_single_collardata_csv" src="{{ STATIC_URL }}gfx/icon-csv.gif" alt="edit" /></button>
+                                    <button class="is_single_shape tooltip" name="{{ field.label }}" type="submit" title="Export Collar Data SHAPE" type="submit"><img class="export_single_collardata_shape" src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -36,7 +37,7 @@
 			</div>
 		</div>
 
-        <div class="box small">
+        <div class="box small-custom">
             <div class="title">
                 <h2>Filter Options</h2>
                 <span class="hide"></span>
@@ -100,7 +101,8 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_collardata">Export Multiple Collar CSV</span></button>
+                    <button type="submit" class="green"><span class="export_multi_collardata_csv">Export Multiple Collar CSV</span></button>
+                    <button type="submit" class="blue"><span class="export_multi_collardata_shape">Export Multiple Collar SHAPE</span></button>
                 </div>
             </div>
         </div>

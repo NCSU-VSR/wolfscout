@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     # ROOT DIR #
     url(r'^$', index),	
 
-    url(r'^export_specimen/$', 'wolfscout.apps.wildlife.views.export'),
+    url(r'^export_animal/$', 'wolfscout.apps.wildlife.views.export'),
     url(r'^export_collar/$', 'wolfscout.apps.crawler.gpscollar.views.export'),
     url(r'^export_interactions/$', 'wolfscout.apps.study.views.interactions'),
     url(r'^export_interactions/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.getInteractionGroups'),

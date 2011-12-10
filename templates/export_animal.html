@@ -5,50 +5,70 @@
 {% block content %}
 <form method="post" action=".">{% csrf_token %}
 	<div class="section">
-		<div class="box big">
+		<div class="box medium-custom">
 			<div class="title">
-				<h2>Specimen Filter</h2>
+				<h2>Animal Filter</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content tabs">
 
                 <div class="tabmenu">
                     <ul>
-                        <li><a href="#specimen">Specimen</a></li>
-                        <li><a href="#date-range">Date Range</a></li>
-                        <li><a href="#time-of-day">Time of Day</a></li>
-                        <li><a href="#sex">Sex</a></li>
-                        <li><a href="#species">Species</a></li>
+                        <li><a class="animal_header" href="#animal">Animal</a></li>
+                        <li><a class="age_header" href="#age">Age Class</a></li>
+                        <li><a class="date_header" href="#date-range">Date Range</a></li>
+                        <li><a class="time_header" href="#time-of-day">Time of Day</a></li>
+                        <li><a class="sex_header" href="#sex">Sex</a></li>
+                        <li><a class="species_header" href="#species">Species</a></li>
                     </ul>
                 </div>
 
                 <div class="line scrollbox medium" >
-                    <div id="specimen">
-                        <h3>Note: Selecting a specimen disables the Sex and Species tab.</h3>
+                    <div id="animal">
+                        <h3>Note: Selecting a animal disables the Age, Sex, and Species tab.</h3>
                         <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Common Name</th>
-                                    <th>Age</th>
+                                    <th>Age Class</th>
                                     <th>Sex</th>
                                     <th>Species</th>
                                     <th>Collar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for field in form_specimen_name %}
+                            {% for field in form_animal_name %}
                                 <tr>
                                     <td>{{ field }}</td>
-                                    {% for specimen in specimens %}
-                                        {% ifequal specimen.common_name field.name %}
-                                    <td>{{ specimen.common_name }}</td>
-                                    <td>{{ specimen.age }}</td>
-                                    <td>{{ specimen.sex }}</td>
-                                    <td>{{ specimen.species }}</td>
-                                    <td>{{ specimen.collar }}</td>
+                                    {% for animal in animals %}
+                                        {% ifequal animal.common_name field.name %}
+                                    <td>{{ animal.common_name }}</td>
+                                    <td>{{ animal.age }}</td>
+                                    <td>{{ animal.sex }}</td>
+                                    <td>{{ animal.species }}</td>
+                                    <td>{{ animal.collar }}</td>
                                         {% endifequal %}
                                     {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="age">
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
+                                    <th>Age Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_age %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -84,7 +104,7 @@
                     </div>
 
                     <div id="sex">
-                        <table cellspacing="0" cellpadding="0" border="0" class="sorting sex_tab">
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
@@ -103,10 +123,10 @@
                     </div>
 
                     <div id="species">
-                        <table cellspacing="0" cellpadding="0" border="0" class="sorting species_tab">
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
                                     <th>Species Name</th>
                                     <th>Notes</th>
                                 </tr>
@@ -132,7 +152,7 @@
             </div>
         </div>
 
-        <div class="box small">
+        <div class="box small-custom">
             <div class="title">
                 <h2>Filter Fields</h2>
                 <span class="hide"></span>
@@ -142,6 +162,7 @@
                     <ul>
                         <li><a href="#tabs-1">Collar</a></li>
                         <li><a href="#tabs-2">Weather</a></li>
+                        <li><a href="#tabs-3">Animal</a></li>
                     </ul>
                 </div>
 
@@ -183,6 +204,25 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div id="tabs-3">
+                        <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked"/></th>
+                                    <th>Animal Fields</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_animal_filter %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,7 +236,22 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_species">Export Specimen Data CSV</span></button>
+                    <button type="submit" class="green"><span class="export_animal_csv">Export Animal Data CSV</span></button>
+                    <button type="submit" class="blue"><span class="export_animal_shape">Export Animal Data SHAPE</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section export_box_hidden">
+        <div class="box">
+            <div class="title">
+                <h2>Export Parameters</h2>
+                <span class="hide"></span>
+            </div>
+            <div class="content">
+                <div class="line">
+                {{ form_export_animal_type.as_p }}
                 </div>
             </div>
         </div>
