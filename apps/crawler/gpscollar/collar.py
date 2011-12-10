@@ -227,6 +227,8 @@ class CollarParser(object):
         """
         try:
             fileName = self.filePath.split('/')[-1]
+            fileName = fileName.split("-")[-1]
+            print "FileName: ", fileName
             if fileName.startswith('GSM') and fileName.endswith('.TXT'):
                 collarID = fileName.split('.')[0][3:]
                 if collarID.isdigit():
@@ -241,7 +243,9 @@ class CollarParser(object):
         processCSVIntoDatabase issues the functions listed below in linear order.
         This places all of the data from a CSV into the database unless an error is found
         """
-        if self.collarExists() == False:
+        if not self.collarID:
+            return 0
+        elif self.collarExists() == False:
             self.createCollar()
         else:
             self.collar = Collar.objects.get(pk=self.collarID)
