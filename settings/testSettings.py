@@ -1,10 +1,17 @@
-"""
-Use Sample.py as a guide for your local settings.py file that you define according to the documentation.
-Any fields that need to be customized for a local deployment can be found here.
-"""
-
 from common import *
 
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = ':memory:'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'wolfscout',                      # Or path to database file if using sqlite3.
+        'USER': 'postgres',                     # Not used with sqlite3.
+        'PASSWORD': 'thewolfhowlsatcows',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+DEFAULT_INTERACTION_DISTANCE = .5
+TEST_RUNNER = 'django_nose.run_tests'
+CRONOS_API_KEY = 'b503730e2a6b5869531352324580cd62ff123dab019694a99f239907ebe4b'
