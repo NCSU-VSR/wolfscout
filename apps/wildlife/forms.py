@@ -40,13 +40,20 @@ class SpeciesByNameForm(forms.Form):
             species = Species.objects.all()
             for field in species:
                 field_name = str(field.name)
-                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), initial=False)
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small speciesCheckbox'}), initial=False)
 
 class SexForm(forms.Form):
     def __init__(self, *args, **kwargs):
             super(SexForm, self).__init__(*args, **kwargs)
-            self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
-            self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)
+            self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small sexCheckbox'}), label='Male', initial=False)
+            self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small sexCheckbox'}), label='Female', initial=False)
+
+class AgeForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(AgeForm, self).__init__(*args, **kwargs)
+        for field in Animal.AGE_CHOICES:
+            field_name = str(field[0])
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small ageCheckbox'}), label=field[1], initial=False)
 
 class ExportAnimalFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):

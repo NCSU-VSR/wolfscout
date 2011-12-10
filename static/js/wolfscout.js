@@ -29,21 +29,49 @@ $(document).ready(function() {
     /**
      * ANIMAL EXPORT PAGE
       */
-    /*$('.animalCheckbox').change(function() {
+    $('.animalCheckbox').change(function() {
+        checkAnimalSelected();
+    });
+    $('.sexCheckbox').change(function() {
+        checkAnimalSelected();
+    });
+    $('.speciesCheckbox').change(function() {
+        checkAnimalSelected();
+    });
+    $('.ageCheckbox').change(function() {
         checkAnimalSelected();
     });
 
+    var isAnimalDisabled = false;
+    var isEverythingElseDisabled = false;
+
     function checkAnimalSelected(){
         var isAnimalSelected = $('.animalCheckbox').parents('table').find(':checkbox').is(':checked');
+        var isSexSelected = $('.sexCheckbox').parents('table').find(':checkbox').is(':checked');
+        var isSpeciesSelected = $('.speciesCheckbox').parents('table').find(':checkbox').is(':checked');
+        var isAgeSelected = $('.ageCheckbox').parents('table').find(':checkbox').is(':checked');
 
-        if(isAnimalSelected){
-            blockEnabledDisable_Field_Animal('.species_tab', false, 'div');
-            blockEnabledDisable_Field_Animal('.sex_tab', false, 'div');
+        if(isAnimalSelected && !isEverythingElseDisabled){
+            blockEnabledDisable_Field_Animal('.age_header', false, 'li');
+            blockEnabledDisable_Field_Animal('.species_header', false, 'li');
+            blockEnabledDisable_Field_Animal('.sex_header', false, 'li');
+            isEverythingElseDisabled = true;
         }else{
-            blockEnabledDisable_Field_Animal('.species_tab', true, 'div');
-            blockEnabledDisable_Field_Animal('.sex_tab', true, 'div');
+            blockEnabledDisable_Field_Animal('.age_header', true, 'li');
+            blockEnabledDisable_Field_Animal('.species_header', true, 'li');
+            blockEnabledDisable_Field_Animal('.sex_header', true, 'li');
+            isEverythingElseDisabled = false;
+            if(isSexSelected || isSpeciesSelected || isAgeSelected){
+                if(!isAnimalDisabled){
+                    blockEnabledDisable_Field_Animal('.animal_header', false, 'li');
+                }
+                isAnimalDisabled = true;
+            }else{
+                blockEnabledDisable_Field_Animal('.animal_header', true, 'li');
+                isAnimalDisabled = false;
+            }
         }
-    }*/
+    }
 
     $('.export_animal_csv').click(function() {
         $('#id_is_csv').attr('checked','checked');

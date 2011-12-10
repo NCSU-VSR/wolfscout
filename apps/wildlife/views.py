@@ -20,7 +20,7 @@ from apps.wildlife.forms import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
 
-def getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, form_weather_filter):
+def getCSV(form_animal_name, form_species_name, form_sex, form_age, form_collars_filter, form_weather_filter):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=ExportByAnimal.csv'
@@ -29,8 +29,6 @@ def getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, f
 
     writer = writeHeaders(writer, form_collars_filter, form_weather_filter)
 
-    # if specimen is selected, filter by specimen
-    # STILL NEED TO ADD DATE AND TIME FILTER TO BOTH
     if(isAnimalSelected(form_animal_name)):
         writer = filterByAnimal(writer, form_animal_name, form_collars_filter, form_weather_filter)
     else:
@@ -38,23 +36,6 @@ def getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, f
 
     return response
 
-def filterByAnimal(writer, form_animal_name, form_collars_filter, form_weather_filter):
-    animals = Animal.objects.all()
-
-    for data in animals:
-        if form_animal_name.cleaned_data[str(data.common_name)]:
-            collarID = data.collar
-            dataList = []
-            dataValues = data.get_fields()
-            for val in dataValues:
-                dataList.append(val[1])
-            writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
-
-    return writer
-
-"""
-I'LL CLEAN UP THIS CODE LATER
-"""
 def filterByEverythingElse(writer, form_species_name, form_sex, form_collars_filter, form_weather_filter, isSpeciesSelected, isSexSelected):
     animals = Animal.objects.all()
     species = Species.objects.all()
@@ -80,6 +61,29 @@ def filterByEverythingElse(writer, form_species_name, form_sex, form_collars_fil
         if isSexSelected and not isSpeciesSelected:
             for animal in animals:
                 writer = filterBySex(writer, animal, form_sex, form_collars_filter, form_weather_filter)
+    return writer
+
+def containsSex(animal, form_sex):
+    if isSexSelected(form_sex):
+        if form_sex.cleaned_data['Male'] and (animal.sex == 'Male' or animal.sex == 'male' or animal.sex == 'M' or animal.sex == 'm'):
+            return True
+        if form_sex.cleaned_data['Female'] and (animal.sex == 'Female' or animal.sex == 'female' or animal.sex == 'F' or animal.sex == 'f'):
+            return True
+        return False
+    return True
+
+def filterByAnimal(writer, form_animal_name, form_collars_filter, form_weather_filter):
+    animals = Animal.objects.all()
+
+    for data in animals:
+        if form_animal_name.cleaned_data[str(data.common_name)]:
+            collarID = data.collar
+            dataList = []
+            dataValues = data.get_fields()
+            for val in dataValues:
+                dataList.append(val[1])
+            writer = writeCollarWeatherData(writer, str(collarID), dataList, form_collars_filter, form_weather_filter)
+
     return writer
 
 def filterBySex(writer, animal, form_sex, form_collars_filter, form_weather_filter):
@@ -166,6 +170,15 @@ def isSexSelected(form_sex):
         return True
     return False
 
+def isAgeSelected(form_age):
+    """
+    Checks to see if age is selected in the DOM
+    """
+    for field in Animal.AGE_CHOICES:
+        if form_age.cleaned_data[str(field[0])]:
+            return True
+    return False
+
 def export(request):
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
@@ -175,12 +188,13 @@ def export(request):
         form_animal_name = AnimalByNameForm(request.POST, error_class=DivErrorList, auto_id='id_animal_%s')
         form_species_name = SpeciesByNameForm(request.POST, error_class=DivErrorList, auto_id='id_species_%s')
         form_sex = SexForm(request.POST, error_class=DivErrorList)
+        form_age = AgeForm(request.POST, error_class=DivErrorList)
         form_export_animal_type = ExportAnimalTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
-        if form_animal_name.is_valid()and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_animal_filter.is_valid() and form_export_animal_type.is_valid():
+        if form_animal_name.is_valid() and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_animal_filter.is_valid() and form_export_animal_type.is_valid() and form_age.is_valid():
             is_csv = form_export_animal_type.cleaned_data['is_csv']
             is_shape = form_export_animal_type.cleaned_data['is_shape']
             if is_csv:
-                return getCSV(form_animal_name, form_species_name, form_sex, form_collars_filter, form_weather_filter)
+                return getCSV(form_animal_name, form_species_name, form_sex, form_age, form_collars_filter, form_weather_filter)
             if is_shape:
                 print "is shape"
     else:
@@ -192,6 +206,7 @@ def export(request):
         form_animal_name = AnimalByNameForm(auto_id='id_animal_%s')
         form_species_name = SpeciesByNameForm(auto_id='id_species_%s')
         form_sex = SexForm(auto_id='id_sex_%s')
+        form_age = AgeForm(auto_id='id_age_%s')
         form_export_animal_type = ExportAnimalTypeForm(auto_id='id_%s')
         siteDictionary['animals'] = animals
         siteDictionary['species'] = species
@@ -201,6 +216,7 @@ def export(request):
         siteDictionary['form_animal_name'] = form_animal_name
         siteDictionary['form_species_name'] = form_species_name
         siteDictionary['form_sex'] = form_sex
+        siteDictionary['form_age'] = form_age
         siteDictionary['form_export_animal_type'] = form_export_animal_type
 
     return render_to_response('export_animal.html', siteDictionary, context_instance=RequestContext(request))

@@ -23,12 +23,10 @@ class Animal(models.Model):
     """
 
     AGE_CHOICES = (
-        ('FR', 'Freshman'),
-        ('SO', 'Sophomore'),
-        ('JR', 'Junior'),
-        ('SR', 'Senior'),
-        ('GR', 'Graduate'),
-        )
+        ('J', 'Juvenile'),
+        ('SA', 'Subadult'),
+        ('A', 'Adult'),
+    )
     collar = models.ForeignKey(Collar, null=True, blank=True)
     common_name = models.CharField(max_length=50, unique=True)
     age = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
@@ -40,4 +38,4 @@ class Animal(models.Model):
 
     def get_fields(self):
         # make a list of field/values.
-        return [(field.name, field.value_to_string(self)) for field in Specimen._meta.fields]
+        return [(field.name, field.value_to_string(self)) for field in Animal._meta.fields]

@@ -14,24 +14,24 @@
 
                 <div class="tabmenu">
                     <ul>
-                        <li><a href="#animal">Animal</a></li>
-                        <li><a href="#age">Age</a></li>
-                        <li><a href="#date-range">Date Range</a></li>
-                        <li><a href="#time-of-day">Time of Day</a></li>
-                        <li><a href="#sex">Sex</a></li>
-                        <li><a href="#species">Species</a></li>
+                        <li><a class="animal_header" href="#animal">Animal</a></li>
+                        <li><a class="age_header" href="#age">Age Class</a></li>
+                        <li><a class="date_header" href="#date-range">Date Range</a></li>
+                        <li><a class="time_header" href="#time-of-day">Time of Day</a></li>
+                        <li><a class="sex_header" href="#sex">Sex</a></li>
+                        <li><a class="species_header" href="#species">Species</a></li>
                     </ul>
                 </div>
 
                 <div class="line scrollbox medium" >
                     <div id="animal">
-                        <h3>Note: Selecting a animal disables the Sex and Species tab.</h3>
+                        <h3>Note: Selecting a animal disables the Age, Sex, and Species tab.</h3>
                         <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Common Name</th>
-                                    <th>Age</th>
+                                    <th>Age Class</th>
                                     <th>Sex</th>
                                     <th>Species</th>
                                     <th>Collar</th>
@@ -57,10 +57,22 @@
                     </div>
 
                     <div id="age">
-                        <h3><a href="#">Age Range</a></h3>
-                        <div>
-
-                        </div>
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
+                                    <th>Age Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_age %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
 
                     <div id="date-range">
@@ -92,7 +104,7 @@
                     </div>
 
                     <div id="sex">
-                        <table cellspacing="0" cellpadding="0" border="0" class="sorting sex_tab">
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
@@ -111,10 +123,10 @@
                     </div>
 
                     <div id="species">
-                        <table cellspacing="0" cellpadding="0" border="0" class="sorting species_tab">
+                        <table cellspacing="0" cellpadding="0" border="0" class="sorting">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small"/></th>
                                     <th>Species Name</th>
                                     <th>Notes</th>
                                 </tr>
