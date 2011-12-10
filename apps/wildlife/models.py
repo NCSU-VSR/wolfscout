@@ -16,9 +16,9 @@ class Species(models.Model):
     def __unicode__(self):
         return str(self.name)
 
-class Specimen(models.Model):
+class Animal(models.Model):
     """
-    Specimen are animals that are being tracked in some fashion.
+    Animals that are being tracked in some fashion.
     Possibilities include a collar GPS unit, weather info, or custom sensors
     """
     collar = models.ForeignKey(Collar, null=True, blank=True)
