@@ -148,7 +148,7 @@ class CollarParser(object):
             newCollarDataPoint.save()
         except ValidationError:
             return
-        findInteractionFromDataPoint(newCollarDataPoint)
+        #findInteractionFromDataPoint(newCollarDataPoint)
 
 
     def generateDateTimeFromList(self, dateString, timeString):
@@ -169,7 +169,7 @@ class CollarParser(object):
         if validArgs:
             dateTimeObject = datetime.datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]), int(timeList[0]),int(timeList[1]),int(timeList[2]))
             if dateTimeObject > datetime.datetime.today():
-                raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
+                raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.datetime.today()))
             elif dateTimeObject.year < 1950:
                 raise ValueError("Date is before the year 1950\nGiven date: {0}".format(dateTimeObject))
 
