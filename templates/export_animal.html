@@ -38,16 +38,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for field in form_specimen_name %}
+                            {% for field in form_animal_name %}
                                 <tr>
                                     <td>{{ field }}</td>
-                                    {% for specimen in specimens %}
-                                        {% ifequal specimen.common_name field.name %}
-                                    <td>{{ specimen.common_name }}</td>
-                                    <td>{{ specimen.age }}</td>
-                                    <td>{{ specimen.sex }}</td>
-                                    <td>{{ specimen.species }}</td>
-                                    <td>{{ specimen.collar }}</td>
+                                    {% for animal in animals %}
+                                        {% ifequal animal.common_name field.name %}
+                                    <td>{{ animal.common_name }}</td>
+                                    <td>{{ animal.age }}</td>
+                                    <td>{{ animal.sex }}</td>
+                                    <td>{{ animal.species }}</td>
+                                    <td>{{ animal.collar }}</td>
                                         {% endifequal %}
                                     {% endfor %}
                                 </tr>
@@ -202,7 +202,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for field in form_specimen_filter %}
+                            {% for field in form_animal_filter %}
                                 <tr>
                                     <td>{{ field }}</td>
                                     <td>{{ field.label }}</td>
@@ -224,7 +224,7 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_species">Export Animal Data CSV</span></button>
+                    <button type="submit" class="green"><span class="export_animal">Export Animal Data CSV</span></button>
                 </div>
             </div>
         </div>

@@ -13,20 +13,20 @@ from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
 from apps.wildlife.models import *
 
-class ExportSpecimenFilterForm(forms.Form):
+class ExportAnimalFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(ExportSpecimenFilterForm, self).__init__(*args, **kwargs)
-        for field in Specimen._meta.fields:
+        super(ExportAnimalFilterForm, self).__init__(*args, **kwargs)
+        for field in Animal._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_specimenFilter'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_animalFilter'}), label=field_name, initial=True)
 
-class SpecimenByNameForm(forms.Form):
+class AnimalByNameForm(forms.Form):
     def __init__(self, *args, **kwargs):
-            super(SpecimenByNameForm, self).__init__(*args, **kwargs)
-            specimens = Specimen.objects.all()
-            for field in specimens:
+            super(AnimalByNameForm, self).__init__(*args, **kwargs)
+            animals = Animal.objects.all()
+            for field in animals:
                 field_name = str(field.common_name)
-                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small specimenCheckbox'}), initial=False)
+                self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small animalCheckbox'}), initial=False)
 
 class SpeciesByNameForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -42,9 +42,9 @@ class SexForm(forms.Form):
             self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
             self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)
 
-class ExportSpecimenFilterForm(forms.Form):
+class ExportAnimalFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(ExportSpecimenFilterForm, self).__init__(*args, **kwargs)
-        for field in Specimen._meta.fields:
+        super(ExportAnimalFilterForm, self).__init__(*args, **kwargs)
+        for field in Animal._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_specimenFilter'}), label=field_name, initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_animalFilter'}), label=field_name, initial=True)
