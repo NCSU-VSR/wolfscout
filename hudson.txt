@@ -7,15 +7,8 @@ cd wolfscout
 export PYTHONPATH=.:/opt/webapps/hudson/ncsu
 export DJANGO_SETTINGS_MODULE=wolfscout.settings.testSettings
 pip install -q -r requirements.txt
-django-admin.py test --with-xcoverage --cover-package=apps.crawler --with-xunit
-
-#!/bin/bash -ex
-cd ../..
-virtualenv --no-site-packages ncsu
-cd ncsu
-source ./bin/activate
-cd wolfscout
-export PYTHONPATH=.:/opt/webapps/hudson/ncsu
-export DJANGO_SETTINGS_MODULE=wolfscout.settings.testSettings
-pip install -q -r requirements.txt
+django-admin.py migrate apps.crawler.cronos
+django-admin.py migrate apps.crawler.gpscollar
+django-admin.py migrate apps.study
+django-admin.py migrate apps.wildlife
 django-admin.py test --with-xcoverage --cover-package=apps.crawler --with-xunit
