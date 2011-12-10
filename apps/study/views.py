@@ -88,13 +88,9 @@ def getInteractionGroups(request, theStudyID):
     if request.method == 'POST':
         form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_export_type.is_valid():
-            is_multi = form_export_type.cleaned_data['is_multi']
             single_interaction_group_pk = form_export_type.cleaned_data['single_export']
-            if is_multi:
-                print is_multi
-            else:
-                interactionGroup = get_object_or_404(Study, pk=single_interaction_group_pk)
-                print interactionGroup
+            interactionGroup = get_object_or_404(Study, pk=single_interaction_group_pk)
+            print interactionGroup
     else:
         theStudy = get_object_or_404(Study, pk=theStudyID)
         interactionGroups = AnimalInteractionGroup.objects.all()
@@ -104,8 +100,6 @@ def getInteractionGroups(request, theStudyID):
                 studyInteractionGroups.append(group)
         siteDictionary['studyInteractionGroups'] = studyInteractionGroups
         siteDictionary['study'] = theStudy
-        form_export_type = ExportTypeForm()
-        siteDictionary['form_export_type'] = form_export_type
     return render_to_response('export_interaction_groups.html', siteDictionary, context_instance=RequestContext(request))
 
 @login_required()
