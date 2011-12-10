@@ -1,5 +1,6 @@
 
 ### Django Imports ####
+from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseServerError
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.sitemaps import ping_google
@@ -10,7 +11,6 @@ from django.forms import ModelForm, ValidationError
 from django import forms
 from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
-from django.http import HttpResponse
 ### Global Imports ####
 import datetime
 import csv
@@ -221,9 +221,37 @@ class AnotherExampleView(View):
 
 
 #### This view is to upload CSVs to get processed.
+from django.views.decorators.csrf import csrf_exempt
 
+#The upload form:
+from django import forms
+class UploadFileForm(forms.Form):
+    #title = forms.CharField(max_length=50)
+    file  = forms.FileField()
+
+def write_file_to_disk(file_to_write):
+    file_path = "/opt/webapps/ncsu/wolfscout/uploaded_files/"
+    filename = file_path + str(datetime.datetime.now())\
+    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
+
+    destination = open(filename, 'wb+')
+    for chunk in file_to_write.chunks():
+        destination.write(chunk)
+    destination.close()
+    return
+
+@csrf_exempt
 def uploadCSVToProcess(request):
-    if request.method == 'POST':
-        pass
-    else:
-        return HttpResponse("Please use a post request here")
+    if request.method != 'POST':
+        return HttpResponseNotAllowed('Only POST here')
+
+    form = UploadFileForm(request.POST, request.FILES)
+    print "form: ", form
+    print "POST: ", request.POST
+    print "FILES: ", request.FILES
+    print "\n"
+    #if not form.is_valid():
+    #    return HttpResponseServerError("Invalid call")
+    #print request.FILES.itervalues().next()
+    write_file_to_disk(request.FILES.itervalues().next())
+    return HttpResponse('OK')

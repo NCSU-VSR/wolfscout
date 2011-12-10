@@ -36,6 +36,7 @@ urlpatterns = patterns('',
     url(r'^export_interactions/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.getInteractionGroups'),
     url(r'^export_interactions/group/(?P<theGroupID>\d+)/$', 'wolfscout.apps.study.views.getGroupInteractions'),
 
+    url(r'^collar_data_upload/$', 'wolfscout.apps.crawler.gpscollar.views.uploadCSVToProcess'),
     url(r'^collar_data/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getCollarData'),
     url(r'^collarDataUpload/$', 'wolfscout.apps.crawler.gpscollar.views.uploadCollarDataFile'),
     url(r'^collarDataKML/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPoints'),
