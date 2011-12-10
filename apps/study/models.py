@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
+from django.conf import settings
 import datetime
+import os
+
 
 from apps.crawler.gpscollar.models import Collar,CollarData
 
@@ -34,9 +36,15 @@ class AnimalInteractionGroup(models.Model):
     Each Animal Interaction group will be linked to one study, and that is how we can avoid
     duplicate interactions throughout a study.
     """
+    uploadPath = os.path.join(settings.PROJECT_DIR, "interaction_files")
     title = models.CharField(max_length=100,null=True,blank=True)
     study = models.ForeignKey(Study, related_name="AnimalInteractionStudyGroup")
     distance = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    dbf_file = models.FileField(null=True,blank=True, upload_to=uploadPath)
+    shp_file = models.FileField(null=True,blank=True, upload_to=uploadPath)
+    shx_file = models.FileField(null=True,blank=True, upload_to=uploadPath)
+    prj_file = models.FileField(null=True,blank=True, upload_to=uploadPath)
+    zip_file = models.FileField(null=True,blank=True, upload_to=uploadPath)
     completed = models.BooleanField(default=False)
     def __unicode__(self):
         return str(self.pk)
