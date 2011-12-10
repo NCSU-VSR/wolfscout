@@ -1,17 +1,16 @@
-#Global Imports
+### Standard Library Imports
+from sys import *
+from datetime import datetime
+### Django Imports
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.gis.geos import Point
-from datetime import datetime
-from sys import *
-#Local Imports
+### Project Imports
 from apps.wildlife.models import *
 from apps.crawler.cronos.views import *
 from apps.study.interaction_calculator import *
+
 class CollarParser(object):
-    invalidCollarId = "Invalid"
-    collarID = None
-    filePath = None
     """
     CollarParser receives input from a textfile source.
     once the input arrives it is parsed and inserted into the DB using the models from
@@ -26,6 +25,20 @@ class CollarParser(object):
         5. Close File
         6. Return
     """
+    #invalidCollarId = "Invalid"
+    #collarID = None
+    #filePath = None
+
+    def __init__(self, filePath):
+        """
+        Takes in a filename for which this CollarParser will represent
+        """
+        self.filePath = filePath
+        try:
+            self.collarID = self.extractCollarIDFromFilename()
+        except ValueError:
+            raise ValueError("The filename was not formatted properly, please submit a correct filename.")
+
 
     def createCollar(self):
         """
@@ -33,7 +46,6 @@ class CollarParser(object):
         then it will be overwritten.
         After identification or creation, the collar object is added to self.
         """
-        #Create Collar
         self.collar = Collar()
         self.collar.collarID = self.collarID
         self.collar.save()
@@ -207,13 +219,16 @@ class CollarParser(object):
         If the file name is malformed, the collar ID will be set to
         'Invalid'.
         """
-        fileName = self.filePath.split('/')[-1]
-        if fileName.startswith('GSM') and fileName.endswith('.TXT'):
-            collarID = fileName.split('.')[0][3:]
-            if collarID.isdigit():
-                return collarID
-
-        raise ValueError("The file must be a TXT file and the name must begin with 'GSM' followed by the collar ID which must be an number. For example, 'GSM0005.TXT'\nFile name: {0}".format(self.filePath))
+        try:
+            fileName = self.filePath.split('/')[-1]
+            if fileName.startswith('GSM') and fileName.endswith('.TXT'):
+                collarID = fileName.split('.')[0][3:]
+                if collarID.isdigit():
+                    return collarID
+        except:
+            raise ValueError("The file must be a TXT file and the name must begin with 'GSM'" \
+                             " followed by the collar ID which must be an number. For example, " \
+                             "'GSM0005.TXT'\nFile name: {0}".format(self.filePath))
 
     def processCSVIntoDatabase(self):
         """
@@ -226,10 +241,3 @@ class CollarParser(object):
             self.collar = Collar.objects.get(pk=self.collarID)
         self.line = ""
         self.fileReader()
-
-    def __init__(self, filePath):
-        """
-        Takes in a filename for which this CollarParser will represent
-        """
-        self.filePath = filePath
-        self.collarID = self.extractCollarIDFromFilename()
