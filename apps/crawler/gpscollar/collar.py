@@ -148,7 +148,7 @@ class CollarParser(object):
             newCollarDataPoint.save()
         except ValidationError:
             return
-        findInteractionFromDataPoint(newCollarDataPoint)
+        #findInteractionFromDataPoint(newCollarDataPoint)
 
 
     def generateDateTimeFromList(self, dateString, timeString):
@@ -169,7 +169,7 @@ class CollarParser(object):
         if validArgs:
             dateTimeObject = datetime.datetime(int(dateList[2]),int(dateList[1]),int(dateList[0]), int(timeList[0]),int(timeList[1]),int(timeList[2]))
             if dateTimeObject > datetime.datetime.today():
-                raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.today()))
+                raise ValueError("Date is in the future. \nGiven date: {0}\nToday's date: {1}".format(dateTimeObject, datetime.datetime.today()))
             elif dateTimeObject.year < 1950:
                 raise ValueError("Date is before the year 1950\nGiven date: {0}".format(dateTimeObject))
 
@@ -227,6 +227,8 @@ class CollarParser(object):
         """
         try:
             fileName = self.filePath.split('/')[-1]
+            fileName = fileName.split("-")[-1]
+            print "FileName: ", fileName
             if fileName.startswith('GSM') and fileName.endswith('.TXT'):
                 collarID = fileName.split('.')[0][3:]
                 if collarID.isdigit():
@@ -241,7 +243,9 @@ class CollarParser(object):
         processCSVIntoDatabase issues the functions listed below in linear order.
         This places all of the data from a CSV into the database unless an error is found
         """
-        if self.collarExists() == False:
+        if not self.collarID:
+            return 0
+        elif self.collarExists() == False:
             self.createCollar()
         else:
             self.collar = Collar.objects.get(pk=self.collarID)

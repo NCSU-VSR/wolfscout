@@ -28,7 +28,7 @@ ACTIONS = {
 FILE_LIST_DIRECTORY = 0x0001
 #PATH_TO_WATCH is the directory that we will be watching during this time.
 #It should be an absolute path, not a relative one.
-PATH_TO_WATCH = "C:\\Users\\Chris King\\Desktop\\demoWatch"
+PATH_TO_WATCH = "C:\\Users\\CNR\\AppData\\Local\\VirtualStore\\Program Files\\Lotek Wireless Inc\\GPS Total Host\\GPS Data"
 
 #Create a directory to watch here.
 hDir = win32file.CreateFile (
@@ -75,6 +75,8 @@ class FileWatcher(object):
 
     def main(self):
         #This loop runs forever
+        print "Watching Files Now:"
+        print "Directory being Watched: ", PATH_TO_WATCH
         while 1:
             #
             # ReadDirectoryChangesW takes a previously-created
@@ -103,7 +105,8 @@ class FileWatcher(object):
             for action, file in results:
                 full_filename = os.path.join (PATH_TO_WATCH, file)
                 if self.shouldFileBeSent(action, full_filename):
-                    CollarFileTransmitter(full_filename)
+                    filer = CollarFileTransmitter(full_filename)
+                    del filer
 
 ### Executed as a stand alone script
 if __name__ == '__main__':

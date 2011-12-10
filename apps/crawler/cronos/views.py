@@ -50,7 +50,7 @@ def scrapeStations():
                 station = Station()
             #station = Station()
             station.station_code = str(the_line[0])
-            station.LOCATION = Point(float(the_line[3]),float(the_line[2]))
+            station.LOCATION = Point(float(the_line[2]),float(the_line[3]))
             station.name = the_line[1]
             try:
                 station.elevation = float(the_line[4])
@@ -142,24 +142,24 @@ def processWeatherData(dataPoint, station, WeatherDataResponse):
             #line is probably worthless
             new_weather_lines.append(line)
     #Now we get the categories
-    print "the categories are: "
+    #print "the categories are: "
     categories = new_weather_lines[1].split('|')
-    print categories
+    #print categories
     #now make a weather point
-    print "the weather data is: "
-    print new_weather_lines[2]
+    #print "the weather data is: "
+    #print new_weather_lines[2]
     weatherData = new_weather_lines[2].split('|')
     weatherDict = {}
     for index, value in enumerate(categories):
-        print "Dictionary key is: " + str(value)
-        print "Dictionary value is:" + weatherData[index]
+        #print "Dictionary key is: " + str(value)
+        #print "Dictionary value is:" + weatherData[index]
         weatherDict[value] = weatherData[index]
     weatherPoint = WeatherDataPoint()
 
     for key, value in weatherDict.items():
         try:
-            print "Key is: " + str(key)
-            print "Value is: " + str(value)
+            #print "Key is: " + str(key)
+            #print "Value is: " + str(value)
             setattr(weatherPoint, key, float(value))
         except:
             continue
@@ -176,9 +176,9 @@ def getWeatherData(dataPoint):
     """
     station = getClosestStation(dataPoint=dataPoint)
     dateToSearch = generateDateTimeString(dataPoint)
-    print dateToSearch
+    #print dateToSearch
     url =  buildRequest(station=station, startDate=dateToSearch, endDate=dateToSearch, obType="H")
-    print url
+    #print url
     return processWeatherData(dataPoint=dataPoint, station=station,WeatherDataResponse=requests.get(url))
 
 
