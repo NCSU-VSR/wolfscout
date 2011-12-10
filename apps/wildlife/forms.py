@@ -41,3 +41,10 @@ class SexForm(forms.Form):
             super(SexForm, self).__init__(*args, **kwargs)
             self.fields['Male'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Male', initial=False)
             self.fields['Female'] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}), label='Female', initial=False)
+
+class ExportSpecimenFilterForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(ExportSpecimenFilterForm, self).__init__(*args, **kwargs)
+        for field in Specimen._meta.fields:
+            field_name = str(field.name)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_specimenFilter'}), label=field_name, initial=True)

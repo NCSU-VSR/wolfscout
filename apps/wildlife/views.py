@@ -151,7 +151,7 @@ def isSpecimenSelected(form_specimen_name):
 
 def isSpeciesSelected(form_species_name):
     """
-    Checkes to see if a species is selected in the DOM
+    Checks to see if a species is selected in the DOM
     """
     species = Species.objects.all()
     for data in species:
@@ -172,16 +172,18 @@ def export(request):
     if request.method == 'POST':
         form_collars_filter = ExportCollarDataFilterForm(request.POST, error_class=DivErrorList)
         form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList)
+        form_specimen_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList)
         form_specimen_name = SpecimenByNameForm(request.POST, error_class=DivErrorList, auto_id='id_specimen_%s')
         form_species_name = SpeciesByNameForm(request.POST, error_class=DivErrorList, auto_id='id_species_%s')
         form_sex = SexForm(request.POST, error_class=DivErrorList)
-        if form_specimen_name.is_valid()and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid():
+        if form_specimen_name.is_valid()and form_species_name.is_valid() and form_sex.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_specimen_filter.is_valid():
             return getCSV(form_specimen_name, form_species_name, form_sex, form_collars_filter, form_weather_filter)
     else:
         specimens = Specimen.objects.all()
         species = Species.objects.all()
-        form_collars_filter = ExportCollarDataFilterForm(auto_id='id_collar_%s')
-        form_weather_filter = ExportWeatherDataFilterForm(auto_id='id_weather_%s')
+        form_collars_filter = ExportCollarDataFilterForm(auto_id='id_collar_filter_%s')
+        form_weather_filter = ExportWeatherDataFilterForm(auto_id='id_weather_filter_%s')
+        form_specimen_filter = ExportSpecimenFilterForm(auto_id='id_specimen_filter_%s')
         form_specimen_name = SpecimenByNameForm(auto_id='id_specimen_%s')
         form_species_name = SpeciesByNameForm(auto_id='id_species_%s')
         form_sex = SexForm(auto_id='id_sex_%s')
@@ -189,8 +191,9 @@ def export(request):
         siteDictionary['species'] = species
         siteDictionary['form_collars_filter'] = form_collars_filter
         siteDictionary['form_weather_filter'] = form_weather_filter
+        siteDictionary['form_specimen_filter'] = form_specimen_filter
         siteDictionary['form_specimen_name'] = form_specimen_name
         siteDictionary['form_species_name'] = form_species_name
         siteDictionary['form_sex'] = form_sex
 
-    return render_to_response('export_specimen.html', siteDictionary, context_instance=RequestContext(request))
+    return render_to_response('export_animal.html', siteDictionary, context_instance=RequestContext(request))

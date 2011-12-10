@@ -92,11 +92,22 @@ def export(request):
         form_weather_filter = ExportWeatherDataFilterForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
-            is_multi = form_export_type.cleaned_data['is_multi']
+            is_multi_csv = form_export_type.cleaned_data['is_multi_csv']
+            is_multi_shape = form_export_type.cleaned_data['is_multi_shape']
+            is_single_csv = form_export_type.cleaned_data['is_single_csv']
+            is_single_shape = form_export_type.cleaned_data['is_single_shape']
             single_collar = form_export_type.cleaned_data['single_export']
-            if is_multi:
+            if is_multi_csv:
+                print "Is Multiple CSV Export"
                 return getMultiCollarCSV(request, form_collars, form_collars_filter, form_weather_filter)
-            else:
+            if is_single_csv:
+                print "Is Single CSV Export"
+                return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
+            if is_multi_shape:
+                print "Is Multipe SHAPE Export"
+                return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
+            if is_single_shape:
+                print "Is Single SHAPE Export"
                 return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
     else:
         form_collars = ExportCollarDataForm()

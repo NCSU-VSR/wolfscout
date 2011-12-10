@@ -5,16 +5,17 @@
 {% block content %}
 <form method="post" action=".">{% csrf_token %}
 	<div class="section">
-		<div class="box big">
+		<div class="box medium-custom">
 			<div class="title">
-				<h2>Specimen Filter</h2>
+				<h2>Animal Filter</h2>
 				<span class="hide"></span>
 			</div>
 			<div class="content tabs">
 
                 <div class="tabmenu">
                     <ul>
-                        <li><a href="#specimen">Specimen</a></li>
+                        <li><a href="#animal">Animal</a></li>
+                        <li><a href="#age">Age</a></li>
                         <li><a href="#date-range">Date Range</a></li>
                         <li><a href="#time-of-day">Time of Day</a></li>
                         <li><a href="#sex">Sex</a></li>
@@ -23,8 +24,8 @@
                 </div>
 
                 <div class="line scrollbox medium" >
-                    <div id="specimen">
-                        <h3>Note: Selecting a specimen disables the Sex and Species tab.</h3>
+                    <div id="animal">
+                        <h3>Note: Selecting a animal disables the Sex and Species tab.</h3>
                         <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
                             <thead>
                                 <tr>
@@ -53,6 +54,13 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+
+                    <div id="age">
+                        <h3><a href="#">Age Range</a></h3>
+                        <div>
+
+                        </div>
                     </div>
 
                     <div id="date-range">
@@ -132,7 +140,7 @@
             </div>
         </div>
 
-        <div class="box small">
+        <div class="box small-custom">
             <div class="title">
                 <h2>Filter Fields</h2>
                 <span class="hide"></span>
@@ -142,6 +150,7 @@
                     <ul>
                         <li><a href="#tabs-1">Collar</a></li>
                         <li><a href="#tabs-2">Weather</a></li>
+                        <li><a href="#tabs-3">Animal</a></li>
                     </ul>
                 </div>
 
@@ -183,6 +192,25 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div id="tabs-3">
+                        <table cellspacing="0" cellpadding="0" border="0"  class="sorting">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="check" class="checkall checkbox-small" checked="checked"/></th>
+                                    <th>Animal Fields</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in form_specimen_filter %}
+                                <tr>
+                                    <td>{{ field }}</td>
+                                    <td>{{ field.label }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,7 +224,7 @@
             </div>
             <div class="content">
                 <div class="line">
-                    <button type="submit" class="green"><span class="export_species">Export Specimen Data CSV</span></button>
+                    <button type="submit" class="green"><span class="export_species">Export Animal Data CSV</span></button>
                 </div>
             </div>
         </div>

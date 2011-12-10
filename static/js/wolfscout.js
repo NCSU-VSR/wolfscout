@@ -5,11 +5,11 @@ $(document).ready(function() {
      */
     $('.enableDistance').change(function() {
         if($(this).parents('table').find(':checkbox').is(':checked')){
-            blockEnabledDisable_Field_Specimen('#id_distance_in_km', true, "p");
-            blockEnabledDisable_Field_Specimen('#id_selected_collars', true, "p");
+            blockEnabledDisable_Field_Animal('#id_distance_in_km', true, "p");
+            blockEnabledDisable_Field_Animal('#id_selected_collars', true, "p");
         }else{
-            blockEnabledDisable_Field_Specimen('#id_distance_in_km', false, "p");
-            blockEnabledDisable_Field_Specimen('#id_selected_collars', false, "p");
+            blockEnabledDisable_Field_Animal('#id_distance_in_km', false, "p");
+            blockEnabledDisable_Field_Animal('#id_selected_collars', false, "p");
         }
         //Update collar list
         var collarList = '';
@@ -21,31 +21,31 @@ $(document).ready(function() {
        $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
     });
 
-    blockEnabledDisable_Field_Specimen('#id_distance_in_km', false, "p");
-    blockEnabledDisable_Field_Specimen('#id_selected_collars', false, "p");
+    blockEnabledDisable_Field_Animal('#id_distance_in_km', false, "p");
+    blockEnabledDisable_Field_Animal('#id_selected_collars', false, "p");
     //////////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////////
     /**
-     * SPECIMEN EXPORT PAGE
+     * ANIMAL EXPORT PAGE
       */
-    $('.specimenCheckbox').change(function() {
-        checkSpecimenSelected();
+    /*$('.animalCheckbox').change(function() {
+        checkAnimalSelected();
     });
 
-    function checkSpecimenSelected(){
-        var isSpecimenSelected = $('.specimenCheckbox').parents('table').find(':checkbox').is(':checked');
+    function checkAnimalSelected(){
+        var isAnimalSelected = $('.animalCheckbox').parents('table').find(':checkbox').is(':checked');
 
-        if(isSpecimenSelected){
-            blockEnabledDisable_Field_Specimen('.species_tab', false, 'div');
-            blockEnabledDisable_Field_Specimen('.sex_tab', false, 'div');
+        if(isAnimalSelected){
+            blockEnabledDisable_Field_Animal('.species_tab', false, 'div');
+            blockEnabledDisable_Field_Animal('.sex_tab', false, 'div');
         }else{
-            blockEnabledDisable_Field_Specimen('.species_tab', true, 'div');
-            blockEnabledDisable_Field_Specimen('.sex_tab', true, 'div');
+            blockEnabledDisable_Field_Animal('.species_tab', true, 'div');
+            blockEnabledDisable_Field_Animal('.sex_tab', true, 'div');
         }
-    }
+    }*/
 
-    function blockEnabledDisable_Field_Specimen(field, enable, parent){
+    function blockEnabledDisable_Field_Animal(field, enable, parent){
         field = $(field).parent(parent);
         if(enable){
             field.attr('disabled', false);
@@ -86,18 +86,43 @@ $(document).ready(function() {
     // HIDE EXPORT TYPE FIELDS
     $('.export_box_hidden').hide();
 
-    blockEnabledDisable_Field_Collar('.export_collardata', false, "button");
+    blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', false, "button");
 
-    $('.export_collardata').click(function() {
-        $('#id_is_multi').attr('checked','checked');
+    blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', false, "button");
+
+    $('.export_multi_collardata_csv').click(function() {
+        $('#id_is_multi_shape').removeAttr('checked');
+        $('#id_is_single_csv').removeAttr('checked');
+        $('#id_is_single_shape').removeAttr('checked');
+        $('#id_is_multi_csv').attr('checked','checked');
     });
 
-    $('.is_single').click(function() {
-        $('#id_is_multi').removeAttr('checked');
+    $('.export_multi_collardata_shape').click(function() {
+        $('#id_is_multi_csv').removeAttr('checked');
+        $('#id_is_single_csv').removeAttr('checked');
+        $('#id_is_single_shape').removeAttr('checked');
+        $('#id_is_multi_shape').attr('checked','checked');
+    });
+
+    $('.is_single_csv').click(function() {
+        $('#id_is_multi_csv').removeAttr('checked');
+        $('#id_is_multi_shape').removeAttr('checked');
+        $('#id_is_single_shape').removeAttr('checked');
+        $('#id_is_single_csv').attr('checked','checked');
+        // GET COLLAR ID
         $('#id_single_export').val($(this).attr("name"));
     });
 
-    //INTERACTION PAGE CHECKBOX FUNCTIONS
+    $('.is_single_shape').click(function() {
+        $('#id_is_multi_csv').removeAttr('checked');
+        $('#id_is_multi_shape').removeAttr('checked');
+        $('#id_is_single_csv').removeAttr('checked');
+        $('#id_is_single_shape').attr('checked','checked');
+        // GET COLLAR ID
+        $('#id_single_export').val($(this).attr("name"));
+    });
+
+    // If any checkbox checkbox state change - perform relevant UI logic
     $('.enableExport').change(function() {
         checkCollarAndFilterOptionsSelected();
     });
@@ -117,19 +142,35 @@ $(document).ready(function() {
 
         if(isCollarSelected){
             if(isCollarFilterSelected || isWeatherFilterSelected){
-                blockEnabledDisable_Field_Collar('.export_collardata', true, "button");
-                blockEnabledDisable_Field_Collar('.export_single_collardata', true, "button");
+                blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', true, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_csv', true, "button");
+                if($('#id_LOCATION').is(':checked')){
+                    blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', true, "button");
+                    blockEnabledDisable_Field_Collar('.export_single_collardata_shape', true, "button");
+                }else{
+                    blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', false, "button");
+                    blockEnabledDisable_Field_Collar('.export_single_collardata_shape', false, "button");
+                }
             }else{
-                blockEnabledDisable_Field_Collar('.export_collardata', false, "button");
-                blockEnabledDisable_Field_Collar('.export_single_collardata', false, "button");
+                blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', false, "button");
+                blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', false, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_csv', false, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_shape', false, "button");
             }
         }else{
             if(isCollarFilterSelected || isWeatherFilterSelected){
-                blockEnabledDisable_Field_Collar('.export_single_collardata', true, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_csv', true, "button");
+                if($('#id_LOCATION').is(':checked')){
+                    blockEnabledDisable_Field_Collar('.export_single_collardata_shape', true, "button");
+                }else{
+                    blockEnabledDisable_Field_Collar('.export_single_collardata_shape', false, "button");
+                }
             }else{
-                blockEnabledDisable_Field_Collar('.export_single_collardata', false, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_csv', false, "button");
+                blockEnabledDisable_Field_Collar('.export_single_collardata_shape', false, "button");
             }
-            blockEnabledDisable_Field_Collar('.export_collardata', false, "button");
+            blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', false, "button");
+            blockEnabledDisable_Field_Collar('.export_multi_collardata_shape', false, "button");
         }
     }
 

@@ -69,10 +69,10 @@
 				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Dashboard</a></li>
 				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}">
 					<a href="#">Export</a>
-					<ul> 
+					<ul>
+                        <li><a href="/export_specimen">Export by Animal</a></li>
 						<li><a href="/export_collar">Export by Collar</a></li>
                         <li><a href="/export_interactions">Export by Interactions</a></li>
-						<li><a href="/export_specimen">Export by Specimen</a></li>
 					</ul>
 				</li>
 			</ul>

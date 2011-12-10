@@ -40,7 +40,10 @@ class ExportCollarDataForm(forms.Form):
             self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport'}), label=field_name)
 
 class ExportTypeForm(forms.Form):
-    is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+    is_multi_csv = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+    is_multi_shape = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+    is_single_csv = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
+    is_single_shape = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
     single_export = forms.CharField(required=False)
 
 
