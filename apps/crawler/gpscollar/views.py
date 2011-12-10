@@ -229,3 +229,12 @@ class AnotherExampleView(View):
         if int(num) > 2:
             return Response(status.HTTP_404_NOT_FOUND)
         return "POST request to AnotherExampleResource %s, with content: %s" % (num, repr(self.CONTENT))
+
+
+#### This view is to upload CSVs to get processed.
+
+def uploadCSVToProcess(request):
+    if request.method == 'POST':
+        pass
+    else:
+        return HttpResponse("Please use a post request here")
