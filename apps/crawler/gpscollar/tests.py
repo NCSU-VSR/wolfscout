@@ -95,6 +95,19 @@ class CollarTestCases(TestCase):
         for badTime in self.getBadTimeStrings():
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
+    def test_CollarData_clean(self):
+        collarID = 1
+        now = datetime.datetime.now()
+        testCollar = Collar()
+        testCollar.collarID = collarID
+        testCollarData = CollarData()
+        testCollarData.collar = collarID
+        testCollarData.GMT_DATETIME = now
+        testCollarData.save()
+        testCollarData.save()
+        testCollarData.clean()
+
+
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
 
