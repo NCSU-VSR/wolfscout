@@ -7,6 +7,9 @@ from geopy.distance import distance as geopy_distance
 DISTANCE_TO_SEARCH = .05
 
 def findAllMatchingByDistance(sourceCollar, distance=None):
+    """
+    findAllMatchingByDistance This checks for interactions based on a distance parameter, dates must be precise
+    """
     if not distance:
         return distance
     sourceCollarDataPoints = CollarData.objects.filter(collar=sourceCollar)

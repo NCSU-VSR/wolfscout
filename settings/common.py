@@ -294,3 +294,4 @@ CLIMATE_DICTIONARY = {
 }
 
 FIXTURE_DIRS = '/opt/webapps/ncsu/wolfscout/tests/data/fixtures'
+CSV_UPLOAD_DIR = "/opt/webapps/ncsu/wolfscout/uploaded_files/"

@@ -151,8 +151,7 @@ def getCollarData(request, theCollarID):
     return render_to_response('collar_data.html', siteDictionary, context_instance=RequestContext(request))
 
 def write_file_to_disk(file_to_write):
-    file_path = "/opt/webapps/ncsu/wolfscout/uploaded_files/"
-    filename = file_path + str(datetime.datetime.now())\
+    filename = settings.CSV_UPLOAD_DIR + str(datetime.datetime.now())\
     .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
 
     destination = open(filename, 'wb+')
