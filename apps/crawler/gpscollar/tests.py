@@ -107,6 +107,7 @@ class CollarTestCases(TestCase):
         testCollarData.LMT_DATETIME = testCollarData.GMT_DATETIME
         testCollarData.LOCATION = duplicateLocation
         testCollarData.save()
+        testCollarData.save()
         testCollarData.clean()
 
     def test_CollarData_clean_noDuplicates(self):
