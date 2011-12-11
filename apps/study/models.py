@@ -36,7 +36,7 @@ class AnimalInteractionGroup(models.Model):
     Each Animal Interaction group will be linked to one study, and that is how we can avoid
     duplicate interactions throughout a study.
     """
-    uploadPath = os.path.join(settings.PROJECT_DIR, "interaction_files")
+    uploadPath = "interaction_files/"
     title = models.CharField(max_length=100,null=True,blank=True)
     study = models.ForeignKey(Study, related_name="AnimalInteractionStudyGroup")
     distance = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)

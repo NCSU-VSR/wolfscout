@@ -100,6 +100,7 @@ def getInteractionGroups(request, theStudyID):
                 studyInteractionGroups.append(group)
         siteDictionary['studyInteractionGroups'] = studyInteractionGroups
         siteDictionary['study'] = theStudy
+
     return render_to_response('export_interaction_groups.html', siteDictionary, context_instance=RequestContext(request))
 
 @login_required()
