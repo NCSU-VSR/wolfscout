@@ -98,7 +98,7 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_write_file_to_disk(self):
-        self.assertTrue(os.path.exists("/opt/webapps/ncsu/wolfscout/uploaded_files/"))
+        self.assertTrue(os.path.exists(settings.CSV_UPLOAD_DIR))
         f = open('GSM999999999.TXT','r')
         file = File(f)
         try:
