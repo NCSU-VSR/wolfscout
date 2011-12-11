@@ -100,7 +100,7 @@ class CollarTestCases(TestCase):
 
     def test_write_file_to_disk(self):
         self.assertTrue(os.path.exists(CSV_UPLOAD_DIR))
-        f = open('GSM999999999.TXT','r')
+        f = open('sample/GSM999999999.TXT','r')
         file = File(f)
         try:
             views.write_file_to_disk(file)
