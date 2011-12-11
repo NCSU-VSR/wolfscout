@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.conf import settings
 import datetime
-import os
 
 
 from apps.crawler.gpscollar.models import Collar,CollarData
