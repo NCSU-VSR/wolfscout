@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Collar{% endblock %}
+
+{% block content %}
+    <div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Upload Collar Data</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+                <form action="/upload_collar/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="line">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="line">
+                        <button type="submit" class="green"><span>Upload Collar Data</span></button>
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

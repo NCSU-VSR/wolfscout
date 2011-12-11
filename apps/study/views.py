@@ -1,17 +1,14 @@
 ### Django Imports ####
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
-from django.contrib.sitemaps import ping_google
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 ### Global Imports ####
-import datetime
 ### Local Imports ####
 from apps.general.views import getDictionary
 from apps.study.models import *
 from apps.study.forms import *
+from apps.general.forms import *
 ### Views ####
 
 """
@@ -70,19 +67,25 @@ def add(request):
 
 @login_required()
 def interactions(request):
+    """
+    View for export_interactions
+    """
     siteDictionary = getDictionary(request)
     siteDictionary['studies'] = Study.objects.all()
     return render_to_response('export_interactions.html', siteDictionary, context_instance=RequestContext(request))
 
 @login_required()
 def getInteractionGroups(request, theStudyID):
+    """
+    Shows the interaction groups and allows for exportation of that interaction group shape files via zip file
+    """
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
         form_interaction_to_be_exported = InteractionToBeExportedForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_interaction_to_be_exported.is_valid():
             interaction_group_pk = form_interaction_to_be_exported.cleaned_data['interaction_to_be_exported']
             interactionGroup = get_object_or_404(AnimalInteractionGroup, pk=interaction_group_pk)
-            returnZipFile(interactionGroup)
+            return HttpResponseRedirect('/media/' + str(interactionGroup.zip_file))
     else:
         theStudy = get_object_or_404(Study, pk=theStudyID)
         interactionGroups = AnimalInteractionGroup.objects.all()
@@ -99,6 +102,9 @@ def getInteractionGroups(request, theStudyID):
 
 @login_required()
 def getGroupInteractions(request, theGroupID):
+    """
+    Shows the interaction groups specific interactions in view
+    """
     siteDictionary = getDictionary(request)
     theGroup = get_object_or_404(AnimalInteractionGroup, pk=theGroupID)
     interactions = AnimalInteraction.objects.all()
@@ -109,33 +115,3 @@ def getGroupInteractions(request, theGroupID):
     siteDictionary['groupInteractions'] = groupInteractions
     siteDictionary['group'] = theGroup
     return render_to_response('export_interaction_groupInteractions.html', siteDictionary, context_instance=RequestContext(request))
-
-import zipfile
-from cStringIO import StringIO
-from django.http import HttpResponse
-
-def returnZipFile(interactionGroup):
-    response = HttpResponse(mimetype='application/zip')
-    response['Content-Disposition'] = 'attachment; filename=InteractionGroup_' + str(interactionGroup.pk) + '.zip'
-    #first assemble your files
-    print(interactionGroup.zip_file)
-    f = open(str(interactionGroup.zip_file), 'r')
-    zip = File(f)
-    zip.open()
-    '''files = []
-    files.append(("%s.pdf" % (interactionGroup.pk,), interactionGroup.zip_file))
-
-    #now add them to a zip file
-    buffer = StringIO()
-    zip = zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED)
-    for name, f in files:
-        zip.writestr(name, f)
-    zip.close()
-    buffer.flush()
-    
-    #the import detail--we return the content of the buffer
-    ret_zip = buffer.getvalue()
-    buffer.close()
-
-    response.write(ret_zip)
-    return response'''
