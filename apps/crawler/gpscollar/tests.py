@@ -5,6 +5,7 @@ from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
 from sys import *
 from django.http import HttpRequest
+from settings.testSettings import CSV_UPLOAD_DIR
 
 class CollarTestCases(TestCase):
     fixtures = ['GSM0001.json']
@@ -98,7 +99,7 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_write_file_to_disk(self):
-        self.assertTrue(os.path.exists(settings.CSV_UPLOAD_DIR))
+        self.assertTrue(os.path.exists(CSV_UPLOAD_DIR))
         f = open('GSM999999999.TXT','r')
         file = File(f)
         try:
