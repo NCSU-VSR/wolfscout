@@ -101,7 +101,7 @@ class CollarTestCases(TestCase):
         testCollar = Collar()
         testCollar.collarID = collarID
         testCollarData = CollarData()
-        testCollarData.collar = collarID
+        testCollarData.collar = testCollar
         testCollarData.GMT_DATETIME = now
         testCollarData.save()
         testCollarData.save()
