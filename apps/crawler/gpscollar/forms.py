@@ -9,14 +9,7 @@ from django import forms
 from apps.crawler.gpscollar.collar import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
-from apps.general.views import *
-
-class DivErrorList(ErrorList):
-    def __unicode__(self):
-        return self.as_divs()
-    def as_divs(self):
-        if not self: return u''
-        return u'<div class="errorlist">%s</div>' % ''.join([u'<div class="messages red"><span></span>%s</div>' % e for e in self])
+from settings.common import CLIMATE_DICTIONARY
         
 class collarDataFileForm(forms.Form):
     file = forms.FileField()
@@ -57,8 +50,7 @@ class ExportCollarDataFilterForm(forms.Form):
 class ExportWeatherDataFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ExportWeatherDataFilterForm, self).__init__(*args, **kwargs)
-        climateDictionary = getClimateDictionary()
         for field in WeatherDataPoint._meta.fields:
             field_name = str(field.name)
-            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter_COLLAR_EXPORT_PAGE'}), label=climateDictionary[str(field.name)][0], initial=True)
+            self.fields[field_name] = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small enableExport_weatherFilter_COLLAR_EXPORT_PAGE'}), label=CLIMATE_DICTIONARY[str(field.name)][0], initial=True)
 
