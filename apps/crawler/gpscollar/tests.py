@@ -104,6 +104,7 @@ class CollarTestCases(TestCase):
         testCollarData = CollarData()
         testCollarData.collar = testCollar
         testCollarData.GMT_DATETIME = testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME[0], duplicateGMTDATETIME[1])
+        testCollarData.LMT_DATETIME = testCollarData.GMT_DATETIME
         testCollarData.LOCATION = duplicateLocation
         testCollarData.save()
         testCollarData.clean()
@@ -120,10 +121,12 @@ class CollarTestCases(TestCase):
         nonDuplicateLocation4 = Point(float(35.7894160), float(78.6726674))
         testCollarParser = self.getTestCollarParser()
         testCollar = Collar()
-        testCollar.collarID = nonDuplicateCollarId
+        testCollar.collarID = duplicateCollarId
         testCollarData = CollarData()
         testCollarData.collar = testCollar
         testCollarData.GMT_DATETIME = testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME[0], duplicateGMTDATETIME[1])
+        testCollarData.LMT_DATETIME = testCollarData.GMT_DATETIME
+        testCollarData.LOCATION = duplicateLocation
         testCollarData.save()
         testCollarData.clean()
 
