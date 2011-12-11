@@ -1,3 +1,4 @@
+import views
 from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,8 +7,8 @@ from sys import *
 class CollarTestCases(TestCase):
     fixtures = ['GSM0001.json']
     existingCollarID = '1'
-    existingSampleData = {'ID': '30812', 'fileName': 'sample_data/GSM30812.TXT'}
-    nonExistentCollarID = '999999999'
+    existingSampleData = {'ID': '999999999', 'fileName': 'sample_data/GSM999999999.TXT'}
+    nonExistentCollarID = '999999998'
     testCollarParser = None
     badFileNames = ['badFile0009.TXT','bad/GS0009.TXT', 'GSMM0009.TXT','GSM0009.TX', 'GSM0009T.XT','GSM0009A.TXT']
 
@@ -94,6 +95,9 @@ class CollarTestCases(TestCase):
         for badTime in self.getBadTimeStrings():
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
+    def test_write_file_to_disk(self):
+        file = open('sample_data/GSM999999999.TXT',r)
+        views.write_file_to_disk(file)
 
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
