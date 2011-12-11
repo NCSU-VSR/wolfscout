@@ -82,7 +82,7 @@ def getInteractionGroups(request, theStudyID):
         if form_interaction_to_be_exported.is_valid():
             interaction_group_pk = form_interaction_to_be_exported.cleaned_data['interaction_to_be_exported']
             interactionGroup = get_object_or_404(AnimalInteractionGroup, pk=interaction_group_pk)
-            return render_to_response(interactionGroup.zip_file)
+            returnZipFile(interactionGroup)
     else:
         theStudy = get_object_or_404(Study, pk=theStudyID)
         interactionGroups = AnimalInteractionGroup.objects.all()
@@ -118,10 +118,13 @@ def returnZipFile(interactionGroup):
     response = HttpResponse(mimetype='application/zip')
     response['Content-Disposition'] = 'attachment; filename=InteractionGroup_' + str(interactionGroup.pk) + '.zip'
     #first assemble your files
-    files = []
+    print(interactionGroup.zip_file)
+    f = open(str(interactionGroup.zip_file), 'r')
+    zip = File(f)
+    zip.open()
+    '''files = []
     files.append(("%s.pdf" % (interactionGroup.pk,), interactionGroup.zip_file))
 
-    
     #now add them to a zip file
     buffer = StringIO()
     zip = zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED)
@@ -135,4 +138,4 @@ def returnZipFile(interactionGroup):
     buffer.close()
 
     response.write(ret_zip)
-    return response
+    return response'''
