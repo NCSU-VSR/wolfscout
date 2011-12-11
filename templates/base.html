@@ -65,16 +65,11 @@
 			</ul>
 		</div>
 		<div class="menu-search">
-			<ul> 			    
+			<ul>
 				<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="/">Dashboard</a></li>
-				<li class="{% ifequal request.path "/collar/" %}current{% endifequal %}">
-					<a href="#">Export</a>
-					<ul>
-                        <li><a href="/export_animal">Export by Animal</a></li>
-						<li><a href="/export_collar">Export by Collar</a></li>
-                        <li><a href="/export_interactions">Export by Interactions</a></li>
-					</ul>
-				</li>
+                <li class="{% ifequal request.path "/export_animal/" %}current{% endifequal %}"><a href="/export_animal">Export By Animal</a></li>
+                <li class="{% ifequal request.path "/export_collar/" %}current{% endifequal %}"><a href="/export_collar">Export By Collar</a></li>
+                <li class="{% ifequal request.path "/export_interactions/" %}current{% endifequal %}"><a href="/export_interactions">Export By Interactions</a></li>
 			</ul>
 		</div>
 		<div class="breadcrumbs">

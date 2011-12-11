@@ -1,28 +1,15 @@
 $(document).ready(function() {
+
+
     //////////////////////////////////////////////////////////////////////////////
     /**
      * INTERACTION DATA PAGE
      */
-    $('.enableDistance').change(function() {
-        if($(this).parents('table').find(':checkbox').is(':checked')){
-            blockEnabledDisable_Field_Animal('#id_distance_in_km', true, "p");
-            blockEnabledDisable_Field_Animal('#id_selected_collars', true, "p");
-        }else{
-            blockEnabledDisable_Field_Animal('#id_distance_in_km', false, "p");
-            blockEnabledDisable_Field_Animal('#id_selected_collars', false, "p");
-        }
-        //Update collar list
-        var collarList = '';
-        $('.enableDistance').each(function(){
-            if($(this).is(':checked')){
-                collarList += $(this).closest("td").next().html() + ', ';
-            }
-        });
-       $('#id_selected_collars').val($.trim(collarList).slice(0, -1));
-    });
 
-    blockEnabledDisable_Field_Animal('#id_distance_in_km', false, "p");
-    blockEnabledDisable_Field_Animal('#id_selected_collars', false, "p");
+    $('.export_interaction_group_button').click(function() {
+        // GET INTERACTION GROUP ID
+        $('#id_interaction_to_be_exported').val($(this).attr("name"));
+    });
     //////////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////////
@@ -146,8 +133,6 @@ $(document).ready(function() {
     /**
      * COLLAR EXPORT PAGE
      */
-    // HIDE EXPORT TYPE FIELDS
-    $('.export_box_hidden').hide();
 
     blockEnabledDisable_Field_Collar('.export_multi_collardata_csv', false, "button");
 
@@ -269,4 +254,6 @@ $(document).ready(function() {
             }
         }
     }
+    // HIDE EXPORT TYPE FIELDS
+        $('.export_box_hidden').hide();
 });
