@@ -42,16 +42,25 @@ urlpatterns = patterns('',
     url(r'^collarDataKML/(?P<theCollarID>\d+)/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPoints'),
     url(r'^getInteractionKML/$', 'wolfscout.apps.crawler.gpscollar.views.getKMLForAllCollarPointsInteractions'),
 
-    url(r'^studies/$', 'wolfscout.apps.study.views.studies'),
-    url(r'^study_add/$', 'wolfscout.apps.study.views.add'),
-    url(r'^study_delete/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
-    url(r'^study_edit/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
-    url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
+    #url(r'^studies/$', 'wolfscout.apps.study.views.studies'),
+    #url(r'^study_add/$', 'wolfscout.apps.study.views.add'),
+    #url(r'^study_delete/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
+    #url(r'^study_edit/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
+    #url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
+
 )
 
 #Add Static Data
 urlpatterns += staticfiles_urlpatterns()
 
+
 #Add Restful Inteface To CollarData
 urlpatterns += urls.urlpatterns
+
+#Downloadable reports
+urlpatterns += patterns('',
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT,
+        }),
+    )
 

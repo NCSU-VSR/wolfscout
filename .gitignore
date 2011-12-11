@@ -43,9 +43,11 @@ tmp/*
 media/imgs/*
 media/images/*
 media/pdfs/*
+media/interaction_files/*
 compass/.sass-cache/*
 projectFilesBackup/*
 uploaded_files/*
+interaction_files/*
 
 #Sitemap Files
 sitemap.xml

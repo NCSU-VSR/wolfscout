@@ -25,8 +25,8 @@ def getDictionary(request):
     siteDictionary['STATIC_URL'] = settings.STATIC_URL
     ### Required data for all pages ###
     myStudies = Study.objects.all().filter(owner=request.user) ### Creates object
-    siteDictionary['myStudies']=myStudies ### Associates dictionary field with object to be called in html
-    getClimateDictionary()
+    siteDictionary['myStudies']=myStudies
+    siteDictionary['allStudies'] = Study.objects.all()
     return siteDictionary
 
 def getClimateDictionary():

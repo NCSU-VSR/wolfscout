@@ -28,7 +28,6 @@ class StudyForm(forms.ModelForm):
         class Meta:
             model = Study
 
-class ExportTypeForm(forms.Form):
-    is_multi = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class':'checkbox-small'}))
-    single_export = forms.CharField(required=False)
+class InteractionToBeExportedForm(forms.Form):
+    interaction_to_be_exported = forms.CharField(required=False)
 

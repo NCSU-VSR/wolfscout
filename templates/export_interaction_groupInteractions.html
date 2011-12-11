@@ -19,7 +19,7 @@
                                 <th>Source Animal Data Point</th>
                                 <th>Destination Animal Data Point</th>
                                 <th>Distance</th>
-                                <th>Export Interaction</th>
+                                <!--<th>Export Interaction</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -29,9 +29,9 @@
                                 <td>{{ i.source_animal_data_point }}</td>
                                 <td>{{ i.destination_animal_data_point }}</td>
                                 <td>{{ i.distance }} km</td>
-                                <td>
+                                <!--<td>
                                     <button class="is_single tooltip" name="{{ i.pk }}" type="submit" title="Export Interaction SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
-                                </td>
+                                </td>-->
                             </tr>
                         {% endfor %}
                         </tbody>

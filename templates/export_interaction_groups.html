@@ -26,10 +26,10 @@
                         <tbody>
                         {% for group in studyInteractionGroups %}
                             <tr>
-                                <td><a href = "/export_interactions/group/{{ group.pk }}">{{ group.title }}</td>
+                                <td><a href = "/export_interactions/group/{{ group.pk }}">{{ group.title }}</a></td>
                                 <td>{{ group.distance }} km</td>
                                 <td>
-                                    <button class="is_single tooltip" name="{{ group.pk }}" type="submit" title="Export Interaction Group SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
+                                    <button class="export_interaction_group_button tooltip" name="{{ group.pk }}" type="submit" title="Export Interaction Group SHAPE" type="submit"><img src="{{ STATIC_URL }}gfx/shape-icon.gif" alt="edit" /></button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -48,7 +48,7 @@
             </div>
             <div class="content">
                 <div class="line">
-                {{ form_export_type.as_p }}
+                {{ form_interaction_to_be_exported.as_p }}
                 </div>
             </div>
         </div>
