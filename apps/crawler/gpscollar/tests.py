@@ -97,7 +97,7 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_write_file_to_disk(self):
-        f = open('sample_data/GSM999999999.TXT','r')
+        f = open('GSM999999999.TXT','r')
         file = File(f)
         views.write_file_to_disk(file)
 
