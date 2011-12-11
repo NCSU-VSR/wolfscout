@@ -48,6 +48,7 @@ compass/.sass-cache/*
 projectFilesBackup/*
 uploaded_files/*
 interaction_files/*
+known_collar_data/*
 
 #Sitemap Files
 sitemap.xml
