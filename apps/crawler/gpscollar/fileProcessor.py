@@ -20,7 +20,7 @@ python apps/crawler/gpscollar/fileProcessor.py
 PATH_TO_SAMPLE_DATA = "/opt/webapps/ncsu/wolfscout/sample_data/"
 
 #Scrape stations will build an index of all the known weather stations
-#scrapeStations()
+scrapeStations()
 
 #This loop is used to grab all the .TXT files and then process them through collar.py
 for infile in glob.glob( os.path.join(PATH_TO_SAMPLE_DATA, '*.TXT') ):
