@@ -103,7 +103,6 @@ class CollarTestCases(TestCase):
         opened_file = File(open("sample_data/GSM999999999.TXT","rb"))
         filename = views.write_file_to_disk(opened_file)
         self.assertTrue(os.path.exists(filename))
-        self.fail(filename)
         print filename
 
     def test_uploadCSVToProcess(self):
