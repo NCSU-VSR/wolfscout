@@ -110,7 +110,7 @@ class CollarTestCases(TestCase):
         request = HttpRequest()
         request.method = 'POST'
         request.POST = "test"
-        request.FILES = {File(open('GSM999999999.TXT','r'))}
+        request.FILES = {'upload':File(open('GSM999999999.TXT','r'))}
         request.upload_handlers
         views.uploadCSVToProcess(request)
 
