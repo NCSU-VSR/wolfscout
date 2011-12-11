@@ -218,6 +218,8 @@ class CollarParser(object):
                         #print diff[2:]
                         self.line = diff[2:]
                         self.lineParser()
+                new_file.close()
+                existing_file.close()
             else:
                 for self.line in new_file:
                     self.lineParser()
