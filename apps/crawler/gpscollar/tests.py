@@ -100,11 +100,12 @@ class CollarTestCases(TestCase):
 
     def test_write_file_to_disk(self):
         self.assertTrue(os.path.exists(settings.CSV_UPLOAD_DIR))
-        file_to_send = open("sample_data/GSM999999999.TXT","rb")
-        filename = views.write_file_to_disk(file_to_send)
+        #f = open('sample_data/GSM999999999.TXT','r')
+        #file = File(f)
+        opened_file = File(open("sample_data/GSM999999999.TXT","rb"))
+        filename = views.write_file_to_disk(opened_file)
         file_to_send.close()
         self.assertTrue(os.path.exists(filename))
-        self.fail(filename)
 
     def test_uploadCSVToProcess(self):
         request = HttpRequest()
