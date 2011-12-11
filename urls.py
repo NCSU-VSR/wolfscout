@@ -47,11 +47,20 @@ urlpatterns = patterns('',
     #url(r'^study_delete/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
     #url(r'^study_edit/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
     #url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
+
 )
 
 #Add Static Data
 urlpatterns += staticfiles_urlpatterns()
 
+
 #Add Restful Inteface To CollarData
 urlpatterns += urls.urlpatterns
+
+#Downloadable reports
+urlpatterns += patterns('',
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT,
+        }),
+    )
 
