@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.conf import settings
@@ -11,7 +11,16 @@ from apps.crawler.gpscollar.models import Collar,CollarData
 # Create your models here.
 # Add entry below, run commands: django-admin.py schemamigration apps.study --auto
 #                                django-admin.py migrate apps.study
+"""
+class ShapeToAnalyze(models.Model):
 
+These shapes are purely used to check for interactions, that's it
+
+    #shape = models.
+
+    def __unicode__(self):
+        return str(self.pk)
+"""
 class Study(models.Model):
     """
     Study sets up the owner for an study,
