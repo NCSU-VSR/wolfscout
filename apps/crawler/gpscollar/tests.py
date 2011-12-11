@@ -94,46 +94,6 @@ class CollarTestCases(TestCase):
         for badTime in self.getBadTimeStrings():
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
-    def test_CollarData_clean_duplicate(self):
-        duplicateCollarId = '30812'
-        duplicateGMTDATETIME = ('12.01.2011', '03:28:34')
-        duplicateLocation = Point(float(35.7894160), float(-78.6726674))
-        testCollarParser = self.getTestCollarParser()
-        testCollarParser.createCollar()
-        testCollarParser.createCollarData('1 12.01.2011 03:28:34 11.01.2011 23:28:34 1017383 -5078894 3709330 35.7894160 -78.6726674 114.28 3.0 3D Yes 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.44 3.68 12')
-        testCollar = Collar()
-        testCollar.collarID = duplicateCollarId
-        testCollar.save()
-        testCollarData = CollarData()
-        testCollarData.collar = testCollar
-        testCollarData.GMT_DATETIME = testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME[0], duplicateGMTDATETIME[1])
-        testCollarData.LMT_DATETIME = testCollarData.GMT_DATETIME
-        testCollarData.LOCATION = duplicateLocation
-        testCollarData.save()
-        testCollarData.clean()
-
-    def test_CollarData_clean_noDuplicates(self):
-        duplicateCollarId = '30812'
-        nonDuplicateCollarId = '1'
-        duplicateGMTDATETIME = ('12.01.2011', '03:28:34')
-        nonDuplicateGMTDATETIME = ('5.01.2009', '11:20:35')
-        duplicateLocation = Point(float(35.7894160), float(-78.6726674))
-        nonDuplicateLocation1 = Point(float(35.7894161), float(-78.6726674))
-        nonDuplicateLocation2 = Point(float(35.7894160), float(-78.6726675))
-        nonDuplicateLocation3 = Point(float(-35.7894160), float(-78.6726674))
-        nonDuplicateLocation4 = Point(float(35.7894160), float(78.6726674))
-        testCollarParser = self.getTestCollarParser()
-        testCollar = Collar()
-        testCollar.collarID = duplicateCollarId
-        testCollar.save()
-        testCollarData = CollarData()
-        testCollarData.collar = testCollar
-        testCollarData.GMT_DATETIME = testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME[0], duplicateGMTDATETIME[1])
-        testCollarData.LMT_DATETIME = testCollarData.GMT_DATETIME
-        testCollarData.LOCATION = duplicateLocation
-        testCollarData.save()
-        testCollarData.clean()
-
 
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])

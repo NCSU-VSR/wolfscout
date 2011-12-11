@@ -20,7 +20,7 @@ def commands():
     """
     prints out all the fab commands
     """
-    print 'test runServer commit pushLocal syncLocalWithDev syncLocalWithMaster updateLocal updateDev updateMaster deployToProduction'
+    print 'test migrate runServer commit pushLocal syncLocalWithDev syncLocalWithMaster updateLocal updateDev updateMaster deployToProduction'
 
 def test():
     """
@@ -97,7 +97,6 @@ def updateLocal():
 def updateLocalNoTest():
     local('git add -p && git commit')
     local('git push origin %s' % env.localBranch)
-
 
 def updateDev():
     """
