@@ -104,8 +104,9 @@ class CollarTestCases(TestCase):
         #file = File(f)
         try:
             file_to_send = open("sample_data/GSM999999999.TXT","rb")
-            views.write_file_to_disk(file_to_send)
+            filename = views.write_file_to_disk(file_to_send)
             file_to_send.close()
+            self.assertTrue(os.path.exists(filename))
         except:
             pass
 

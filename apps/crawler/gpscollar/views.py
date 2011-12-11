@@ -159,7 +159,7 @@ def write_file_to_disk(file_to_write):
     for chunk in file_to_write.chunks():
         destination.write(chunk)
     destination.close()
-    return
+    return filename
 
 def uploadCollarDataFile(request):
     """
