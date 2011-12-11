@@ -101,6 +101,7 @@ class CollarTestCases(TestCase):
         testCollarParser = self.getTestCollarParser()
         testCollar = Collar()
         testCollar.collarID = duplicateCollarId
+        testCollar.save()
         testCollarData = CollarData()
         testCollarData.collar = testCollar
         testCollarData.GMT_DATETIME = testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME[0], duplicateGMTDATETIME[1])
