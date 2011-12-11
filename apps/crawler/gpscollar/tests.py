@@ -1,3 +1,4 @@
+from django.core.files.base import File
 import views
 from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
@@ -96,7 +97,8 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_write_file_to_disk(self):
-        file = open('sample_data/GSM999999999.TXT','r')
+        f = open('sample_data/GSM999999999.TXT','r')
+        file = File(f)
         views.write_file_to_disk(file)
 
     def getTestCollarParser(self):
