@@ -4,6 +4,7 @@ from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
 from sys import *
+from django.http import HttpRequest
 
 class CollarTestCases(TestCase):
     fixtures = ['GSM0001.json']
@@ -97,9 +98,21 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_write_file_to_disk(self):
+        self.assertTrue(os.path.exists("/opt/webapps/ncsu/wolfscout/uploaded_files/"))
         f = open('GSM999999999.TXT','r')
         file = File(f)
-        views.write_file_to_disk(file)
+        try:
+            views.write_file_to_disk(file)
+        finally:
+            f.close()
+
+    def test_uploadCSVToProcess(self):
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST = "test"
+        request.FILES = {File(open('GSM999999999.TXT','r'))}
+        request.upload_handlers
+        views.uploadCSVToProcess(request)
 
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
