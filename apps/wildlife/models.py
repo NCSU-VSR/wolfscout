@@ -1,6 +1,5 @@
 #### Django Imports ####
 from django.db import models
-
 #### Local Imports #####
 from apps.crawler.gpscollar.models import Collar, CollarData
 # Create your models here.

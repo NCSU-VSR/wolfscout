@@ -20,11 +20,14 @@ from apps.general.views import getDictionary
 from apps.crawler.gpscollar.forms import *
 from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
+from settings.common import CLIMATE_DICTIONARY
+from apps.general.forms import DivErrorList
 ### Views ####
-    
-### SCOTT BEGIN ###
 
 def getSingleCollarCSV(request, theCollarID, form_collars_filter, form_weather_filter):
+    """
+    Creates a collar csv export file based on a single collar select - not multiple collars
+    """
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=' + str(theCollarID) + '.csv'
@@ -36,6 +39,9 @@ def getSingleCollarCSV(request, theCollarID, form_collars_filter, form_weather_f
     return response
 
 def getMultiCollarCSV(request, form_collars, form_collars_filter, form_weather_filter):
+    """
+    Creates a collar csv export file based on multiple selected collars from the DOM
+    """
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(mimetype='text/csv')
     response['Content-Disposition'] = 'attachment; filename=MultiExport.csv'
@@ -55,7 +61,9 @@ def getMultiCollarCSV(request, form_collars, form_collars_filter, form_weather_f
         return HttpResponseRedirect('/collar_export/')
 
 def createCollarCSV(writer, theCollarID, form_collars_filter, form_weather_filter):
-
+    """
+    Does the actual writing of the CSV file - includes weather data too, if selected in teh DOM
+    """
     theCollar = get_object_or_404(Collar, collarID=theCollarID)
     collarDatas = CollarData.objects.filter(collar=theCollar)
 
@@ -65,9 +73,8 @@ def createCollarCSV(writer, theCollarID, form_collars_filter, form_weather_filte
             headerList.append(field.name)
     #Now add the weather fields
     for field in WeatherDataPoint._meta.fields:
-        climateDictionary = getClimateDictionary()
         if form_weather_filter.cleaned_data[str(field.name)]:
-            headerList.append(field.name)
+            headerList.append(CLIMATE_DICTIONARY[field.name][0] + " " + CLIMATE_DICTIONARY[field.name][1])
     writer.writerow(headerList)
 
     for data in collarDatas:
@@ -86,6 +93,10 @@ def createCollarCSV(writer, theCollarID, form_collars_filter, form_weather_filte
     return writer
 
 def export(request):
+    """
+    Exports collar CSV data including collar and weather data.  Checks to see if it is a multiple export or a single collar
+    export.  Currently does NOT support SHAPE exports
+    """
     siteDictionary = getDictionary(request)
     if request.method == 'POST':
         form_collars = ExportCollarDataForm(request.POST, error_class=DivErrorList, auto_id='%id_s')
@@ -94,9 +105,9 @@ def export(request):
         form_export_type = ExportTypeForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
         if form_collars.is_valid() and form_collars_filter.is_valid() and form_weather_filter.is_valid() and form_export_type.is_valid():
             is_multi_csv = form_export_type.cleaned_data['is_multi_csv']
-            is_multi_shape = form_export_type.cleaned_data['is_multi_shape']
+            #is_multi_shape = form_export_type.cleaned_data['is_multi_shape']
             is_single_csv = form_export_type.cleaned_data['is_single_csv']
-            is_single_shape = form_export_type.cleaned_data['is_single_shape']
+            #is_single_shape = form_export_type.cleaned_data['is_single_shape']
             single_collar = form_export_type.cleaned_data['single_export']
             if is_multi_csv:
                 print "Is Multiple CSV Export"
@@ -104,12 +115,14 @@ def export(request):
             if is_single_csv:
                 print "Is Single CSV Export"
                 return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
+            """
             if is_multi_shape:
                 print "Is Multipe SHAPE Export"
                 return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
             if is_single_shape:
                 print "Is Single SHAPE Export"
                 return getSingleCollarCSV(request, single_collar, form_collars_filter, form_weather_filter)
+            """
     else:
         form_collars = ExportCollarDataForm()
         form_collars_filter = ExportCollarDataFilterForm(auto_id='id_collar_filter_%s')
@@ -122,36 +135,48 @@ def export(request):
     return render_to_response('export_collar.html', siteDictionary, context_instance=RequestContext(request))
 
 def getCollars(request):
+    """
+    Returns collars
+    """
     collars = Collar.objects.all()
     return collars
     
 def getCollarData(request, theCollarID):
+    """
+    Returns a specific collars Collar Data
+    """
     siteDictionary = getDictionary(request)
     siteDictionary['collar'] = get_object_or_404(Collar, collarID=theCollarID)
     siteDictionary['collarDatas']=CollarData.objects.filter(collar=theCollar)
     return render_to_response('collar_data.html', siteDictionary, context_instance=RequestContext(request))
 
-def collarForm(request):
-    if request.method == 'POST':
-        form = CollarIDForm(request.POST, error_class=DivErrorList, auto_id='id_%s')
-        if form.is_valid():
-            theID = form.cleaned_data['collar_id']
-            return HttpResponseRedirect('/collarData/' + str(theID) + "/")
-    else:
-        form = CollarIDForm()
-    return render_to_response('collar.html', {'form': form,}, context_instance=RequestContext(request))
-    
-### SCOTT END ###
+def write_file_to_disk(file_to_write):
+    file_path = "/opt/webapps/ncsu/wolfscout/uploaded_files/"
+    filename = file_path + str(datetime.datetime.now())\
+    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
+
+    destination = open(filename, 'wb+')
+    for chunk in file_to_write.chunks():
+        destination.write(chunk)
+    destination.close()
+    return
 
 def uploadCollarDataFile(request):
+    """
+    Allows user to upload collar data
+    """
     if request.method == 'POST':
-        form = collarDataFileForm(request.POST, request.FILES)
+        form = collarDataFileForm(request.POST, request.FILES, error_class=DivErrorList)
         if form.is_valid():
-            processCollarDataFile(request.FILES['file'])
-            return HttpResponseRedirect('/')
+            write_file_to_disk(request.FILES.itervalues().next())
+            return HttpResponseRedirect('/upload_collar_success')
     else:
         form = collarDataFileForm()
-    return render_to_response('uploadCollarData.html', {'form': form},context_instance=RequestContext(request))
+    return render_to_response('upload_collar.html', {'form': form, 'request':request}, context_instance=RequestContext(request))
+
+def uploadCollarDataFile_Success(request):
+    siteDictionary = getDictionary(request)
+    return render_to_response('upload_collar_success.html', siteDictionary, context_instance=RequestContext(request))
 
 def processCollarDataFile(fileToWrite):
     """
@@ -240,17 +265,6 @@ from django import forms
 class UploadFileForm(forms.Form):
     #title = forms.CharField(max_length=50)
     file  = forms.FileField()
-
-def write_file_to_disk(file_to_write):
-    file_path = "/opt/webapps/ncsu/wolfscout/uploaded_files/"
-    filename = file_path + str(datetime.datetime.now())\
-    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
-
-    destination = open(filename, 'wb+')
-    for chunk in file_to_write.chunks():
-        destination.write(chunk)
-    destination.close()
-    return
 
 @csrf_exempt
 def uploadCSVToProcess(request):

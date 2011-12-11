@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Collar Success{% endblock %}
+
+{% block content %}	
+	<div class="section">
+		<div class="box">
+			<div class="title">
+				<h2>Success</h2>
+				<span class="hide"></span>
+			</div>
+			<div class="content">
+				<form method="post" action=".">
+					<div class="line">
+					    <h2>File upload successful.</h2>
+					</div>
+                    <div class="line">
+                        <p><a href="/upload_collar">Click here to upload more collar data.</a></p>
+                        <p><a href="/">Click here to return home.</a></p>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
