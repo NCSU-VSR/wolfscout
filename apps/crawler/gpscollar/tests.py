@@ -11,7 +11,6 @@ class CollarTestCases(TestCase):
     testCollarParser = None
     badFileNames = ['badFile0009.TXT','bad/GS0009.TXT', 'GSMM0009.TXT','GSM0009.TX', 'GSM0009T.XT','GSM0009A.TXT']
 
-
     def setUp(self):
         self.testCollarParser = self.getTestCollarParser()
 
@@ -96,14 +95,16 @@ class CollarTestCases(TestCase):
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
     def test_CollarData_clean(self):
-        collarID = 1
-        now = datetime.datetime.now()
+        duplicateCollarId = '30812'
+        duplicateGMTDATETIME = ('12.01.2011', '03:28:34 11.01.2011')
+        duplicateLocation = Point(float(35.7894160), float(-78.6726674))
+        testCollarParser = self.getTestCollarParser()
+        testCollarParser.generateDateTimeFromList(duplicateGMTDATETIME)
         testCollar = Collar()
-        testCollar.collarID = collarID
+        testCollar.collarID = duplicateCollarId
         testCollarData = CollarData()
         testCollarData.collar = testCollar
-        testCollarData.GMT_DATETIME = now
-        testCollarData.save()
+        testCollarData.GMT_DATETIME = duplicateGMTDATETIME
         testCollarData.save()
         testCollarData.clean()
 
