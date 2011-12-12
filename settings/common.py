@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'apps.study',
     'apps.wildlife',
 	'apps.general',
+    'shapes',
     #Core Applications From Non-Django Sources
     'south',
     #Nose must be below south or it all fails

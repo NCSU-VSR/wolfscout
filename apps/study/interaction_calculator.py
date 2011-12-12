@@ -9,9 +9,15 @@ from django.core.exceptions import ValidationError
 ### Project Imports
 from apps.study.models import *
 from apps.crawler.gpscollar.models import *
-
+from apps.crawler.gpscollar.views import *
+from django.core.files.base import ContentFile
 
 def findInteractionFromDataPoint(sourceCollarDataPoint, distance=settings.DEFAULT_INTERACTION_DISTANCE, timedelta=None, starttime=None, endtime=None, interactiongroup=None):
+    """
+    findInteractionFromDataPoint is used to calculate interaction data based on a singular data point.
+    Once a match has been reported it is then added to the group.
+    Input parameters should be self explanitory.
+    """
     list_of_data_points_to_search = CollarData.objects.exclude(collar=sourceCollarDataPoint.collar)
     if starttime:
         if endtime:
@@ -40,8 +46,15 @@ def findInteractionFromDataPoint(sourceCollarDataPoint, distance=settings.DEFAUL
             animal_interaction_to_add.save()
         except ValidationError:
             print "The entry already exists"
+    zip_content = ContentFile(exportShape())
+    interactiongroup.zip_file.save("sampleFile.zip",zip_content)
+    interactiongroup.save()
 
 def processAnimalInteractionGroups():
+    """
+    processAnimalInteractionGroups grabs all interaction groups and iterates through their members
+    passing each data point to findInteractionFromDataPoint
+    """
     interaction_groups = AnimalInteractionGroup.objects.all()
     for interaction_group in interaction_groups:
         data_points = CollarData.objects.all()
@@ -55,6 +68,9 @@ def processAnimalInteractionGroups():
                     endtime=interaction_group.end_time, interactiongroup=interaction_group)
 
 def findInteractionDataFromShapes(sourceShape, sourceCollarDataPoint, distance=settings.DEFAULT_INTERACTION_DISTANCE, timedelta=None, starttime=None, endtime=None, interactiongroup=None):
+    """
+    findInteractionDataFromShapes does the same as the above function for animals but with shapes.
+    """
     list_of_data_points_to_search = CollarData.objects.all()
     if starttime:
         if endtime:
@@ -82,9 +98,15 @@ def findInteractionDataFromShapes(sourceShape, sourceCollarDataPoint, distance=s
             shape_interaction_to_add.save()
         except ValidationError:
             print "The entry already exists"
-    pass
+    zip_content = ContentFile(exportShape())
+    interactiongroup.zip_file.save("sampleFile.zip",zip_content)
+    interactiongroup.save()
 
 def processShapeInteractionGroups():
+    """
+    processShapeInteractionGroups grabs all interaction groups and iterates through their shapes
+    passing each shape to findInteractionDataFromShapes
+    """
     interaction_groups = ShapeInteractionGroup.objects.all()
     for interaction_group in interaction_groups:
         data_points = ShapeToAnalyze.objects.all()
