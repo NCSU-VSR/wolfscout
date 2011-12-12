@@ -100,7 +100,7 @@ class CollarTestCases(TestCase):
 
     def test_write_file_to_disk(self):
         self.assertTrue(os.path.exists(settings.CSV_UPLOAD_DIR))
-        opened_file = File(open("sample_data/GSM999999999.TXT","rb"))
+        opened_file = File(open("tests/data/GSM999999999.TXT","rb"))
         filename = views.write_file_to_disk(opened_file)
         self.assertTrue(os.path.exists(filename))
         print filename
@@ -109,7 +109,7 @@ class CollarTestCases(TestCase):
         request = HttpRequest()
         request.method = 'POST'
         request.POST = "test"
-        request.FILES = {'name':File(open('GSM999999999.TXT','r'))}
+        request.FILES = {'name':File(open('tests/data/GSM999999999.TXT','rb'))}
         request.upload_handlers
         views.uploadCSVToProcess(request)
 
