@@ -6,6 +6,12 @@ __author__ = 'chris'
 """
 Fabric is a utility that automates many things, here are some functions for prepping
 the code for release onto a production server
+
+In order for many fab commands to work, env.localbranch will need to be defined. In order to do this,
+create a file in your home dir called .fabricrc. Add the following two lines where <user> is your git user
+and <localBranch> is the name of your local branch.
+user = <user>
+localBranch = <localBranch>
 """
 
 env.hosts = ['wolfscout.ncsu.edu']
@@ -14,13 +20,22 @@ def commands():
     """
     prints out all the fab commands
     """
-    print 'test runServer commit pushLocal syncLocalWithDev syncLocalWithMaster updateLocal updateDev updateMaster deployToProduction'
+    print 'test migrate runServer commit pushLocal syncLocalWithDev syncLocalWithMaster updateLocal updateDev updateMaster deployToProduction'
 
 def test():
     """
     Runs all tests in the django project
     """
     local('django-admin.py test')
+
+def migrate():
+    """
+    Runs migrations on the database. If there are no migrations to be done, will do nothing.
+    """
+    local('django-admin.py migrate apps.crawler.cronos')
+    local('django-admin.py migrate apps.crawler.gpscollar')
+    local('django-admin.py migrate apps.study')
+    local('django-admin.py migrate apps.wildlife')
 
 def runServer():
     """
@@ -78,6 +93,10 @@ def updateLocal():
     """
     commit()
     pushLocal()
+
+def updateLocalNoTest():
+    local('git add -p && git commit')
+    local('git push origin %s' % env.localBranch)
 
 def updateDev():
     """
