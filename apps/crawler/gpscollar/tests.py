@@ -117,7 +117,8 @@ class CollarTestCases(TestCase):
     def test_findAllMatchingByDistance(self):
         collar = Collar()
         collar.collarID = 1
-        support.findAllMatchingByDistance(collar)
+        distance = 5
+        support.findAllMatchingByDistance(collar, distance)
         
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
