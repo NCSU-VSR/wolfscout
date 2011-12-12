@@ -22,7 +22,23 @@ from apps.crawler.gpscollar.support import *
 from apps.crawler.cronos.models import *
 from settings.common import CLIMATE_DICTIONARY
 from apps.general.forms import DivErrorList
+from shapes.views import ShpResponder
 ### Views ####
+def exportShape():
+    print "I GOT CALLED!!!"
+    #w = CollarData.objects.all()
+    w =CollarData.objects.filter(collar=30812)
+    print "AGAIN!!!"
+    try:
+        shp_response = ShpResponder(w)
+        print "ANOOOTER"
+        shp_response.file_name = 'Collar Datas'
+        print "I HATE THIS"
+        return shp_response()
+    except Exception,e:
+        print type(e),e
+
+
 
 def getSingleCollarCSV(request, theCollarID, form_collars_filter, form_weather_filter):
     """
@@ -151,15 +167,15 @@ def getCollarData(request, theCollarID):
     return render_to_response('collar_data.html', siteDictionary, context_instance=RequestContext(request))
 
 def write_file_to_disk(file_to_write):
-    file_path = "/opt/webapps/ncsu/wolfscout/uploaded_files/"
-    filename = file_path + str(datetime.datetime.now())\
-    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
+    filename = str(file_to_write).split("/")[-1]
+    filename = settings.CSV_UPLOAD_DIR + str(datetime.datetime.now())\
+    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(filename)
 
     destination = open(filename, 'wb+')
     for chunk in file_to_write.chunks():
         destination.write(chunk)
     destination.close()
-    return
+    return filename
 
 def uploadCollarDataFile(request):
     """

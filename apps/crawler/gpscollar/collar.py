@@ -1,5 +1,8 @@
 ### Standard Library Imports
 from sys import *
+import os
+import shutil
+import difflib
 from datetime import datetime
 ### Django Imports
 from django.conf import settings
@@ -145,7 +148,7 @@ class CollarParser(object):
         except IndexError:
             newCollarDataPoint.VALID = False
         try:
-            newCollarDataPoint.full_clean()
+            #newCollarDataPoint.full_clean()
             newCollarDataPoint.weatherDataPoint = getWeatherData(newCollarDataPoint)
             newCollarDataPoint.save()
         except ValidationError:
@@ -205,9 +208,22 @@ class CollarParser(object):
         processed.
         """
         try:
-            with open(self.filePath, 'r') as file:
-                for self.line in file:
+            new_file = open(self.filePath, 'r')
+            existing_file_path = "/opt/webapps/ncsu/wolfscout/known_collar_data/"+"GSM"+str(self.collarID)+".TXT"
+            if os.path.exists(existing_file_path):
+                existing_file = open(existing_file_path, 'r')
+                diffs = difflib.ndiff(existing_file.readlines(), new_file.readlines())
+                for diff in diffs:
+                    if diff[:2] == '+ ':
+                        #print diff[2:]
+                        self.line = diff[2:]
+                        self.lineParser()
+                new_file.close()
+                existing_file.close()
+            else:
+                for self.line in new_file:
                     self.lineParser()
+            shutil.copyfile(self.filePath, existing_file_path)
         except IOError, err:
             return err
         return 0

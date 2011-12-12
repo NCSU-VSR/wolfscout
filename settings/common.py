@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'apps.study',
     'apps.wildlife',
 	'apps.general',
+    'shapes',
     #Core Applications From Non-Django Sources
     'south',
     #Nose must be below south or it all fails
@@ -294,3 +295,4 @@ CLIMATE_DICTIONARY = {
 }
 
 FIXTURE_DIRS = '/opt/webapps/ncsu/wolfscout/tests/data/fixtures'
+CSV_UPLOAD_DIR = "/opt/webapps/ncsu/wolfscout/uploaded_files/"

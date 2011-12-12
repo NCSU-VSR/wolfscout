@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 cd ../..
-virtualenv --no-site-packages ncsu
+virtualenv ncsu
 cd ncsu
 source ./bin/activate
 cd wolfscout
@@ -11,4 +11,4 @@ django-admin.py migrate apps.crawler.cronos
 django-admin.py migrate apps.crawler.gpscollar
 django-admin.py migrate apps.study
 django-admin.py migrate apps.wildlife
-django-admin.py test --with-xcoverage --cover-package=apps.crawler --with-xunit
+django-admin.py test --with-xcoverage --cover-package=apps --with-xunit

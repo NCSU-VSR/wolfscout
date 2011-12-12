@@ -15,3 +15,6 @@ DATABASES = {
 DEFAULT_INTERACTION_DISTANCE = .5
 TEST_RUNNER = 'django_nose.run_tests'
 CRONOS_API_KEY = 'b503730e2a6b5869531352324580cd62ff123dab019694a99f239907ebe4b'
+
+FIXTURE_DIRS = '/opt/webapps/hudson/ncsu/wolfscout/tests/data/fixtures'
+CSV_UPLOAD_DIR = "/opt/webapps/hudson/ncsu/wolfscout/uploaded_files/"
