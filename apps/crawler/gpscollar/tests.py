@@ -1,5 +1,6 @@
 from django.core.files.base import File
 import views
+import support
 from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
@@ -113,6 +114,11 @@ class CollarTestCases(TestCase):
         request.upload_handlers
         views.uploadCSVToProcess(request)
 
+    def test_findAllMatchingByDistance(self):
+        collar = Collar()
+        collar.collarID = 1
+        support.findAllMatchingByDistance(collar)
+        
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
 
