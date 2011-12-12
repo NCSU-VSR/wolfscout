@@ -9,7 +9,8 @@ from django.core.exceptions import ValidationError
 ### Project Imports
 from apps.study.models import *
 from apps.crawler.gpscollar.models import *
-
+from apps.crawler.gpscollar.views import *
+from django.core.files.base import ContentFile
 
 def findInteractionFromDataPoint(sourceCollarDataPoint, distance=settings.DEFAULT_INTERACTION_DISTANCE, timedelta=None, starttime=None, endtime=None, interactiongroup=None):
     list_of_data_points_to_search = CollarData.objects.exclude(collar=sourceCollarDataPoint.collar)
@@ -40,6 +41,9 @@ def findInteractionFromDataPoint(sourceCollarDataPoint, distance=settings.DEFAUL
             animal_interaction_to_add.save()
         except ValidationError:
             print "The entry already exists"
+    zip_content = ContentFile(exportShape())
+    interactiongroup.zip_file.save("sampleFile.zip",zip_content)
+    interactiongroup.save()
 
 def processAnimalInteractionGroups():
     interaction_groups = AnimalInteractionGroup.objects.all()
@@ -82,7 +86,9 @@ def findInteractionDataFromShapes(sourceShape, sourceCollarDataPoint, distance=s
             shape_interaction_to_add.save()
         except ValidationError:
             print "The entry already exists"
-    pass
+    zip_content = ContentFile(exportShape())
+    interactiongroup.zip_file.save("sampleFile.zip",zip_content)
+    interactiongroup.save()
 
 def processShapeInteractionGroups():
     interaction_groups = ShapeInteractionGroup.objects.all()

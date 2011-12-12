@@ -1,12 +1,13 @@
 #Local Imports
 from apps.general.views import index
-
+from shapes import views
 # Django Imports
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 #Import The CollarData URLS
 from apps.crawler.gpscollar import urls
+from apps.crawler.gpscollar.models import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib.gis import admin
 
@@ -49,6 +50,7 @@ urlpatterns = patterns('',
     #url(r'^study_delete/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.delete'),
     #url(r'^study_edit/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.edit'),
     #url(r'^study/(?P<theStudyID>\d+)/$', 'wolfscout.apps.study.views.study'),
+    url(r'^exportShape/$','wolfscout.apps.crawler.gpscollar.views.exportShape'),
 
 )
 
@@ -65,4 +67,3 @@ urlpatterns += patterns('',
         'document_root': settings.MEDIA_ROOT,
         }),
     )
-
