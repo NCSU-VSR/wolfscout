@@ -167,14 +167,15 @@ def getCollarData(request, theCollarID):
     return render_to_response('collar_data.html', siteDictionary, context_instance=RequestContext(request))
 
 def write_file_to_disk(file_to_write):
+    filename = str(file_to_write).split("/")[-1]
     filename = settings.CSV_UPLOAD_DIR + str(datetime.datetime.now())\
-    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(file_to_write)
+    .replace(" ","").replace(":","-").replace(".","-")+ "-" + str(filename)
 
     destination = open(filename, 'wb+')
     for chunk in file_to_write.chunks():
         destination.write(chunk)
     destination.close()
-    return
+    return filename
 
 def uploadCollarDataFile(request):
     """

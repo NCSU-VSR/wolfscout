@@ -1,16 +1,20 @@
+from django.core.files.base import File
+import views
+import support
 from django.test import TestCase
 from apps.crawler.gpscollar.collar import *
 from django.core.exceptions import ObjectDoesNotExist
 from sys import *
+from django.http import HttpRequest
+from django.conf import settings
 
 class CollarTestCases(TestCase):
     fixtures = ['GSM0001.json']
     existingCollarID = '1'
-    existingSampleData = {'ID': '30812', 'fileName': 'sample_data/GSM30812.TXT'}
-    nonExistentCollarID = '999999999'
+    existingSampleData = {'ID': '999999999', 'fileName': 'sample_data/GSM999999999.TXT'}
+    nonExistentCollarID = '999999998'
     testCollarParser = None
     badFileNames = ['badFile0009.TXT','bad/GS0009.TXT', 'GSMM0009.TXT','GSM0009.TX', 'GSM0009T.XT','GSM0009A.TXT']
-
 
     def setUp(self):
         self.testCollarParser = self.getTestCollarParser()
@@ -95,6 +99,27 @@ class CollarTestCases(TestCase):
         for badTime in self.getBadTimeStrings():
             self.assertRaises(ValueError, testCollarParser.generateDateTimeFromList, self.getValidDateStrings()[0], badTime)
 
+    def test_write_file_to_disk(self):
+        self.assertTrue(os.path.exists(settings.CSV_UPLOAD_DIR))
+        opened_file = File(open("tests/data/GSM999999999.TXT","rb"))
+        filename = views.write_file_to_disk(opened_file)
+        self.assertTrue(os.path.exists(filename))
+        print filename
+
+    def test_uploadCSVToProcess(self):
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST = "test"
+        request.FILES = {'name':File(open('tests/data/GSM999999999.TXT','rb'))}
+        request.upload_handlers
+        views.uploadCSVToProcess(request)
+
+    def test_findAllMatchingByDistance(self):
+        collar = Collar()
+        collar.collarID = 1
+        distance = 5
+        support.findAllMatchingByDistance(collar, distance)
+        
     def getTestCollarParser(self):
         return CollarParser(self.existingSampleData['fileName'])
 

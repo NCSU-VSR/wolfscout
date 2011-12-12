@@ -86,7 +86,7 @@ class CollarData(models.Model):
         Continuing to save after a corrupted clean is bad and will cause the zombies to get you first.
         Unique validation parameters:
             collar == known collar
-            LOACATION == known LOACATION
+            LOCATION == known LOCATION
             GMT_DATETIME == known GMT_DATETIME
         If the uniqueness fails, the item should not be stored in the DB.
         """
