@@ -438,12 +438,6 @@ img {
   border: 1px solid #f2f4f7;
   margin: 3px 0 15px 14px;
 }
-/* line 323, ../../compass/sass/style.sass */
-.box .content span.shadow img {
-  background-color: white;
-  border: 1px solid #c3d0e1;
-  padding: 1px;
-}
 /* line 327, ../../compass/sass/style.sass */
 .box .content.gallery {
   display: block;
