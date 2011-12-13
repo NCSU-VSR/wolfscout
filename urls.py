@@ -63,7 +63,7 @@ urlpatterns += urls.urlpatterns
 
 #Downloadable reports
 urlpatterns += patterns('',
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    url(r'^generated_media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT,
         }),
     )
