@@ -31,6 +31,8 @@ class Animal(models.Model):
     age = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
     sex = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)
+    #Demographic fields
+    blood = models.BooleanField(default=False)
 
     def __unicode__(self):
         return str(self.common_name)
