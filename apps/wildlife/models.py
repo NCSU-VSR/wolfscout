@@ -6,7 +6,7 @@ from apps.crawler.gpscollar.models import Collar, CollarData
 class Species(models.Model):
     """
     Species act as their biological definition.
-    A specimen may be long to them.
+    A specimen may belong to them.
     Disease notes may be recorded, etc.
     """
     name = models.CharField(max_length=100, unique=True)
@@ -28,13 +28,12 @@ class Animal(models.Model):
     )
     collar = models.ForeignKey(Collar, null=True, blank=True)
     common_name = models.CharField(max_length=50, unique=True)
-    age = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
+    age_class = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
     sex = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)
 
     #Demographic fields
-    #Animal ID,Collar ID,Date,Time,Sex,Age,Location,Trap,Collar Freq.,Crown to rump (cm),
-    # Chest (cm),Neck (cm),Weight (Kg),Blood,Hair,Ticks,Feces,Notes,Status
+
     date = models.CharField(max_length=50, null=True, blank=True) #Date model.DateTimeField(null=True, blank=True)
     time = models.CharField(max_length=50, null=True, blank=True) #Time model.DateTimeField(null=True, blank=True)
     location = models.CharField(max_length=50, null=True, blank=True)
