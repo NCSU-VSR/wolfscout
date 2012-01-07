@@ -86,7 +86,7 @@ infile1.close()
 
 ###Deer DATA######################################################################################
 
-infile2 = open ('/opt/webapps/ncsu/wolfscout/sample_data/deer-demographics.csv','rU')
+infile2 = open ('/opt/webapps/ncsu/wolfscout/sample_data/deer-demographics2.csv','rU')
 
 #Set species. Note need to use Species class
 #s = Species(name="Deer")
@@ -147,7 +147,7 @@ for data in dem2:
     testAnimal.flightDist = data["Flight Distance"]
     testAnimal.recovery_min = data["Recovery (min)"]
     testAnimal.drugMix = data["Drug Mix"]
-    testAnimal.estAge = data["Age"]
+    testAnimal.estAge_yr = data["Age"]
 
     #NEED to change these to datetime module
     #dt = datetime.strptime("21/11/06 16:30", "%d/%m/%y %H:%M")

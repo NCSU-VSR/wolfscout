@@ -58,7 +58,7 @@ class Animal(models.Model):
     flightDist = models.CharField(max_length=50, null=True, blank=True)
     recovery_min = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
     drugMix = models.CharField(max_length=50, null=True, blank=True)
-    estAge = models.CharField(max_length=50, null=True, blank=True)
+    estAge_yr = models.CharField(max_length=50, null=True, blank=True)
 
 
 
