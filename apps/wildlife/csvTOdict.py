@@ -86,7 +86,7 @@ infile1.close()
 
 ###Deer DATA######################################################################################
 
-infile2 = open ('/opt/webapps/ncsu/wolfscout/sample_data/deer-demographics2.csv','rU')
+infile2 = open ('/opt/webapps/ncsu/wolfscout/sample_data/deer-demographics_ALL.csv','rU')
 
 #Set species. Note need to use Species class
 #s = Species(name="Deer")
