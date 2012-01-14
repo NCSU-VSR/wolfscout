@@ -42,11 +42,12 @@ for data in dem:
         animalSpecies.save()
 
     #Load animal whose common name = animal id to upload demographic information
-    testAnimal = Animal.objects.get(common_name=data["Animal ID"])
-    #If the common name doesn't exist, create it
-    if not testAnimal:
+    try:
+        testAnimal = Animal.objects.get(common_name=data["Animal ID"])
+    except:
         testAnimal = Animal()
         testAnimal.common_name = data["Animal ID"]
+        testAnimal.collar = animalCollar
         testAnimal.save()
 
     #Run through the rows (data) in the dictionary and add data to demographic fields
