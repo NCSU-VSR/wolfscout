@@ -156,7 +156,7 @@ class WeatherDataPoint(models.Model):
     stavg = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     stmax = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     stmin = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
-    temp = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
+    temp = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     temp10 = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     temp10avg = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
     temp10max = models.DecimalField(max_digits=12, decimal_places=7, null=True, blank=True)
