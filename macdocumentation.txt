@@ -1,0 +1,60 @@
+OSX Install guide
+
+Install Pycharm EAP
+
+Install Xcode
+
+Install Homebrew(package management for OSX)
+/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+
+Configure Your Path
+vim .profile
+# add this
+export PATH=/usr/local/bin:$PATH
+
+Installing Git
+brew install git
+
+Install Pre-Python packages
+brew install readline sqlite gdbm pkg-config
+
+Install virtualenv
+easy_install virtualenv
+
+#### Configuring the environment
+sudo mkdir /opt/
+sudo mkdir /opt/webapps
+sudo chown yourusername /opt/webapps/
+cd /opt/webapps
+virtualenv --no-site-packages ncsu
+cd ncsu
+source bin/activate
+
+###Configure github account + ssh key stuff
+git config --global user.name "Dr Lauren Charles-Smith"
+git config --global user.email drlaurencharles@gmail.com
+
+## Grab the codebase
+cd /opt/webapps/ncsu/
+git clone git@github.com:NCSU-VSR/wolfscout.git
+
+#Install all required python packages
+cd /opt/webapps/ncsu/wolfscout
+pip install -r requirements.txt
+
+### Postgresql install
+brew install postgresql --no-perl --no-python
+
+#Configure postgres
+Follow the documentation at the end of the install command
+Apply patch
+http://nextmarvel.net/blog/2011/09/brew-install-postgresql-on-os-x-lion/
+
+#Configure Postgis
+brew install postgis
+
+#Configure GDAL
+brew install gdal  --with-postgres
+
+
+#Install PostgreSQL GUI
