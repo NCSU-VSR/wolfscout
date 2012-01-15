@@ -57,7 +57,6 @@ $(document).ready(function() {
             isEverythingElseDisabled = true;
 
             blockEnabledDisable_Field_Animal('.export_animal_csv', true, 'button');
-
         }else{
             blockEnabledDisable_Field_Animal('.age_header', true, 'li');
             blockEnabledDisable_Field_Animal('.species_header', true, 'li');
