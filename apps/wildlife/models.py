@@ -6,7 +6,7 @@ from apps.crawler.gpscollar.models import Collar, CollarData
 class Species(models.Model):
     """
     Species act as their biological definition.
-    A specimen may be long to them.
+    A specimen may belong to them.
     Disease notes may be recorded, etc.
     """
     name = models.CharField(max_length=100, unique=True)
@@ -27,10 +27,40 @@ class Animal(models.Model):
         ('A', 'Adult'),
     )
     collar = models.ForeignKey(Collar, null=True, blank=True)
+    collar_frequency = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
     common_name = models.CharField(max_length=50, unique=True)
-    age = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
+    age_class = models.CharField(max_length=50, null=True, blank=True, choices=AGE_CHOICES)
     sex = models.CharField(max_length=50, null=True, blank=True)
     species = models.ForeignKey(Species, null=True, blank=True)
+
+    #Demographic fields
+
+    date = models.CharField(max_length=50, null=True, blank=True) #Date model.DateTimeField(null=True, blank=True)
+    time = models.CharField(max_length=50, null=True, blank=True) #Time model.DateTimeField(null=True, blank=True)
+    location = models.CharField(max_length=50, null=True, blank=True)
+    trap = models.CharField(max_length=10, null=True, blank=True)
+    crowntorump_cm = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    chest_cm = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    neck_cm = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    weight_Kg = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    blood = models.BooleanField(default=False)
+    hair = models.BooleanField(default=False)
+    ticks = models.BooleanField(default=False)
+    feces = models.BooleanField(default=False)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+
+    shooter = models.CharField(max_length=50, null=True, blank=True)
+    frequency_VIT = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    antennaLength_VIT = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    shotGPS = models.CharField(max_length=50, null=True, blank=True)
+    recoveryGPS = models.CharField(max_length=50, null=True, blank=True)
+    flightDist = models.CharField(max_length=50, null=True, blank=True)
+    recovery_min = models.DecimalField(max_digits=15, decimal_places=5, null=True, blank=True)
+    drugMix = models.CharField(max_length=50, null=True, blank=True)
+    estAge_yr = models.CharField(max_length=50, null=True, blank=True)
+
+
 
     def __unicode__(self):
         return str(self.common_name)

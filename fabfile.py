@@ -1,7 +1,7 @@
 from __future__ import with_statement
 from fabric.api import *
 from fabric.contrib.console import confirm
-
+#Lauren's first edit
 __author__ = 'chris'
 """
 Fabric is a utility that automates many things, here are some functions for prepping
