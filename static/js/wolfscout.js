@@ -50,7 +50,7 @@ $(document).ready(function() {
         var isSpeciesSelected = $('.speciesCheckbox').parents('table').find(':checkbox').is(':checked');
         var isAgeSelected = $('.ageCheckbox').parents('table').find(':checkbox').is(':checked');
 
-        if(isAnimalSelected && !isEverythingElseDisabled){
+        if(isAnimalSelected){ //&& !isEverythingElseDisabled){
             blockEnabledDisable_Field_Animal('.age_header', false, 'li');
             blockEnabledDisable_Field_Animal('.species_header', false, 'li');
             blockEnabledDisable_Field_Animal('.sex_header', false, 'li');
