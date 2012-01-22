@@ -1,6 +1,7 @@
 __author__ = 'laurencharles-smith'
 
-# Create file that reads csv data, parses the data into a list and adds to dictionary
+# Create file that reads csv data, parses the data into a list and adds to a dictionary. Takes the
+# dictionary keys and saves them in the fields created by the wildlife/models.py file.
 
 ##Creates a DictReader object which can parse the given file, returning a #dictionary of values for each line of the file.
 # The dictionary keys are #typically the first line of the file. You can, optionally, provide the field #names if
