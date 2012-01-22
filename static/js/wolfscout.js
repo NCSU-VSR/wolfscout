@@ -46,19 +46,21 @@ $(document).ready(function() {
      */
     function checkAnimalSelected(){
         var isAnimalSelected = $('.animalCheckbox').parents('table').find(':checkbox').is(':checked');
-        var isSexSelected = $('.sexCheckbox').parents('table').find(':checkbox').is(':checked');
+        var isCollarFilterSelected = $('.enableExport_collarFilter_ANIMAL_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
+        var isWeatherFilterSelected = $('.enableExport_weatherFilter_ANIMAL_EXPORT_PAGE').parents('table').find(':checkbox').is(':checked');
+        /*var isSexSelected = $('.sexCheckbox').parents('table').find(':checkbox').is(':checked');
         var isSpeciesSelected = $('.speciesCheckbox').parents('table').find(':checkbox').is(':checked');
-        var isAgeSelected = $('.ageCheckbox').parents('table').find(':checkbox').is(':checked');
+        var isAgeSelected = $('.ageCheckbox').parents('table').find(':checkbox').is(':checked');*/
 
-        if(isAnimalSelected){ //&& !isEverythingElseDisabled){
-            blockEnabledDisable_Field_Animal('.age_header', false, 'li');
+        if((isCollarFilterSelected || isWeatherFilterSelected) && isAnimalSelected){ //&& !isEverythingElseDisabled){
+            /*blockEnabledDisable_Field_Animal('.age_header', false, 'li');
             blockEnabledDisable_Field_Animal('.species_header', false, 'li');
             blockEnabledDisable_Field_Animal('.sex_header', false, 'li');
-            isEverythingElseDisabled = true;
+            isEverythingElseDisabled = true;*/
 
             blockEnabledDisable_Field_Animal('.export_animal_csv', true, 'button');
         }else{
-            blockEnabledDisable_Field_Animal('.age_header', true, 'li');
+            /*blockEnabledDisable_Field_Animal('.age_header', true, 'li');
             blockEnabledDisable_Field_Animal('.species_header', true, 'li');
             blockEnabledDisable_Field_Animal('.sex_header', true, 'li');
             if(isSexSelected || isSpeciesSelected || isAgeSelected){
@@ -70,7 +72,7 @@ $(document).ready(function() {
                 blockEnabledDisable_Field_Animal('.animal_header', true, 'li');
                 isAnimalDisabled = false;
             }
-            isEverythingElseDisabled = false;
+            isEverythingElseDisabled = false;*/
 
             blockEnabledDisable_Field_Animal('.export_animal_csv', false, 'button');
         }
@@ -90,11 +92,11 @@ $(document).ready(function() {
 
     //If Collar Filter checkbox clicked - set status of export buttons
     $('.enableExport_collarFilter_ANIMAL_EXPORT_PAGE').change(function() {
-        checkCollarAndFilterOptionsSelected_ANIMAL_EXPORT_PAGE();
+        checkAnimalSelected();
     });
     //If Weather Filter checkbox clicked - set status of export buttons
     $('.enableExport_weatherFilter_ANIMAL_EXPORT_PAGE').change(function() {
-        checkCollarAndFilterOptionsSelected_ANIMAL_EXPORT_PAGE();
+        checkAnimalSelected();
     });
 
     /**
