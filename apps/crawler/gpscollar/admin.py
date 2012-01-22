@@ -10,8 +10,8 @@ class CollarAdmin(admin.GeoModelAdmin):
     search_fields = ('collarID',)
 
 class CollarDataAdmin(admin.GeoModelAdmin):
-    list_display = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
-    search_fields = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE','HEIGHT',)
+    list_display = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE',)
+    search_fields = ('collar','LMT_DATETIME','LATITUDE','LONGITUDE',)
 
 
 ##### Admin Registers ######
